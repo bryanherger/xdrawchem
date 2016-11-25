@@ -1,0 +1,11 @@
+<-R>C=C<-R>;;Horner-Wittig reaction (C=C double bond)
+<-R><-R><-R>C-O;;Grignard reaction (tertiary alcohol)
+<-R><=O>C-N<-R>;;amide condensation
+<-R><=O>C-O<-R>;;ester condensation
+<-C(-R)><=O>Cr-Or<-C(-R)(-R)>;;Bayer-Villiger oxidation
+<-C(=C[-C])><-C(=C[-C])>Cr-C<-N(-R)><=O>;;Birch reduction
+<-C(=C[-C])><-C(=C[-C])>Cr-C<-O(-R)><=O>;;Birch reduction
+<-C(-C[-C])(-N[-C][-C])><-N(-C[*C][*C])>Cr=Cr<-C(*C[*C])(*C[*C][-N])><-C(-C[-N])>;;Bischler-Napieralski reaction
+<-C><-O>C=C<-C(-O[-C])(=O)><-O>;;Chan rearrangement
+<-C><-O>C-C<-C(-R)(=O)>;;Claisen condensation 
+<-C(-C)(-O[-C])><-O(-C[-C][-C])>Cr-C<-C><=O>;;Darzen condensation (epoxide)

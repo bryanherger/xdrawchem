@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE molecule SYSTEM "cml.dtd" []>
+<molecule id="leucine.cml" convention="CML-1999-05-15">
+  <string title="GenerationDate">Fri May 25 17:56:59 2001</string>
+  <string title="GenerationSoftware">XDrawChem 0.9</string>
+  <atom id="a0">
+    <string builtin="elementType">H2N</string>
+    <coordinate2 builtin="xy2">110 192</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a1">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">153.301 167</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a2">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">196.603 192</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a3">
+    <string builtin="elementType">O</string>
+    <coordinate2 builtin="xy2">196.603 242</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a4">
+    <string builtin="elementType">OH</string>
+    <coordinate2 builtin="xy2">239.904 167</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a5">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">153.301 117</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a6">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">196.603 92</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a7">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">196.603 42</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a8">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">239.904 117</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <bond id="b0" atomRefs="a0 a1">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b1" atomRefs="a1 a2">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b2" atomRefs="a2 a3">
+    <string builtin="order">2</string>
+  </bond>
+  <bond id="b3" atomRefs="a2 a4">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b4" atomRefs="a1 a5">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b5" atomRefs="a5 a6">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b6" atomRefs="a6 a7">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b7" atomRefs="a6 a8">
+    <string builtin="order">1</string>
+  </bond>
+</molecule>

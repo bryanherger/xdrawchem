@@ -1,0 +1,13 @@
+# utf-8
+
+2006-01-18 Daniel Leidert <daniel.leidert.spam@gmx.net>
+
+	* xdrawchem-de.po: Update to include fixes taken from the Debian
+	project. Thanks to Jens Seidel. (Debian bug #313855)
+
+2005-12-13 Daniel Leidert <daniel.leidert.spam@gmx.net>
+
+	* ChangeLog: fixed format.
+
+	* xdrawchem-de.po: Updates for the 1.9.9 release.
+

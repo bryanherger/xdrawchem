@@ -1,0 +1,48 @@
+# utf-8
+
+2005-08-10  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated (fixed 1 fuzzy and 4 untranslated messages)
+
+2005-07-20  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated (fixed 1 untranslated message)
+
+2005-07-16  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated (fixed 4 fuzzy messages)
+
+2005-07-07  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated (fixed 2 untranslated messages)
+
+2005-06-11  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated
+
+2005-06-08  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated
+
+2005-05-22  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated
+
+2005-05-16  Daniel Leidert <daniel.leidert.spam@gmx.net>
+        - xdrawchem.pot: updated
+        - xdrawchem-de.po: updated
+
+2005-05-03  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem.pot: updated
+	- xdrawchem-de.po: updated
+
+2005-03-23  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- xdrawchem-de.po: updated, fuzzy translations fixed
+	- xdrawchem.pot: updated
+
+2005-03-18  Daniel Leidert <daniel.leidert.spam@gmx.net>
+	- added this ChangeLog for better overview (hopefully also for Bryan)
+	- xdrawchem.pot: updated
+	- xdrawchem-{da|de|it|pl|ru}.po: updated from xdrawchem.pot
+	- xdrawchem-de.po: updated, fuzzy translations fixed
+

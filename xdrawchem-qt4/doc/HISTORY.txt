@@ -1,0 +1,436 @@
+version 1.9.4:
+(contributed) Fixed buggy pointer references related to bug #1158842.
+Added Edit > Insert symbol dialog.
+Improvements to BUILD3D code now yield better results for fused rings,
+  aromtics, and other double bonds.
+Updated Polish language file.
+
+version 1.9.3:
+Fixed issue with color selection and color in EPS files.
+Aliphatic chains are now consistently drawn correctly.
+Undo and load/save correctly handle explicit "C" labels on carbons.
+BUILD3D is now accessed as a CGI script, which means it is accessible for
+  all platforms with an Internet connection.
+(contributed) Updated Polish language file.
+
+version 1.9.2:
+Fixed some small bugs in drawing behavior.
+When a Tool menu option is chosen, the target molecule is now highlighted
+  on mouse over.
+Added more options to right-click menu.
+Added reverse reaction prediction.
+Double clicking on text allows edit.
+XDrawChem can produce 3-D structures using the external program BUILD3D.
+Fixed issues with coordinate system.
+
+version 1.9.1:
+Updated German translation.  Thanks to Daniel Leidert for this work.
+Fixed some keyboard and text input issues.  Mainly, it's possible to label
+  carbons again, and type characters that are not US-English letters and
+  numbers.  This should also fix some format issues.
+You can now change font settings within XDrawChem and have them saved between
+  sessions.
+Fixed arrow behavior.  All arrow types render correctly, and it's possible
+  to change the thickness of some arrow types.
+Fixed custom rings dialog.  Custom rings saved to user's home directory
+  now appear on menu correctly.  Menu is also dynamically updated, so new
+  structures appear immediately without need to restart XDrawChem.
+
+version 1.9:
+Added Russian language translation file.  Thanks to Vitaly Lipatov and Roman
+  Borisyuk for conributing this work.
+Fixed dialogs that display Help.  It's now possible to use the Help dialog, 
+  and close it without closing the tool you are using.
+Eliminated Elemental analysis dialog.  This feature is now part of Molecule
+  Information.
+Fixed a bug in the text tool that caused a segfault when clicking off of an
+  empty text field.  Also updated text toopl behavior to more accurately show
+  what would be selected, moved, etc. on mouse click.
+Fixed a bug where aromatic and other rings would have infinite scale and
+  random rotation if attached to an existing bond.  Rings now attach
+  correctly, even to vertical bonds.
+Keyboard input for non-English users is fixed.  You can finally type letters
+  with umlauts (e.g., "Säure") and other accents.
+You can paste text from other applications with Ctrl+V.  However, you must
+  select the Text tool first and create a new text box.
+The width of any bond (double, triple, dashed, ...) may be changed now.
+
+version 1.8.5:
+Fixed EPS output by using "ps2epsi" script supplied with GhostScript to
+  process the file.
+Updated some deprecated functions to current version and fixed some
+  warnings.
+(contributed) Made some pixmaps transparent to improve print quality.
+
+version 1.8.4:
+Names retrieved from the database are correctly displayed now.
+Right-clicking on a molecule brings up a popup list of actions.  Currently,
+  select molecule, cut, copy and molecule info are available this way.
+
+version 1.8.3:
+Updated Polish translation.
+Pressing Escape now puts you back in select mode, regardless of current state.
+Moved XDrawChem database, and eliminated dependency of frowns, sort of.
+  Canonical SMILES is now found by querying a cgi-bin script, so if you
+  have net access, you can access all DB features now.
+
+version 1.8.2:
+Zoom/magnify tools now exist.
+Double bond alignment fixes.  You can set a specific double bond style
+  by right-clicking on the double bond.
+Updated configure script with Geoffrey Wossum's excellent macro for finding
+  Qt and setting variables.  http://autoqt.sf.net/
+
+version 1.8.1:
+Improved Undo feature.
+Code cleanup and arrangement:  compiles much faster now.
+
+version 1.8:
+Added circle and square tools.
+Changed menu structure a bit.
+Added Italian language file.
+Improved database -- it's now possible to get CAS number and sometimes
+  name from a molecule structure.  Database back-end changes have also
+  improved lookup based on name and CAS.
+Fixed some bugs, see SourceForge bug tracker.
+
+version 1.7.8:
+Added lasso tool.
+Fixed bug 900782.
+Updated to use OpenBabel 1.100.2 (and later)
+
+version 1.7.7:
+Bug fix release -- fixed EPS bounds and buggy text alignment.
+Administrative:  moved everything to SourceForge.net, put source in CVS.
+
+version 1.7.6:
+Bug fix release -- fixed null pointer bug in file save.
+XDrawChem can now draw hex grid.
+
+version 1.7.5:
+EPS output should now draw text better.
+A "Did You Know?" dialog was added.
+configure script updated to use latest autoconf/automake.
+OpenBabel is no longer bundled.  You will need to download it separately.
+--(from http://openbabel.sourceforge.net/ ; OB version must be 1.100.1)
+Translation .po and .pot files were updated (sorry that I forgot these!)
+
+version 1.7.4:
+Program now supports English and metric units.
+
+version 1.7.3:
+Added ruler and square grid.
+Added octanol-water partition (Kow) calculator.
+Updated OB source directory.
+
+version 1.7.2:
+Fixed an issue with EPS/PostScript output.
+Added new Danish and Polish translations.
+
+version 1.7.1:
+Improved p orbital symbols.
+(Hopefully) fixed bug with saving pictures.
+
+version 1.7:
+Added half and full arrowheads for Bezier curves.
+Updated documentation.
+Fixed double->int conversions so that rounding is done rather than truncation.
+  (should improve drawing appearance)
+Generated an xdrawchem.pot file for translation.
+
+version 1.6.10:
+Fixed a printing bug where lines were drawn over text.
+Added pKa estimation.
+
+version 1.6.9:
+Added "wavy" bond type.
+Page setup preferences (page size, orientation, etc.) are now saved.
+
+version 1.6.8:
+Bug fix release.  No significant new features.
+
+version 1.6.7:
+Added file type auto-detect.
+Added aliphatic chain tool.
+Added Newman projection.
+
+version 1.6.6:
+Added option to not add hydrogens and format.
+New text options: left, center, right justify.
+
+version 1.6.5:
+Fixed CDX/CDXML open and save operations.
+Added new drawing options: box, ellipse, cubic bezier, new arrow style.
+
+version 1.6.4:
+Added new spectrum dialog.
+Fixed text behaviors -- backspace and delete behavior and display of carbon.
+Added option to put subscript on brackets.
+
+version 1.6.3:
+Combined open and save menus, eliminated import/export options.
+Command line conversion (molecule -> image) is now possible.
+
+version 1.6.2:
+Fixed compilation to work on newer gcc.
+Updated OpenBabel library code.
+Updated Windows version to include OpenBabel.
+
+version 1.6.1:
+Added translation files for Danish (dk) and Japanese (jp).
+Patched SMILES dialog to use OpenBabel. (contributed by Brett Saunders)
+Fixed several memory leaks.
+Fixed Delete key behavior.
+Added symbol font.
+Re-implemented (some) event handling to use Qt signal-slot architecture.
+
+version 1.6:
+Latest stable release.
+Clipboard works again, and works with curve arrows and symbols correctly.
+Added help to some dialogs.
+
+version 1.5.5:
+Code cleanup.
+Automatic scaling on file read or import operation.
+Changed behavior of select tool when moving bonds.
+
+version 1.5.4:
+File export via OpenBabel is implemented.
+Fixed some namespace issues.
+
+version 1.5.3:
+Added configure switch to control whether OpenBabel is built.
+Added configure switch to specify which flavor of Qt to use.
+File import via OpenBabel is implemented.
+
+version 1.5.2:
+New HTML-based manual.
+autoconf/automake build implemented.  See INSTALL.txt
+
+version 1.5.1:
+Partial OpenBabel integration.
+Numerous usability and file format fixes.
+Save custom ring dialog added.
+
+version 1.5:
+(UNIX) Stereo bonds now print correctly.
+The annoying ring placement bug has been fixed  :)
+Improved 1H NMR prediction -- chiral centers, better shift prediction.
+
+version 1.4.2:
+Limited 1H NMR prediction ability.
+Fixed bug with deleting labels (again).
+MDL Molfile now saved correctly.
+(Windows) Stereo-down bonds are drawn correctly.
+
+version 1.4.1:
+Fixed parentheses printing (EPS mode)
+Fixed bug with saving/restoring where element name saved incorrectly
+Delete key on highlighted text behaves correctly now.
+Ctrl+B, Ctrl+I, Ctrl+U, Ctrl-Plus, Ctrl-Minus shortcuts on text.
+  (Bold, Italic, Underline, Superscript, Subscript, respectively)
+Fixed hydrogen calc and attach point for more groups:  "CO", "SO"
+Fixed printing of symbols (i.e., learn to print bitmaps)
+
+version 1.4:
+Bug fixes:  redraw, text placement, etc.  Added some templates.
+Smart placement.  Automatic attachment of amino acids and rings.
+
+version 1.3.2:
+Bug fix release:  pointers, getenv(), -lqt vs. -lqt-mt, fonts, etc.
+Really fixed EPS bug this time, I hope.
+
+version 1.3.1:
+Added pictures to menus for "standard" items.
+Fixed EPS export bug.
+
+version 1.3:
+Preferences are now saved.  (The directory is platform-dependent)
+Simple reaction analysis: Free energy change estimate, 13C NMR comparison.
+
+version 1.2:
+Consolidated all molecule info stuff into one dialog.
+Added features to group molecules into reactants and products.
+Switched to GPL (woo hoo!)
+
+version 1.1.1:
+Fixed a bug with screen clearing and double buffering.
+Code cleanup.
+
+version 1.1:
+Structure cleanup has improved -- aliphatics no longer drawn as straight lines.
+Changed drawing of carbonyl and imine double bonds.
+New CML parser - used Qt's XML parsing functions.
+
+version 1.0.2:
+Molecular weight and empirical formula are displayed on the status line
+  before pasting.
+Can paste elemental analysis data into the drawing.
+Moving towards using a Preferences class to store user settings.
+
+version 1.0.1:
+Rings are not placed automatically; click to place rings.
+Screen drawing is now double-buffered.  Flicker should be reduced.
+More intelligent text placement.  Automatically adds hydrogens.
+Added symbol:  stereochemical ring hydrogen.
+Added ring templates:  indole, purine, pyrimidine, steroid backbone.
+
+version 1.0:
+First "stable" release.
+Fixed some things:  memory allocation, selection issues.
+Shift-drag over part of a molecule selects the entire molecule.
+IR spectrum prediction improved.
+Export Peak Lists from 13C NMR and IR copies peak list to clipboard.
+Fixed length and angle of bond and arrow are now controlled separately. 
+XDrawChem can now use Babel.  Added features if Babel is installed:
+  Can read and write PDB files.  
+  Can output SMILES strings.
+
+version 0.99.9:
+Fixed more behavior bugs.
+Double and triple bonds are drawn a little better now.
+Same code compiles on Windows and UNIX.  Visual C++ project file
+  now included.
+Hydrogens added automatically in SMILES and structure cleanup.
+Title bar now says "XDrawChem".
+
+version 0.99.8:
+Fixed some behavior bugs.
+Fixed some code incompatibility between Windows and UNIX with conditional
+  compile statements.
+Added SVG export support.  (Under "Save picture")
+Added ChemDraw(TM) XML export support.  (Under "Save as...")
+
+version 0.99.7:
+Make text placement slightly smarter.
+Implemented copy to system clipboard and drag and drop.  This uses the
+  Qt library objects QImageDrag and QClipboard; I am not sure what
+  applications can interact with items from Qt applications.
+Received (or created from old language_*.h) new translation files.
+  Dutch, French, German and English now supported.
+Created mailing list:  xdrawchem-announce@lists.sourceforge.net
+
+version 0.99.6:
+Bugfix release - conditional compiling should still allow compilation with
+Qt 2.3.x, and fixed elemental analysis and EPS output.
+Added translation sources (.ts files) for French (fr), German (de),
+Italian (it), Dutch (nl), Spanish (es), and Portugese (pt and br - Brazil).
+The text is still in English and needs translating with Qt Linguist :)
+
+version 0.99.5:
+Default print resolution is 100 dpi -- so 25 point lines on screen equal
+  1/4 inch on paper, etc.
+Now using Qt 3.0 langauge support - no more language_*.h files.
+Network access now uses Qt 3.0 HTTP support, eliminating curl dependency.
+
+version 0.99.4:
+Implemented structural diagram generation based on JMDraw.
+Added SMILES interpreter.
+Added molecule clean-up function.
+
+version 0.99.3:
+Fixed problem with text rendering when printing.
+
+version 0.99.2:
+Split ring menu into categories.
+Added automatic text placement.
+Added German manual.
+
+version 0.99.1:
+Fixed compile bug(s).
+
+version 0.99:
+Added edit functions.
+Added more help strings.
+Started to fix localization.
+
+version 0.98:
+Added database access components.
+
+version 0.97:
+Added French, German, and Polish languages.
+
+version 0.96:
+Added some language support.
+Changed the way double bonds are handled.  Aromatics etc. look nicer.
+Added arrow styles - dashed, bidirectional, retrosynthetic, 90 and 270
+  degree curve arrows.
+
+version 0.95:
+Added colors and background.
+Added bold, italic, and underline options for text.
+Added page setup and tinkered with printing.
+
+version 0.94:
+Implemented Undo.
+First Windows build released.
+
+version 0.93:
+Added bracket styles.
+Import of binary ChemDraw (CDX) files. (not perfect, of course :)
+Basic IR prediction.
+
+version 0.92:
+Finally, you can do "make install"!
+Improved handling of CDXML [ChemDraw(TM) XML text] file types.
+
+version 0.91:
+Added empirical formula calculation.
+Added elemental analysis.
+Fixed some behaviors (text and selection).
+
+version 0.9:
+Rewrote nearly everything.
+UI changes.
+Added curve arrow.
+Improved symbols.
+13C NMR prediction.
+
+version 0.85:
+Added Rotate functions (under Edit menu).
+Consolidated Flip functions (under Edit menu).
+Added Insert menu under Edit menu; can now insert CML/XML files.
+Started to migrate pre-defined rings to CML format.
+Can read simple ChemDraw XML (text only!) files.
+Can write simple Encapsulated PostScript (EPS) files.
+
+version 0.84:
+Added Info window and functions.
+Fixed MW calculator.
+Fixed some things in Format menu.
+Changed Alignment functions; now under Tools menu.
+Alignment functions now collected as Auto Layout.
+Better support for XML documents.  (Auto scale and placement)
+Changed ring dialog; added all common amino acids and nucleic acids.
+
+version 0.83:
+Bug fixes, add more rings, update manual, etc.
+Improved MDL Molfile support (still doesn't meet spec, but closer now)
+Improved XDrawChem file format to store element info.
+Added Undo (may not be able to undo everything!).
+Added Mass Calculator.
+Changed and improved text editor - now can properly do super- and subscript, 
+  and support multi-line entry.
+Added some support for 2-D CML (Chemical Markup Language) files.
+
+version 0.82:
+Added support for PNG image files.
+Ability to flip horizontal/vertical.
+Dashed line support.
+Symbol support.
+Changed install procedure and Makefile to point to correct ring file location.
+
+version 0.81:
+Added more rings. (This will probably happen every release.)
+Wrote more manual pages. (This will also probably happen every release.)
+Bug fixes. (I really hope to do this every release too.)
+Added color.
+Changed ring dialog so "tool tips" appear to identify each ring.
+Line drawing now tells length and angle of the line being drawn.
+Manual is not modal anymore, so you can continue working with the manual open.
+There is now a user-defined page size which allows you to specify the pixel
+  size of the drawing widget (this is most useful for creating images).
+You can now set the fixed angle used in fixed length/angle mode.
+
+version 0.8:
+First public release.

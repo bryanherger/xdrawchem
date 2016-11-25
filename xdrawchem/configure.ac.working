@@ -1,0 +1,60 @@
+# Process this file with autoconf to produce a configure script.
+AC_INIT([xdrawchem],[1.7.1],[herger@chemistry.gatech.edu])
+AC_CONFIG_SRCDIR([xdrawchem/application.cpp])
+AM_CONFIG_HEADER([config.h])
+AM_INIT_AUTOMAKE(xdrawchem, 1.7.1)
+top_builddir=`pwd`
+AC_SUBST(top_builddir)
+openbabel_version=1.99.1
+AC_SUBST(openbabel_version)
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_LIBTOOL
+AC_PATH_PROG(AR, ar)
+
+# Checks for libraries.
+AC_ARG_WITH(qt-thread, AC_HELP_STRING([--with-qt-thread],
+            [use Qt threaded library (libqt-mt.so) (default is YES)]),
+            package_qt_enabled=$withval, package_qt_enabled=yes)
+if test "$package_qt_enabled" = yes; then
+	qtlibname=qt-mt
+else
+	qtlibname=qt
+fi
+AC_SUBST(qtlibname)
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([errno.h stdlib.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+AC_STRUCT_TM
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([floor pow sqrt])
+
+MY_SUBDIRS=". xdrawchem ring doc"
+# build openbabel on request
+AC_ARG_WITH(openbabel, AC_HELP_STRING([--with-openbabel],
+            [use included OpenBabel (default is YES)]),
+            package_openbabel_enabled=$withval, package_openbabel_enabled=yes)
+if test "$package_openbabel_enabled" = yes; then
+  MY_SUBDIRS=". openbabel xdrawchem ring doc"
+  AC_SUBST(MY_SUBDIRS)
+  AC_CONFIG_FILES([openbabel/Makefile
+	  	 openbabel/version.h])
+else
+  AC_SUBST(MY_SUBDIRS)
+  AC_CONFIG_FILES([Makefile
+		 xdrawchem/Makefile
+		 doc/Makefile
+		 ring/Makefile])
+fi
+
+AC_OUTPUT

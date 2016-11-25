@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE molecule SYSTEM "cml.dtd" []>
+<molecule id="cyclopentadiene-sp.cml">
+<string title="GenerationDate">Tue Jul 2 18:25:27 2002</string>
+<string title="GenerationSoftware">XDrawChem 1.3.3</string>
+<atomArray>
+<atom id="a0">
+<string builtin="elementType">C</string>
+<float builtin="x2">29.0001</float>
+<float builtin="y2">78.0001</float>
+</atom>
+<atom id="a1">
+<string builtin="elementType">C</string>
+<float builtin="x2">54.0001</float>
+<float builtin="y2">78.0001</float>
+</atom>
+<atom id="a2">
+<string builtin="elementType">C</string>
+<float builtin="x2">61.7255</float>
+<float builtin="y2">54.2237</float>
+</atom>
+<atom id="a3">
+<string builtin="elementType">C</string>
+<float builtin="x2">21.2747</float>
+<float builtin="y2">54.2237</float>
+</atom>
+<atom id="a4">
+<string builtin="elementType">C</string>
+<float builtin="x2">41.5001</float>
+<float builtin="y2">39.5291</float>
+</atom>
+</atomArray>
+<bondArray>
+<bond id="b0">
+<string builtin="atomRef">a0</string>
+<string builtin="atomRef">a1</string>
+<string builtin="order">2</string>
+</bond>
+<bond id="b1">
+<string builtin="atomRef">a1</string>
+<string builtin="atomRef">a2</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b2">
+<string builtin="atomRef">a0</string>
+<string builtin="atomRef">a3</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b3">
+<string builtin="atomRef">a3</string>
+<string builtin="atomRef">a4</string>
+<string builtin="order">2</string>
+</bond>
+<bond id="b4">
+<string builtin="atomRef">a2</string>
+<string builtin="atomRef">a4</string>
+<string builtin="order">1</string>
+</bond>
+</bondArray>
+</molecule>

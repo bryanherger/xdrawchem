@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE molecule SYSTEM "cml.dtd" []>
+<molecule id="biphenyl.cml">
+<string title="GenerationDate">Mon Jun 10 15:29:32 2002</string>
+<string title="GenerationSoftware">XDrawChem 1.3.2</string>
+<atomArray>
+<atom id="a0">
+<string builtin="elementType">C</string>
+<float builtin="x2">103.399</float>
+<float builtin="y2">238.921</float>
+</atom>
+<atom id="a1">
+<string builtin="elementType">C</string>
+<float builtin="x2">93.3993</float>
+<float builtin="y2">256.241</float>
+</atom>
+<atom id="a2">
+<string builtin="elementType">C</string>
+<float builtin="x2">73.3993</float>
+<float builtin="y2">256.241</float>
+</atom>
+<atom id="a3">
+<string builtin="elementType">C</string>
+<float builtin="x2">63.3992</float>
+<float builtin="y2">238.921</float>
+</atom>
+<atom id="a4">
+<string builtin="elementType">C</string>
+<float builtin="x2">73.3993</float>
+<float builtin="y2">221.601</float>
+</atom>
+<atom id="a5">
+<string builtin="elementType">C</string>
+<float builtin="x2">93.3993</float>
+<float builtin="y2">221.601</float>
+</atom>
+<atom id="a6">
+<string builtin="elementType">C</string>
+<float builtin="x2">123.399</float>
+<float builtin="y2">238.921</float>
+</atom>
+<atom id="a7">
+<string builtin="elementType">C</string>
+<float builtin="x2">133.399</float>
+<float builtin="y2">221.601</float>
+</atom>
+<atom id="a8">
+<string builtin="elementType">C</string>
+<float builtin="x2">153.399</float>
+<float builtin="y2">221.601</float>
+</atom>
+<atom id="a9">
+<string builtin="elementType">C</string>
+<float builtin="x2">133.399</float>
+<float builtin="y2">256.242</float>
+</atom>
+<atom id="a10">
+<string builtin="elementType">C</string>
+<float builtin="x2">163.399</float>
+<float builtin="y2">238.922</float>
+</atom>
+<atom id="a11">
+<string builtin="elementType">C</string>
+<float builtin="x2">153.399</float>
+<float builtin="y2">256.242</float>
+</atom>
+</atomArray>
+<bondArray>
+<bond id="b0">
+<string builtin="atomRef">a0</string>
+<string builtin="atomRef">a1</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b1">
+<string builtin="atomRef">a1</string>
+<string builtin="atomRef">a2</string>
+<string builtin="order">2</string>
+</bond>
+<bond id="b2">
+<string builtin="atomRef">a2</string>
+<string builtin="atomRef">a3</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b3">
+<string builtin="atomRef">a3</string>
+<string builtin="atomRef">a4</string>
+<string builtin="order">2</string>
+</bond>
+<bond id="b4">
+<string builtin="atomRef">a4</string>
+<string builtin="atomRef">a5</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b5">
+<string builtin="atomRef">a5</string>
+<string builtin="atomRef">a0</string>
+<string builtin="order">2</string>
+</bond>
+<bond id="b6">
+<string builtin="atomRef">a0</string>
+<string builtin="atomRef">a6</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b7">
+<string builtin="atomRef">a6</string>
+<string builtin="atomRef">a7</string>
+<string builtin="order">2</string>
+</bond>
+<bond id="b8">
+<string builtin="atomRef">a7</string>
+<string builtin="atomRef">a8</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b9">
+<string builtin="atomRef">a6</string>
+<string builtin="atomRef">a9</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b10">
+<string builtin="atomRef">a8</string>
+<string builtin="atomRef">a10</string>
+<string builtin="order">2</string>
+</bond>
+<bond id="b11">
+<string builtin="atomRef">a10</string>
+<string builtin="atomRef">a11</string>
+<string builtin="order">1</string>
+</bond>
+<bond id="b12">
+<string builtin="atomRef">a11</string>
+<string builtin="atomRef">a9</string>
+<string builtin="order">2</string>
+</bond>
+</bondArray>
+</molecule>

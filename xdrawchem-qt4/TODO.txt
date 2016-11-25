@@ -1,0 +1,22 @@
+to fix immediately:
+Improve printing of diagrams.
+(Improve) Compute pKa's of functional groups.
+Add more lone pair/orbital symbols.
+
+Longer term:
+- Improve interoperability with OpenBabel (perhaps abolishing my custom
+  Molecule classes in favor of OBMol)
+- Browser plugin (Mozilla for Linux/MacOSX, .NET on Windows)
+- Retrosynthesis
+- Implement Convert to 3D.
+- Link to 3-D visualization programs of some sort
+- Improved XML support -- standards like SAX and DOM...
+
+For Qt4
+- antialias option
+- cmake, qmake or autotools?
+- use Qt resource system instead of RingDir?
+- find a way to replace Q3PointArray (beziers)
+- use more pass by reference (const QString &)
+- make use of Qt's Postscript and SVG output capabilities?
+- improve previewwidget

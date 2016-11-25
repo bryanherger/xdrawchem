@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE molecule SYSTEM "cml.dtd" []>
+<molecule id="cyclopropane.cml" convention="CML-1999-05-15">
+  <string title="GenerationDate">Sun Sep 16 22:27:52 2001</string>
+  <string title="GenerationSoftware">XDrawChem 0.9</string>
+  <atom id="a0">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">36 24</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a1">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">36 49</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a2">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">57.6506 36.5</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <bond id="b0" atomRefs="a0 a1">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b1" atomRefs="a0 a2">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b2" atomRefs="a2 a1">
+    <string builtin="order">1</string>
+  </bond>
+</molecule>

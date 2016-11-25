@@ -1,0 +1,879 @@
+molecule_tools_2.o: molecule_tools_2.cpp \
+ /usr/lib64/qt-3.3/include/qobject.h \
+ /usr/lib64/qt-3.3/include/qobjectdefs.h \
+ /usr/lib64/qt-3.3/include/qglobal.h /usr/lib64/qt-3.3/include/qconfig.h \
+ /usr/lib64/qt-3.3/include/qmodules.h \
+ /usr/lib64/qt-3.3/include/qfeatures.h \
+ /usr/lib64/qt-3.3/include/qwindowdefs.h \
+ /usr/lib64/qt-3.3/include/qstring.h /usr/lib64/qt-3.3/include/qcstring.h \
+ /usr/lib64/qt-3.3/include/qmemarray.h \
+ /usr/lib64/qt-3.3/include/qgarray.h /usr/lib64/qt-3.3/include/qshared.h \
+ /usr/lib64/qt-3.3/include/qwinexport.h /usr/include/string.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stddef.h \
+ /usr/include/xlocale.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/limits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/stdio_lim.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/string \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++config.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/os_defines.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/cpu_defines.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stringfwd.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/char_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_algobase.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstddef \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/functexcept.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception_defines.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/cpp_type_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/type_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/numeric_traits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_pair.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/move.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/concept_check.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_types.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_funcs.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/debug/debug.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/postypes.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stdarg.h \
+ /usr/include/bits/wchar.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/allocator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++allocator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/new_allocator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/new \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/localefwd.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++locale.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/clocale \
+ /usr/include/locale.h /usr/include/bits/locale.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iosfwd \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cctype \
+ /usr/include/ctype.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream_insert.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cxxabi-forced.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_function.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/backward/binders.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/atomicity.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/time.h \
+ /usr/include/bits/sched.h /usr/include/bits/time.h \
+ /usr/include/bits/pthreadtypes.h /usr/include/bits/setjmp.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/getopt.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/atomic_word.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/initializer_list \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.tcc \
+ /usr/lib64/qt-3.3/include/qnamespace.h \
+ /usr/lib64/qt-3.3/include/qevent.h /usr/lib64/qt-3.3/include/qregion.h \
+ /usr/lib64/qt-3.3/include/qrect.h /usr/lib64/qt-3.3/include/qsize.h \
+ /usr/lib64/qt-3.3/include/qpoint.h /usr/lib64/qt-3.3/include/qmime.h \
+ /usr/lib64/qt-3.3/include/qmap.h /usr/lib64/qt-3.3/include/qdatastream.h \
+ /usr/lib64/qt-3.3/include/qiodevice.h /usr/lib64/qt-3.3/include/qpair.h \
+ /usr/lib64/qt-3.3/include/qvaluelist.h /usr/lib64/qt-3.3/include/qtl.h \
+ /usr/lib64/qt-3.3/include/qtextstream.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iterator \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ostream \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ios \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ios_base.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/streambuf \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwctype \
+ /usr/include/wctype.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_base.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf_iterator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_inline.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/istream \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/istream.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stream_iterator.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/list \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_list.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/list.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/map \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_tree.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_map.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_multimap.h \
+ /usr/lib64/qt-3.3/include/qptrlist.h /usr/lib64/qt-3.3/include/qglist.h \
+ /usr/lib64/qt-3.3/include/qptrcollection.h \
+ /usr/lib64/qt-3.3/include/qstring.h \
+ /usr/lib64/qt-3.3/include/qmessagebox.h \
+ /usr/lib64/qt-3.3/include/qdialog.h /usr/lib64/qt-3.3/include/qwidget.h \
+ /usr/lib64/qt-3.3/include/qobject.h \
+ /usr/lib64/qt-3.3/include/qpaintdevice.h \
+ /usr/lib64/qt-3.3/include/qpalette.h /usr/lib64/qt-3.3/include/qcolor.h \
+ /usr/lib64/qt-3.3/include/qstringlist.h \
+ /usr/lib64/qt-3.3/include/qstrlist.h \
+ /usr/lib64/qt-3.3/include/qptrlist.h /usr/lib64/qt-3.3/include/qbrush.h \
+ /usr/lib64/qt-3.3/include/qfont.h \
+ /usr/lib64/qt-3.3/include/qfontmetrics.h \
+ /usr/lib64/qt-3.3/include/qfontinfo.h \
+ /usr/lib64/qt-3.3/include/qsizepolicy.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iostream \
+ /usr/include/math.h /usr/include/bits/huge_val.h \
+ /usr/include/bits/huge_valf.h /usr/include/bits/huge_vall.h \
+ /usr/include/bits/inf.h /usr/include/bits/nan.h \
+ /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h \
+ /usr/include/bits/mathinline.h graphdialog.h \
+ /usr/lib64/qt-3.3/include/qdialog.h /usr/lib64/qt-3.3/include/qpixmap.h \
+ graphdata.h graphwidget.h /usr/lib64/qt-3.3/include/qwidget.h \
+ /usr/lib64/qt-3.3/include/qpainter.h /usr/lib64/qt-3.3/include/qpen.h \
+ /usr/lib64/qt-3.3/include/qpointarray.h \
+ /usr/lib64/qt-3.3/include/qwmatrix.h \
+ /usr/lib64/qt-3.3/include/qprinter.h molinfodialog.h \
+ /usr/lib64/qt-3.3/include/qcombobox.h \
+ /usr/lib64/qt-3.3/include/qlineedit.h /usr/lib64/qt-3.3/include/qframe.h \
+ /usr/lib64/qt-3.3/include/qcheckbox.h \
+ /usr/lib64/qt-3.3/include/qbutton.h \
+ /usr/lib64/qt-3.3/include/qkeysequence.h \
+ /usr/lib64/qt-3.3/include/qlabel.h /usr/lib64/qt-3.3/include/qlayout.h \
+ /usr/lib64/qt-3.3/include/qpushbutton.h \
+ /usr/lib64/qt-3.3/include/qiconset.h /usr/lib64/qt-3.3/include/qpixmap.h \
+ moldata.h /usr/lib64/qt-3.3/include/qstringlist.h render2d.h \
+ /usr/lib64/qt-3.3/include/qcursor.h /usr/lib64/qt-3.3/include/qrect.h \
+ /usr/lib64/qt-3.3/include/qfont.h /usr/lib64/qt-3.3/include/qfile.h \
+ /usr/lib64/qt-3.3/include/qtextstream.h \
+ /usr/lib64/qt-3.3/include/qdragobject.h \
+ /usr/lib64/qt-3.3/include/qimage.h \
+ /usr/lib64/qt-3.3/include/qpointarray.h \
+ /usr/lib64/qt-3.3/include/qpopupmenu.h \
+ /usr/lib64/qt-3.3/include/qmenudata.h \
+ /usr/lib64/qt-3.3/include/qsignal.h /usr/lib64/qt-3.3/include/qvariant.h \
+ /usr/lib64/qt-3.3/include/qtextedit.h \
+ /usr/lib64/qt-3.3/include/qscrollview.h \
+ /usr/lib64/qt-3.3/include/qscrollbar.h \
+ /usr/lib64/qt-3.3/include/qrangecontrol.h \
+ /usr/lib64/qt-3.3/include/qstylesheet.h \
+ /usr/lib64/qt-3.3/include/qptrvector.h \
+ /usr/lib64/qt-3.3/include/qgvector.h /usr/lib64/qt-3.3/include/qdict.h \
+ /usr/lib64/qt-3.3/include/qgdict.h drawable.h \
+ /usr/lib64/qt-3.3/include/qcolor.h dpoint.h \
+ /usr/lib64/qt-3.3/include/qmemarray.h /usr/lib64/qt-3.3/include/qpoint.h \
+ /usr/lib64/qt-3.3/include/qregexp.h paintable.h prefs.h \
+ /usr/lib64/qt-3.3/include/qdir.h /usr/lib64/qt-3.3/include/qfileinfo.h \
+ /usr/lib64/qt-3.3/include/qfile.h /usr/lib64/qt-3.3/include/qdatetime.h \
+ defs.h clipboard.h xdc_event.h molecule.h \
+ /usr/local/include/openbabel-2.0/openbabel/mol.h \
+ /usr/local/include/openbabel-2.0/openbabel/babelconfig.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/float.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/vector \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_construct.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_uninitialized.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_vector.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_bvector.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/vector.tcc \
+ /usr/local/include/openbabel-2.0/openbabel/atom.h \
+ /usr/local/include/openbabel-2.0/openbabel/base.h \
+ /usr/local/include/openbabel-2.0/openbabel/tokenst.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/sstream \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/sstream.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/fstream \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/codecvt.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdio \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/basic_file.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++io.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/fstream.tcc \
+ /usr/local/include/openbabel-2.0/openbabel/residue.h \
+ /usr/local/include/openbabel-2.0/openbabel/math/vector3.h \
+ /usr/local/include/openbabel-2.0/openbabel/rand.h \
+ /usr/local/include/openbabel-2.0/openbabel/bond.h \
+ /usr/local/include/openbabel-2.0/openbabel/data.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstring \
+ /usr/local/include/openbabel-2.0/openbabel/chains.h \
+ /usr/local/include/openbabel-2.0/openbabel/bitvec.h \
+ /usr/include/inttypes.h /usr/include/stdint.h \
+ /usr/local/include/openbabel-2.0/openbabel/ring.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/deque \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_deque.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/deque.tcc \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/algorithm \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_algo.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdlib \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/sys/types.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/sigset.h /usr/include/sys/sysmacros.h \
+ /usr/include/alloca.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/algorithmfwd.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_heap.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_tempbuf.h \
+ /usr/local/include/openbabel-2.0/openbabel/typer.h \
+ /usr/local/include/openbabel-2.0/openbabel/parsmart.h \
+ /usr/local/include/openbabel-2.0/openbabel/generic.h \
+ /usr/local/include/openbabel-2.0/openbabel/math/spacegroup.h \
+ /usr/local/include/openbabel-2.0/openbabel/math/transform3d.h \
+ /usr/local/include/openbabel-2.0/openbabel/math/matrix3x3.h \
+ /usr/local/include/openbabel-2.0/openbabel/oberror.h \
+ /usr/local/include/openbabel-2.0/openbabel/obutil.h \
+ /usr/include/sys/time.h \
+ /usr/local/include/openbabel-2.0/openbabel/obiter.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/stack \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_stack.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/queue \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_queue.h \
+ /usr/local/include/openbabel-2.0/openbabel/internalcoord.h \
+ /usr/local/include/openbabel-2.0/openbabel/obconversion.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cassert \
+ /usr/include/assert.h \
+ /usr/local/include/openbabel-2.0/openbabel/format.h \
+ /usr/local/include/openbabel-2.0/openbabel/plugin.h \
+ /usr/local/include/openbabel-2.0/openbabel/dlhandler.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/typeinfo \
+ /usr/local/include/openbabel-2.0/openbabel/lineend.h \
+ /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/climits \
+ chemdata.h bond.h text.h gobject.h cml.h symbol.h molecule_sssr.h \
+ tooldialog.h peak.h
+
+/usr/lib64/qt-3.3/include/qobject.h:
+
+/usr/lib64/qt-3.3/include/qobjectdefs.h:
+
+/usr/lib64/qt-3.3/include/qglobal.h:
+
+/usr/lib64/qt-3.3/include/qconfig.h:
+
+/usr/lib64/qt-3.3/include/qmodules.h:
+
+/usr/lib64/qt-3.3/include/qfeatures.h:
+
+/usr/lib64/qt-3.3/include/qwindowdefs.h:
+
+/usr/lib64/qt-3.3/include/qstring.h:
+
+/usr/lib64/qt-3.3/include/qcstring.h:
+
+/usr/lib64/qt-3.3/include/qmemarray.h:
+
+/usr/lib64/qt-3.3/include/qgarray.h:
+
+/usr/lib64/qt-3.3/include/qshared.h:
+
+/usr/lib64/qt-3.3/include/qwinexport.h:
+
+/usr/include/string.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/limits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/bits/xopen_lim.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/string:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++config.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/os_defines.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/cpu_defines.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stringfwd.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/char_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_algobase.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstddef:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/functexcept.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception_defines.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/cpp_type_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/type_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/numeric_traits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_pair.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/move.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/concept_check.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_types.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator_base_funcs.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_iterator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/debug/debug.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/postypes.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwchar:
+
+/usr/include/wchar.h:
+
+/usr/include/stdio.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stdarg.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/allocator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++allocator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/new_allocator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/new:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/exception:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/localefwd.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++locale.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/clocale:
+
+/usr/include/locale.h:
+
+/usr/include/bits/locale.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iosfwd:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cctype:
+
+/usr/include/ctype.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream_insert.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cxxabi-forced.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_function.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/backward/binders.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ext/atomicity.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/gthr-default.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/include/unistd.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/environments.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/atomic_word.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/initializer_list:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.tcc:
+
+/usr/lib64/qt-3.3/include/qnamespace.h:
+
+/usr/lib64/qt-3.3/include/qevent.h:
+
+/usr/lib64/qt-3.3/include/qregion.h:
+
+/usr/lib64/qt-3.3/include/qrect.h:
+
+/usr/lib64/qt-3.3/include/qsize.h:
+
+/usr/lib64/qt-3.3/include/qpoint.h:
+
+/usr/lib64/qt-3.3/include/qmime.h:
+
+/usr/lib64/qt-3.3/include/qmap.h:
+
+/usr/lib64/qt-3.3/include/qdatastream.h:
+
+/usr/lib64/qt-3.3/include/qiodevice.h:
+
+/usr/lib64/qt-3.3/include/qpair.h:
+
+/usr/lib64/qt-3.3/include/qvaluelist.h:
+
+/usr/lib64/qt-3.3/include/qtl.h:
+
+/usr/lib64/qt-3.3/include/qtextstream.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iterator:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ostream:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/ios:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ios_base.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_classes.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/streambuf:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cwctype:
+
+/usr/include/wctype.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_base.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/streambuf_iterator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/ctype_inline.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/locale_facets.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_ios.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/ostream.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/istream:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/istream.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stream_iterator.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/list:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_list.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/list.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/map:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_tree.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_map.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_multimap.h:
+
+/usr/lib64/qt-3.3/include/qptrlist.h:
+
+/usr/lib64/qt-3.3/include/qglist.h:
+
+/usr/lib64/qt-3.3/include/qptrcollection.h:
+
+/usr/lib64/qt-3.3/include/qstring.h:
+
+/usr/lib64/qt-3.3/include/qmessagebox.h:
+
+/usr/lib64/qt-3.3/include/qdialog.h:
+
+/usr/lib64/qt-3.3/include/qwidget.h:
+
+/usr/lib64/qt-3.3/include/qobject.h:
+
+/usr/lib64/qt-3.3/include/qpaintdevice.h:
+
+/usr/lib64/qt-3.3/include/qpalette.h:
+
+/usr/lib64/qt-3.3/include/qcolor.h:
+
+/usr/lib64/qt-3.3/include/qstringlist.h:
+
+/usr/lib64/qt-3.3/include/qstrlist.h:
+
+/usr/lib64/qt-3.3/include/qptrlist.h:
+
+/usr/lib64/qt-3.3/include/qbrush.h:
+
+/usr/lib64/qt-3.3/include/qfont.h:
+
+/usr/lib64/qt-3.3/include/qfontmetrics.h:
+
+/usr/lib64/qt-3.3/include/qfontinfo.h:
+
+/usr/lib64/qt-3.3/include/qsizepolicy.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/iostream:
+
+/usr/include/math.h:
+
+/usr/include/bits/huge_val.h:
+
+/usr/include/bits/huge_valf.h:
+
+/usr/include/bits/huge_vall.h:
+
+/usr/include/bits/inf.h:
+
+/usr/include/bits/nan.h:
+
+/usr/include/bits/mathdef.h:
+
+/usr/include/bits/mathcalls.h:
+
+/usr/include/bits/mathinline.h:
+
+graphdialog.h:
+
+/usr/lib64/qt-3.3/include/qdialog.h:
+
+/usr/lib64/qt-3.3/include/qpixmap.h:
+
+graphdata.h:
+
+graphwidget.h:
+
+/usr/lib64/qt-3.3/include/qwidget.h:
+
+/usr/lib64/qt-3.3/include/qpainter.h:
+
+/usr/lib64/qt-3.3/include/qpen.h:
+
+/usr/lib64/qt-3.3/include/qpointarray.h:
+
+/usr/lib64/qt-3.3/include/qwmatrix.h:
+
+/usr/lib64/qt-3.3/include/qprinter.h:
+
+molinfodialog.h:
+
+/usr/lib64/qt-3.3/include/qcombobox.h:
+
+/usr/lib64/qt-3.3/include/qlineedit.h:
+
+/usr/lib64/qt-3.3/include/qframe.h:
+
+/usr/lib64/qt-3.3/include/qcheckbox.h:
+
+/usr/lib64/qt-3.3/include/qbutton.h:
+
+/usr/lib64/qt-3.3/include/qkeysequence.h:
+
+/usr/lib64/qt-3.3/include/qlabel.h:
+
+/usr/lib64/qt-3.3/include/qlayout.h:
+
+/usr/lib64/qt-3.3/include/qpushbutton.h:
+
+/usr/lib64/qt-3.3/include/qiconset.h:
+
+/usr/lib64/qt-3.3/include/qpixmap.h:
+
+moldata.h:
+
+/usr/lib64/qt-3.3/include/qstringlist.h:
+
+render2d.h:
+
+/usr/lib64/qt-3.3/include/qcursor.h:
+
+/usr/lib64/qt-3.3/include/qrect.h:
+
+/usr/lib64/qt-3.3/include/qfont.h:
+
+/usr/lib64/qt-3.3/include/qfile.h:
+
+/usr/lib64/qt-3.3/include/qtextstream.h:
+
+/usr/lib64/qt-3.3/include/qdragobject.h:
+
+/usr/lib64/qt-3.3/include/qimage.h:
+
+/usr/lib64/qt-3.3/include/qpointarray.h:
+
+/usr/lib64/qt-3.3/include/qpopupmenu.h:
+
+/usr/lib64/qt-3.3/include/qmenudata.h:
+
+/usr/lib64/qt-3.3/include/qsignal.h:
+
+/usr/lib64/qt-3.3/include/qvariant.h:
+
+/usr/lib64/qt-3.3/include/qtextedit.h:
+
+/usr/lib64/qt-3.3/include/qscrollview.h:
+
+/usr/lib64/qt-3.3/include/qscrollbar.h:
+
+/usr/lib64/qt-3.3/include/qrangecontrol.h:
+
+/usr/lib64/qt-3.3/include/qstylesheet.h:
+
+/usr/lib64/qt-3.3/include/qptrvector.h:
+
+/usr/lib64/qt-3.3/include/qgvector.h:
+
+/usr/lib64/qt-3.3/include/qdict.h:
+
+/usr/lib64/qt-3.3/include/qgdict.h:
+
+drawable.h:
+
+/usr/lib64/qt-3.3/include/qcolor.h:
+
+dpoint.h:
+
+/usr/lib64/qt-3.3/include/qmemarray.h:
+
+/usr/lib64/qt-3.3/include/qpoint.h:
+
+/usr/lib64/qt-3.3/include/qregexp.h:
+
+paintable.h:
+
+prefs.h:
+
+/usr/lib64/qt-3.3/include/qdir.h:
+
+/usr/lib64/qt-3.3/include/qfileinfo.h:
+
+/usr/lib64/qt-3.3/include/qfile.h:
+
+/usr/lib64/qt-3.3/include/qdatetime.h:
+
+defs.h:
+
+clipboard.h:
+
+xdc_event.h:
+
+molecule.h:
+
+/usr/local/include/openbabel-2.0/openbabel/mol.h:
+
+/usr/local/include/openbabel-2.0/openbabel/babelconfig.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/float.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/vector:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_construct.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_uninitialized.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_vector.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_bvector.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/vector.tcc:
+
+/usr/local/include/openbabel-2.0/openbabel/atom.h:
+
+/usr/local/include/openbabel-2.0/openbabel/base.h:
+
+/usr/local/include/openbabel-2.0/openbabel/tokenst.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/sstream:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/sstream.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/fstream:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/codecvt.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdio:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/basic_file.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/x86_64-redhat-linux/bits/c++io.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/fstream.tcc:
+
+/usr/local/include/openbabel-2.0/openbabel/residue.h:
+
+/usr/local/include/openbabel-2.0/openbabel/math/vector3.h:
+
+/usr/local/include/openbabel-2.0/openbabel/rand.h:
+
+/usr/local/include/openbabel-2.0/openbabel/bond.h:
+
+/usr/local/include/openbabel-2.0/openbabel/data.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstring:
+
+/usr/local/include/openbabel-2.0/openbabel/chains.h:
+
+/usr/local/include/openbabel-2.0/openbabel/bitvec.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/stdint.h:
+
+/usr/local/include/openbabel-2.0/openbabel/ring.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/deque:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_deque.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/deque.tcc:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/algorithm:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_algo.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cstdlib:
+
+/usr/include/stdlib.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/alloca.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/algorithmfwd.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_heap.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_tempbuf.h:
+
+/usr/local/include/openbabel-2.0/openbabel/typer.h:
+
+/usr/local/include/openbabel-2.0/openbabel/parsmart.h:
+
+/usr/local/include/openbabel-2.0/openbabel/generic.h:
+
+/usr/local/include/openbabel-2.0/openbabel/math/spacegroup.h:
+
+/usr/local/include/openbabel-2.0/openbabel/math/transform3d.h:
+
+/usr/local/include/openbabel-2.0/openbabel/math/matrix3x3.h:
+
+/usr/local/include/openbabel-2.0/openbabel/oberror.h:
+
+/usr/local/include/openbabel-2.0/openbabel/obutil.h:
+
+/usr/include/sys/time.h:
+
+/usr/local/include/openbabel-2.0/openbabel/obiter.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/stack:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_stack.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/queue:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/stl_queue.h:
+
+/usr/local/include/openbabel-2.0/openbabel/internalcoord.h:
+
+/usr/local/include/openbabel-2.0/openbabel/obconversion.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/cassert:
+
+/usr/include/assert.h:
+
+/usr/local/include/openbabel-2.0/openbabel/format.h:
+
+/usr/local/include/openbabel-2.0/openbabel/plugin.h:
+
+/usr/local/include/openbabel-2.0/openbabel/dlhandler.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/typeinfo:
+
+/usr/local/include/openbabel-2.0/openbabel/lineend.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/climits:
+
+chemdata.h:
+
+bond.h:
+
+text.h:
+
+gobject.h:
+
+cml.h:
+
+symbol.h:
+
+molecule_sssr.h:
+
+tooldialog.h:
+
+peak.h:

@@ -1,0 +1,52 @@
+#!/bin/sh
+
+PREFIX="/usr/local"
+ONLY_HELP="no"
+
+if [ -n "$*" ] ; then
+	for arg in "$@" ; do
+		if [ "$arg" == "--help" ] ; then
+			cat << EOF
+XDrawChem configure
+Usage:
+
+./configure [options]
+
+Options:
+    --prefix=PREFIX    install in PREFIX (optional, default is /usr/local)
+    --help             show this help
+
+EOF
+			ONLY_HELP="yes"
+		else
+			cut_arg="`echo "$arg"|cut -c-9`"
+			if [ "$cut_arg" == "--prefix=" ] ; then
+				PREFIX="`echo "$arg"|cut -c10-`"
+			fi
+		fi
+	done
+fi
+
+if [  "$ONLY_HELP" == "no" ] ; then
+	rm -f config.mak
+
+	#openbabel includes and libs
+	pkg-config openbabel-2.0 --atleast-version=2.0
+	if [ $? -eq 0 ] ; then
+		ob_incs=`pkg-config openbabel-2.0 --cflags-only-I|cut -c3-`
+		ob_libs=`pkg-config openbabel-2.0 --libs-only-l|cut -c3-`
+		echo "INCLUDEPATH += $ob_incs" >> config.mak
+		echo "LIBS += -l$ob_libs" >> config.mak
+	else
+		echo "Error: openbabel-2.0 libs not found or too old!"
+		exit 1
+	fi
+
+	echo "PREFIX = $PREFIX" >> config.mak
+	echo -e "\nWill install in $PREFIX."
+	echo -n "Creating Makefiles..."
+	qmake4 -o Makefile xdrawchem.pro
+	echo -e " done.\n"
+fi
+
+exit 0
