@@ -21,6 +21,7 @@
 #include <QDesktopWidget>
 #include <QLineEdit>
 #include <QBitmap>
+#include <unistd.h>
 
 #include "defs.h"
 #include "drawable.h"
