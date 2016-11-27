@@ -32,10 +32,8 @@ QStringList NetAccess::getChoices( QString server, QString key, QString value, b
 
     QString cmd;
 
-    cmd.append( "http://" );
-    //cmd.append(server);
-    cmd.append( "xdrawchem.lunarpages.net" );
-    cmd.append( "/cgi-bin/newdb.php?field=" );
+    cmd.append(server);
+    cmd.append( "/newdb.php?field=" );
     cmd.append( key );
     cmd.append( "&query=" );
     if ( key == "name" )

@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QStringList>
-#include <QListWidget>
+#include <QTableWidget>
 
 class NetChooseDialog : public QDialog
 {
@@ -18,7 +18,7 @@ public slots:
 private:
     QString fn;
     QStringList results;
-    QListWidget *lv; ///TODO
+    QTableWidget *tw; ///TODO
 };
 
 #endif
