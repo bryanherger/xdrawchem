@@ -2,6 +2,8 @@
 
 Welcome to XDrawChem!
 
+Please visit the project page at http://www.woodsidelabs.com/chemistry/xdrawchem.php
+
 This package conatins two versions of XDrawChem:
 
 xdrawchem - this is the main development version.  It is based on Qt 3.x.
