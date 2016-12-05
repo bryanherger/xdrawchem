@@ -2,6 +2,7 @@
 #include <qobject.h>
 #include <qptrlist.h>
 #include <qmessagebox.h>
+#include <qprocess.h>
 #include <qregexp.h>
 #include <qapplication.h>
 #include <qclipboard.h>
@@ -65,6 +66,40 @@ public:
     return BoundingBox().center();
   }
 };
+
+bool open_browser(const QString& rUrl)
+{
+bool result = false;
+QApplication::setOverrideCursor(Qt::BusyCursor);
+#ifdef Q_WS_WIN
+QProcess process;
+process.setArguments(QStringList() << "start" << rUrl);
+return process.start();
+#else
+QProcess process;
+bool process_started = false;
+process.setArguments(QStringList() << "safari" << rUrl);
+process_started = process.start();
+if (!process_started)
+{
+process.setArguments(QStringList() << "mozilla" << rUrl);
+process_started = process.start();
+}
+if (!process_started)
+{
+process.setArguments(QStringList() << "firefox" << rUrl);
+process_started = process.start();
+}
+if (!process_started)
+{
+process.setArguments(QStringList() << "konqueror" << rUrl);
+process_started = process.start();
+}
+result = process_started;
+#endif
+QApplication::restoreOverrideCursor();
+return result;
+}
 
 // Determine Molecule clicked, do Tool action
 void ChemData::Tool(DPoint *target, int mode) {
@@ -192,20 +227,30 @@ void ChemData::Tool(DPoint *target, int mode) {
     tmpname = m->ToSMILES();
     if (tmpname.length() == 0) {
       cout << "Could not get SMILES string!" << endl;
+    } else {
+      cout << tmpname << endl;
     }
-    QMessageBox::information(r, tr("SMILES string"), tr("SMILES string for selected molecule:") + "\n\n" + tmpname);
+    dret = QMessageBox::information(r, tr("SMILES string"), tr("SMILES string for selected molecule:") + "\n\n" + tmpname, tr("OK"), tr("Copy to clipboard"), tr("PubChem") );
+    if (dret == 1) {
+      cb->setText(tmpname, QClipboard::Selection);
+    }
+    if (dret == 2) {
+      open_browser("https://www.ncbi.nlm.nih.gov/pccompound/?term="+tmpname);
+    }
     break;
   case MODE_TOOL_TOINCHI:
-    //m->AddNMRprotons();
-    tmpname = m->ToSMILES();
-    //m->RemoveNMRprotons();
-    if ( na.runInChI( tmpname ) ) {
-      dret = QMessageBox::information( r, tr("InChI string"), tr("InChI string for selected molecule:") + "\n\n" + na.fullinchi, tr("OK"), tr("Copy to clipboard") );
-      if (dret == 1) {
-	cb->setText(na.shortinchi.mid(6), QClipboard::Selection);
-      }
+    tmpname = m->ToInChI();
+    if (tmpname.length() == 0) {
+      cout << "Could not get InChI string!" << endl;
     } else {
-      emit SignalSetStatusBar( tr("Could not convert to InChI string.") );
+      cout << tmpname << endl;
+    }
+    dret = QMessageBox::information( r, tr("InChI string"), tr("InChI string for selected molecule:") + "\n\n" + tmpname, tr("OK"), tr("Copy to clipboard"), tr("PubChem") );
+      if (dret == 1) {
+      cb->setText(tmpname, QClipboard::Selection);
+      }
+    if (dret == 2) {
+      open_browser("https://www.ncbi.nlm.nih.gov/pccompound/?term="+tmpname);
     }
     break;
   case MODE_TOOL_CLEANUPMOL:

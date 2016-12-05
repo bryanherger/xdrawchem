@@ -1,5 +1,13 @@
 To install XDrawChem:
 
+Two methods.  Simpler, using qmake:
+0) Install qt-3.3 and openbabel-(latest).
+1) Change to directory "xdrawchem" and edit xdrawchem.pro, checking install (PREFIX) and OpenBabel paths.
+2) "qmake"
+3) "make"
+4) (as root) "make install"
+
+Possibly more complex, but more automated when it works:
 1) Download and install Qt-3.0 (or later) from http://www.trolltech.com/ if
    it is not already installed on your system.
    You must also install OpenBabel 2.0 or later from 

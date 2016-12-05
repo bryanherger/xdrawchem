@@ -113,6 +113,8 @@ class Molecule : public Drawable {
   void SDG(bool);
   void FromSMILES(QString);
   QString ToSMILES();
+  QString ToInChI();
+  QString ToStringFormat(const char *);
   // defined in retro.cpp
   QString BuildReactionList(QString);
   int Retro();

@@ -168,8 +168,16 @@ void Molecule::SDG(bool coord) {
   AddHydrogens();
 }
 
-// cheat: use Babel to make SMILES strings.
 QString Molecule::ToSMILES() {
+  return ToStringFormat("smi");
+}
+
+QString Molecule::ToInChI() {
+  return ToStringFormat("inchi");
+}
+
+// cheat: use Babel to make InChI or SMILES strings.
+QString Molecule::ToStringFormat(const char * outFormat) {
   QString smiles;
 
   QString molfile = ToMDLMolfile();
@@ -188,7 +196,7 @@ QString Molecule::ToSMILES() {
   OBFormat *pInFormat = NULL, *pOutFormat = NULL;
 
   pInFormat = Conv.FindFormat("mol");
-  pOutFormat = Conv.FindFormat("smi");
+  pOutFormat = Conv.FindFormat(outFormat);
 
   Conv.SetInAndOutFormats(pInFormat, pOutFormat);
   Conv.Convert();
