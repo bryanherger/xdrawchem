@@ -1,9 +1,12 @@
 TEMPLATE = app
 TARGET = xdrawchem
 
-INCLUDEPATH += /usr/local/include/openbabel-2.0
+INCLUDEPATH += /usr/include/openbabel-2.0
 LIBS += -lopenbabel
+# set PREFIX if not set (it is set when building RPM)
+isEmpty(PREFIX) {
 PREFIX = /usr/local
+}
 
 DESTDIR = bin
 target.path = $${PREFIX}/$${DESTDIR}
@@ -16,13 +19,13 @@ unix {
 
   # for includes and libs
   DEFINES += UNIX
-  DEFINES += RINGHOME=\"$${PREFIX}/share/xdrawchem2\"
+  DEFINES += RINGHOME=\"$${PREFIX}/share/xdrawchem\"
   DEFINES += XDC_SERVER=\"http://www.woodsidelabs.com/chemistry\"
 #  DEFINES += QT3_SUPPORT_WARNINGS
 
-  ringdir.path = $${PREFIX}/share/xdrawchem2
+  ringdir.path = $${PREFIX}/share/xdrawchem
   ringdir.files = ring/*
-  doc.path = $${PREFIX}/share/xdrawchem2/doc
+  doc.path = $${PREFIX}/share/xdrawchem/doc
   doc.files = doc/*
   INSTALLS += ringdir doc
   QMAKE_CXXFLAGS_DEBUG += -O0
