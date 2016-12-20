@@ -1,0 +1,28 @@
+<pre>
+Portions copyright by Christoph Steinbeck, the JChemPaint project and
+others.  The following files contain copyright and license info for
+the code they contain: 
+boshcp.h sdg.h sorf.h setofrings.h ring.h atom.h
+
+-- XDrawChem copyright begins here --
+
+    XDrawChem
+    Copyright (C) 2002 Bryan Herger
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    (Author's note: the license is in the file GPL.txt, which is included
+     in the source directory.)
+</pre>

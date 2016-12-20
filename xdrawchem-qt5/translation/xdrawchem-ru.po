@@ -1,0 +1,2422 @@
+# Russian translation of xdrawchem.
+# This file is distributed under the same license as the xdrawchem package.
+# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER.
+# Copyright (C) 2004, The Free Software Foundation
+# Vitaly Lipatov <lav@altlinux.ru>, 2004.
+# Roman Borisyuk <borroman@etersoft.ru>, 2004.
+msgid ""
+msgstr ""
+"Project-Id-Version: xdrawchem 1.8.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-03-18 03:20+0100\n"
+"PO-Revision-Date: 2004-08-01 16:03MSK\n"
+"Last-Translator: Vitaly Lipatov <lav@altlinux.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=KOI8-R\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: application.cpp:159
+msgid ""
+"Click this button to open a file.<br><br>You can also select the Open "
+"command from the File menu."
+msgstr ""
+
+#: application.cpp:160
+msgid ""
+"Click this button to save the file you are editing.<br><br>You can also "
+"select the Save command from the File menu.<br><br>"
+msgstr ""
+"Нажмите эту кнопку, чтобы сохранить файл, который вы редактируете. <br><br> "
+"Вы также можете выбрать команду сохранить в меню Файл<br><br>"
+
+#: application.cpp:161
+#, fuzzy
+msgid ""
+"Click this button to print the file you are editing.<br><br>You can also "
+"select the Print command from the File menu."
+msgstr "до <br><br> Напечатать команда Файл."
+
+#: application.cpp:162
+msgid ""
+"Click this button to cut a selection.<br><br>You can also select the Cut "
+"command from the Edit menu, or press Ctrl+X."
+msgstr ""
+
+#: application.cpp:163
+msgid ""
+"Click this button to copy a selection.<br><br>You can also select the Copy "
+"command from the Edit menu, or press Ctrl+C."
+msgstr ""
+
+#: application.cpp:164
+msgid ""
+"Click this button to paste a selection.<br><br>You can also select the Paste "
+"command from the Edit menu, or press Ctrl+V."
+msgstr ""
+
+#: application.cpp:165
+#, fuzzy
+msgid "Click this button to zoom in."
+msgstr "."
+
+#: application.cpp:166
+msgid "Click this button to zoom out."
+msgstr ""
+
+#: application.cpp:169
+msgid ""
+"Select tool<br><br>Use the Select tool to select and move items inside a box."
+"<br><br>You can select multiple items and cut, copy, move and rotate them."
+msgstr ""
+
+#: application.cpp:170
+msgid ""
+"Lasso tool<br><br>Use the Lasso tool to select and move items by drawing a "
+"loop around them.<br><br>You can select multiple items and cut, copy, move "
+"and rotate them."
+msgstr ""
+
+#: application.cpp:171
+msgid "Erase tool<br><br>Use the Erase tool to erase individual items."
+msgstr ""
+
+#: application.cpp:172
+msgid ""
+"Line tool<br><br>Use the Line tool to draw bonds.  Draw over existing bonds "
+"to create double and triple bonds."
+msgstr ""
+
+#: application.cpp:173
+msgid ""
+"Dashed Line tool<br><br>Use the Dashed Line tool to draw dashed lines.  Draw "
+"over existing bonds to add dashed lines (to indicate resonance, etc.)."
+msgstr ""
+
+#: application.cpp:174
+msgid ""
+"Chain tool<br><br>Use the Chain tool to draw aliphatic chains.  The length "
+"of each segment is the current bond length."
+msgstr ""
+
+#: application.cpp:175
+msgid ""
+"Stereo Up Line tool<br><br>Use the Line tool to draw stereo-up lines, as "
+"shown on the button."
+msgstr ""
+
+#: application.cpp:176
+msgid ""
+"Stereo Down Line tool<br><br>Use the Line tool to draw stereo-down lines, as "
+"shown on the button."
+msgstr ""
+
+#: application.cpp:177
+msgid ""
+"Wavy Line tool<br><br>Use the Wavy Line tool to draw wavy lines, as shown on "
+"the button."
+msgstr ""
+
+#: application.cpp:178
+msgid ""
+"Arrow tool<br><br>Use the Arrow tool to draw straight arrows.<br><br>Click "
+"to draw a straight arrow.<br><br>Click and hold to pick from a list of "
+"available arrows."
+msgstr ""
+
+#: application.cpp:179
+msgid ""
+"Curved Arrow tool<br><br>Use the Curved Arrow tool to insert curved arrows."
+"<br><br>Click and hold to select from a picture menu of arrows."
+msgstr ""
+
+#: application.cpp:180
+msgid ""
+"Bracket tool<br><br>Use the Bracket tool to draw brackets and parentheses."
+"<br><br>Click to draw square brackets.<br><br>Click and hold to select from "
+"a picture menu of brackets."
+msgstr ""
+
+#: application.cpp:181
+msgid ""
+"Text tool<br><br>Use the Text tool to add text and label atoms and points."
+"<br>(See manual for info on formatting text)"
+msgstr ""
+
+#: application.cpp:182
+msgid ""
+"Ring tool<br><br>Use the Ring tool to insert ready-made rings and structures."
+"<br><br>Click to open the ring dialog, which allows selection from a list of "
+"all built-in rings and structures.<br><br>Click and hold to select from a "
+"picture menu of select rings.<br>(See manual for more info on modifying this "
+"menu)"
+msgstr ""
+
+#: application.cpp:183
+msgid ""
+"Symbol tool<br><br>Use the Symbol tool to insert symbols.<br><br>Click and "
+"hold to select from a picture menu of symbols.<br>"
+msgstr ""
+
+#: application.cpp:218
+msgid "File Operations"
+msgstr "Операции с файлами"
+
+#: application.cpp:223
+msgid "Open file"
+msgstr "Открыть файл"
+
+#: application.cpp:230
+msgid "Save file"
+msgstr "Сохранить файл"
+
+#: application.cpp:237
+msgid "Print file"
+msgstr "Напечатать файл"
+
+#: application.cpp:244 render2d_event.cpp:213
+msgid "Cut"
+msgstr "Вырезать"
+
+#: application.cpp:251 render2d_event.cpp:214
+msgid "Copy"
+msgstr "Запомнить"
+
+#: application.cpp:258
+msgid "Paste"
+msgstr "Вставить"
+
+#: application.cpp:265
+msgid "Zoom In"
+msgstr "Увеличить"
+
+#: application.cpp:272
+msgid "Zoom Out"
+msgstr "Уменьшить"
+
+#: application.cpp:286
+msgid "Set drawing color"
+msgstr "Установить цвет рисования"
+
+#: application.cpp:290
+msgid "Set line thickness"
+msgstr "Установить толщину линии"
+
+#: application.cpp:291
+msgid "Set Line Thickness"
+msgstr "Установить толщину линии"
+
+#: application.cpp:305
+msgid "Set font"
+msgstr ""
+
+#: application.cpp:306
+msgid "Set Font"
+msgstr "Установить шрифт"
+
+#: application.cpp:315
+msgid "Set font size"
+msgstr "Установить размер шрифта"
+
+#: application.cpp:316
+msgid "Set Font Size"
+msgstr "Установить размер шрифта"
+
+#: application.cpp:330
+msgid "Left-justify selected text"
+msgstr "Выровнять выделенный текст по левому краю"
+
+#: application.cpp:338
+msgid "Center selected text"
+msgstr "Центрировать выделенный шрифт"
+
+#: application.cpp:346
+msgid "Right-justify selected text"
+msgstr "Выровнять выбранный текст по правому краю"
+
+#: application.cpp:354
+msgid "Make selected text <b>bold</b> (Ctrl+B)"
+msgstr "Сделать выделенный текст <b>полужирным</b> (Ctrl+B)"
+
+#: application.cpp:364
+msgid "<i>Italicize</i> selected text (Ctrl+I)"
+msgstr "<i>Сделать курсивным</i> выделенный текст (Ctrl-I)"
+
+#: application.cpp:374
+msgid "Underline selected text (Ctrl+U)"
+msgstr "Сделать выделенный текст подчёркнутым (Ctrl+U)"
+
+#: application.cpp:384
+msgid "Superscript selected text (Ctrl-Plus)"
+msgstr "Сделать выделенный текст верхним индексом (Ctrl-Plus)"
+
+#: application.cpp:395
+msgid "Subscript selected text (Ctrl-Minus)"
+msgstr "Сделать выделенный текст нижним индексом (Ctrl-Minus)"
+
+#: application.cpp:411 netchoosedialog.cpp:83 render2d_event.cpp:212
+msgid "Select"
+msgstr "Выбрать"
+
+#: application.cpp:418
+msgid "Lasso"
+msgstr "Лассо"
+
+#: application.cpp:425
+msgid "Erase"
+msgstr "Стереть"
+
+#: application.cpp:432
+msgid "Draw line"
+msgstr "Рисование линии"
+
+#: application.cpp:440
+msgid "Draw dashed line"
+msgstr "Рисование пунктирной линии"
+
+#: application.cpp:448
+msgid "Draw aliphatic chain"
+msgstr "Рисование зигзагообразной линии"
+
+#: application.cpp:456
+msgid "Draw stereo-up line"
+msgstr ""
+
+#: application.cpp:464
+msgid "Draw stereo-down line"
+msgstr ""
+
+#: application.cpp:472
+#, fuzzy
+msgid "Draw wavy bond"
+msgstr "Рисование волнистой линии"
+
+#: application.cpp:480
+msgid "Draw arrow"
+msgstr "Обозначение стрелки-указателя"
+
+#: application.cpp:490
+msgid "Draw curved arrow"
+msgstr "Обозначение изогнутой стрелки-указателя "
+
+#: application.cpp:500
+msgid "Draw bracket"
+msgstr "Обозначение скобок-разделителей"
+
+#: application.cpp:510
+msgid "Draw or edit text"
+msgstr "Составление или редактирование текста"
+
+#: application.cpp:518
+msgid "Draw ring"
+msgstr "Обозначение циклической структуры"
+
+#: application.cpp:529
+#, fuzzy
+msgid "Draw symbol"
+msgstr "Рисование"
+
+#: application.cpp:537
+msgid "Canned Structures"
+msgstr "Готовые структурные формулы веществ"
+
+#: application.cpp:545
+msgid "Cyclopropane"
+msgstr "Циклопропан"
+
+#: application.cpp:553
+msgid "Cyclobutane"
+msgstr "Циклобутан"
+
+#: application.cpp:561
+msgid "Cyclopentane"
+msgstr "Циклопентан"
+
+#: application.cpp:569
+msgid "Cyclopentadiene"
+msgstr "Циклопентадиен"
+
+#: application.cpp:577
+msgid "Cyclohexane"
+msgstr "Циклогексан"
+
+#: application.cpp:585
+msgid "Cyclohexane - chair conformation"
+msgstr "Циклогексан - фронтальная форма"
+
+#: application.cpp:593
+msgid "Cyclohexane - boat conformation"
+msgstr "Циклогексан - пространственная форма"
+
+#: application.cpp:601
+msgid "Benzene"
+msgstr "Бензол"
+
+#: application.cpp:611 helpwindow.cpp:89
+msgid "&File"
+msgstr "&Файл"
+
+#: application.cpp:613
+msgid "&New"
+msgstr "&Создать"
+
+#: application.cpp:615
+msgid "&Open"
+msgstr "&Открыть"
+
+#: application.cpp:620
+msgid "&Find on Internet"
+msgstr "&Найти в Интернет"
+
+#: application.cpp:624
+msgid "&Save"
+msgstr "&Сохранить"
+
+#: application.cpp:628
+msgid "Save &as..."
+msgstr "Сохранить &как..."
+
+#: application.cpp:630
+msgid "Save picture..."
+msgstr "Сохранить изображение..."
+
+#: application.cpp:633
+msgid "Pa&ge setup"
+msgstr "Парам&етры страницы"
+
+#: application.cpp:634 helpwindow.cpp:68
+msgid "&Print"
+msgstr "&Печать"
+
+#: application.cpp:638 graphdialog.cpp:42 tool_13c_nmr.cpp:41
+#: tool_1h_nmr.cpp:41 tool_ir.cpp:41
+msgid "Close"
+msgstr "Закрыть"
+
+#: application.cpp:639
+msgid "Quit"
+msgstr "Выйти"
+
+#: application.cpp:642
+msgid "Rotate 90 degrees clockwise"
+msgstr "Вращение на 90 градусов по часовой стрелке"
+
+#: application.cpp:644
+msgid "Rotate 180 degrees"
+msgstr "Вращение на 180 градусов"
+
+#: application.cpp:645
+msgid "Rotate 90 degrees counterclockwise"
+msgstr "Вращение на 90 градусов против часовой стрелки"
+
+#: application.cpp:649
+msgid "Flip &horizontal"
+msgstr "Отобразить горизонтально"
+
+#: application.cpp:650
+msgid "Flip &vertical"
+msgstr "Отобразить вертикально"
+
+#: application.cpp:653
+msgid "Normal (100%)"
+msgstr "Нормальный (100%)"
+
+#: application.cpp:655
+msgid "Zoom out"
+msgstr "Отдалить"
+
+#: application.cpp:656
+msgid "Zoom in"
+msgstr "Приблизить"
+
+#: application.cpp:670
+msgid "&Edit"
+msgstr "&Правка"
+
+#: application.cpp:672
+msgid "&Undo"
+msgstr "Отменить"
+
+#: application.cpp:673
+#, fuzzy
+msgid "&Insert symbol"
+msgstr "Рисование"
+
+#: application.cpp:677
+msgid "Cu&t"
+msgstr "В&ырезать"
+
+#: application.cpp:678
+msgid "&Copy"
+msgstr "&Запомнить"
+
+#: application.cpp:679
+msgid "&Paste"
+msgstr "&Вставить"
+
+#: application.cpp:680
+msgid "Clear"
+msgstr "Очистить"
+
+#: application.cpp:682
+msgid "Select &All"
+msgstr "Выделить &всё"
+
+#: application.cpp:683
+msgid "&Deselect All"
+msgstr "&Отменить всё выделение"
+
+#: application.cpp:685
+msgid "&Rotate"
+msgstr "&Повернуть"
+
+#: application.cpp:686
+msgid "&Flip"
+msgstr "&Отразить"
+
+#: application.cpp:688
+msgid "&Zoom"
+msgstr "&Масштаб"
+
+#: application.cpp:691
+msgid "&Group"
+msgstr "&Группа"
+
+#: application.cpp:692
+msgid "Select &Reactant"
+msgstr "Выбрать &Повторить"
+
+#: application.cpp:694
+msgid "Select &Product"
+msgstr "Выбрать &Продукт"
+
+#: application.cpp:696
+msgid "Clear &group"
+msgstr "Очистить &группу"
+
+#: application.cpp:698
+msgid "Clear all &groups"
+msgstr "Очистить все &группы"
+
+#: application.cpp:703
+msgid "Forma&t"
+msgstr "Форма&т"
+
+#: application.cpp:705
+msgid "&Bond - Fixed length and angle"
+msgstr "&Линии связи фиксируются длиной и углом"
+
+#: application.cpp:708
+msgid "&Arrow - Fixed length and angle"
+msgstr "&Стрелки-указатели фиксируются длиной и углом"
+
+#: application.cpp:711
+msgid "Automatically Add &hydrogens"
+msgstr "Автоматически Добавлять &ионы водорода"
+
+#: application.cpp:715
+msgid "Set background &color"
+msgstr "Настройка фона"
+
+#: application.cpp:717
+msgid "Toggle &grid"
+msgstr "Включить сетку"
+
+#: application.cpp:719
+msgid "&Drawing settings..."
+msgstr "Графические настройки"
+
+#: application.cpp:721
+#, fuzzy
+msgid "&XDC settings..."
+msgstr "Графические настройки"
+
+#: application.cpp:726
+msgid "Estimate gas-phase enthalphy change"
+msgstr "Оценить изменения газовой формы энтальпии"
+
+#: application.cpp:728
+msgid "Compare 1H NMR"
+msgstr "Сравнить 1H NMR"
+
+#: application.cpp:730
+msgid "Compare 13C NMR"
+msgstr "Сравнить 13C NMR"
+
+#: application.cpp:737
+#, fuzzy
+msgid "Reverse reactions"
+msgstr "Действие"
+
+#: application.cpp:743
+msgid "Get bond identifier"
+msgstr "Получить связной идентификатор"
+
+#: application.cpp:747
+msgid "T&ools"
+msgstr "Инструменты"
+
+#: application.cpp:748
+msgid "Clean up molecule"
+msgstr "Очистить молекулу"
+
+#: application.cpp:749
+msgid "Auto &layout"
+msgstr "Автоматический &макет"
+
+#: application.cpp:750
+msgid "Create custom ring"
+msgstr "Создать собственную циклическую структуру "
+
+#: application.cpp:753
+msgid "Molecule information..."
+msgstr "Молекулярная информация"
+
+#: application.cpp:755
+#, fuzzy
+msgid "Predict 1H NMR"
+msgstr "Предусмотреть 13C NMR"
+
+#: application.cpp:756
+msgid "Predict 13C NMR"
+msgstr "Предусмотреть 13C NMR"
+
+#: application.cpp:757
+msgid "Predict IR"
+msgstr "Предусмотреть IR"
+
+#: application.cpp:758
+msgid "Predict pKa"
+msgstr "Предусмотреть pKa"
+
+#: application.cpp:759
+msgid "Predict octanol-water partition (Kow)"
+msgstr "Предусмотреть константу диссоциации воды (Kow)"
+
+#: application.cpp:760
+msgid "Reaction"
+msgstr "Действие"
+
+#: application.cpp:762
+#, fuzzy
+msgid "Input SMILES"
+msgstr "Вставить файл"
+
+#: application.cpp:763
+#, fuzzy
+msgid "Output SMILES"
+msgstr "Выход"
+
+#: application.cpp:765
+msgid "Build 3D model of molecule"
+msgstr ""
+
+#: application.cpp:771 helpwindow.cpp:92
+msgid "&Help"
+msgstr "Помощь"
+
+#: application.cpp:773
+msgid "&Manual"
+msgstr "Руководство"
+
+#: application.cpp:774
+msgid "&Did You Know?"
+msgstr "Вы знали ?"
+
+#: application.cpp:775
+msgid "&About"
+msgstr "О программе"
+
+#: application.cpp:776
+msgid "&Support"
+msgstr "Поддержка"
+
+#: application.cpp:777
+msgid "&References"
+msgstr "Ссылки"
+
+#: application.cpp:779
+msgid "What's &This"
+msgstr "Что это?"
+
+#: application.cpp:857
+msgid "Newman projection symbol"
+msgstr ""
+
+#: application.cpp:858
+msgid "Newman projection - staggered (anti)"
+msgstr ""
+
+#: application.cpp:859
+msgid "Newman projection - eclipsed"
+msgstr ""
+
+#: application.cpp:914
+msgid "Cubic bezier"
+msgstr "Кубическое Безье"
+
+#: application.cpp:917
+msgid "Cubic bezier - half arrow"
+msgstr "Кубическое Безье - половина стрелки-указателя"
+
+#: application.cpp:920
+msgid "Cubic bezier - full arrow"
+msgstr "Кубическое Безье - полная стрелка-указатель"
+
+#: application.cpp:966 application_ring.cpp:347
+msgid "User-defined"
+msgstr "Пользовательский выбор"
+
+#: application.cpp:1152 application_ob.cpp:95
+msgid "Couldn't open file"
+msgstr "Не возможно открыть файл"
+
+#: application.cpp:1152 application_ob.cpp:95
+msgid "Could not open the file: "
+msgstr "Не возможно открыть файл "
+
+#: application.cpp:1153 application.cpp:1161 application_ob.cpp:96
+#: application_ob.cpp:104
+msgid "Unable to load "
+msgstr "Невозможно произвести загрузку "
+
+#: application.cpp:1167 application_ob.cpp:110 application_ob.cpp:137
+msgid "Loaded document "
+msgstr "Документ загружен "
+
+#: application.cpp:1191 application_ob.cpp:187 application_ob.cpp:198
+msgid "Could not write to "
+msgstr "Запись невозможна  "
+
+#: application.cpp:1197 application_ob.cpp:191 application_ob.cpp:202
+#: application_ob.cpp:235
+msgid "Saved file "
+msgstr "Файл сохранен"
+
+#: application.cpp:1249
+msgid "Save as picture..."
+msgstr "Сохранить как изображение..."
+
+#: application.cpp:1284 application.cpp:1296 application.cpp:1302
+msgid "Saved picture file "
+msgstr "Графический файл сохранен"
+
+#: application.cpp:1286 application.cpp:1298 application.cpp:1304
+msgid "Unable to save picture!"
+msgstr "Невозможно сохранить изображение !"
+
+#: application.cpp:1358
+msgid ""
+"\n"
+"Bryan Herger\n"
+"bherger@users.sourceforge.net\n"
+"\n"
+"Please subscribe to the mailing list for information about future releases.\n"
+"Send a message to xdrawchem-announce-request@lists.sourceforge.net with "
+"'subscribe' as the subject.\n"
+"\n"
+"XDrawChem is copyright (C) 2004 Bryan Herger.\n"
+"Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint "
+"project\n"
+"OpenBabel code copyright (C) 2003 by the OpenBabel project team.\n"
+"See file COPYRIGHT.txt for more details"
+msgstr ""
+
+#: application.cpp:1362
+msgid "How to get help"
+msgstr "Как получить помощь"
+
+#: application.cpp:1363
+msgid ""
+"Current information on XDrawChem can always be found at\n"
+"http://xdrawchem.sourceforge.net/\n"
+"The latest release will be posted here, as well as links to mailing lists "
+"and the bug tracker.\n"
+"\n"
+"Please submit bugs using the SourceForge tracker: http://www.sourceforge.net/"
+"tracker/?group_id=34518\n"
+"\n"
+"There are two mailing lists:  xdrawchem-announce, where new releases will be "
+"announced,\n"
+"and xdrawchem-user, for open discussion among XDrawChem users.\n"
+"Subscribe by sending a blank e-mail with subject \"subscribe\" to \n"
+"\"xdrawchem-announce-request@lists.sourceforge.net\" or\n"
+"\"xdrawchem-user-request@lists.sourceforge.net\"\n"
+"\n"
+"You can contact the author directly at\n"
+"bherger@users.sourceforge.net"
+msgstr ""
+"Вы можете найти последнюю информацию по XDrawChem\n"
+"на сайте http://xdrawchem.sourceforge.net/\n"
+"Там публикуется информация о последних релизах, так же как ссылки на списки "
+"рассылки и систему сообщения о найденных ошибках.\n"
+"\n"
+"Please submit bugs using the SourceForge tracker: http://www.sourceforge.net/"
+"tracker/?group_id=34518\n"
+"\n"
+"There are two mailing lists:  xdrawchem-announce, where new releases will be "
+"announced,\n"
+"and xdrawchem-user, for open discussion among XDrawChem users.\n"
+"Subscribe by sending a blank e-mail with subject \"subscribe\" to \n"
+"\"xdrawchem-announce-request@lists.sourceforge.net\" or\n"
+"\"xdrawchem-user-request@lists.sourceforge.net\"\n"
+"\n"
+"Вы можете связаться напрямую с автором:\n"
+"bherger@users.sourceforge.net"
+
+#: application.cpp:1443
+msgid "Database query failed"
+msgstr "Запрос невозможен"
+
+#: application.cpp:1443
+msgid "No molecules in the database match the query."
+msgstr "Нет запрашиваемых молекул в базе данных"
+
+#: application.cpp:1679 application.cpp:1687 application.cpp:1694
+#: application.cpp:1701
+#, fuzzy, qt-format
+msgid "Zoom = %1 %"
+msgstr "Масштаб"
+
+#: application.cpp:1705
+msgid "XDC Settings"
+msgstr ""
+
+#: application.cpp:1706
+msgid "Change XDrawChem settings:"
+msgstr ""
+
+#: application.cpp:1707
+msgid "&Main font"
+msgstr ""
+
+#: application.cpp:1707
+msgid "&Ruler font"
+msgstr ""
+
+#: application.cpp:1708 bondedit.cpp:252 charsel.cpp:68 crings_dialog.cpp:137
+#: fixeddialog.cpp:144 molinfodialog.cpp:37 netchoosedialog.cpp:88
+#: netdialog.cpp:80 pagesetupdialog.cpp:109 peptidebuilder.cpp:78
+#: ringdialog.cpp:55 smilesdialog.cpp:41
+msgid "Cancel"
+msgstr "Отменить"
+
+#: application_ob.cpp:35 tool_2d3d.cpp:92
+msgid "--Select a filter-- (*)"
+msgstr "Выбрать фильтр"
+
+#: application_ob.cpp:38
+msgid "CDXML - ChemDraw text/XML format (*)"
+msgstr ""
+
+#: application_ob.cpp:41
+msgid "CDX - ChemDraw binary format (*)"
+msgstr ""
+
+#: application_ob.cpp:44
+msgid "XDC - XDrawChem native format (*)"
+msgstr ""
+
+#: application_ob.cpp:68
+msgid "Open file..."
+msgstr "Открыть файл..."
+
+#: application_ob.cpp:83 application_ob.cpp:162 tool_2d3d.cpp:113
+msgid "Could not determine file type"
+msgstr "Невозможно определить тип файла"
+
+#: application_ob.cpp:84 application_ob.cpp:163 tool_2d3d.cpp:114
+msgid "Please select a file type from the list."
+msgstr "Пожайлуста, выберите тип файла из списка."
+
+#: application_ob.cpp:126
+msgid "Problem while opening the file"
+msgstr "Проблема при открытии файла"
+
+#: application_ob.cpp:127
+msgid "Cannot open the specified file."
+msgstr "Не возможно открыть указанный файл."
+
+#: application_ob.cpp:150 tool_2d3d.cpp:107
+msgid "Save file as..."
+msgstr "Сохранить файл как..."
+
+#: application_ob.cpp:155
+msgid "Overwrite file?"
+msgstr "Перезаписать файл?"
+
+#: application_ob.cpp:155
+#, qt-format
+msgid "Overwrite existing file: %1 ?"
+msgstr "Перезаписать существующий файл: %1 ?"
+
+#: application_ob.cpp:221
+msgid "IOIface Data error"
+msgstr "IOIface ошибка данных"
+
+#: application_ob.cpp:222
+msgid ""
+"Cannot convert the molecule.\n"
+"Conversion failed in ioiface.cpp"
+msgstr ""
+"Превращение молекулы невозможно.\n"
+"Преобразование нарушилось в файле ioiface.cpp"
+
+#: application_ob.cpp:228 tool_2d3d.cpp:133
+msgid "Problem while writing the file"
+msgstr "Проблема при записи файла"
+
+#: application_ob.cpp:229 tool_2d3d.cpp:134
+msgid "Cannot write the specified file."
+msgstr "Невозможно записать указанный файл."
+
+#: application_ring.cpp:120
+msgid "[*] Cyclopropane"
+msgstr "[*] Циклопропан"
+
+#: application_ring.cpp:124
+msgid "[*] Cyclobutane"
+msgstr "[*] Циклобутан"
+
+#: application_ring.cpp:128
+msgid "[*] Cyclopentane"
+msgstr "[*] Циклопентан"
+
+#: application_ring.cpp:132
+msgid "Imidazole"
+msgstr "Имидазол"
+
+#: application_ring.cpp:136
+msgid "[*] Cyclopentadiene"
+msgstr "[*] Циклопентадиен"
+
+#: application_ring.cpp:140
+msgid "[*] Cyclohexane (flat)"
+msgstr "[*] Циклогексан"
+
+#: application_ring.cpp:144
+msgid "Cyclohexane (boat)"
+msgstr "Циклогексан (пространственный)"
+
+#: application_ring.cpp:148
+msgid "Cyclohexane (chair)"
+msgstr "Циклогексан (фронтальный)"
+
+#: application_ring.cpp:152
+msgid "[*] Benzene"
+msgstr "[*] Бензол"
+
+#: application_ring.cpp:156
+msgid "Pyrimidine"
+msgstr "Пиримидин"
+
+#: application_ring.cpp:160
+msgid "[*] Cycloheptane"
+msgstr "[*] Циклогептан"
+
+#: application_ring.cpp:164
+msgid "[*] Cyclooctane"
+msgstr "[*] Циклооктан"
+
+#: application_ring.cpp:168
+msgid "Indole"
+msgstr "Индол"
+
+#: application_ring.cpp:172
+msgid "Purine"
+msgstr "Пурин"
+
+#: application_ring.cpp:176
+msgid "Naphthalene"
+msgstr "Нафталин"
+
+#: application_ring.cpp:180
+msgid "Biphenyl"
+msgstr "Бифенил"
+
+#: application_ring.cpp:184
+msgid "Anthracene"
+msgstr "Антрацен"
+
+#: application_ring.cpp:188
+msgid "Steroid (fused ring template)"
+msgstr "Стероид "
+
+#: application_ring.cpp:191
+msgid "Rings"
+msgstr "Циклические структуры"
+
+#: application_ring.cpp:196
+msgid "Alanine"
+msgstr "Аланин"
+
+#: application_ring.cpp:200
+msgid "Arginine"
+msgstr "Аргинин"
+
+#: application_ring.cpp:204
+msgid "Asparagine"
+msgstr "Аспарагин"
+
+#: application_ring.cpp:208
+msgid "Aspartic acid"
+msgstr "Аспаргиновая кислота"
+
+#: application_ring.cpp:212
+msgid "Cysteine"
+msgstr "Цистеин"
+
+#: application_ring.cpp:216
+msgid "Glutamic acid"
+msgstr "Глютаминовая кислота"
+
+#: application_ring.cpp:220
+msgid "Glutamine"
+msgstr "Глютамин"
+
+#: application_ring.cpp:224
+msgid "Glycine"
+msgstr "Глицин"
+
+#: application_ring.cpp:228
+msgid "Histidine"
+msgstr "Гистидин"
+
+#: application_ring.cpp:232
+msgid "Isoleucine"
+msgstr "Изолейцин"
+
+#: application_ring.cpp:236
+msgid "Leucine"
+msgstr "Лейцин"
+
+#: application_ring.cpp:240
+msgid "Lysine"
+msgstr "Лизин"
+
+#: application_ring.cpp:244
+msgid "Methionine"
+msgstr "Метионил"
+
+#: application_ring.cpp:248
+msgid "Nitrophenylalanine"
+msgstr "Нитрофенилаланин"
+
+#: application_ring.cpp:252
+msgid "Phenylalanine"
+msgstr "Фенилаланин"
+
+#: application_ring.cpp:256
+msgid "Proline"
+msgstr "Пролин"
+
+#: application_ring.cpp:260
+msgid "Serine"
+msgstr "Серин"
+
+#: application_ring.cpp:264
+msgid "Statine"
+msgstr "Статин"
+
+#: application_ring.cpp:268
+msgid "Threonine"
+msgstr "Фреонин"
+
+#: application_ring.cpp:272
+msgid "Tryptophan"
+msgstr "Триптофан"
+
+#: application_ring.cpp:276
+msgid "Tyrosine"
+msgstr "Тирозин"
+
+#: application_ring.cpp:280
+msgid "Valine"
+msgstr "Валин"
+
+#: application_ring.cpp:283
+msgid "Amino acids"
+msgstr "Аминокислоты"
+
+#: application_ring.cpp:288
+msgid "Adenine"
+msgstr "Аденин"
+
+#: application_ring.cpp:291
+msgid "Cytosine"
+msgstr "Цитозин"
+
+#: application_ring.cpp:294
+msgid "Guanine"
+msgstr "Амидино"
+
+#: application_ring.cpp:297
+msgid "Thymine"
+msgstr "Фимин"
+
+#: application_ring.cpp:300
+msgid "Uracil"
+msgstr "Урасил"
+
+#: application_ring.cpp:302
+msgid "Nucleic acids"
+msgstr "Нуклеиновые кислоты"
+
+#: application_ring.cpp:307
+msgid "Ribose"
+msgstr ""
+
+#: application_ring.cpp:311
+msgid "Deoxyribose"
+msgstr ""
+
+#: application_ring.cpp:315
+msgid "D-fructose"
+msgstr "D-фруктоза"
+
+#: application_ring.cpp:319
+msgid "D-glucose"
+msgstr "D-глюкоза"
+
+#: application_ring.cpp:322
+msgid "Sugars"
+msgstr "Сахара"
+
+#: application_ring.cpp:326
+msgid "[*] FMOC"
+msgstr ""
+
+#: application_ring.cpp:329
+msgid "[*] BOC"
+msgstr ""
+
+#: application_ring.cpp:332
+msgid "[*] DABCYL"
+msgstr ""
+
+#: application_ring.cpp:335
+msgid "[*] DABSYL"
+msgstr ""
+
+#: application_ring.cpp:338
+msgid "[*] DANSYL"
+msgstr ""
+
+#: application_ring.cpp:341
+msgid "[*] EDANS"
+msgstr ""
+
+#: application_ring.cpp:344
+msgid "Useful groups"
+msgstr "Полезные группы"
+
+#: application_ring.cpp:369
+msgid "Add new..."
+msgstr ""
+
+#: bondedit.cpp:52
+msgid "Color"
+msgstr "Цвет"
+
+#: bondedit.cpp:57
+msgid "Arrow editor"
+msgstr "Редактирование стрелок-указателей"
+
+#: bondedit.cpp:58 bondedit.cpp:165 bondedit.cpp:187 bondedit.cpp:212
+msgid "Style:"
+msgstr "Стиль"
+
+#: bondedit.cpp:61
+msgid "Plain arrow"
+msgstr "Обычная стрелка-указатель"
+
+#: bondedit.cpp:64
+msgid "NR arrow"
+msgstr ""
+
+#: bondedit.cpp:67
+#, fuzzy
+msgid "Dashed arrow"
+msgstr "Штриховая стрелка-указатель"
+
+#: bondedit.cpp:70
+msgid "Two-way arrow"
+msgstr ""
+
+#: bondedit.cpp:73
+#, fuzzy
+msgid "Split two-way arrow"
+msgstr "По частям"
+
+#: bondedit.cpp:76
+msgid "Retrosynthetic arrow"
+msgstr "Стрелка-указатель для обратного синтеза"
+
+#: bondedit.cpp:98
+msgid "Bond editor"
+msgstr "Редактирование линии связи"
+
+#: bondedit.cpp:100
+msgid "Bond order:"
+msgstr ""
+
+#: bondedit.cpp:103
+#, fuzzy
+msgid "Dashed line"
+msgstr "Штриховая линия"
+
+#: bondedit.cpp:106
+msgid "Single"
+msgstr "Одинарная"
+
+#: bondedit.cpp:109
+msgid "Stereo-up"
+msgstr ""
+
+#: bondedit.cpp:112
+msgid "Stereo-down"
+msgstr ""
+
+#: bondedit.cpp:115
+msgid "Wavy"
+msgstr "Волнистая"
+
+#: bondedit.cpp:118
+msgid "Single/double (aromatic)"
+msgstr "Одинарная/Двойная"
+
+#: bondedit.cpp:121
+msgid "Double"
+msgstr "Двойная"
+
+#: bondedit.cpp:124
+msgid "Double/triple"
+msgstr "Двойная/Тройная"
+
+#: bondedit.cpp:127
+msgid "Triple"
+msgstr "Тройная"
+
+#: bondedit.cpp:134
+msgid "Bond thickness:"
+msgstr "Толщина линий связи"
+
+#: bondedit.cpp:153
+msgid "Double bond alignment:"
+msgstr ""
+
+#: bondedit.cpp:156
+msgid "Auto"
+msgstr "Автоматически"
+
+#: bondedit.cpp:157
+msgid "Left"
+msgstr "Слева"
+
+#: bondedit.cpp:158
+msgid "Center"
+msgstr "По центру"
+
+#: bondedit.cpp:159
+msgid "Right"
+msgstr "Справа"
+
+#: bondedit.cpp:164
+msgid "Bracket editor"
+msgstr "Редактирование разделительных скобок"
+
+#: bondedit.cpp:168
+msgid "Square bracket"
+msgstr "Квадратные скобки"
+
+#: bondedit.cpp:171
+msgid "Parentheses"
+msgstr ""
+
+#: bondedit.cpp:174
+msgid "Curly bracket"
+msgstr "Волнистые скобки"
+
+#: bondedit.cpp:177
+msgid "Box"
+msgstr "Прямоугольник"
+
+#: bondedit.cpp:180
+msgid "Ellipse"
+msgstr "Эллипс"
+
+#: bondedit.cpp:186
+msgid "Curved Arrow editor"
+msgstr "Редактор для выгнутых стрелок-указателей"
+
+#: bondedit.cpp:190
+msgid "90 degree clockwise"
+msgstr "90 градусов по часовой стрелки"
+
+#: bondedit.cpp:193
+msgid "180 degree clockwise"
+msgstr "180 градусов по часовой стрелке"
+
+#: bondedit.cpp:196
+msgid "270 degree clockwise"
+msgstr "270 градусов по часовой стрелки"
+
+#: bondedit.cpp:199
+msgid "90 degree counterclockwise"
+msgstr "90 градусов против часовой стрелки"
+
+#: bondedit.cpp:202
+msgid "180 degree counterclockwise"
+msgstr "180 градусов против часовой стрелки"
+
+#: bondedit.cpp:205
+msgid "270 degree counterclockwise"
+msgstr "270 градусов против часовой стрелки"
+
+#: bondedit.cpp:211
+msgid "Symbol editor"
+msgstr "Редактор символов"
+
+#: bondedit.cpp:215
+msgid "Positive charge"
+msgstr "Положительный заряд"
+
+#: bondedit.cpp:218
+msgid "Negative charge"
+msgstr "Отрицательный заряд"
+
+#: bondedit.cpp:221
+msgid "Partial positive charge"
+msgstr "Частично положительный заряд"
+
+#: bondedit.cpp:224
+msgid "Partial negative charge"
+msgstr "Частично отрицательный заряд"
+
+#: bondedit.cpp:227
+msgid "Single electron"
+msgstr "Один электрон"
+
+#: bondedit.cpp:230
+msgid "Electron pair"
+msgstr "Пара электронов"
+
+#: bondedit.cpp:233
+msgid "Stereochemical ring hydrogen"
+msgstr ""
+
+#: bondedit.cpp:236
+msgid "p orbital"
+msgstr "p орбиталь"
+
+#: bondedit.cpp:239
+msgid "p double"
+msgstr ""
+
+#: bondedit.cpp:242
+msgid "bead"
+msgstr ""
+
+#: bondedit.cpp:248 crings_dialog.cpp:133 dyk.cpp:40 fixeddialog.cpp:136
+#: molinfodialog.cpp:29 pagesetupdialog.cpp:105 peptidebuilder.cpp:74
+#: smilesdialog.cpp:37
+msgid "OK"
+msgstr "OK"
+
+#: charsel.cpp:44
+#, fuzzy
+msgid "Insert symbol"
+msgstr "Рисование"
+
+#: charsel.cpp:47
+#, fuzzy
+msgid "Font:"
+msgstr "Установить шрифт"
+
+#: chemdata_rxn.cpp:41
+msgid "Missing reactant or product"
+msgstr "Пропущен реагент или продукт"
+
+#: chemdata_rxn.cpp:42
+msgid "You must select at least one reactant and one product."
+msgstr "Вы должны выбрать по крайней мере один реагент или продукт."
+
+#: chemdata_rxn.cpp:50
+msgid "Estimated gas-phase enthalpy change:\n"
+msgstr "Оценены изменения газовой фазы энтальпии:\n"
+
+#: chemdata_rxn.cpp:59
+#, qt-format
+msgid "Reactants = %1 kJ/mol\n"
+msgstr "Реагенты= = %1 kJ/mol\n"
+
+#: chemdata_rxn.cpp:68
+#, qt-format
+msgid "Products = %1 kJ/mol\n"
+msgstr "Продукты= = %1 kJ/mol\n"
+
+#: chemdata_rxn.cpp:70
+#, qt-format
+msgid "Reaction = %1 kJ/mol"
+msgstr "Реагент= = %1 kJ/mol"
+
+#: chemdata_rxn.cpp:71
+msgid "Enthalpy change"
+msgstr "Изменения энтальпии"
+
+#: chemdata_rxn.cpp:81
+msgid "1H NMR compare error"
+msgstr ""
+
+#: chemdata_rxn.cpp:82 chemdata_rxn.cpp:138
+msgid "Please select only one reactant and one product to compare."
+msgstr "Пожайлуста, выберите только один реагент и один продукт для сравнения."
+
+#: chemdata_rxn.cpp:137
+msgid "13C NMR compare error"
+msgstr ""
+
+#: chemdata_tools.cpp:171
+msgid "Octanol-water partition"
+msgstr ""
+
+#: chemdata_tools.cpp:171
+#, qt-format
+msgid "Estimated octanol-water partition constant (log Kow) = %1"
+msgstr ""
+
+#: chemdata_tools.cpp:193
+msgid "SMILES string"
+msgstr ""
+
+#: chemdata_tools.cpp:193
+msgid "SMILES string for selected molecule:"
+msgstr ""
+
+#: crings_dialog.cpp:123
+msgid "Add custom ring to menu list"
+msgstr "Добавить в список циклическое соединение"
+
+#: dyk.cpp:17 dyk.cpp:20
+msgid "Did You Know?"
+msgstr "Вы знали ?"
+
+#: dyk.cpp:28
+msgid "Previous tip"
+msgstr "Предыдущий"
+
+#: dyk.cpp:32
+msgid "Next tip"
+msgstr "Следующий"
+
+#: dyk.cpp:36
+msgid "Don't show this dialog at startup"
+msgstr "Не показывать это окно при следующем запуске"
+
+#: dyk.cpp:55
+msgid ""
+"XDrawChem can be run from the command line to produce images.  Type "
+"\"xdrawchem --help\" for details."
+msgstr ""
+
+#: dyk.cpp:56
+msgid ""
+"When in select mode, you can edit most objects by right-clicking on them."
+msgstr ""
+"Вы можете редактировать большинство объектов нажатием правой кнопки мыши на "
+"них, когда включен выделяемый режим."
+
+#: dyk.cpp:57
+msgid ""
+"When drawing bonds, you can edit the bond style by right-clicking on the "
+"bond."
+msgstr ""
+"Когда рисуются линии-связи, Вы можете редактировать стиль линии нажатием "
+"правой кнопки мыши на ней ."
+
+#: dyk.cpp:58
+msgid ""
+"When in select mode, press Shift+LeftButton and drag over part of a molecule "
+"to select the entire molecule."
+msgstr ""
+"В Выделяемом режиме, нажмите Shift + Левую кнопку мыши  и выберете части "
+"молекулы, чтобы выделить целую молекулу ."
+
+#: dyk.cpp:59
+msgid ""
+"When in select mode, press Ctrl+LeftButton on a molecule to get molecule "
+"information."
+msgstr ""
+"В Выделяемом режиме, нажмите Ctrl+Левую кнопку мыши на молекуле, чтобы "
+"получить информацию о молекуле."
+
+#: dyk.cpp:60
+msgid ""
+"Bond length, bond angle, and units are set in the Drawing Settings option "
+"under the Format menu."
+msgstr ""
+"Единицы измерения длины линии, угла наклона настраиваются в Графических "
+"Настройках в меню Формат."
+
+#: dyk.cpp:61
+msgid ""
+"You can attach a subscript to a bracket by selecting the text tool, then "
+"clicking on the bracket."
+msgstr ""
+"Вы можете присоединить индекс к разделительным скобкам выбрав текстовые "
+"настройки, затем нажав на скобку "
+
+#: dyk.cpp:62
+msgid ""
+"You can toggle the grid display by pressing Ctrl+G.  Turning the grid on or "
+"off does not affect whether objects snap to the grid."
+msgstr "  ."
+
+#: dyk.cpp:63
+msgid ""
+"A number of ring and molecule templates are available from the ring tool, "
+"including single and fused rings, amino acids, and nucleosides."
+msgstr ""
+"Шаблоны ароматического кольца и молекулы доступны в инструментах "
+"ароматического кольца,включающих как одиночные, так большего количества "
+"ароматические кольца, аминокислоты и нуклеотиды."
+
+#: dyk.cpp:64
+msgid "Remember to select a file type when opening or saving documents."
+msgstr ""
+"Запомните выбранный тип файла, когда открываются или сохраняются документы."
+
+#: dyk.cpp:65
+msgid ""
+"The option \"Clean up molecule\" under the Tools menu can be used to refine "
+"structures such as rings and macromolecules."
+msgstr ""
+"Опция \"Очистить молекулу\" в меню Инструменты может быть использована для "
+"удаления структур таких как кольца или макромолекулы."
+
+#: dyk.cpp:66
+msgid ""
+"It's possible to attach rings to structures by selecting a ring and clicking "
+"on an atom."
+msgstr ""
+
+#: dyk.cpp:67
+msgid ""
+"XDrawChem can automatically attach amino acids from N-terminal to C-terminal "
+"(but the result isn't always pretty :)"
+msgstr ""
+
+#: dyk.cpp:68
+msgid ""
+"Be sure to check for updates at\n"
+"http://xdrawchem.sourceforge.net/"
+msgstr ""
+
+#: dyk.cpp:69
+msgid ""
+"XDrawChem can draw over 100,000 substances using its Internet database.  "
+"Select Find on internet from the File menu to search for compounds."
+msgstr ""
+
+#: dyk.cpp:70
+msgid ""
+"XDrawChem can identify compounds by CAS number and occasionally by name.  "
+"Select Molecule information from the Tools menu and click on a molecule.  "
+"However, this only works if the compound is listed in the database."
+msgstr ""
+
+#: fixeddialog.cpp:29
+msgid "Set fixed angle and length"
+msgstr "Указать фиксированную длину и угол наклона"
+
+#: fixeddialog.cpp:32
+msgid "Units:"
+msgstr "Единицы:"
+
+#: fixeddialog.cpp:35 fixeddialog.cpp:253 pagesetupdialog.cpp:69
+msgid "pixels"
+msgstr "пикселей"
+
+#: fixeddialog.cpp:37 fixeddialog.cpp:256 pagesetupdialog.cpp:74
+msgid "inches"
+msgstr "дюймы"
+
+#: fixeddialog.cpp:38 fixeddialog.cpp:259 pagesetupdialog.cpp:79 xruler.cpp:60
+#: xruler.cpp:84
+msgid "cm"
+msgstr "см"
+
+#: fixeddialog.cpp:44
+msgid "Bond fixed length:"
+msgstr "Указать длину линии:"
+
+#: fixeddialog.cpp:50
+msgid "Bond fixed angle:"
+msgstr "Указать фиксированный угол наклона"
+
+#: fixeddialog.cpp:66 fixeddialog.cpp:91
+msgid "degrees"
+msgstr "градусы"
+
+#: fixeddialog.cpp:69
+msgid "Arrow fixed length:"
+msgstr "Указать длину стрелки-указателя:"
+
+#: fixeddialog.cpp:72
+msgid "Arrow fixed angle:"
+msgstr "Указать угол наклона стрелки-указателя:"
+
+#: fixeddialog.cpp:94
+msgid "Double bond spacing:"
+msgstr ""
+
+#: fixeddialog.cpp:110
+msgid "Show grid"
+msgstr "Показать сетку"
+
+#: fixeddialog.cpp:111
+msgid "Do not show grid"
+msgstr "Не показывать сетку"
+
+#: fixeddialog.cpp:112
+msgid "Show square grid"
+msgstr "Показать квадратную сетку"
+
+#: fixeddialog.cpp:113
+msgid "Show hex grid"
+msgstr ""
+
+#: fixeddialog.cpp:116
+#, fuzzy
+msgid "Snap to grid"
+msgstr " "
+
+#: fixeddialog.cpp:122
+msgid "Grid spacing"
+msgstr ""
+
+#: fixeddialog.cpp:140
+msgid "Default"
+msgstr "По умолчанию"
+
+#: graphdialog.cpp:30
+msgid "Print"
+msgstr "Напечатать"
+
+#: graphdialog.cpp:34
+#, fuzzy
+msgid "Export Peak List"
+msgstr "Экспортировать Список"
+
+#: graphdialog.cpp:38 molinfodialog.cpp:33 tool_13c_nmr.cpp:37
+#: tool_1h_nmr.cpp:37 tool_ir.cpp:37
+msgid "Help"
+msgstr "Помощь"
+
+#: graphwidget.cpp:121
+#, fuzzy
+msgid "Red is reactant"
+msgstr "Реагировать"
+
+#: graphwidget.cpp:124
+#, fuzzy
+msgid "Blue is product"
+msgstr "Выбрать &Продукт"
+
+#: helpwindow.cpp:70
+msgid "&Close"
+msgstr "&Закрыть"
+
+#: helpwindow.cpp:79
+msgid "&Backward"
+msgstr "&Назад"
+
+#: helpwindow.cpp:82
+msgid "&Forward"
+msgstr "&Вперед"
+
+#: helpwindow.cpp:84
+msgid "&Home"
+msgstr "Персональный каталог"
+
+#: helpwindow.cpp:87
+msgid "&About ..."
+msgstr "&О программе ..."
+
+#: helpwindow.cpp:90
+msgid "&Go"
+msgstr "&Перейти"
+
+#: helpwindow.cpp:106
+msgid "Backward"
+msgstr "Назад"
+
+#: helpwindow.cpp:109
+msgid "Forward"
+msgstr "Вперед"
+
+#: helpwindow.cpp:112
+msgid "Home"
+msgstr "Персональный каталог"
+
+#: main.cpp:145
+msgid "untitled"
+msgstr ""
+
+#: molecule_1h_nmr.cpp:50
+#, fuzzy
+msgid "Predicted 1H-NMR"
+msgstr "Предусмотреть 13C NMR"
+
+#: molecule_1h_nmr.cpp:65
+msgid " Intensity: "
+msgstr ""
+
+#: molecule_1h_nmr.cpp:66
+msgid " Multiplicity: "
+msgstr ""
+
+#: molecule.cpp:89
+msgid "Reactant"
+msgstr "Реагировать"
+
+#: molecule.cpp:91
+msgid "Product"
+msgstr "Продукт"
+
+#: molecule_tools_1.cpp:171
+#, fuzzy
+msgid "Predicted 13C-NMR"
+msgstr "Предусмотреть 13C NMR"
+
+#: molecule_tools_1.cpp:234
+#, fuzzy
+msgid "Predicted IR"
+msgstr "Предусмотреть IR"
+
+#: molecule_tools_1.cpp:248
+msgid "~1350-1000, C-N"
+msgstr ""
+
+#: molecule_tools_1.cpp:250
+msgid "~1300-1000, C-O"
+msgstr ""
+
+#: molecule_tools_1.cpp:254
+msgid "~1660-1600, C=C (cis/vinyl strong; trans weak)"
+msgstr ""
+
+#: molecule_tools_1.cpp:256
+msgid "~1690-1640, C=N"
+msgstr ""
+
+#: molecule_tools_1.cpp:258
+msgid "~1700 (narrow), C=O"
+msgstr ""
+
+#: molecule_tools_1.cpp:260
+msgid "~1350-1300, S=O (~1050 if R-(S=O)-R')"
+msgstr ""
+
+#: molecule_tools_1.cpp:264 molecule_tools_1.cpp:351 molecule_tools_1.cpp:353
+msgid "~2250 (narrow), nitrile"
+msgstr ""
+
+#: molecule_tools_1.cpp:317 molecule_tools_1.cpp:319 molecule_tools_1.cpp:321
+#: molecule_tools_1.cpp:323 molecule_tools_1.cpp:325 molecule_tools_1.cpp:327
+#: molecule_tools_1.cpp:329
+msgid "~3000 (broad), C-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:331 molecule_tools_1.cpp:339 molecule_tools_1.cpp:341
+msgid "two peaks: ~3400, ~3300, primary N-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:333 molecule_tools_1.cpp:335 molecule_tools_1.cpp:337
+msgid "~3300 (broad), secondary N-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:343 molecule_tools_1.cpp:345 molecule_tools_1.cpp:347
+msgid "~2550 (broad), S-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:349 molecule_tools_1.cpp:359 molecule_tools_1.cpp:361
+msgid "~3400 (broad), O-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:355
+msgid "~2270 (narrow), -N=C=O"
+msgstr ""
+
+#: molecule_tools_1.cpp:357
+msgid "~2125 (narrow), -N=C=S"
+msgstr ""
+
+#: molecule_tools_1.cpp:363 molecule_tools_1.cpp:365
+msgid "~1525 (narrow), -NO2"
+msgstr ""
+
+#: molecule_tools_1.cpp:367
+msgid "~1600 (narrow), aromatic ring C=C"
+msgstr ""
+
+#: molecule_tools_1.cpp:368
+msgid "~1475 (narrow), aromatic ring C=C"
+msgstr ""
+
+#: molecule_tools_1.cpp:580
+#, fuzzy
+msgid "10.5 (Guanidine)"
+msgstr "Амидино"
+
+#: molecule_tools_1.cpp:600
+msgid "9 (a-carbon between two ketones)"
+msgstr ""
+
+#: molecule_tools_1.cpp:604
+msgid "11 (a-carbon between two ketones)"
+msgstr ""
+
+#: molecule_tools_1.cpp:608
+msgid "11 (a-carbon between ketone and ester)"
+msgstr ""
+
+#: molecule_tools_1.cpp:612
+msgid "13 (a-carbon between two esters)"
+msgstr ""
+
+#: molecule_tools_1.cpp:621
+msgid "5 (Aromatic primary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:627
+msgid "9-10 (Alkene-primary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:630
+msgid "11 (Aliphatic primary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:642
+msgid "-4 (pyrrole)"
+msgstr ""
+
+#: molecule_tools_1.cpp:647
+msgid "14.4 (secondary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:652
+#, fuzzy
+msgid "11 (aliphatic secondary amine)"
+msgstr "Рисование зигзагообразной линии"
+
+#: molecule_tools_1.cpp:664
+msgid "6.8 (conjugated secondary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:668
+msgid "5 (aromatic secondary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:672 molecule_tools_1.cpp:676
+msgid "1-3 (purine/pyrimidine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:687
+msgid "4 (tertiary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:693
+msgid "10 (aliphatic tertiary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:703
+msgid "8 (Peroxy acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:720
+msgid "-1 (sulfonic acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:734
+msgid "4 (Aromatic carboxylic acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:738
+msgid "4.5 (Aliphatic carboxylic acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:740
+msgid "3 (Aliphatic carboxylic acid, a-halide)"
+msgstr ""
+
+#: molecule_tools_1.cpp:742
+msgid "1.3 (Aliphatic carboxylic acid, 2 a-halide)"
+msgstr ""
+
+#: molecule_tools_1.cpp:749
+msgid "10 (Aromatic -OH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:751
+msgid "16 (Aliphatic -OH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:761
+msgid "7.8 (Aromatic -SH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:763
+msgid "10.6 (Aliphatic -SH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:770
+msgid "Estimated pKa's:"
+msgstr "Рассчитанный pKa's:"
+
+#: molecule_tools_1.cpp:780
+msgid "There seem to be no sites with pKa between -1 and 15."
+msgstr ""
+
+#: molecule_tools_1.cpp:783
+msgid "Estimated pKa's"
+msgstr "Рассчитанный pKa's:"
+
+#: molecule_tools_2.cpp:462
+#, fuzzy
+msgid "Elemental analysis:\n"
+msgstr "Основной анализ"
+
+#: molinfodialog.cpp:12
+msgid "Molecule Info"
+msgstr "Информация о молекуле"
+
+#: molinfodialog.cpp:14 molinfodialog.cpp:15
+msgid "Name: "
+msgstr "Название: "
+
+#: molinfodialog.cpp:17 molinfodialog.cpp:18
+msgid "CAS: "
+msgstr ""
+
+#: molinfodialog.cpp:20
+msgid "Molecular weight = "
+msgstr "Молекулярная масса"
+
+#: molinfodialog.cpp:23 molinfodialog.h:24
+msgid "Formula = "
+msgstr "Формула = "
+
+#: molinfodialog.cpp:26
+msgid "Analysis = "
+msgstr "Анализ = "
+
+#: myfiledialog.cpp:6
+msgid "Transparent"
+msgstr "Прозрачность"
+
+#: netdialog.cpp:42
+msgid "Find structure via Internet"
+msgstr "Найти структуру через Интернет"
+
+#: netdialog.cpp:46
+msgid "XDC database server:"
+msgstr "XDC база сервера"
+
+#: netdialog.cpp:54
+msgid "Search type:"
+msgstr "Искать тип:"
+
+#: netdialog.cpp:59
+msgid "CAS Number"
+msgstr "CAS номер"
+
+#: netdialog.cpp:60
+msgid "Formula"
+msgstr "Формула"
+
+#: netdialog.cpp:61
+msgid "Chemical name"
+msgstr "Химическое название"
+
+#: netdialog.cpp:64
+msgid "Look for:"
+msgstr ""
+
+#: netdialog.cpp:72
+msgid "Exact matches only"
+msgstr ""
+
+#: netdialog.cpp:75
+msgid "Search"
+msgstr "Искать"
+
+#: pagesetupdialog.cpp:19
+msgid "Page setup"
+msgstr "Настройка страницы"
+
+#: pagesetupdialog.cpp:22
+msgid "Paper size:"
+msgstr "Размер бумаги:"
+
+#: pagesetupdialog.cpp:25
+msgid "Letter (8.5\" x 11\")"
+msgstr "Letter (8.5\" x 11\")"
+
+#: pagesetupdialog.cpp:26
+msgid "Legal (8.5\" x 14\")"
+msgstr ""
+
+#: pagesetupdialog.cpp:27
+msgid "A4 (210 mm x 297 mm)"
+msgstr ""
+
+#: pagesetupdialog.cpp:28
+msgid "640x480 pixels"
+msgstr "640x480 точек"
+
+#: pagesetupdialog.cpp:29
+msgid "800x600 pixels"
+msgstr "800x600 точек"
+
+#: pagesetupdialog.cpp:30
+msgid "1024x768 pixels"
+msgstr "1024x768 точек"
+
+#: pagesetupdialog.cpp:31
+msgid "Custom paper size"
+msgstr "Пользовательский размер бумаги"
+
+#: pagesetupdialog.cpp:50
+msgid "Orientation:"
+msgstr "Расположение:"
+
+#: pagesetupdialog.cpp:53
+msgid "Portrait"
+msgstr "Портрет"
+
+#: pagesetupdialog.cpp:54
+msgid "Landscape"
+msgstr "Вид"
+
+#: pagesetupdialog.cpp:86
+msgid "Page width:"
+msgstr "Ширина бумаги"
+
+#: pagesetupdialog.cpp:96
+msgid "Page height:"
+msgstr "Высота бумаги"
+
+#: peptidebuilder.cpp:12
+msgid "Peptide Builder"
+msgstr ""
+
+#: peptidebuilder.cpp:18
+msgid ""
+"Enter peptide sequence -\n"
+"three-letter abbreviations:"
+msgstr ""
+
+#: peptidebuilder.cpp:23
+msgid "Shortcut: Hold 'Alt' and type one-letter codes!"
+msgstr ""
+
+#: render2d.cpp:125 render2d_event.cpp:696 render2d_event.cpp:1018
+#, fuzzy
+msgid ""
+"Select mode: left click on object to move, right click on object to edit"
+msgstr " "
+
+#: render2d.cpp:136
+msgid "Lasso mode: left click and hold to draw lasso"
+msgstr "Режим Лассо: Нажмите левую кнопку мыши и держите чтобы выделить лассо "
+
+#: render2d.cpp:147
+msgid "Draw Line mode: left click to draw line, right click to edit"
+msgstr ""
+
+#: render2d.cpp:158
+#, fuzzy
+msgid "Draw Dashed Line mode: left click to draw line, right click to edit"
+msgstr " "
+
+#: render2d.cpp:169
+#, fuzzy
+msgid "Draw Chain mode: left click and drag to draw aliphatic chain"
+msgstr " "
+
+#: render2d.cpp:180
+#, fuzzy
+msgid "Draw Stereo-Up Line mode: left click to draw line, right click to edit"
+msgstr " "
+
+#: render2d.cpp:191
+#, fuzzy
+msgid ""
+"Draw Stereo-Down Line mode: left click to draw line, right click to edit"
+msgstr " "
+
+#: render2d.cpp:202
+#, fuzzy
+msgid "Draw Wavy Line mode: left click to draw line, right click to edit"
+msgstr " "
+
+#: render2d.cpp:222
+msgid "Draw Arrow mode: left click to draw arrow"
+msgstr ""
+
+#: render2d.cpp:240
+#, fuzzy
+msgid "Draw Bracket mode: left click to draw bracket"
+msgstr " "
+
+#: render2d.cpp:252
+#, fuzzy
+msgid "Erase mode: left click to erase object"
+msgstr "Стирательный режим: Нажмите левую кнопку мыши, чтобы удалить объект"
+
+#: render2d.cpp:262
+msgid "Text mode: left click to add or edit text"
+msgstr ""
+
+#: render2d.cpp:275
+msgid "Draw Symbol mode: left click to add symbol"
+msgstr ""
+
+#: render2d.cpp:289
+msgid "Draw graphic object: cubic bezier"
+msgstr ""
+
+#: render2d.cpp:305 render2d.cpp:316
+#, fuzzy
+msgid "Left-click to draw Newman projection template"
+msgstr " "
+
+#: render2d.cpp:329
+#, qt-format
+msgid "Draw Ring mode: left click to add %1"
+msgstr ""
+
+#: render2d.cpp:353
+msgid "Click on a molecule for information"
+msgstr ""
+
+#: render2d.cpp:356 render2d_event.cpp:1082
+#, fuzzy
+msgid "Click on a molecule to calculate its molecular weight"
+msgstr " "
+
+#: render2d.cpp:359 render2d_event.cpp:1095
+#, fuzzy
+msgid "Click on a molecule to calculate its empirical formula"
+msgstr " "
+
+#: render2d.cpp:362
+#, fuzzy
+msgid "Click on a molecule to calculate its elemental analysis"
+msgstr " "
+
+#: render2d.cpp:365
+#, fuzzy
+msgid "Click on a molecule to calculate its 13C NMR"
+msgstr " "
+
+#: render2d.cpp:368
+#, fuzzy
+msgid "Click on a molecule to calculate its 1H NMR"
+msgstr " "
+
+#: render2d.cpp:371
+#, fuzzy
+msgid "Click on a molecule to calculate its IR"
+msgstr " "
+
+#: render2d.cpp:374
+msgid "Click on a molecule to calculate its pKa(s)"
+msgstr ""
+
+#: render2d.cpp:377
+msgid "Click on a molecule for possible retrosynthesis"
+msgstr ""
+
+#: render2d.cpp:381
+#, fuzzy
+msgid "Click on a molecule to display its bond identifier"
+msgstr " "
+
+#: render2d.cpp:384
+#, fuzzy
+msgid "Click on a molecule to calculate its octanol-water partition"
+msgstr " "
+
+#: render2d.cpp:387
+msgid "Click on a molecule to generate 3-D coordinates"
+msgstr ""
+
+#: render2d.cpp:390
+msgid "Click on a molecule to guess its name"
+msgstr ""
+
+#: render2d.cpp:393
+#, fuzzy
+msgid "Click on a molecule to determine its SMILES string"
+msgstr " "
+
+#: render2d.cpp:396
+#, fuzzy
+msgid "Click on a molecule to clean up its structure"
+msgstr " "
+
+#: render2d.cpp:399
+#, fuzzy
+msgid "Click on a molecule to assign it as a reactant"
+msgstr " "
+
+#: render2d.cpp:402
+#, fuzzy
+msgid "Click on a molecule to assign it as a product"
+msgstr " "
+
+#: render2d.cpp:405
+msgid "Click on a molecule to clear it group assignment"
+msgstr ""
+
+#: render2d.cpp:408
+#, fuzzy
+msgid "Click on a molecule to save it as a custom ring"
+msgstr "до "
+
+#: render2d.cpp:411
+msgid "Tool test mode"
+msgstr ""
+
+#: render2d.cpp:414
+#, fuzzy
+msgid "Click on a molecule"
+msgstr "Очистить молекулу"
+
+#: render2d.cpp:431
+#, fuzzy
+msgid "Select mode: left click to move, right click to edit"
+msgstr " "
+
+#: render2d.cpp:482
+#, fuzzy
+msgid "Undo!"
+msgstr "Отменить"
+
+#: render2d.cpp:484
+msgid "Cannot undo, sorry!"
+msgstr "Невозможно отменить"
+
+#: render2d_event.cpp:134
+#, fuzzy
+msgid "No information."
+msgstr "Молекулярная информация"
+
+#: render2d_event.cpp:145
+#, fuzzy
+msgid "Object information"
+msgstr "Молекулярная информация"
+
+#: render2d_event.cpp:187
+msgid "Object"
+msgstr ""
+
+#: render2d_event.cpp:189
+msgid "Arrow"
+msgstr ""
+
+#: render2d_event.cpp:191
+msgid "Bond"
+msgstr ""
+
+#: render2d_event.cpp:193
+#, fuzzy
+msgid "Bracket"
+msgstr "Редактирование разделительных скобок"
+
+#: render2d_event.cpp:195
+#, fuzzy
+msgid "Curved Arrow"
+msgstr "Редактор для выгнутых стрелок-указателей"
+
+#: render2d_event.cpp:197
+#, fuzzy
+msgid "Symbol"
+msgstr "Редактор символов"
+
+#: render2d_event.cpp:199
+msgid "Text"
+msgstr ""
+
+#: render2d_event.cpp:202
+#, fuzzy
+msgid "Edit"
+msgstr "&Правка"
+
+#: render2d_event.cpp:204 render2d_event.cpp:211
+#, fuzzy
+msgid "Info"
+msgstr "Индол"
+
+#: render2d_event.cpp:209
+#, fuzzy
+msgid "Molecule"
+msgstr "Информация о молекуле"
+
+#: render2d_event.cpp:1008
+msgid "Select mode: left click on object to move"
+msgstr " "
+
+#: render2d_event.cpp:1079 render2d_event.cpp:1092
+#, fuzzy
+msgid ", click to paste into drawing"
+msgstr " "
+
+#: render2d_event.cpp:1409
+#, fuzzy
+msgid "Draw Line - Length = "
+msgstr " "
+
+#: render2d_event.cpp:1409
+msgid ", Angle = "
+msgstr ", Наклон"
+
+#: render2d_event.cpp:1440
+#, fuzzy
+msgid "Draw aliphatic chain - Length = "
+msgstr " "
+
+#: render2d_event.cpp:1440
+msgid " bonds"
+msgstr ""
+
+#: render2d_text.cpp:121
+msgid "Enter subscript"
+msgstr "Ввести индекс"
+
+#: render2d_text.cpp:122
+msgid "Please type or edit the subscript for this bracket:"
+msgstr ""
+
+#: retro.cpp:34
+msgid "No reactions found"
+msgstr ""
+
+#: retro.cpp:99
+msgid ""
+"The following reactions could have resulted in this product:\n"
+"\n"
+msgstr ""
+
+#: retro.cpp:100
+msgid ""
+"\n"
+"Target bonds will be highlighted in green.\n"
+"To see reactions affecting a highlighted bond, right-click on the bond and "
+"select Info.\n"
+"To clear highlights, select Undo from the Edit menu, or press Ctrl+Z."
+msgstr ""
+
+#: retro.cpp:102 retro.cpp:104
+msgid "Reverse reactions list"
+msgstr ""
+
+#: retro.cpp:105
+msgid "No reactions in the database could yield the selected molecule."
+msgstr ""
+
+#: ringdialog.cpp:37
+msgid "Ring tool"
+msgstr "Инструменты ароматического кольца"
+
+#: ringdialog.cpp:41
+msgid "Choose a structure from list:"
+msgstr ""
+
+#: smilesdialog.cpp:30
+msgid "Enter SMILES string"
+msgstr ""
+
+#: smilesdialog.cpp:31
+msgid "Enter SMILES string:"
+msgstr ""
+
+#: to3d.cpp:263
+#, fuzzy
+msgid "Save 3D file as..."
+msgstr "Сохранить файл как..."
+
+#: to3d.cpp:265
+msgid "MDL molfile (*.mol)"
+msgstr ""
+
+#: tool_13c_nmr.cpp:26
+msgid "13C NMR spectrum"
+msgstr ""
+
+#: tool_13c_nmr.cpp:57 tool_13c_nmr.cpp:68 tool_13c_nmr.cpp:79
+msgid ", intensity "
+msgstr ""
+
+#: tool_13c_nmr.cpp:63 tool_1h_nmr.cpp:61 tool_ir.cpp:61
+msgid "Peaks of reactant:\n"
+msgstr ""
+
+#: tool_13c_nmr.cpp:74 tool_1h_nmr.cpp:72 tool_ir.cpp:72
+msgid "Peaks of product:\n"
+msgstr ""
+
+#: tool_1h_nmr.cpp:26
+msgid "1H NMR spectrum"
+msgstr ""
+
+#: tool_ir.cpp:26
+msgid "IR spectrum"
+msgstr ""
+
+#: xruler.cpp:58 xruler.cpp:82
+msgid "px"
+msgstr ""
+
+#: xruler.cpp:59 xruler.cpp:83
+#, fuzzy
+msgid "in"
+msgstr "дюйм"
+
+#: http.h:21
+msgid "Accessing network"
+msgstr ""
+
+#: http.h:24
+#, fuzzy
+msgid "Please wait."
+msgstr "Ширина бумаги"
+
+#: molinfodialog.h:34
+msgid "CAS:"
+msgstr ""
+
+#: molinfodialog.h:40
+#, fuzzy
+msgid "Name:"
+msgstr "Название: "
+
+#~ msgid "Estimate partial charges"
+#~ msgstr "Оценить частичные изменения "
+
+#~ msgid "Retrosynthesis"
+#~ msgstr "Обратное действие синтеза"
+
+#~ msgid ""
+#~ "This copy of XDrawChem is more than 90 days old.  A more recent version "
+#~ "may be available at\n"
+#~ "http://freshmeat.net/projects/xdrawchem/"
+#~ msgstr ""
+#~ "Эта копия XDrawChem старее 90 дней.  Уже может быть доступна более новая "
+#~ "версия по адресу\n"
+#~ "http://freshmeat.net/projects/xdrawchem/"

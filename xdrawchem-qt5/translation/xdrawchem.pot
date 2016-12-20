@@ -1,0 +1,2403 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-10 23:25+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: application.cpp:164
+msgid ""
+"Click this button to open a file.<br><br>You can also select the Open "
+"command from the File menu."
+msgstr ""
+
+#: application.cpp:165
+msgid ""
+"Click this button to save the file you are editing.<br><br>You can also "
+"select the Save command from the File menu.<br><br>"
+msgstr ""
+
+#: application.cpp:166
+msgid ""
+"Click this button to print the file you are editing.<br><br>You can also "
+"select the Print command from the File menu."
+msgstr ""
+
+#: application.cpp:167
+msgid ""
+"Click this button to cut a selection.<br><br>You can also select the Cut "
+"command from the Edit menu, or press Ctrl+X."
+msgstr ""
+
+#: application.cpp:168
+msgid ""
+"Click this button to copy a selection.<br><br>You can also select the Copy "
+"command from the Edit menu, or press Ctrl+C."
+msgstr ""
+
+#: application.cpp:169
+msgid ""
+"Click this button to paste a selection.<br><br>You can also select the Paste "
+"command from the Edit menu, or press Ctrl+V."
+msgstr ""
+
+#: application.cpp:170
+msgid "Click this button to zoom in."
+msgstr ""
+
+#: application.cpp:171
+msgid "Click this button to zoom out."
+msgstr ""
+
+#: application.cpp:174
+msgid ""
+"Select tool<br><br>Use the Select tool to select and move items inside a box."
+"<br><br>You can select multiple items and cut, copy, move and rotate them."
+msgstr ""
+
+#: application.cpp:175
+msgid ""
+"Lasso tool<br><br>Use the Lasso tool to select and move items by drawing a "
+"loop around them.<br><br>You can select multiple items and cut, copy, move "
+"and rotate them."
+msgstr ""
+
+#: application.cpp:176
+msgid "Erase tool<br><br>Use the Erase tool to erase individual items."
+msgstr ""
+
+#: application.cpp:177
+msgid ""
+"Line tool<br><br>Use the Line tool to draw bonds.  Draw over existing bonds "
+"to create double and triple bonds."
+msgstr ""
+
+#: application.cpp:178
+msgid ""
+"Dashed Line tool<br><br>Use the Dashed Line tool to draw dashed lines.  Draw "
+"over existing bonds to add dashed lines (to indicate resonance, etc.)."
+msgstr ""
+
+#: application.cpp:179
+msgid ""
+"Chain tool<br><br>Use the Chain tool to draw aliphatic chains.  The length "
+"of each segment is the current bond length."
+msgstr ""
+
+#: application.cpp:180
+msgid ""
+"Stereo Up Line tool<br><br>Use the Line tool to draw stereo-up lines, as "
+"shown on the button."
+msgstr ""
+
+#: application.cpp:181
+msgid ""
+"Stereo Down Line tool<br><br>Use the Line tool to draw stereo-down lines, as "
+"shown on the button."
+msgstr ""
+
+#: application.cpp:182
+msgid ""
+"Wavy Line tool<br><br>Use the Wavy Line tool to draw wavy lines, as shown on "
+"the button."
+msgstr ""
+
+#: application.cpp:183
+msgid ""
+"Arrow tool<br><br>Use the Arrow tool to draw straight arrows.<br><br>Click "
+"to draw a straight arrow.<br><br>Click and hold to pick from a list of "
+"available arrows."
+msgstr ""
+
+#: application.cpp:184
+msgid ""
+"Curved Arrow tool<br><br>Use the Curved Arrow tool to insert curved arrows."
+"<br><br>Click and hold to select from a picture menu of arrows."
+msgstr ""
+
+#: application.cpp:185
+msgid ""
+"Bracket tool<br><br>Use the Bracket tool to draw brackets and parentheses."
+"<br><br>Click to draw square brackets.<br><br>Click and hold to select from "
+"a picture menu of brackets."
+msgstr ""
+
+#: application.cpp:186
+msgid ""
+"Text tool<br><br>Use the Text tool to add text and label atoms and points."
+"<br>(See manual for info on formatting text)"
+msgstr ""
+
+#: application.cpp:187
+msgid ""
+"Ring tool<br><br>Use the Ring tool to insert ready-made rings and structures."
+"<br><br>Click to open the ring dialog, which allows selection from a list of "
+"all built-in rings and structures.<br><br>Click and hold to select from a "
+"picture menu of select rings.<br>(See manual for more info on modifying this "
+"menu)"
+msgstr ""
+
+#: application.cpp:188
+msgid ""
+"Symbol tool<br><br>Use the Symbol tool to insert symbols.<br><br>Click and "
+"hold to select from a picture menu of symbols.<br>"
+msgstr ""
+
+#: application.cpp:223
+msgid "File Operations"
+msgstr ""
+
+#: application.cpp:228
+msgid "Open file"
+msgstr ""
+
+#: application.cpp:235
+msgid "Save file"
+msgstr ""
+
+#: application.cpp:242
+msgid "Print file"
+msgstr ""
+
+#: application.cpp:249 render2d_event.cpp:283
+msgid "Cut"
+msgstr ""
+
+#: application.cpp:256 render2d_event.cpp:284
+msgid "Copy"
+msgstr ""
+
+#: application.cpp:263
+msgid "Paste"
+msgstr ""
+
+#: application.cpp:270
+msgid "Zoom In"
+msgstr ""
+
+#: application.cpp:277
+msgid "Zoom Out"
+msgstr ""
+
+#: application.cpp:291
+msgid "Set drawing color"
+msgstr ""
+
+#: application.cpp:295
+msgid "Set line thickness"
+msgstr ""
+
+#: application.cpp:296
+msgid "Set Line Thickness"
+msgstr ""
+
+#: application.cpp:310
+msgid "Set font"
+msgstr ""
+
+#: application.cpp:311
+msgid "Set Font"
+msgstr ""
+
+#: application.cpp:320
+msgid "Set font size"
+msgstr ""
+
+#: application.cpp:321
+msgid "Set Font Size"
+msgstr ""
+
+#: application.cpp:335
+msgid "Left-justify selected text"
+msgstr ""
+
+#: application.cpp:343
+msgid "Center selected text"
+msgstr ""
+
+#: application.cpp:351
+msgid "Right-justify selected text"
+msgstr ""
+
+#: application.cpp:359
+msgid "Make selected text <b>bold</b> (Ctrl+B)"
+msgstr ""
+
+#: application.cpp:369
+msgid "<i>Italicize</i> selected text (Ctrl+I)"
+msgstr ""
+
+#: application.cpp:379
+msgid "Underline selected text (Ctrl+U)"
+msgstr ""
+
+#: application.cpp:389
+msgid "Superscript selected text (Ctrl-Plus)"
+msgstr ""
+
+#: application.cpp:400
+msgid "Subscript selected text (Ctrl-Minus)"
+msgstr ""
+
+#: application.cpp:416 netchoosedialog.cpp:89 render2d_event.cpp:282
+msgid "Select"
+msgstr ""
+
+#: application.cpp:423
+msgid "Lasso"
+msgstr ""
+
+#: application.cpp:430
+msgid "Erase"
+msgstr ""
+
+#: application.cpp:437
+msgid "Draw line"
+msgstr ""
+
+#: application.cpp:445
+msgid "Draw dashed line"
+msgstr ""
+
+#: application.cpp:453
+msgid "Draw aliphatic chain"
+msgstr ""
+
+#: application.cpp:461
+msgid "Draw stereo-up line"
+msgstr ""
+
+#: application.cpp:469
+msgid "Draw stereo-down line"
+msgstr ""
+
+#: application.cpp:477
+msgid "Draw wavy bond"
+msgstr ""
+
+#: application.cpp:485
+msgid "Draw arrow"
+msgstr ""
+
+#: application.cpp:495
+msgid "Draw curved arrow"
+msgstr ""
+
+#: application.cpp:505
+msgid "Draw bracket"
+msgstr ""
+
+#: application.cpp:515
+msgid "Draw or edit text"
+msgstr ""
+
+#: application.cpp:523
+msgid "Draw ring"
+msgstr ""
+
+#: application.cpp:534
+msgid "Draw symbol"
+msgstr ""
+
+#: application.cpp:542
+msgid "Canned Structures"
+msgstr ""
+
+#: application.cpp:550
+msgid "Cyclopropane"
+msgstr ""
+
+#: application.cpp:558
+msgid "Cyclobutane"
+msgstr ""
+
+#: application.cpp:566
+msgid "Cyclopentane"
+msgstr ""
+
+#: application.cpp:574
+msgid "Cyclopentadiene"
+msgstr ""
+
+#: application.cpp:582
+msgid "Cyclohexane"
+msgstr ""
+
+#: application.cpp:590
+msgid "Cyclohexane - chair conformation"
+msgstr ""
+
+#: application.cpp:598
+msgid "Cyclohexane - boat conformation"
+msgstr ""
+
+#: application.cpp:606
+msgid "Benzene"
+msgstr ""
+
+#: application.cpp:616
+msgid "Biochemical drawing tools"
+msgstr ""
+
+#: application.cpp:621 helpwindow.cpp:89
+msgid "&File"
+msgstr ""
+
+#: application.cpp:623
+msgid "&New"
+msgstr ""
+
+#: application.cpp:625
+msgid "&Open"
+msgstr ""
+
+#: application.cpp:630
+msgid "&Find on Internet"
+msgstr ""
+
+#: application.cpp:634
+msgid "&Save"
+msgstr ""
+
+#: application.cpp:638
+msgid "Save &as..."
+msgstr ""
+
+#: application.cpp:640
+msgid "Save picture..."
+msgstr ""
+
+#: application.cpp:643
+msgid "Pa&ge setup"
+msgstr ""
+
+#: application.cpp:644 helpwindow.cpp:68
+msgid "&Print"
+msgstr ""
+
+#: application.cpp:648 graphdialog.cpp:42 tool_13c_nmr.cpp:41
+#: tool_1h_nmr.cpp:41 tool_ir.cpp:41
+msgid "Close"
+msgstr ""
+
+#: application.cpp:649
+msgid "Quit"
+msgstr ""
+
+#: application.cpp:652
+msgid "Rotate 90 degrees clockwise"
+msgstr ""
+
+#: application.cpp:654
+msgid "Rotate 180 degrees"
+msgstr ""
+
+#: application.cpp:655
+msgid "Rotate 90 degrees counterclockwise"
+msgstr ""
+
+#: application.cpp:659
+msgid "Flip &horizontal"
+msgstr ""
+
+#: application.cpp:660
+msgid "Flip &vertical"
+msgstr ""
+
+#: application.cpp:663
+msgid "Normal (100%)"
+msgstr ""
+
+#: application.cpp:665
+msgid "Zoom out"
+msgstr ""
+
+#: application.cpp:666
+msgid "Zoom in"
+msgstr ""
+
+#: application.cpp:680
+msgid "&Edit"
+msgstr ""
+
+#: application.cpp:682
+msgid "&Undo"
+msgstr ""
+
+#: application.cpp:683
+msgid "Insert s&ymbol"
+msgstr ""
+
+#: application.cpp:687
+msgid "Cu&t"
+msgstr ""
+
+#: application.cpp:688
+msgid "&Copy"
+msgstr ""
+
+#: application.cpp:689
+msgid "&Paste"
+msgstr ""
+
+#: application.cpp:690
+msgid "Clear"
+msgstr ""
+
+#: application.cpp:692
+msgid "Select &All"
+msgstr ""
+
+#: application.cpp:693
+msgid "&Deselect All"
+msgstr ""
+
+#: application.cpp:695
+msgid "&Rotate"
+msgstr ""
+
+#: application.cpp:696
+msgid "&Flip"
+msgstr ""
+
+#: application.cpp:698
+msgid "&Zoom"
+msgstr ""
+
+#: application.cpp:701
+msgid "&Group"
+msgstr ""
+
+#: application.cpp:702
+msgid "Select &Reactant"
+msgstr ""
+
+#: application.cpp:704
+msgid "Select &Product"
+msgstr ""
+
+#: application.cpp:706
+msgid "Clear &group"
+msgstr ""
+
+#: application.cpp:708
+msgid "Clear all &groups"
+msgstr ""
+
+#: application.cpp:713
+msgid "Forma&t"
+msgstr ""
+
+#: application.cpp:715
+msgid "&Bond - Fixed length and angle"
+msgstr ""
+
+#: application.cpp:718
+msgid "&Arrow - Fixed length and angle"
+msgstr ""
+
+#: application.cpp:725
+msgid "Set background &color"
+msgstr ""
+
+#: application.cpp:727
+msgid "Toggle &grid"
+msgstr ""
+
+#: application.cpp:729
+msgid "&Drawing settings..."
+msgstr ""
+
+#: application.cpp:731
+msgid "&XDC settings..."
+msgstr ""
+
+#: application.cpp:736
+msgid "Estimate gas-phase enthalphy change"
+msgstr ""
+
+#: application.cpp:738
+msgid "Compare 1H NMR"
+msgstr ""
+
+#: application.cpp:740
+msgid "Compare 13C NMR"
+msgstr ""
+
+#: application.cpp:747
+msgid "Reverse reactions"
+msgstr ""
+
+#: application.cpp:753
+msgid "Get bond identifier"
+msgstr ""
+
+#: application.cpp:757
+msgid "T&ools"
+msgstr ""
+
+#: application.cpp:758
+msgid "Clean up molecule"
+msgstr ""
+
+#: application.cpp:759
+msgid "Auto &layout"
+msgstr ""
+
+#: application.cpp:760
+msgid "Create custom ring"
+msgstr ""
+
+#: application.cpp:763
+msgid "Molecule information..."
+msgstr ""
+
+#: application.cpp:765
+msgid "Predict 1H NMR"
+msgstr ""
+
+#: application.cpp:766
+msgid "Predict 13C NMR"
+msgstr ""
+
+#: application.cpp:767
+msgid "Predict IR"
+msgstr ""
+
+#: application.cpp:768
+msgid "Predict pKa"
+msgstr ""
+
+#: application.cpp:769
+msgid "Predict octanol-water partition (Kow)"
+msgstr ""
+
+#: application.cpp:770
+msgid "Reaction"
+msgstr ""
+
+#: application.cpp:772
+msgid "Input SMILES"
+msgstr ""
+
+#: application.cpp:773
+msgid "Output SMILES"
+msgstr ""
+
+#: application.cpp:774
+msgid "Output InChI"
+msgstr ""
+
+#: application.cpp:776
+msgid "Build 3D model of molecule"
+msgstr ""
+
+#: application.cpp:782 helpwindow.cpp:92
+msgid "&Help"
+msgstr ""
+
+#: application.cpp:784
+msgid "&Manual"
+msgstr ""
+
+#: application.cpp:785
+msgid "&Did You Know?"
+msgstr ""
+
+#: application.cpp:786
+msgid "&About"
+msgstr ""
+
+#: application.cpp:787
+msgid "&Support"
+msgstr ""
+
+#: application.cpp:788
+msgid "&References"
+msgstr ""
+
+#: application.cpp:790
+msgid "What's &This"
+msgstr ""
+
+#: application.cpp:873
+msgid "Antibody"
+msgstr ""
+
+#: application.cpp:876
+msgid "Newman projection symbol"
+msgstr ""
+
+#: application.cpp:877
+msgid "Newman projection - staggered (anti)"
+msgstr ""
+
+#: application.cpp:878
+msgid "Newman projection - eclipsed"
+msgstr ""
+
+#: application.cpp:936
+msgid "Cubic bezier"
+msgstr ""
+
+#: application.cpp:939
+msgid "Cubic bezier - half arrow"
+msgstr ""
+
+#: application.cpp:942
+msgid "Cubic bezier - full arrow"
+msgstr ""
+
+#: application.cpp:988 application_ring.cpp:351
+msgid "User-defined"
+msgstr ""
+
+#: application.cpp:1214 application_ob.cpp:190 application_ob.cpp:201
+msgid "Could not write to "
+msgstr ""
+
+#: application.cpp:1220 application_ob.cpp:194 application_ob.cpp:205
+#: application_ob.cpp:238
+msgid "Saved file "
+msgstr ""
+
+#: application.cpp:1272
+msgid "Save as picture..."
+msgstr ""
+
+#: application.cpp:1307 application.cpp:1361 application.cpp:1367
+msgid "Saved picture file "
+msgstr ""
+
+#: application.cpp:1309 application.cpp:1363 application.cpp:1369
+msgid "Unable to save picture!"
+msgstr ""
+
+#: application.cpp:1466
+msgid ""
+"\n"
+"Bryan Herger\n"
+"bherger@users.sourceforge.net\n"
+"\n"
+"Please subscribe to the mailing list for information about future releases.\n"
+"Send a message to xdrawchem-announce-request@lists.sourceforge.net with "
+"'subscribe' as the subject.\n"
+"\n"
+"XDrawChem is copyright (C) 2004 Bryan Herger.\n"
+"Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint "
+"project\n"
+"OpenBabel code copyright (C) 2003 by the OpenBabel project team.\n"
+"See file COPYRIGHT.txt for more details"
+msgstr ""
+
+#: application.cpp:1470
+msgid "How to get help"
+msgstr ""
+
+#: application.cpp:1471
+msgid ""
+"Current information on XDrawChem can always be found at\n"
+"http://xdrawchem.sourceforge.net/\n"
+"The latest release will be posted here, as well as links to mailing lists "
+"and the bug tracker.\n"
+"\n"
+"Please submit bugs using the SourceForge tracker: http://www.sourceforge.net/"
+"tracker/?group_id=34518\n"
+"\n"
+"There are two mailing lists:  xdrawchem-announce, where new releases will be "
+"announced,\n"
+"and xdrawchem-user, for open discussion among XDrawChem users.\n"
+"Subscribe by sending a blank e-mail with subject \"subscribe\" to \n"
+"\"xdrawchem-announce-request@lists.sourceforge.net\" or\n"
+"\"xdrawchem-user-request@lists.sourceforge.net\"\n"
+"\n"
+"You can contact the author directly at\n"
+"bherger@users.sourceforge.net"
+msgstr ""
+
+#: application.cpp:1551
+msgid "Database query failed"
+msgstr ""
+
+#: application.cpp:1551
+msgid "No molecules in the database match the query."
+msgstr ""
+
+#: application.cpp:1788 application.cpp:1796 application.cpp:1803
+#: application.cpp:1810
+#, qt-format
+msgid "Zoom = %1 %"
+msgstr ""
+
+#: application.cpp:1814
+msgid "XDC Settings"
+msgstr ""
+
+#: application.cpp:1815
+msgid "Change XDrawChem settings:"
+msgstr ""
+
+#: application.cpp:1816
+msgid "&Main font"
+msgstr ""
+
+#: application.cpp:1816
+msgid "&Ruler font"
+msgstr ""
+
+#: application.cpp:1817 bondedit.cpp:252 charsel.cpp:68 crings_dialog.cpp:137
+#: fixeddialog.cpp:144 molinfodialog.cpp:53 netchoosedialog.cpp:94
+#: netdialog.cpp:80 pagesetupdialog.cpp:109 peptidebuilder.cpp:78
+#: ringdialog.cpp:55 smilesdialog.cpp:41 textshapedialog.cpp:66
+msgid "Cancel"
+msgstr ""
+
+#: application_ob.cpp:35 tool_2d3d.cpp:92
+msgid "--Select a filter-- (*)"
+msgstr ""
+
+#: application_ob.cpp:38
+msgid "CDXML - ChemDraw text/XML format (*)"
+msgstr ""
+
+#: application_ob.cpp:41
+msgid "CDX - ChemDraw binary format (*)"
+msgstr ""
+
+#: application_ob.cpp:44
+msgid "XDC - XDrawChem native format (*)"
+msgstr ""
+
+#: application_ob.cpp:68
+msgid "Open file..."
+msgstr ""
+
+#: application_ob.cpp:83 application_ob.cpp:165 tool_2d3d.cpp:113
+msgid "Could not determine file type"
+msgstr ""
+
+#: application_ob.cpp:84 application_ob.cpp:166 tool_2d3d.cpp:114
+msgid "Please select a file type from the list."
+msgstr ""
+
+#: application_ob.cpp:95
+msgid "Couldn't open file"
+msgstr ""
+
+#: application_ob.cpp:95
+msgid "Could not open the file: "
+msgstr ""
+
+#: application_ob.cpp:96 application_ob.cpp:104
+msgid "Unable to load "
+msgstr ""
+
+#: application_ob.cpp:110 application_ob.cpp:140
+msgid "Loaded document "
+msgstr ""
+
+#: application_ob.cpp:126
+msgid "Problem while opening the file"
+msgstr ""
+
+#: application_ob.cpp:127
+msgid "Cannot open the specified file."
+msgstr ""
+
+#: application_ob.cpp:153 tool_2d3d.cpp:107
+msgid "Save file as..."
+msgstr ""
+
+#: application_ob.cpp:158
+msgid "Overwrite file?"
+msgstr ""
+
+#: application_ob.cpp:158
+#, qt-format
+msgid "Overwrite existing file: %1 ?"
+msgstr ""
+
+#: application_ob.cpp:224
+msgid "IOIface Data error"
+msgstr ""
+
+#: application_ob.cpp:225
+msgid ""
+"Cannot convert the molecule.\n"
+"Conversion failed in ioiface.cpp"
+msgstr ""
+
+#: application_ob.cpp:231 tool_2d3d.cpp:133
+msgid "Problem while writing the file"
+msgstr ""
+
+#: application_ob.cpp:232 tool_2d3d.cpp:134
+msgid "Cannot write the specified file."
+msgstr ""
+
+#: application_ring.cpp:121
+msgid "[*] Cyclopropane"
+msgstr ""
+
+#: application_ring.cpp:125
+msgid "[*] Cyclobutane"
+msgstr ""
+
+#: application_ring.cpp:129
+msgid "[*] Cyclopentane"
+msgstr ""
+
+#: application_ring.cpp:133
+msgid "Imidazole"
+msgstr ""
+
+#: application_ring.cpp:137
+msgid "[*] Cyclopentadiene"
+msgstr ""
+
+#: application_ring.cpp:141
+msgid "[*] Cyclohexane (flat)"
+msgstr ""
+
+#: application_ring.cpp:145
+msgid "Cyclohexane (boat)"
+msgstr ""
+
+#: application_ring.cpp:149
+msgid "Cyclohexane (chair)"
+msgstr ""
+
+#: application_ring.cpp:153
+msgid "[*] Benzene"
+msgstr ""
+
+#: application_ring.cpp:157
+msgid "Pyrimidine"
+msgstr ""
+
+#: application_ring.cpp:161
+msgid "[*] Cycloheptane"
+msgstr ""
+
+#: application_ring.cpp:165
+msgid "[*] Cyclooctane"
+msgstr ""
+
+#: application_ring.cpp:169
+msgid "Indole"
+msgstr ""
+
+#: application_ring.cpp:173
+msgid "Purine"
+msgstr ""
+
+#: application_ring.cpp:177
+msgid "Naphthalene"
+msgstr ""
+
+#: application_ring.cpp:181
+msgid "Biphenyl"
+msgstr ""
+
+#: application_ring.cpp:185
+msgid "Anthracene"
+msgstr ""
+
+#: application_ring.cpp:189
+msgid "Steroid (fused ring template)"
+msgstr ""
+
+#: application_ring.cpp:192
+msgid "Rings"
+msgstr ""
+
+#: application_ring.cpp:197
+msgid "Alanine"
+msgstr ""
+
+#: application_ring.cpp:201
+msgid "Arginine"
+msgstr ""
+
+#: application_ring.cpp:205
+msgid "Asparagine"
+msgstr ""
+
+#: application_ring.cpp:209
+msgid "Aspartic acid"
+msgstr ""
+
+#: application_ring.cpp:213
+msgid "Cysteine"
+msgstr ""
+
+#: application_ring.cpp:217
+msgid "Glutamic acid"
+msgstr ""
+
+#: application_ring.cpp:221
+msgid "Glutamine"
+msgstr ""
+
+#: application_ring.cpp:225
+msgid "Glycine"
+msgstr ""
+
+#: application_ring.cpp:229
+msgid "Histidine"
+msgstr ""
+
+#: application_ring.cpp:233
+msgid "Isoleucine"
+msgstr ""
+
+#: application_ring.cpp:237
+msgid "Leucine"
+msgstr ""
+
+#: application_ring.cpp:241
+msgid "Lysine"
+msgstr ""
+
+#: application_ring.cpp:245
+msgid "Methionine"
+msgstr ""
+
+#: application_ring.cpp:249
+msgid "Nitrophenylalanine"
+msgstr ""
+
+#: application_ring.cpp:253
+msgid "Phenylalanine"
+msgstr ""
+
+#: application_ring.cpp:257
+msgid "Proline"
+msgstr ""
+
+#: application_ring.cpp:261
+msgid "Serine"
+msgstr ""
+
+#: application_ring.cpp:265
+msgid "Statine"
+msgstr ""
+
+#: application_ring.cpp:269
+msgid "Threonine"
+msgstr ""
+
+#: application_ring.cpp:273
+msgid "Tryptophan"
+msgstr ""
+
+#: application_ring.cpp:277
+msgid "Tyrosine"
+msgstr ""
+
+#: application_ring.cpp:281
+msgid "Valine"
+msgstr ""
+
+#: application_ring.cpp:284
+msgid "Amino acids"
+msgstr ""
+
+#: application_ring.cpp:289
+msgid "Adenine"
+msgstr ""
+
+#: application_ring.cpp:292
+msgid "Cytosine"
+msgstr ""
+
+#: application_ring.cpp:295
+msgid "Guanine"
+msgstr ""
+
+#: application_ring.cpp:298
+msgid "Thymine"
+msgstr ""
+
+#: application_ring.cpp:301
+msgid "Uracil"
+msgstr ""
+
+#: application_ring.cpp:303
+msgid "Nucleic acids"
+msgstr ""
+
+#: application_ring.cpp:308
+msgid "Ribose"
+msgstr ""
+
+#: application_ring.cpp:312
+msgid "Deoxyribose"
+msgstr ""
+
+#: application_ring.cpp:316
+msgid "D-fructose"
+msgstr ""
+
+#: application_ring.cpp:320
+msgid "D-glucose"
+msgstr ""
+
+#: application_ring.cpp:323
+msgid "Sugars"
+msgstr ""
+
+#: application_ring.cpp:327
+msgid "[*] FMOC"
+msgstr ""
+
+#: application_ring.cpp:330
+msgid "[*] BOC"
+msgstr ""
+
+#: application_ring.cpp:333
+msgid "[*] DABCYL"
+msgstr ""
+
+#: application_ring.cpp:336
+msgid "[*] DABSYL"
+msgstr ""
+
+#: application_ring.cpp:339
+msgid "[*] DANSYL"
+msgstr ""
+
+#: application_ring.cpp:342
+msgid "[*] EDANS"
+msgstr ""
+
+#: application_ring.cpp:345
+msgid "[*] Biotin"
+msgstr ""
+
+#: application_ring.cpp:348
+msgid "Useful groups"
+msgstr ""
+
+#: application_ring.cpp:373
+msgid "Add new..."
+msgstr ""
+
+#: bondedit.cpp:52
+msgid "Color"
+msgstr ""
+
+#: bondedit.cpp:57
+msgid "Arrow editor"
+msgstr ""
+
+#: bondedit.cpp:58 bondedit.cpp:165 bondedit.cpp:187 bondedit.cpp:212
+msgid "Style:"
+msgstr ""
+
+#: bondedit.cpp:61
+msgid "Plain arrow"
+msgstr ""
+
+#: bondedit.cpp:64
+msgid "NR arrow"
+msgstr ""
+
+#: bondedit.cpp:67
+msgid "Dashed arrow"
+msgstr ""
+
+#: bondedit.cpp:70
+msgid "Two-way arrow"
+msgstr ""
+
+#: bondedit.cpp:73
+msgid "Split two-way arrow"
+msgstr ""
+
+#: bondedit.cpp:76
+msgid "Retrosynthetic arrow"
+msgstr ""
+
+#: bondedit.cpp:98
+msgid "Bond editor"
+msgstr ""
+
+#: bondedit.cpp:100
+msgid "Bond order:"
+msgstr ""
+
+#: bondedit.cpp:103
+msgid "Dashed line"
+msgstr ""
+
+#: bondedit.cpp:106
+msgid "Single"
+msgstr ""
+
+#: bondedit.cpp:109
+msgid "Stereo-up"
+msgstr ""
+
+#: bondedit.cpp:112
+msgid "Stereo-down"
+msgstr ""
+
+#: bondedit.cpp:115
+msgid "Wavy"
+msgstr ""
+
+#: bondedit.cpp:118
+msgid "Single/double (aromatic)"
+msgstr ""
+
+#: bondedit.cpp:121
+msgid "Double"
+msgstr ""
+
+#: bondedit.cpp:124
+msgid "Double/triple"
+msgstr ""
+
+#: bondedit.cpp:127
+msgid "Triple"
+msgstr ""
+
+#: bondedit.cpp:134
+msgid "Bond thickness:"
+msgstr ""
+
+#: bondedit.cpp:153
+msgid "Double bond alignment:"
+msgstr ""
+
+#: bondedit.cpp:156
+msgid "Auto"
+msgstr ""
+
+#: bondedit.cpp:157
+msgid "Left"
+msgstr ""
+
+#: bondedit.cpp:158
+msgid "Center"
+msgstr ""
+
+#: bondedit.cpp:159
+msgid "Right"
+msgstr ""
+
+#: bondedit.cpp:164
+msgid "Bracket editor"
+msgstr ""
+
+#: bondedit.cpp:168
+msgid "Square bracket"
+msgstr ""
+
+#: bondedit.cpp:171
+msgid "Parentheses"
+msgstr ""
+
+#: bondedit.cpp:174
+msgid "Curly bracket"
+msgstr ""
+
+#: bondedit.cpp:177
+msgid "Box"
+msgstr ""
+
+#: bondedit.cpp:180 textshapedialog.cpp:23
+msgid "Ellipse"
+msgstr ""
+
+#: bondedit.cpp:186
+msgid "Curved Arrow editor"
+msgstr ""
+
+#: bondedit.cpp:190
+msgid "90 degree clockwise"
+msgstr ""
+
+#: bondedit.cpp:193
+msgid "180 degree clockwise"
+msgstr ""
+
+#: bondedit.cpp:196
+msgid "270 degree clockwise"
+msgstr ""
+
+#: bondedit.cpp:199
+msgid "90 degree counterclockwise"
+msgstr ""
+
+#: bondedit.cpp:202
+msgid "180 degree counterclockwise"
+msgstr ""
+
+#: bondedit.cpp:205
+msgid "270 degree counterclockwise"
+msgstr ""
+
+#: bondedit.cpp:211
+msgid "Symbol editor"
+msgstr ""
+
+#: bondedit.cpp:215
+msgid "Positive charge"
+msgstr ""
+
+#: bondedit.cpp:218
+msgid "Negative charge"
+msgstr ""
+
+#: bondedit.cpp:221
+msgid "Partial positive charge"
+msgstr ""
+
+#: bondedit.cpp:224
+msgid "Partial negative charge"
+msgstr ""
+
+#: bondedit.cpp:227
+msgid "Single electron"
+msgstr ""
+
+#: bondedit.cpp:230
+msgid "Electron pair"
+msgstr ""
+
+#: bondedit.cpp:233
+msgid "Stereochemical ring hydrogen"
+msgstr ""
+
+#: bondedit.cpp:236
+msgid "p orbital"
+msgstr ""
+
+#: bondedit.cpp:239
+msgid "p double"
+msgstr ""
+
+#: bondedit.cpp:242
+msgid "bead"
+msgstr ""
+
+#: bondedit.cpp:248 chemdata_tools.cpp:207 crings_dialog.cpp:133 dyk.cpp:40
+#: fixeddialog.cpp:136 molinfodialog.cpp:40 pagesetupdialog.cpp:105
+#: peptidebuilder.cpp:74 smilesdialog.cpp:37 textshapedialog.cpp:62
+msgid "OK"
+msgstr ""
+
+#: charsel.cpp:44
+msgid "Insert symbol"
+msgstr ""
+
+#: charsel.cpp:47
+msgid "Font:"
+msgstr ""
+
+#: chemdata_rxn.cpp:41
+msgid "Missing reactant or product"
+msgstr ""
+
+#: chemdata_rxn.cpp:42
+msgid "You must select at least one reactant and one product."
+msgstr ""
+
+#: chemdata_rxn.cpp:50
+msgid "Estimated gas-phase enthalpy change:\n"
+msgstr ""
+
+#: chemdata_rxn.cpp:59
+#, qt-format
+msgid "Reactants = %1 kJ/mol\n"
+msgstr ""
+
+#: chemdata_rxn.cpp:68
+#, qt-format
+msgid "Products = %1 kJ/mol\n"
+msgstr ""
+
+#: chemdata_rxn.cpp:70
+#, qt-format
+msgid "Reaction = %1 kJ/mol"
+msgstr ""
+
+#: chemdata_rxn.cpp:71
+msgid "Enthalpy change"
+msgstr ""
+
+#: chemdata_rxn.cpp:81
+msgid "1H NMR compare error"
+msgstr ""
+
+#: chemdata_rxn.cpp:82 chemdata_rxn.cpp:138
+msgid "Please select only one reactant and one product to compare."
+msgstr ""
+
+#: chemdata_rxn.cpp:137
+msgid "13C NMR compare error"
+msgstr ""
+
+#: chemdata_tools.cpp:178
+msgid "Octanol-water partition"
+msgstr ""
+
+#: chemdata_tools.cpp:178
+#, qt-format
+msgid "Estimated octanol-water partition constant (log Kow) = %1"
+msgstr ""
+
+#: chemdata_tools.cpp:200
+msgid "SMILES string"
+msgstr ""
+
+#: chemdata_tools.cpp:200
+msgid "SMILES string for selected molecule:"
+msgstr ""
+
+#: chemdata_tools.cpp:207
+msgid "InChI string"
+msgstr ""
+
+#: chemdata_tools.cpp:207
+msgid "InChI string for selected molecule:"
+msgstr ""
+
+#: chemdata_tools.cpp:207
+msgid "Copy to clipboard"
+msgstr ""
+
+#: chemdata_tools.cpp:212
+msgid "Could not convert to InChI string."
+msgstr ""
+
+#: crings_dialog.cpp:123
+msgid "Add custom ring to menu list"
+msgstr ""
+
+#: dyk.cpp:17 dyk.cpp:20
+msgid "Did You Know?"
+msgstr ""
+
+#: dyk.cpp:28
+msgid "Previous tip"
+msgstr ""
+
+#: dyk.cpp:32
+msgid "Next tip"
+msgstr ""
+
+#: dyk.cpp:36
+msgid "Don't show this dialog at startup"
+msgstr ""
+
+#: dyk.cpp:55
+msgid ""
+"XDrawChem can be run from the command line to produce images.  Type "
+"\"xdrawchem --help\" for details."
+msgstr ""
+
+#: dyk.cpp:56
+msgid ""
+"When in select mode, you can edit most objects by right-clicking on them."
+msgstr ""
+
+#: dyk.cpp:57
+msgid ""
+"When drawing bonds, you can edit the bond style by right-clicking on the "
+"bond."
+msgstr ""
+
+#: dyk.cpp:58
+msgid ""
+"When in select mode, press Shift+LeftButton and drag over part of a molecule "
+"to select the entire molecule."
+msgstr ""
+
+#: dyk.cpp:59
+msgid ""
+"When in select mode, press Ctrl+LeftButton on a molecule to get molecule "
+"information."
+msgstr ""
+
+#: dyk.cpp:60
+msgid ""
+"Bond length, bond angle, and units are set in the Drawing Settings option "
+"under the Format menu."
+msgstr ""
+
+#: dyk.cpp:61
+msgid ""
+"You can attach a subscript to a bracket by selecting the text tool, then "
+"clicking on the bracket."
+msgstr ""
+
+#: dyk.cpp:62
+msgid ""
+"You can toggle the grid display by pressing Ctrl+G.  Turning the grid on or "
+"off does not affect whether objects snap to the grid."
+msgstr ""
+
+#: dyk.cpp:63
+msgid ""
+"A number of ring and molecule templates are available from the ring tool, "
+"including single and fused rings, amino acids, and nucleosides."
+msgstr ""
+
+#: dyk.cpp:64
+msgid "Remember to select a file type when opening or saving documents."
+msgstr ""
+
+#: dyk.cpp:65
+msgid ""
+"The option \"Clean up molecule\" under the Tools menu can be used to refine "
+"structures such as rings and macromolecules."
+msgstr ""
+
+#: dyk.cpp:66
+msgid ""
+"It's possible to attach rings to structures by selecting a ring and clicking "
+"on an atom."
+msgstr ""
+
+#: dyk.cpp:67
+msgid ""
+"XDrawChem can automatically attach amino acids from N-terminal to C-terminal "
+"(but the result isn't always pretty :)"
+msgstr ""
+
+#: dyk.cpp:68
+msgid ""
+"Be sure to check for updates at\n"
+"http://xdrawchem.sourceforge.net/"
+msgstr ""
+
+#: dyk.cpp:69
+msgid ""
+"XDrawChem can draw over 100,000 substances using its Internet database.  "
+"Select Find on internet from the File menu to search for compounds."
+msgstr ""
+
+#: dyk.cpp:70
+msgid ""
+"XDrawChem can identify compounds by CAS number and occasionally by name.  "
+"Select Molecule information from the Tools menu and click on a molecule.  "
+"However, this only works if the compound is listed in the database."
+msgstr ""
+
+#: fixeddialog.cpp:29
+msgid "Set fixed angle and length"
+msgstr ""
+
+#: fixeddialog.cpp:32
+msgid "Units:"
+msgstr ""
+
+#: fixeddialog.cpp:35 fixeddialog.cpp:253 pagesetupdialog.cpp:69
+msgid "pixels"
+msgstr ""
+
+#: fixeddialog.cpp:37 fixeddialog.cpp:256 pagesetupdialog.cpp:74
+msgid "inches"
+msgstr ""
+
+#: fixeddialog.cpp:38 fixeddialog.cpp:259 pagesetupdialog.cpp:79 xruler.cpp:60
+#: xruler.cpp:84
+msgid "cm"
+msgstr ""
+
+#: fixeddialog.cpp:44
+msgid "Bond fixed length:"
+msgstr ""
+
+#: fixeddialog.cpp:50
+msgid "Bond fixed angle:"
+msgstr ""
+
+#: fixeddialog.cpp:66 fixeddialog.cpp:91
+msgid "degrees"
+msgstr ""
+
+#: fixeddialog.cpp:69
+msgid "Arrow fixed length:"
+msgstr ""
+
+#: fixeddialog.cpp:72
+msgid "Arrow fixed angle:"
+msgstr ""
+
+#: fixeddialog.cpp:94
+msgid "Double bond spacing:"
+msgstr ""
+
+#: fixeddialog.cpp:110
+msgid "Show grid"
+msgstr ""
+
+#: fixeddialog.cpp:111
+msgid "Do not show grid"
+msgstr ""
+
+#: fixeddialog.cpp:112
+msgid "Show square grid"
+msgstr ""
+
+#: fixeddialog.cpp:113
+msgid "Show hex grid"
+msgstr ""
+
+#: fixeddialog.cpp:116
+msgid "Snap to grid"
+msgstr ""
+
+#: fixeddialog.cpp:122
+msgid "Grid spacing"
+msgstr ""
+
+#: fixeddialog.cpp:140
+msgid "Default"
+msgstr ""
+
+#: graphdialog.cpp:30
+msgid "Print"
+msgstr ""
+
+#: graphdialog.cpp:34
+msgid "Export Peak List"
+msgstr ""
+
+#: graphdialog.cpp:38 molinfodialog.cpp:44 tool_13c_nmr.cpp:37
+#: tool_1h_nmr.cpp:37 tool_ir.cpp:37
+msgid "Help"
+msgstr ""
+
+#: graphwidget.cpp:121
+msgid "Red is reactant"
+msgstr ""
+
+#: graphwidget.cpp:124
+msgid "Blue is product"
+msgstr ""
+
+#: helpwindow.cpp:70
+msgid "&Close"
+msgstr ""
+
+#: helpwindow.cpp:79
+msgid "&Backward"
+msgstr ""
+
+#: helpwindow.cpp:82
+msgid "&Forward"
+msgstr ""
+
+#: helpwindow.cpp:84
+msgid "&Home"
+msgstr ""
+
+#: helpwindow.cpp:87
+msgid "&About ..."
+msgstr ""
+
+#: helpwindow.cpp:90
+msgid "&Go"
+msgstr ""
+
+#: helpwindow.cpp:106
+msgid "Backward"
+msgstr ""
+
+#: helpwindow.cpp:109
+msgid "Forward"
+msgstr ""
+
+#: helpwindow.cpp:112
+msgid "Home"
+msgstr ""
+
+#: main.cpp:145
+msgid "untitled"
+msgstr ""
+
+#: molecule_1h_nmr.cpp:50
+msgid "Predicted 1H-NMR"
+msgstr ""
+
+#: molecule_1h_nmr.cpp:65
+msgid " Intensity: "
+msgstr ""
+
+#: molecule_1h_nmr.cpp:66
+msgid " Multiplicity: "
+msgstr ""
+
+#: molecule.cpp:89
+msgid "Reactant"
+msgstr ""
+
+#: molecule.cpp:91
+msgid "Product"
+msgstr ""
+
+#: molecule_tools_1.cpp:171
+msgid "Predicted 13C-NMR"
+msgstr ""
+
+#: molecule_tools_1.cpp:234
+msgid "Predicted IR"
+msgstr ""
+
+#: molecule_tools_1.cpp:248
+msgid "~1350-1000, C-N"
+msgstr ""
+
+#: molecule_tools_1.cpp:250
+msgid "~1300-1000, C-O"
+msgstr ""
+
+#: molecule_tools_1.cpp:254
+msgid "~1660-1600, C=C (cis/vinyl strong; trans weak)"
+msgstr ""
+
+#: molecule_tools_1.cpp:256
+msgid "~1690-1640, C=N"
+msgstr ""
+
+#: molecule_tools_1.cpp:258
+msgid "~1700 (narrow), C=O"
+msgstr ""
+
+#: molecule_tools_1.cpp:260
+msgid "~1350-1300, S=O (~1050 if R-(S=O)-R')"
+msgstr ""
+
+#: molecule_tools_1.cpp:264 molecule_tools_1.cpp:351 molecule_tools_1.cpp:353
+msgid "~2250 (narrow), nitrile"
+msgstr ""
+
+#: molecule_tools_1.cpp:317 molecule_tools_1.cpp:319 molecule_tools_1.cpp:321
+#: molecule_tools_1.cpp:323 molecule_tools_1.cpp:325 molecule_tools_1.cpp:327
+#: molecule_tools_1.cpp:329
+msgid "~3000 (broad), C-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:331 molecule_tools_1.cpp:339 molecule_tools_1.cpp:341
+msgid "two peaks: ~3400, ~3300, primary N-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:333 molecule_tools_1.cpp:335 molecule_tools_1.cpp:337
+msgid "~3300 (broad), secondary N-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:343 molecule_tools_1.cpp:345 molecule_tools_1.cpp:347
+msgid "~2550 (broad), S-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:349 molecule_tools_1.cpp:359 molecule_tools_1.cpp:361
+msgid "~3400 (broad), O-H"
+msgstr ""
+
+#: molecule_tools_1.cpp:355
+msgid "~2270 (narrow), -N=C=O"
+msgstr ""
+
+#: molecule_tools_1.cpp:357
+msgid "~2125 (narrow), -N=C=S"
+msgstr ""
+
+#: molecule_tools_1.cpp:363 molecule_tools_1.cpp:365
+msgid "~1525 (narrow), -NO2"
+msgstr ""
+
+#: molecule_tools_1.cpp:367
+msgid "~1600 (narrow), aromatic ring C=C"
+msgstr ""
+
+#: molecule_tools_1.cpp:368
+msgid "~1475 (narrow), aromatic ring C=C"
+msgstr ""
+
+#: molecule_tools_1.cpp:580
+msgid "10.5 (Guanidine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:600
+msgid "9 (a-carbon between two ketones)"
+msgstr ""
+
+#: molecule_tools_1.cpp:604
+msgid "11 (a-carbon between two ketones)"
+msgstr ""
+
+#: molecule_tools_1.cpp:608
+msgid "11 (a-carbon between ketone and ester)"
+msgstr ""
+
+#: molecule_tools_1.cpp:612
+msgid "13 (a-carbon between two esters)"
+msgstr ""
+
+#: molecule_tools_1.cpp:621
+msgid "5 (Aromatic primary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:627
+msgid "9-10 (Alkene-primary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:630
+msgid "11 (Aliphatic primary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:642
+msgid "-4 (pyrrole)"
+msgstr ""
+
+#: molecule_tools_1.cpp:647
+msgid "14.4 (secondary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:652
+msgid "11 (aliphatic secondary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:664
+msgid "6.8 (conjugated secondary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:668
+msgid "5 (aromatic secondary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:672 molecule_tools_1.cpp:676
+msgid "1-3 (purine/pyrimidine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:687
+msgid "4 (tertiary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:693
+msgid "10 (aliphatic tertiary amine)"
+msgstr ""
+
+#: molecule_tools_1.cpp:703
+msgid "8 (Peroxy acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:720
+msgid "-1 (sulfonic acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:734
+msgid "4 (Aromatic carboxylic acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:738
+msgid "4.5 (Aliphatic carboxylic acid)"
+msgstr ""
+
+#: molecule_tools_1.cpp:740
+msgid "3 (Aliphatic carboxylic acid, a-halide)"
+msgstr ""
+
+#: molecule_tools_1.cpp:742
+msgid "1.3 (Aliphatic carboxylic acid, 2 a-halide)"
+msgstr ""
+
+#: molecule_tools_1.cpp:749
+msgid "10 (Aromatic -OH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:751
+msgid "16 (Aliphatic -OH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:761
+msgid "7.8 (Aromatic -SH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:763
+msgid "10.6 (Aliphatic -SH)"
+msgstr ""
+
+#: molecule_tools_1.cpp:770
+msgid "Estimated pKa's:"
+msgstr ""
+
+#: molecule_tools_1.cpp:780
+msgid "There seem to be no sites with pKa between -1 and 15."
+msgstr ""
+
+#: molecule_tools_1.cpp:783
+msgid "Estimated pKa's"
+msgstr ""
+
+#: molecule_tools_2.cpp:482
+msgid "Elemental analysis:\n"
+msgstr ""
+
+#: molinfodialog.cpp:16
+msgid "Molecule Info"
+msgstr ""
+
+#: molinfodialog.cpp:18 molinfodialog.cpp:19
+msgid "Name: "
+msgstr ""
+
+#: molinfodialog.cpp:21 molinfodialog.cpp:22
+msgid "Other names: "
+msgstr ""
+
+#: molinfodialog.cpp:25 molinfodialog.cpp:26
+msgid "CAS: "
+msgstr ""
+
+#: molinfodialog.cpp:28 molinfodialog.cpp:29
+msgid "PubChem compound: "
+msgstr ""
+
+#: molinfodialog.cpp:31
+msgid "Molecular weight = "
+msgstr ""
+
+#: molinfodialog.cpp:34 molinfodialog.h:24
+msgid "Formula = "
+msgstr ""
+
+#: molinfodialog.cpp:37
+msgid "Analysis = "
+msgstr ""
+
+#: molinfodialog.cpp:48
+msgid "Search PubChem"
+msgstr ""
+
+#: myfiledialog.cpp:6
+msgid "Transparent"
+msgstr ""
+
+#: netdialog.cpp:42
+msgid "Find structure via Internet"
+msgstr ""
+
+#: netdialog.cpp:46
+msgid "XDC database server:"
+msgstr ""
+
+#: netdialog.cpp:54
+msgid "Search type:"
+msgstr ""
+
+#: netdialog.cpp:59
+msgid "CAS Number"
+msgstr ""
+
+#: netdialog.cpp:60
+msgid "Formula"
+msgstr ""
+
+#: netdialog.cpp:61
+msgid "Chemical name"
+msgstr ""
+
+#: netdialog.cpp:64
+msgid "Look for:"
+msgstr ""
+
+#: netdialog.cpp:72
+msgid "Exact matches only"
+msgstr ""
+
+#: netdialog.cpp:75
+msgid "Search"
+msgstr ""
+
+#: pagesetupdialog.cpp:19
+msgid "Page setup"
+msgstr ""
+
+#: pagesetupdialog.cpp:22
+msgid "Paper size:"
+msgstr ""
+
+#: pagesetupdialog.cpp:25
+msgid "Letter (8.5\" x 11\")"
+msgstr ""
+
+#: pagesetupdialog.cpp:26
+msgid "Legal (8.5\" x 14\")"
+msgstr ""
+
+#: pagesetupdialog.cpp:27
+msgid "A4 (210 mm x 297 mm)"
+msgstr ""
+
+#: pagesetupdialog.cpp:28
+msgid "640x480 pixels"
+msgstr ""
+
+#: pagesetupdialog.cpp:29
+msgid "800x600 pixels"
+msgstr ""
+
+#: pagesetupdialog.cpp:30
+msgid "1024x768 pixels"
+msgstr ""
+
+#: pagesetupdialog.cpp:31
+msgid "Custom paper size"
+msgstr ""
+
+#: pagesetupdialog.cpp:50
+msgid "Orientation:"
+msgstr ""
+
+#: pagesetupdialog.cpp:53
+msgid "Portrait"
+msgstr ""
+
+#: pagesetupdialog.cpp:54
+msgid "Landscape"
+msgstr ""
+
+#: pagesetupdialog.cpp:86
+msgid "Page width:"
+msgstr ""
+
+#: pagesetupdialog.cpp:96
+msgid "Page height:"
+msgstr ""
+
+#: peptidebuilder.cpp:12
+msgid "Peptide Builder"
+msgstr ""
+
+#: peptidebuilder.cpp:18
+msgid ""
+"Enter peptide sequence -\n"
+"three-letter abbreviations:"
+msgstr ""
+
+#: peptidebuilder.cpp:23
+msgid "Shortcut: Hold 'Alt' and type one-letter codes!"
+msgstr ""
+
+#: render2d.cpp:130 render2d_event.cpp:801 render2d_event.cpp:1174
+msgid ""
+"Select mode: left click on object to move, right click on object to edit"
+msgstr ""
+
+#: render2d.cpp:141
+msgid "Lasso mode: left click and hold to draw lasso"
+msgstr ""
+
+#: render2d.cpp:152
+msgid "Draw Line mode: left click to draw line, right click to edit"
+msgstr ""
+
+#: render2d.cpp:163
+msgid "Draw Dashed Line mode: left click to draw line, right click to edit"
+msgstr ""
+
+#: render2d.cpp:174
+msgid "Draw Chain mode: left click and drag to draw aliphatic chain"
+msgstr ""
+
+#: render2d.cpp:185
+msgid "Draw Stereo-Up Line mode: left click to draw line, right click to edit"
+msgstr ""
+
+#: render2d.cpp:196
+msgid ""
+"Draw Stereo-Down Line mode: left click to draw line, right click to edit"
+msgstr ""
+
+#: render2d.cpp:207
+msgid "Draw Wavy Line mode: left click to draw line, right click to edit"
+msgstr ""
+
+#: render2d.cpp:228
+msgid "Draw Arrow mode: left click to draw arrow"
+msgstr ""
+
+#: render2d.cpp:246
+msgid "Draw Bracket mode: left click to draw bracket"
+msgstr ""
+
+#: render2d.cpp:258
+msgid "Erase mode: left click to erase object"
+msgstr ""
+
+#: render2d.cpp:268
+msgid "Text mode: left click to add or edit text"
+msgstr ""
+
+#: render2d.cpp:281
+msgid "Draw Symbol mode: left click to add symbol"
+msgstr ""
+
+#: render2d.cpp:295
+msgid "Draw graphic object: cubic bezier"
+msgstr ""
+
+#: render2d.cpp:311 render2d.cpp:322
+msgid "Left-click to draw Newman projection template"
+msgstr ""
+
+#: render2d.cpp:335
+#, qt-format
+msgid "Draw Ring mode: left click to add %1"
+msgstr ""
+
+#: render2d.cpp:359
+msgid "Click on a molecule for information"
+msgstr ""
+
+#: render2d.cpp:362 render2d_event.cpp:1247
+msgid "Click on a molecule to calculate its molecular weight"
+msgstr ""
+
+#: render2d.cpp:365 render2d_event.cpp:1260
+msgid "Click on a molecule to calculate its empirical formula"
+msgstr ""
+
+#: render2d.cpp:368
+msgid "Click on a molecule to calculate its elemental analysis"
+msgstr ""
+
+#: render2d.cpp:371
+msgid "Click on a molecule to calculate its 13C NMR"
+msgstr ""
+
+#: render2d.cpp:374
+msgid "Click on a molecule to calculate its 1H NMR"
+msgstr ""
+
+#: render2d.cpp:377
+msgid "Click on a molecule to calculate its IR"
+msgstr ""
+
+#: render2d.cpp:380
+msgid "Click on a molecule to calculate its pKa(s)"
+msgstr ""
+
+#: render2d.cpp:383
+msgid "Click on a molecule for possible retrosynthesis"
+msgstr ""
+
+#: render2d.cpp:387
+msgid "Click on a molecule to display its bond identifier"
+msgstr ""
+
+#: render2d.cpp:390
+msgid "Click on a molecule to calculate its octanol-water partition"
+msgstr ""
+
+#: render2d.cpp:393
+msgid "Click on a molecule to generate 3-D coordinates"
+msgstr ""
+
+#: render2d.cpp:396
+msgid "Click on a molecule to guess its name"
+msgstr ""
+
+#: render2d.cpp:399
+msgid "Click on a molecule to determine its SMILES string"
+msgstr ""
+
+#: render2d.cpp:402
+msgid "Click on a molecule to clean up its structure"
+msgstr ""
+
+#: render2d.cpp:405
+msgid "Click on a molecule to assign it as a reactant"
+msgstr ""
+
+#: render2d.cpp:408
+msgid "Click on a molecule to assign it as a product"
+msgstr ""
+
+#: render2d.cpp:411
+msgid "Click on a molecule to clear it group assignment"
+msgstr ""
+
+#: render2d.cpp:414
+msgid "Click on a molecule to save it as a custom ring"
+msgstr ""
+
+#: render2d.cpp:417
+msgid "Tool test mode"
+msgstr ""
+
+#: render2d.cpp:420
+msgid "Click on a molecule"
+msgstr ""
+
+#: render2d.cpp:437
+msgid "Select mode: left click to move, right click to edit"
+msgstr ""
+
+#: render2d.cpp:490
+msgid "Undo!"
+msgstr ""
+
+#: render2d.cpp:492
+msgid "Cannot undo, sorry!"
+msgstr ""
+
+#: render2d_event.cpp:139
+msgid "No information."
+msgstr ""
+
+#: render2d_event.cpp:150
+msgid "Object information"
+msgstr ""
+
+#: render2d_event.cpp:251 render2d_event.cpp:299
+msgid "Object"
+msgstr ""
+
+#: render2d_event.cpp:253
+msgid "Arrow"
+msgstr ""
+
+#: render2d_event.cpp:255
+msgid "Bond"
+msgstr ""
+
+#: render2d_event.cpp:257
+msgid "Bracket"
+msgstr ""
+
+#: render2d_event.cpp:259
+msgid "Curved Arrow"
+msgstr ""
+
+#: render2d_event.cpp:261
+msgid "Symbol"
+msgstr ""
+
+#: render2d_event.cpp:263 render2d_event.cpp:301
+msgid "Text"
+msgstr ""
+
+#: render2d_event.cpp:266 render2d_event.cpp:304
+msgid "Edit"
+msgstr ""
+
+#: render2d_event.cpp:268 render2d_event.cpp:281
+msgid "Info"
+msgstr ""
+
+#: render2d_event.cpp:270
+msgid "Fill color..."
+msgstr ""
+
+#: render2d_event.cpp:271
+msgid "No fill"
+msgstr ""
+
+#: render2d_event.cpp:274 render2d_event.cpp:306
+msgid "Shape..."
+msgstr ""
+
+#: render2d_event.cpp:279
+msgid "Molecule"
+msgstr ""
+
+#: render2d_event.cpp:1162
+msgid "Select mode: left click on object to move"
+msgstr ""
+
+#: render2d_event.cpp:1244 render2d_event.cpp:1257
+msgid ", click to paste into drawing"
+msgstr ""
+
+#: render2d_event.cpp:1574
+msgid "Draw Line - Length = "
+msgstr ""
+
+#: render2d_event.cpp:1574
+msgid ", Angle = "
+msgstr ""
+
+#: render2d_event.cpp:1607
+msgid "Draw aliphatic chain - Length = "
+msgstr ""
+
+#: render2d_event.cpp:1607
+msgid " bonds"
+msgstr ""
+
+#: render2d_text.cpp:135 render2d_text.cpp:306
+msgid "Enter subscript"
+msgstr ""
+
+#: render2d_text.cpp:136 render2d_text.cpp:307
+msgid "Please type or edit the subscript for this bracket:"
+msgstr ""
+
+#: retro.cpp:34
+msgid "No reactions found"
+msgstr ""
+
+#: retro.cpp:99
+msgid ""
+"The following reactions could have resulted in this product:\n"
+"\n"
+msgstr ""
+
+#: retro.cpp:100
+msgid ""
+"\n"
+"Target bonds will be highlighted in green.\n"
+"To see reactions affecting a highlighted bond, right-click on the bond and "
+"select Info.\n"
+"To clear highlights, select Undo from the Edit menu, or press Ctrl+Z."
+msgstr ""
+
+#: retro.cpp:102 retro.cpp:104
+msgid "Reverse reactions list"
+msgstr ""
+
+#: retro.cpp:105
+msgid "No reactions in the database could yield the selected molecule."
+msgstr ""
+
+#: ringdialog.cpp:37
+msgid "Ring tool"
+msgstr ""
+
+#: ringdialog.cpp:41
+msgid "Choose a structure from list:"
+msgstr ""
+
+#: smilesdialog.cpp:30
+msgid "Enter SMILES string"
+msgstr ""
+
+#: smilesdialog.cpp:31
+msgid "Enter SMILES string:"
+msgstr ""
+
+#: textshapedialog.cpp:19
+msgid "Edit text shape"
+msgstr ""
+
+#: textshapedialog.cpp:22
+msgid "No shape"
+msgstr ""
+
+#: textshapedialog.cpp:24
+msgid "Rectangle"
+msgstr ""
+
+#: textshapedialog.cpp:25
+msgid "Circle"
+msgstr ""
+
+#: textshapedialog.cpp:26
+msgid "Square"
+msgstr ""
+
+#: textshapedialog.cpp:30
+msgid "Border"
+msgstr ""
+
+#: textshapedialog.cpp:33
+msgid "Border color"
+msgstr ""
+
+#: textshapedialog.cpp:40
+msgid "Fill"
+msgstr ""
+
+#: textshapedialog.cpp:43
+msgid "Fill color"
+msgstr ""
+
+#: textshapedialog.cpp:49
+msgid "Width:"
+msgstr ""
+
+#: textshapedialog.cpp:52
+msgid "Height:"
+msgstr ""
+
+#: to3d.cpp:279
+msgid "Save 3D file as..."
+msgstr ""
+
+#: to3d.cpp:281
+msgid "MDL molfile (*.mol)"
+msgstr ""
+
+#: tool_13c_nmr.cpp:26
+msgid "13C NMR spectrum"
+msgstr ""
+
+#: tool_13c_nmr.cpp:57 tool_13c_nmr.cpp:68 tool_13c_nmr.cpp:79
+msgid ", intensity "
+msgstr ""
+
+#: tool_13c_nmr.cpp:63 tool_1h_nmr.cpp:61 tool_ir.cpp:61
+msgid "Peaks of reactant:\n"
+msgstr ""
+
+#: tool_13c_nmr.cpp:74 tool_1h_nmr.cpp:72 tool_ir.cpp:72
+msgid "Peaks of product:\n"
+msgstr ""
+
+#: tool_1h_nmr.cpp:26
+msgid "1H NMR spectrum"
+msgstr ""
+
+#: tool_ir.cpp:26
+msgid "IR spectrum"
+msgstr ""
+
+#: xruler.cpp:58 xruler.cpp:82
+msgid "px"
+msgstr ""
+
+#: xruler.cpp:59 xruler.cpp:83
+msgid "in"
+msgstr ""
+
+#: http.h:21
+msgid "Accessing network"
+msgstr ""
+
+#: http.h:24
+msgid "Please wait."
+msgstr ""
+
+#: molinfodialog.h:34
+msgid "CAS:"
+msgstr ""
+
+#: molinfodialog.h:41
+msgid "PubChem compound:"
+msgstr ""
+
+#: molinfodialog.h:47
+msgid "Name:"
+msgstr ""
+
+#: molinfodialog.h:53
+msgid "Other names:"
+msgstr ""
