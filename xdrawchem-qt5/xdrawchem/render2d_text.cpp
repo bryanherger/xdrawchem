@@ -14,6 +14,7 @@
 #include "bracket.h"
 #include "defs.h"
 #include "charsel.h"
+#include "xdc_textedit.h"
 
 // insert symbol, from Application
 void Render2D::InsertSymbol()
@@ -137,7 +138,7 @@ void Render2D::DrawText_mousePressEvent( QMouseEvent * e1, QPoint cqp )
     qDebug() << "DrawText_mousePressEvent 2";
 
     if ( localtexteditor == 0 ) {
-        localtexteditor = new QTextEdit( this );
+        localtexteditor = new XdcTextEdit( this );
 //        localtexteditor->setTextFormat( Qt::RichText );
         super_set = false;
         sub_set = false;
@@ -217,6 +218,7 @@ void Render2D::DrawText_mousePressEvent( QMouseEvent * e1, QPoint cqp )
 
     emit textOn( localtexteditor->currentFont() );
     qDebug() << "DrawText_mousePressEvent 3.7";
+    // this no longer works as a signal/slot
     connect( localtexteditor, SIGNAL( returnPressed() ), this, SLOT( DrawText_returnPressed() ) );
     connect( localtexteditor, SIGNAL( textChanged() ), this, SLOT( DrawText_textChanged() ) );
     qDebug() << "DrawText_mousePressEvent 3.6";
@@ -554,40 +556,48 @@ QString Render2D::EditText( QPoint origin, QString intext, int justify, bool one
 
 int Render2D::GetTextHeight( QFont fn )
 {
-    QPainter p( this );
+    //qInfo() << "QPainter1";
+    //QPainter p( this );
 
-    p.setFont( fn );
-    QFontMetrics fm = p.fontMetrics();
+    //painter->setFont( fn );
+    //QFontMetrics fm = painter->fontMetrics();
+    QFontMetrics fm = QFontMetrics(fn);
 
     return fm.ascent();
 }
 
 int Render2D::GetTextFullHeight( QFont fn )
 {
-    QPainter p( this );
+    //qInfo() << "QPainter2";
+    //QPainter p( this );
 
-    p.setFont( fn );
-    QFontMetrics fm = p.fontMetrics();
+    //painter->setFont( fn );
+    //QFontMetrics fm = painter->fontMetrics();
+    QFontMetrics fm = QFontMetrics(fn);
 
     return fm.height();
 }
 
 int Render2D::GetCharWidth( QChar ch, QFont fn )
 {
-    QPainter p( this );
+    //qInfo() << "QPainter3";
+    //QPainter p( this );
 
-    p.setFont( fn );
-    QFontMetrics fm = p.fontMetrics();
+    //painter->setFont( fn );
+    //QFontMetrics fm = painter->fontMetrics();
+    QFontMetrics fm = QFontMetrics(fn);
 
     return fm.width( ch );
 }
 
 int Render2D::GetStringWidth( QString ch, QFont fn )
 {
-    QPainter p( this );
+    //qInfo() << "QPainter4";
+    //QPainter p( this );
 
-    p.setFont( fn );
-    QFontMetrics fm = p.fontMetrics();
+    //painter->setFont( fn );
+    //QFontMetrics fm = painter->fontMetrics();
+    QFontMetrics fm = QFontMetrics(fn);
 
     return fm.width( ch );
 }
@@ -601,11 +611,14 @@ QRect Render2D::GetTextDimensions( QString txt, QFont fn )
 
     }
 
-    QPainter p( this );
+    // just use the current painter, we'll reset the font when we actually draw.
+    //QPainter p( this );
 
-    p.setFont( fn );
+    //painter->setFont( fn );
+    //QFontMetrics fm = painter->fontMetrics();
+    QFontMetrics fm = QFontMetrics(fn);
+
     int maxwidth, lwidth, linecount, height;
-    QFontMetrics fm = p.fontMetrics();
     QTextStream t( &txt, QIODevice::ReadOnly );
 
     linecount = 1;

@@ -34,7 +34,7 @@ public slots:
     void rf( bool );
 
 private:
-    QProgressDialog *progressDialog;
+    //QProgressDialog *progressDialog;
     bool httpRequestAborted;
     QBuffer *buffer;
     int choicesId;

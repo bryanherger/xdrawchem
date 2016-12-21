@@ -226,6 +226,7 @@ private:
     QToolButton *drawRingButton;
     QMenu *ringMenu;
     QAction *ring3Action, *ring4Action, *ring5Action, *ring6Action, *ringBenzeneAction, *ringImidazoleAction, *ringCyclopentadieneAction, *ring6BoatAction, *ring6ChairAction, *ringPyrimidineAction, *ring7Action, *ring8Action, *ringIndoleAction, *ringNaphAction, *ringPurineAction, *ringBiphenylAction, *ringAnthraAction, *ringSteroidAction;
+    QAction *aaAlanineAction, *aaArginineAction;
     QAction *naAdenineAction, *naCytosineAction, *naGuanineAction, *naThymineAction, *naUracilAction;
     QAction *srAction, *sdAction, *sfAction, *sgAction;
     QAction *customRingMenuAction;

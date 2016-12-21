@@ -15,7 +15,7 @@ NetAccess::NetAccess():QDialog()
     spccompound = "unknown";
     buffer = 0;
     //http = new QNetworkAccessManager( this );
-    progressDialog = new QProgressDialog( this );
+    //progressDialog = new QProgressDialog( this );
     //connect( http, SIGNAL( dataReadProgress( int, int ) ), SLOT( slotUpdateDataReadProgress( int, int ) ) );
     //connect( http, SIGNAL( finished( QNetworkReply * ) ), SLOT( slotFinished( QNetworkReply * ) ) );
     //connect( http, SIGNAL( done( bool ) ), SLOT( rf( bool ) ) );
@@ -195,8 +195,8 @@ void NetAccess::slotUpdateDataReadProgress( int bytesRead, int totalBytes )
     if ( httpRequestAborted )
         return;
 
-    progressDialog->setMaximum( totalBytes );
-    progressDialog->setValue( bytesRead );
+    //progressDialog->setMaximum( totalBytes );
+    //progressDialog->setValue( bytesRead );
 }
 
 void NetAccess::slotCancelDownload()

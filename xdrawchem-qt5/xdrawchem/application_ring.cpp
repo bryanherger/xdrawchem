@@ -80,7 +80,7 @@ extern Preferences preferences;
 QMenu *ApplicationWindow::BuildNewRingMenu()
 {
     QMenu *ringSub = new QMenu( this );
-
+    qInfo() << "BuildNewRingMenu";
     // make ring list
     QMenu *genericSub = new QMenu( tr( "Rings" ), ringSub );
     ring3Action = genericSub->addAction( QIcon( QPixmap( r_cyclopropane ) ), tr( "[*] Cyclopropane") );
@@ -102,12 +102,13 @@ QMenu *ApplicationWindow::BuildNewRingMenu()
     ringAnthraAction = genericSub->addAction( QIcon( QPixmap( anthracene_xpm ) ), tr( "Anthracene" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
     ringSteroidAction = genericSub->addAction( QIcon( QPixmap( r_steroid ) ), tr( "Steroid (fused ring template)" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
 
+    connect( genericSub, SIGNAL( triggered( QAction * ) ), SLOT( setRingAction( QAction * ) ) );
     ringSub->addMenu( genericSub );
 
     // make amino acid list
     QMenu *aaSub = new QMenu( tr( "Amino acids" ), this );
-    aaSub->addAction( QIcon( QPixmap( aa_ala ) ), tr( "Alanine" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
-    aaSub->addAction( QIcon( QPixmap( aa_arg ) ), tr( "Arginine" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
+    aaAlanineAction = aaSub->addAction( QIcon( QPixmap( aa_ala ) ), tr( "Alanine" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
+    aaArginineAction = aaSub->addAction( QIcon( QPixmap( aa_arg ) ), tr( "Arginine" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
     aaSub->addAction( QIcon( QPixmap( aa_asn ) ), tr( "Asparagine" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
     aaSub->addAction( QIcon( QPixmap( aa_asp ) ), tr( "Aspartic acid" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
     aaSub->addAction( QIcon( QPixmap( aa_cys ) ), tr( "Cysteine" ), this, SLOT( FromNewRingMenu( int ) ), 0 );
@@ -469,6 +470,17 @@ void ApplicationWindow::setRingAction( QAction * action )
   if (action == ringSteroidAction) {
     FromNewRingMenu( RING_STEROID );
     drawRingButton->setDefaultAction( ringSteroidAction );
+    return;
+  }
+
+  if (action == aaAlanineAction) {
+    FromNewRingMenu( AA_ALANINE );
+    drawRingButton->setDefaultAction( aaAlanineAction );
+    return;
+  }
+  if (action == aaArginineAction) {
+    FromNewRingMenu( AA_ARGININE );
+    drawRingButton->setDefaultAction( aaArginineAction );
     return;
   }
 

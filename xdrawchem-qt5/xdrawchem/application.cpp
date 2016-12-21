@@ -692,7 +692,7 @@ ApplicationWindow::ApplicationWindow()
     connect( m_chemData, SIGNAL( SignalUpdateCustomRingMenu() ), SLOT( updateCustomRingMenu() ) );
 
     statusBar()->showMessage( "Ready" );
-    resize( 640, 640 );
+    resize( 680, 680 );
 }
 
 // externalProgram() sends to an external program

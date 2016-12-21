@@ -396,7 +396,9 @@ void Text::Render()
     }
     if ( displayText[cp1] == '>' ) {
       currentElement.append( displayText[cp1] );
+      if (!currentElement.contains("!DOCTYPE")) {
       parseList.append( currentElement );
+      }
       currentElement = "";
       flag1 = false;
     }
@@ -526,6 +528,7 @@ void Text::Render()
       lineheight = b1.height();
     linewidth += b1.width();
   }
+  // end for?
 
   if ( lineheight > textheight )
     textheight = lineheight;
