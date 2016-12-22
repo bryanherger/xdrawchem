@@ -226,7 +226,6 @@ private:
     QToolButton *drawRingButton;
     QMenu *ringMenu;
     QAction *ring3Action, *ring4Action, *ring5Action, *ring6Action, *ringBenzeneAction, *ringImidazoleAction, *ringCyclopentadieneAction, *ring6BoatAction, *ring6ChairAction, *ringPyrimidineAction, *ring7Action, *ring8Action, *ringIndoleAction, *ringNaphAction, *ringPurineAction, *ringBiphenylAction, *ringAnthraAction, *ringSteroidAction;
-    QAction *aaAlanineAction, *aaArginineAction;
     QAction *naAdenineAction, *naCytosineAction, *naGuanineAction, *naThymineAction, *naUracilAction;
     QAction *srAction, *sdAction, *sfAction, *sgAction;
     QAction *customRingMenuAction;
@@ -239,4 +238,3 @@ private:
 
 #endif
 
-// kate: tab-width 4; indent-width 4; space-indent on; replace-trailing-space-save on;
