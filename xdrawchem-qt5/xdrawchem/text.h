@@ -19,6 +19,7 @@ class Text : public Drawable
 public:
     Text( Render2D *, QObject *parent = 0 );
     void Render();  // draw this object
+    void setRenderer(Render2D *r1) { r = r1; }
     int Type();  // return type of object
     bool Find( DPoint * ); // does this Text contain this DPoint?
     DPoint *FindNearestPoint( DPoint *, double & );

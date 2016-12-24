@@ -68,11 +68,16 @@ class SPoint {
     y = (double)y1;
   }
 
-  /** Constructs a point as a dublicate of another point */
+  /** Constructs a point as a duplicate of another point */
   SPoint(const SPoint &p){
     x = p.x;
     y = p.y;
   }
+
+  /** return this SPoint as a QString */
+  QString toString() {
+	return QString("(%1,%2)").arg(x).arg(y);
+  }	
 };
 
 /** Construct that stores the parameters needed for the placement of
@@ -135,6 +140,7 @@ class SDG {
     ringTracker = 0;
     ddebug = 0;
     draw();
+    drawStatus("at end");
   }
 
   /** Performs the actual calculation of the coordinated based on a
@@ -154,7 +160,7 @@ class SDG {
 	atomSet[i]->status = 0;
 	atomSet[i]->ringCounter = 0;
       }
-
+    drawStatus("start");
     sortBondList();
     for (int f = 0; f < atomSet.count(); f++)
       {
@@ -170,6 +176,7 @@ class SDG {
       sssr = sorf.findSSSR(atomSet); //should be passed from Molecule()
       sssr.sort();
       sssr.makeNodeRingLists(atomSet);
+    drawStatus("after sssr");
 
       if (sssr.size() > 0){
 	/* We have rings
@@ -203,6 +210,7 @@ class SDG {
 	  }
 	}
 	positionRingAtoms(complRing, SPoint(0,0), (double)0, 0, complRingSize - 1);
+    drawStatus("208");
 	ring = sssr.at(complRing);
 	ring->status = 1;
 
@@ -215,6 +223,7 @@ class SDG {
 	    for (int f = 0; f < sssr.size(); f++){
 	      if ((sssr.at(f))->status == 1) {
 		positionRingSubstituents(f);
+    drawStatus("222");
 		//if (true) return;
 		stillThere = true;
 	      }
@@ -278,12 +287,19 @@ class SDG {
   int whatToDraw(){
     for (int f = 0; f < atomSet.count(); f++){
       if (atomSet[f]->status == 1){
-	qDebug() << "whatToDraw(): " << f ;
+	qInfo() << "whatToDraw(): " << f ;
 	return f;
       }
     }
-    qDebug() << "whatToDraw(): -1" ;
+    qInfo() << "whatToDraw(): -1" ;
     return -1;
+  }
+
+  /** Scans the array of nodes for those that have not been finally drawn */
+
+  void drawStatus(QString note){
+    // debug: what actually happened here?
+    for (int ii = 0; ii < atomSet.count(); ii++) { qInfo() << note << ":SDG pos:" << ii << ":status:" << atomSet[ii]->status << ":(" << atomSet[ii]->x << "," << atomSet[ii]->y << ")"; }
   }
 
   /** Takes care of drawing an ring-less graph once one start
@@ -399,7 +415,7 @@ class SDG {
     // ringType = 1 : spiro annulation requested;
     // ringType = 2 : regular 1-bond annulation requested;
     // ringType = 3 : annulation with more than two shared atoms
-    //System.out.println("Ring to substitute: " + ringIndex);
+    qInfo() << "Ring to substitute: " << ringIndex;
     double ph = 0.0174532925;
     Ring *ring = sssr.at(ringIndex);
     int k = ring->size();
@@ -435,6 +451,7 @@ class SDG {
 		which already has been positioned by the calling
 		method */
       handleRestOfRingSubstituents(ringIndex);
+	drawStatus("451");
       return;
 
     }
@@ -458,7 +475,7 @@ class SDG {
 		/* we found another ring to which atom belongs
 		   which is not yet positioned. Let's remember it. */
 		secondRing = sssr.at(tempRing);
-		qDebug() << "secondRing:" << secondRing->getSortedString() ;
+		qInfo() << "secondRing:" << secondRing->getSortedString() ;
 		secondRingNumber = tempRing;
 		size = (getIntersection(ring->getNodeNumberList(), secondRing->getNodeNumberList())).count();
 		if (secondRing->notAllPositioned(atomSet)){
@@ -530,7 +547,7 @@ class SDG {
 					SPoint(atomSet[tempAtom]->x, atomSet[tempAtom]->y), rad);
 
 		  if (alph != (double) 0.0)
-		    //qDebug() << "Invoking rot-Atom() from line 538" ;
+		    //qInfo() << "Invoking rot-Atom() from line 538" ;
 		    tempPoint = rotAtom(SPoint(atomSet[tempAtom]->x, atomSet[tempAtom]->y), tempPoint, alph);
 
 		  secondRing->x = tempPoint.x;
@@ -713,7 +730,7 @@ class SDG {
 		    //System.out.println("Bicyclo");
 		    for (il = 0; il < km; il++) {
 		      if (atomSet[secondRing->getNodeNumber(il)]->status <= 0) {
-			//qDebug() << "Invoking rot-Atom() from line 719" ;
+			//qInfo() << "Invoking rot-Atom() from line 719" ;
 			temp2Point = rotAtom(SPoint(secondRing->x,secondRing->y), tempPoint, alph);
 			atomSet[secondRing->getNodeNumber(il)]->status = 1;
 			atomSet[secondRing->getNodeNumber(il)]->x = temp2Point.x;
@@ -777,7 +794,7 @@ class SDG {
     x2 = round(center2.x * roundFactor) / roundFactor;
     y2 = round(center2.y * roundFactor) / roundFactor;
     angle = 360 / (sssr.at(numberOfSecondRing))->size();
-    qDebug() << "FRP:" << x1 << "," << y1 << ";" << x2 << "," << y2 ;
+    qInfo() << "FRP:" << x1 << "," << y1 << ";" << x2 << "," << y2 ;
     FusedRingParams fRP;
     // First block
     if (x2 > x1 && y2 >= y1){
@@ -963,6 +980,7 @@ class SDG {
     'vector' in distance 'distance' from origin. Originally called
     'neuat()' */
   SPoint placeAtom(SPoint origin, SPoint vector, double distance){
+    qInfo() << "placeAtom " << origin.toString() << " " << vector.toString() << " d=" << distance;
     double a, b, cc;
     a = vector.x - origin.x;
     b = vector.y - origin.y;
@@ -974,11 +992,12 @@ class SDG {
 
   /** Rotates the atom at Point 'point' around the Point 'center' with the angle 'angle' */
   SPoint rotAtom(SPoint center, SPoint point, double angle){
+    qInfo() << "rotAtom " << center.toString() << " " << point.toString() << " a=" << angle;
     double ph = 0.0174532925;
     double  p, co, si, x1, y1, x, y;
 
     // make aliphatics look good
-    //qDebug() << "ANGLE:" << angle;
+    //qInfo() << "ANGLE:" << angle;
 
     if (arerings == true) {
       if (ncalls == 0) {
@@ -1010,7 +1029,7 @@ class SDG {
       }
     }
 
-    //qDebug() << " " << angle ;
+    //qInfo() << " " << angle ;
     // end aliphatics garbling
 
     p = ph * angle;
@@ -1029,6 +1048,7 @@ class SDG {
 	    Returns "-1" if no ring was drawn or the ring number of the ring draw */
   int positionAtomSubstituents(int atomIndex, SPoint point, SPoint helpPoint,
 			       QVector<int> ilist, int modus, int ir, int igr){
+	qInfo() << "positionAtomSubstituents:atomIndex=" << atomIndex;
     double ph =  0.0174532925;
     int    i, ib, /*ibb, iii, iph,*/ k;
     double alph, /*b, phi,*/ rad/*, xx, yy*/;
@@ -1073,9 +1093,12 @@ class SDG {
     for (i = 0; i < k; i++) {
       tempAtom = atomSet[atomIndex]->intnodeTable[i];
       if (atomSet[tempAtom]->status <= 0) {
+	double thisRot = rot[i];
+	if (thisRot > (double)359.9) thisRot = (double)0.0;
+	qInfo() << "placeAtom " << tempAtom << " status=" << atomSet[tempAtom]->status << " rot["<<i<<"]=" << thisRot;
 	tempPoint = placeAtom(helpPoint, point, bondLength);
-	//qDebug() << "Invoking rot-Atom() from line 1079" ;
-	test = rotAtom(point, tempPoint, rot[i]);
+	//qInfo() << "Invoking rot-Atom() from line 1079" ;
+	test = rotAtom(point, tempPoint, thisRot);
 	atomSet[tempAtom]->x = test.x;
 	atomSet[tempAtom]->y = test.y;
 	atomSet[tempAtom]->status = 1;
@@ -1102,7 +1125,7 @@ class SDG {
     /*  -------------------------------------------------------------*/
     rad = bondLength/ 2 / sin(ph * (180.0 / igr));
     tempPoint = placeAtom(SPoint(xh, yh), SPoint(x, y), rad);
-    //qDebug() << "Invoking rot-Atom() from line 1106" ;
+    //qInfo() << "Invoking rot-Atom() from line 1106" ;
     tempPoint = rotAtom(SPoint(x, y), tempPoint, alph);
     ring->x = tempPoint.x;
     ring->y = tempPoint.y;
@@ -1312,7 +1335,7 @@ class SDG {
 	  /* rotate substituents by angle pp              */
 	  /* if more than one neighbor has to be drawn    */
 	  /*----------------------------------------------*/
-	  //qDebug() << "Invoking rot-Atom() from line 1317" ;
+	  //qInfo() << "Invoking rot-Atom() from line 1317" ;
 	  tempPoint = rotAtom(SPoint(x, y), SPoint(xx, yy), pp);
 	  atomSet[atomSet[bridgeAtomNumber]->intnodeTable[i]]->x = tempPoint.x;
 	  atomSet[atomSet[bridgeAtomNumber]->intnodeTable[i]]->y = tempPoint.y;
@@ -1330,7 +1353,7 @@ class SDG {
 	    /* rotate substituents by angle pp              */
 	    /* if more than one neighbor has to be drawn    */
 	    /*----------------------------------------------*/
-	    //qDebug() << "Invoking rot-Atom() from line 1335" ;
+	    //qInfo() << "Invoking rot-Atom() from line 1335" ;
 	    tempPoint = rotAtom(SPoint(x, y), SPoint(xx, yy), pp);
 	    atomSet[atomSet[bridgeAtomNumber]->intnodeTable[i]]->x = tempPoint.x;
 	    atomSet[atomSet[bridgeAtomNumber]->intnodeTable[i]]->y = tempPoint.y;
@@ -1389,6 +1412,7 @@ class SDG {
 	  }
 	  result = positionAtomSubstituents(ring->getNodeNumber(i), SPoint(atomSet[ring->getNodeNumber(i)]->x, atomSet[ring->getNodeNumber(i)]->y),
 					    SPoint(ring->x, ring->y), ilist, ring->size(), ir, igr);
+	  drawStatus("1406");
 	}
       }
     }

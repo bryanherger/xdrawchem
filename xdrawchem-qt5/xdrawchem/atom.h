@@ -124,7 +124,7 @@ public:
         n->bondOrderSum = bondOrderSum;
         //System->arraycopy(nodeTable, 0, n->nodeTable, 0, 10);
         for (int f = 0; f < 10; f++)
-            n->nodeTable.insert(f, nodeTable[f]);  // shallow copy!
+            n->nodeTable.replace(f, nodeTable[f]);  // shallow copy!
         // the rest are deep copies.
         n->intnodeTable = intnodeTable;
         n->bondTable = bondTable;

@@ -88,7 +88,7 @@ void Molecule::SDG( bool coord )
         a1 = atoms.at( c1 );
         for ( c2 = 0; c2 < tmp_pt->neighbors.count(); c2++ ) {
             refnum = tmp_pt->neighbors.at( c2 )->serial;
-            a1->nodeTable.insert( c2, atoms.at( refnum ) );
+            a1->nodeTable.replace( c2, atoms.at( refnum ) );
             a1->bondTable[c2] = tmp_pt->bondorder[c2];
             a1->intnodeTable[c2] = refnum;
         }
@@ -106,12 +106,12 @@ void Molecule::SDG( bool coord )
        c2 = 0;
        for (tmp_pt = tmp_ring->first(); tmp_pt != 0; tmp_pt = tmp_ring->next()) {
        a1 = atoms.at(tmp_pt->serial);
-       ring1->insert(c2, a1);
+       ring1->replace(c2, a1);
        qInfo() << "RA" << c2 << ":" << tmp_pt->serial ;
        c2++;
        }
        ring1->sort2();
-       s1.insert(c1, ring1);
+       s1.replace(c1, ring1);
        c1++;
        }
      */
@@ -463,7 +463,7 @@ void Molecule::FromSMILES(QString sm) {
 	int ringnum = tmp_token.right(1).toInt();
 	flag = true;
 	if (ring_array_status[ringnum] == false) { // save this atom
-	  ring_closure_array.insert(ringnum, new_pt);
+	  ring_closure_array.replace(ringnum, new_pt);
 	  ring_array_status[ringnum] = true;
 	} else { // do ring closure
 	  tmp_pt = ring_closure_array.at(ringnum);

@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = xdrawchem-qt5
+TARGET = xdrawchem
 
 # edit to match your OB install
 INCLUDEPATH += /usr/include/openbabel-2.0
@@ -29,6 +29,8 @@ doc.path = $${PREFIX}/share/xdrawchem/doc
 doc.files = doc/*
 INSTALLS += ringdir doc
 QMAKE_CXXFLAGS_DEBUG += -O0 -g3
+QMAKE_CXXFLAGS_GNUCXX11 =
+QMAKE_CXXFLAGS_CXX11    =
 
 //DEFINES += QT_NO_CAST_TO_ASCII
 CONFIG += debug

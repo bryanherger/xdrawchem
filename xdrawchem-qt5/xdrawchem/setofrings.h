@@ -66,11 +66,9 @@ class setOfRings : public QVector<Ring *>
       s2 = ring->getSortedString();
       qInfo() << s1 << "-vs-" << s2 ;
       if (s1 == s2){
-	qInfo("true!");
 	return true;
       }
     }
-    qInfo("false!");
     return false;
   }
 
@@ -131,8 +129,8 @@ class setOfRings : public QVector<Ring *>
   void swap(int i, int j){
     Ring *r;
     r = at(i);
-    insert(i, at(j));
-    insert(j, r);
+    replace(i, at(j));
+    replace(j, r);
   }
 
   /** Lists the rings in this set to the console */
@@ -146,6 +144,7 @@ class setOfRings : public QVector<Ring *>
       that it is part of. */
 
   void makeNodeRingLists(QVector<Atom *> thisAtomSet){
+	qInfo() << "makeNodeRingLists: size = " << thisAtomSet.size();
     Ring *ring = 0;
     int nodeNo = -1;
     for (int f = 0; f < size(); f++){

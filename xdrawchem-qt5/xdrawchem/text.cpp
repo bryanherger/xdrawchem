@@ -368,8 +368,8 @@ bool Text::isWithinRect( QRect n, bool shiftdown )
 void Text::Render()
 {
   qDebug() << "Text::Render begin";
-
-  //qDebug() << "displayText.length():" << displayText.length();
+//  r->drawString( "foobar", start->toQPoint(), QColor(0,0,0), QFont() ); return;
+  qDebug() << "displayText.length():" << displayText.length();
 
   bool boldFlag = false, italicFlag = false, underlineFlag = false, superFlag = false, subFlag = false;
   QFont currentFont = font;
@@ -397,7 +397,7 @@ void Text::Render()
     if ( displayText[cp1] == '>' ) {
       currentElement.append( displayText[cp1] );
       if (!currentElement.contains("!DOCTYPE")) {
-      parseList.append( currentElement );
+        parseList.append( currentElement );
       }
       currentElement = "";
       flag1 = false;
@@ -418,7 +418,7 @@ void Text::Render()
 
   for ( QStringList::Iterator it = parseList.begin(); it != parseList.end(); ++it ) {
     currentElement = *it;
-
+    qDebug() << "currentElement:" << currentElement;
     // dump the style tag!
     if ( currentElement == "</style>" ) {
       styletag = false;
@@ -529,7 +529,7 @@ void Text::Render()
     linewidth += b1.width();
   }
   // end for?
-
+ 
   if ( lineheight > textheight )
     textheight = lineheight;
   if ( linewidth > textwidth )
@@ -539,7 +539,6 @@ void Text::Render()
   qDebug() << displayText;
   qDebug() << "Text dimensions = " << textwidth << "," << textheight;
   //qDebug() << "Text check 1 ---";
-
 
   int supersub, subx;
   QFont supersubfont;
@@ -554,6 +553,7 @@ void Text::Render()
 
   b.translate( t.x(), t.y() );
   // this guarantees that the text will not overlap other objects
+  // original code
   r->drawFillBox( b.topLeft(), b.bottomRight(), r->getBGColor(), false, QColor( 0, 0, 0 ), 1 );
 
   // draw shape, if applicable

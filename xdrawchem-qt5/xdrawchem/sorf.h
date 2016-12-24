@@ -52,7 +52,7 @@ class DataStructureTools {
 		{
 		  if (thisSet[h]->number == thisSet[f]->nodeTable[g]->number)
 		    {
-		      newAtomSet[f]->nodeTable.insert(g, newAtomSet[h]);
+		      newAtomSet[f]->nodeTable.replace(g, newAtomSet[h]);
 		      break;
 		    }
 		}
@@ -202,6 +202,14 @@ class SetOfRingsFinder
     return sssr;
   }
 
+  QString printPath(QList<Atom *> atoms) {
+	QString thisPath;
+        for (int i = 0; i < atoms.size(); i++) {
+		if (i > 0) thisPath.append(" ");
+		thisPath.append( QString::number(atoms[i]->number) );
+	}
+	return thisPath;
+  }
   /** finds the smallest ring of which rootNode is part of.
 	    This routine is called 'getRing() in Figueras original article */
   Ring *findSRing(Atom *rootNode, QVector<Atom *> tempAtomSet){
@@ -257,10 +265,10 @@ class SetOfRingsFinder
 	      // we have found a valid ring closure
 	      // now let's prepare the path to
 	      // return in tempAtomSet
-	      //qInfo("Ring closure found: " + m->number + ", source is " + source->number);
-	      //qInfo(m + ", " + source);
-	      //qInfo("Path of frontnode: " + path[frontNode.number]->toString());
-	      //qInfo("Path of m: " + path[m->number]->toString());
+	      qInfo() << "Ring closure found: " << m->number << ", source is " << source->number;
+	      qInfo() << m << ", " << source;
+	      qInfo() << "Path of frontnode: " << printPath(*path[frontNode->number]);
+	      qInfo() << "Path of m: " << printPath(*path[m->number]);
 	      ring = getUnion(*path[frontNode->number], *path[m->number]);
 	      return prepareRing(ring, tempAtomSet);
 	    }
@@ -268,7 +276,7 @@ class SetOfRingsFinder
 	  else { // if path[m] is not null
 	    // update the path[m]
 	    path.replace(m->number, merge(path[m->number], path[frontNode->number]));
-	    path[m->number]->insert(0, m);
+	    path[m->number]->insert(0, m); // no, we really mean insert here; well, "prepend" really, but this is what the old code did, exactly.
 	    // now push the node m onto the queue
 	    FGsource.replace(m->number, frontNode);
 	    queue.enqueue(m);
@@ -331,14 +339,14 @@ class SetOfRingsFinder
 	if (conn->nodeTable[g] == n){
 	  if (g < (conn->nodeTable.size() - 1)){
 	    for (int h = g; h < conn->degree - 1; h++){
-	      conn->nodeTable.insert(h, conn->nodeTable[h + 1]);
+	      conn->nodeTable.replace(h, conn->nodeTable[h + 1]);
 	    }
 	  }
-	  conn->nodeTable.insert(conn->degree - 1, 0);
+	  conn->nodeTable.replace(conn->degree - 1, 0);
 	  conn->degree --;
 	}
       }
-      n->nodeTable.insert(f, 0);
+      n->nodeTable.replace(f, 0);
     }
     n->degree = 0;
     // you are erased! Har, har, har.....  >8-)=)
@@ -354,16 +362,16 @@ class SetOfRingsFinder
     // remember the bond partner of the last bond
     Atom *partner = thisNode->nodeTable[degree - 1];
     // now delete the bond
-    thisNode->nodeTable.insert(degree - 1, 0);
+    thisNode->nodeTable.replace(degree - 1, 0);
     thisNode->degree --;
     // find the same bond for 'partner' and delete it
     for (int f = 0; f < partner->degree; f++){
       if (partner->nodeTable[f] == thisNode){
-	partner->nodeTable.insert(f, 0);
+	partner->nodeTable.replace(f, 0);
 	for (int g = f; g < partner->degree - 1; g++){
-	  partner->nodeTable.insert(g, partner->nodeTable[g+1]);
+	  partner->nodeTable.replace(g, partner->nodeTable[g+1]);
 	}
-	partner->nodeTable.insert(partner->degree - 1, 0);
+	partner->nodeTable.replace(partner->degree - 1, 0);
 	partner->degree --;
 	break;
       }
@@ -377,9 +385,9 @@ class SetOfRingsFinder
       if (from->nodeTable[f] == to){
 	degree = from->degree;
 	for (int g = f; g < from->degree - 1; g++){
-	  from->nodeTable.insert(g, from->nodeTable[g+1]);
+	  from->nodeTable.replace(g, from->nodeTable[g+1]);
 	}
-	from->nodeTable.insert(from->degree - 1, 0);
+	from->nodeTable.replace(from->degree - 1, 0);
 	from->degree --;
 	break;
       }
@@ -387,9 +395,9 @@ class SetOfRingsFinder
     for (f = 0; f < to->degree; f++){
       if (to->nodeTable[f] == from){
 	for (int g = f; g < to->degree - 1; g++){
-	  to->nodeTable.insert(g, to->nodeTable[g+1]);
+	  to->nodeTable.replace(g, to->nodeTable[g+1]);
 	}
-	to->nodeTable.insert(to->degree - 1, 0);
+	to->nodeTable.replace(to->degree - 1, 0);
 	to->degree --;
 	break;
       }
@@ -399,9 +407,9 @@ class SetOfRingsFinder
   /** Restores a bond betwenn nodes 'from' and 'to' of an array of
 	    nodes 'tempAtomSet' */
   void restoreBond(Atom *from, Atom *to,  QVector<Atom *> tempAtomSet){
-    from->nodeTable.insert(from->degree, to);
+    from->nodeTable.replace(from->degree, to);
     from->degree ++;
-    to->nodeTable.insert(to->degree, from);
+    to->nodeTable.replace(to->degree, from);
     to->degree ++;
   }
 
