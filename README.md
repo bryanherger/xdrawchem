@@ -4,7 +4,7 @@ Welcome to XDrawChem!
 
 Please visit the project page at http://www.woodsidelabs.com/chemistry/xdrawchem.php
 
-Current release (1.9.11-1) source tarball and RPM are at SourceForge: https://sourceforge.net/projects/xdrawchem/files/xdrawchem/1.9.10/
+Current release (1.9.11-1) source tarball and RPM are at SourceForge: https://sourceforge.net/projects/xdrawchem/files/xdrawchem/1.9.11/
 
 This repository conatins three (!) versions of XDrawChem:
 
