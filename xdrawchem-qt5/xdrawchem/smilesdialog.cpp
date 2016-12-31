@@ -23,11 +23,11 @@ void ApplicationWindow::FromSMILES()
 SmilesDialog::SmilesDialog( QWidget *parent )
     : QDialog( parent )
 {
-    setWindowTitle( tr( "Enter SMILES string" ) );
+    setWindowTitle( tr( "Enter InChI or SMILES string" ) );
 
     QVBoxLayout *smilesLayout = new QVBoxLayout();
 
-    QLabel *smilesLabel = new QLabel( tr( "Enter SMILES string:" ), this );
+    QLabel *smilesLabel = new QLabel( tr( "Enter InChI or SMILES string:" ), this );
     smilesLayout->addWidget( smilesLabel );
 
     smilesInput = new QLineEdit( this );

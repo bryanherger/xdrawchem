@@ -627,7 +627,7 @@ ApplicationWindow::ApplicationWindow()
 
     tools->addSeparator();
 
-    tools->addAction( tr( "Molecule information..." ), this, SLOT( MoleculeInfo() ) );
+    tools->addAction( tr( "Molecule information..." ), this, SLOT( MoleculeInfo() ), Qt::CTRL + Qt::Key_I );
     tools->addAction( tr( "Predict 1H NMR" ), this, SLOT( Calc1HNMR() ) );
     tools->addAction( tr( "Predict 13C NMR" ), this, SLOT( Calc13CNMR() ) );
     tools->addAction( tr( "Predict IR" ), this, SLOT( CalcIR() ) );
@@ -649,7 +649,7 @@ ApplicationWindow::ApplicationWindow()
 
     tools->addSeparator();
 
-    tools->addAction( tr( "Input SMILES" ), this, SLOT( FromSMILES() ) );
+    tools->addAction( tr( "Input InChI or SMILES" ), this, SLOT( FromSMILES() ) );
     tools->addAction( tr( "Output SMILES" ), this, SLOT( ToSMILES() ) );
     tools->addAction( tr( "Output InChI" ), this, SLOT( ToInChI() ) );
 

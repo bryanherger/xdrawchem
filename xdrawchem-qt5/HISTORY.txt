@@ -1,5 +1,11 @@
-version 1.99.1:
-Updated code to use Qt 4.x, with extensive contributed code.
+verion 1.10.0:
+First release based on Qt5.  Significant contributed code, bug fixes.
+
+version 1.9.11:
+Bug fixes.  Migration to Qt5.
+
+version 1.9.10:
+Bug fixes.
 
 version 1.9.9:
 Updated code to use OpenBabel 2.0 (or later).

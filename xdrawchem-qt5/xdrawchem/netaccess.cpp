@@ -45,7 +45,7 @@ QStringList NetAccess::getChoices( QString server, QString key, QString value, b
 
     QUrl url = QUrl( cmd );
 
-    qDebug() << "getChoices URL:" << cmd;
+    qInfo() << "getChoices URL:" << cmd;
 
   HTTP if1(cmd);
   if1.exec();
@@ -237,6 +237,7 @@ void NetAccess::slotFinished( int httpId, bool )
 
 bool NetAccess::getNameCAS( QString nserver, QString sinchi )
 {
+	qInfo() << "getNameCAS:" << nserver << "," << sinchi;
     // don't waste bandwidth...
     if ( sinchi.length() < 2 )
         return false;
@@ -274,12 +275,12 @@ bool NetAccess::getNameCAS( QString nserver, QString sinchi )
         tcas.replace( "\"", "" );
         tsyn.replace( "\"", "" );
         tiname.replace( "\"", "" );
-        qDebug() << "-- DB return: --";
-        qDebug() << tpc;
-        qDebug() << tcas;
-        qDebug() << tiname;
-        qDebug() << tsyn;
-        qDebug() << "-- DB end --";
+        qInfo() << "-- DB return: --";
+        qInfo() << tpc;
+        qInfo() << tcas;
+        qInfo() << tiname;
+        qInfo() << tsyn;
+        qInfo() << "-- DB end --";
         spccompound = tpc;
         scas = tcas;
         siupacname = tiname;

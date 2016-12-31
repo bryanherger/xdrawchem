@@ -6,7 +6,7 @@
 // Ring directories (global, user)
 extern QString RingDir, HomeDir;
 
-const QString VERSION = QString::fromLatin1("1.9.11");
+const QString VERSION = QString::fromLatin1("1.10.0");
 
 // version string (makes updates easier :)
 #ifdef UNIX
@@ -36,7 +36,7 @@ const QString XDC_VERSION = QString::fromLatin1("MacDrawChem ") + VERSION;
 
 // math constant
 #define MOL_ARAD 57.29578
-#ifndef UNIX  // M_PI is usually defined on Unix, but not Windows
+#ifndef M_PI  // M_PI is usually defined on Unix, but not Windows
 #define M_PI 3.14159246
 #endif
 

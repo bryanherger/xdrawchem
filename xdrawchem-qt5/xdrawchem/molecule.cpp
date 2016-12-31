@@ -1057,6 +1057,7 @@ QString Molecule::ToMDLMolfile( int coords )
     foreach ( tmp_pt, up ) {
       localtextdocument.setHtml(tmp_pt->element);
       tmpline = localtextdocument.toPlainText();
+        qInfo() << "ToMDLMolfile::tmpline = " << tmpline;
       //tmpline = tmp_pt->element;
         if ( tmpline.length() < 3 )
             tmpline.append( ' ' );
@@ -1096,6 +1097,8 @@ QString Molecule::ToMDLMolfile( int coords )
     }
 
     t << "M  END";
+
+    qInfo() << "molfile: " << molfile;
 
     return molfile;
 }

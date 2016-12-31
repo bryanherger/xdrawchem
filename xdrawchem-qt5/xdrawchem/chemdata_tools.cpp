@@ -73,7 +73,7 @@ public:
 // Determine Molecule clicked, do Tool action
 void ChemData::Tool( DPoint *target, int mode )
 {
-    QClipboard *cb = QApplication::clipboard();
+    //QClipboard *cb = QApplication::clipboard();
 
     qDebug() << "ChemData::Tool: " << mode;
     Molecule *m = 0;
@@ -87,7 +87,7 @@ void ChemData::Tool( DPoint *target, int mode )
     QString tmpname, serverName;
     QStringList choices;
     Bond *tmp_bond;
-    int dret;
+    //int dret;
 
     foreach ( tmp_draw, drawlist ) {
         if ( tmp_draw->Type() == TYPE_MOLECULE ) {
@@ -100,21 +100,23 @@ void ChemData::Tool( DPoint *target, int mode )
     if ( m == 0 )
         return;
     double kow = 0.0;
+    QString thisInChI;
 
     switch ( mode ) {
     case MODE_TOOL_MOLECULE_INFO:
         mi = new MolInfoDialog( r );
+        thisInChI = m->ToInChI();
         tt_mw = m->CalcMW();
-        tt_ef = m->CalcEmpiricalFormula();
-        tt_ea = m->CalcElementalAnalysis();
         mi->setMW( tt_mw->getText() );
+        tt_ef = m->CalcEmpiricalFormula();
         mi->setEF( tt_ef->getText() );
+        tt_ea = m->CalcElementalAnalysis();
         mi->setEA( tt_ea->getText() );
 
         serverName = getenv( "XDC_SERVER" );
         if ( serverName.length() < 2 )
             serverName = XDC_SERVER;
-        if ( na->getNameCAS( serverName, m->ToInChI() ) ) {
+        if ( na->getNameCAS( serverName, thisInChI ) ) {
             mi->setCAS( na->scas );
             mi->setName( na->siupacname );
             mi->setSynonyms( na->sname );

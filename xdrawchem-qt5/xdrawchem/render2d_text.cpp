@@ -76,8 +76,10 @@ void Render2D::DrawText_FinishText()
     QString lt1 = localtexteditor->toHtml();
     QPixmap ltpix = QPixmap::grabWidget( localtexteditor );
 
-    qDebug() << localtexteditor->toHtml();
-    qDebug() << "QPixmap: " << ltpix.width() << "," << ltpix.height();
+    qInfo() << "toHtml():" << localtexteditor->toHtml();
+    qInfo() << "toPlainText():" << localtexteditor->toPlainText();
+    qInfo() << "QPixmap: " << ltpix.width() << "," << ltpix.height();
+    if (localtexteditor->toPlainText().length() == 0) { lt1 = ""; lt2 = ""; }
 
     if ( localtext->Justify() == JUSTIFY_CENTER ) {
         lt1.remove( '\n' );

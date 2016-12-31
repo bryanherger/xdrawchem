@@ -225,18 +225,20 @@ void Molecule::FromInChI( QString sm )
 {
 }
 
-// convert SMILES string to Molecule
+// convert InChI or SMILES string to Molecule
 // (Ideally, you should call this function just after creating)
 void Molecule::FromSMILES( QString sm )
 {
     qInfo() << "FromSMILES: " << sm;
+    QString inputFormat = "smi";
+    if (sm.contains("InChI=")) { inputFormat = "inchi"; }
     QByteArray smArray = sm.toLatin1();
 
     std::istringstream istream( smArray.constData() );        // build a stream on the string
 
     OBMol myMol;
     OBConversion conv;
-    OBFormat *format = conv.FindFormat( "smi" );
+    OBFormat *format = conv.FindFormat( inputFormat.toLatin1() );
 
     conv.SetInAndOutFormats( format, format );
     myMol.Clear();

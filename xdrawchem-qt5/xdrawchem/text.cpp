@@ -777,7 +777,15 @@ QRect Text::BoundingBox()
 {
     if ( highlighted == false )
         return QRect( QPoint( 999, 999 ), QPoint( 0, 0 ) );
-    QRect b = r->GetTextDimensions( start->element, font );
+
+    QTextDocument localtextdocument;
+    localtextdocument.setHtml(start->element);
+    QString tmpline = localtextdocument.toPlainText();
+
+    qInfo() << "Text::BoundingBox:" << start->element << "||" << tmpline;
+
+    //QRect b = r->GetTextDimensions( start->element, font );
+    QRect b = r->GetTextDimensions( tmpline, font );
     QPoint t = GetTopLeftPoint();
 
     b.translate( t.x(), t.y() );

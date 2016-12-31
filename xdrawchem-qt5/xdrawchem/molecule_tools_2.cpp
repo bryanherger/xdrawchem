@@ -284,7 +284,7 @@ Text *Molecule::CalcEmpiricalFormula( bool from_mw )
     // Split all labels into allatoms (one atom per entry)
     foreach ( tmp_pt, up ) {
         // parse this string
-        QString x = tmp_pt->element;
+        QString x = tmp_pt->plainElement();
         QString iso;            // isotope MW
         QString thiselement;    // current element
         QString repeatnum;      // number of repeats
@@ -351,7 +351,7 @@ Text *Molecule::CalcEmpiricalFormula( bool from_mw )
         int possible_h = 0;
 
         //qDebug() << "CalcEF:" << tmp_pt->element;
-        possible_h = MolData::Hydrogens( tmp_pt->element );
+        possible_h = MolData::Hydrogens( tmp_pt->plainElement() );
         foreach ( tmp_bond, bonds ) {
             if ( tmp_bond->Find( tmp_pt ) )
                 possible_h -= tmp_bond->Order();
@@ -494,7 +494,7 @@ Text *Molecule::CalcEmpiricalFormula( bool from_mw )
 
 Text *Molecule::CalcMW( bool from_change )
 {
-    Text *tmp_txt1, *tmp_text;
+    Text *tmp_txt1;
 
     tmp_txt1 = CalcEmpiricalFormula( true );
 
@@ -576,8 +576,6 @@ Text *Molecule::CalcElementalAnalysis( bool show_dialog )
     ny = nr.top() + 8.0;
     nx = nr.right() + 16.0;
 
-    delete tmp_text;
-
     tmp_text = new Text( r );
     //CHECK_PTR(tmp_text);
     tmp_pt = new DPoint( nx, ny );
@@ -617,6 +615,7 @@ void Molecule::AddPeak( double d1, QString s1, QString s2 )
 // add hydrogens to atoms.  Only add to carbon if to_carbons == true
 void Molecule::AddHydrogens( bool to_carbon )
 {
+    qInfo() << "AddHydrogens(" << to_carbon << "), prefs = " << preferences.getFixHydrogens();
     up = AllPoints();
     int h = 0, sumbonds = 0;
     double dx;
@@ -626,7 +625,7 @@ void Molecule::AddHydrogens( bool to_carbon )
     // calculate hindrance first
     foreach ( tmp_pt, up ) {
         // find order of bonds
-        least_hindered_side = 0;
+        least_hindered_side = 0; sumbonds = 0;
         foreach ( tmp_bond, bonds ) {
             if ( tmp_bond->Find( tmp_pt ) ) {
                 dx = tmp_pt->x - tmp_bond->otherPoint( tmp_pt )->x;
@@ -637,6 +636,7 @@ void Molecule::AddHydrogens( bool to_carbon )
             }
         }
         // save # of bonds found
+        qInfo() << tmp_pt->toQPoint() << "(" << tmp_pt->element << "): found substituents = " << sumbonds;
         tmp_pt->substituents = sumbonds;
         tmp_pt->C13_shift = least_hindered_side;
         // update Text, if it exists, with least hindered side
@@ -681,10 +681,18 @@ void Molecule::AddHydrogens( bool to_carbon )
             tmp_pt->element = "N";
         if ( tmp_pt->element == "NH2" )
             tmp_pt->element = "N";
+        if ( tmp_pt->element == "H3N" )
+            tmp_pt->element = "N";
+        if ( tmp_pt->element == "NH3" )
+            tmp_pt->element = "N";
         // so does O
         if ( tmp_pt->element == "HO" )
             tmp_pt->element = "O";
         if ( tmp_pt->element == "OH" )
+            tmp_pt->element = "O";
+        if ( tmp_pt->element == "H2O" )
+            tmp_pt->element = "O";
+        if ( tmp_pt->element == "OH2" )
             tmp_pt->element = "O";
         // let's do thiols too, so H ends up on proper side
         if ( tmp_pt->element == "HS" )
@@ -692,12 +700,18 @@ void Molecule::AddHydrogens( bool to_carbon )
         if ( tmp_pt->element == "SH" )
             tmp_pt->element = "S";
         // retrieve # of bonds found
-        sumbonds = tmp_pt->substituents;
+        sumbonds = 0;//tmp_pt->substituents;
+        foreach ( tmp_bond, bonds ) {
+            if ( tmp_bond->Find( tmp_pt ) ) {
+                if (tmp_bond->Order() < 4) sumbonds += tmp_bond->Order();
+                if (tmp_bond->Order() >= 4) sumbonds += 1;
+            }
+        }
         least_hindered_side = ( int ) tmp_pt->C13_shift;
         // don't add if hydrogen already present
         if ( tmp_pt->element.contains( "H" ) == 0 ) {
             h = MolData::Hydrogens( tmp_pt->element ) - sumbonds;
-            qDebug() << h;
+            qInfo() << "Found hydrogens: " << h;
             if ( h > 1 )
                 hnum.setNum( h );
             else

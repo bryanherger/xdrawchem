@@ -83,21 +83,29 @@ int main( int argc, char **argv )
         out << XDC_VERSION << endl;
         exit( 0 );
     }
-    // set library directory (RingDir = default RINGHOME)
-#ifdef UNIX
-    QString dname( RINGHOME );
 
+    QApplication a( argc, argv );
+
+    // set library directory (RingDir = default RINGHOME)
+    QString dname( RINGHOME );
     if ( dname.right( 1 ) != QString( "/" ) )
         dname.append( QString( "/" ) );
-#else
-    char *pwd = ( char * ) malloc( sizeof( char ) * 80 );
+    //dname.append( "ring/" );
 
-    _getcwd( pwd, 80 );
-    QString dname;
-
-    dname = pwd;
-    dname.append( "\\ring\\" );
-#endif
+    qInfo() << "appDirPath::" << QApplication::applicationDirPath();
+    QString altdname = QApplication::applicationDirPath();
+    if (altdname.contains("Contents/MacOS")) {
+        dname = altdname.replace("Contents/MacOS","Contents/Resources");
+        if ( dname.right( 1 ) != QString( "/" ) )
+                dname.append( QString( "/" ) );
+    }
+    if (altdname.contains("Program Files")) {
+        dname = altdname;
+        if ( dname.right( 1 ) != QString( "/" ) )
+                dname.append( QString( "/" ) );
+        dname.append( "ring/" );
+    }
+    qInfo() << "dname = " << dname;
     RingDir = dname;
 
     // set home directory/pref file and fallback dir/pref file
@@ -132,8 +140,6 @@ int main( int argc, char **argv )
         preferences.setFile( HomeDir, false );
     }
 #endif
-
-    QApplication a( argc, argv );
 
     if ( preferences.LoadPrefs() == false ) {
         qWarning() << "Unable to load preferences file";

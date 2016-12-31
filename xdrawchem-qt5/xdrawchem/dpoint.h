@@ -306,6 +306,12 @@ public:
         i1 = xml_tag.indexOf("<textobject>yes</textobject>");
         if (i1 >= 0) hit = true;  // Create Text object associated with this DPoint
     }
+    // get plain text element
+    QString plainElement() {
+      QTextDocument localText;
+      localText.setHtml(element);
+      return localText.toPlainText();
+    }
     // return atomic number of atom connected in this group
     int getAtomicNumber() {
       QString localElement;
