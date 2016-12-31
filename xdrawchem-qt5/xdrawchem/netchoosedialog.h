@@ -14,6 +14,7 @@ public:
 
 public slots:
     void OK();
+    void cellDoubleClicked(int, int);
 
 private:
     QString fn;

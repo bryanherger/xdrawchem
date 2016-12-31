@@ -16,14 +16,15 @@ NetChooseDialog::NetChooseDialog( QWidget * parent, QStringList r1 )
     QPushButton *ok, *dismiss;
     QLabel *cap1;
 
-    setWindowTitle( "Choose Structure" );
+    setWindowTitle( tr("Choose Structure") );
 
     QGridLayout *mygrid = new QGridLayout( this );
 
-    cap1 = new QLabel( "Select a molecule:", this );
+    cap1 = new QLabel( tr("Select a molecule from list and click OK:"), this );
     mygrid->addWidget( cap1, 0, 0, 1, 4 );
 
     tw = new QTableWidget( this );
+    connect( tw, SIGNAL( cellDoubleClicked(int, int) ), SLOT( cellDoubleClicked(int, int) ) );
     tw->setRowCount( r1.size() );
     tw->setColumnCount(5);
     QStringList m_TableHeader;
@@ -105,7 +106,16 @@ void NetChooseDialog::OK()
     int iRow = tw->currentItem()->row();
     fn = tw->item(iRow, 4)->text();
     fn.replace( "\"", "" );     // strip quotes
-	qDebug() << "fn = " << fn << ", row = " << iRow;
+	qInfo() << "OK: fn = " << fn << ", row = " << iRow;
+    accept();
+}
+
+void NetChooseDialog::cellDoubleClicked(int row, int col)
+{
+    // save SMILES string of selected item
+    fn = tw->item(row, 4)->text();
+    fn.replace( "\"", "" );     // strip quotes
+	qInfo() << "dblClick: fn = " << fn << ", row = " << row;
     accept();
 }
 

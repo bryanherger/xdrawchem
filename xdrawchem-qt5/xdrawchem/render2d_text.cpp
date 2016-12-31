@@ -261,7 +261,7 @@ void Render2D::DrawText_mouseMoveEvent( QMouseEvent * e1 )
     Drawable *no = c->FindNearestObject( e, distobj );
 
     if ( localtext != 0 ) {     // handle moves when there is a current object
-        if ( text_drag == true ) {
+        if ( text_drag == true && start_drag ) {
             localtext->Select( start_drag, e );
             update();
             return;

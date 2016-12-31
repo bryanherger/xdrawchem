@@ -1,6 +1,8 @@
 #include <QClipboard>
+#include <QDesktopServices>
 #include <QGridLayout>
 #include <QSpacerItem>
+#include <QUrl>
 #include <QHBoxLayout>
 #include <QApplication>
 
@@ -84,13 +86,15 @@ void MolInfoDialog::doPubChem()
     QString ffurl, ffcmd;
 
     ffurl = "http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=" + pcc;
-    ffcmd = "firefox " + ffurl + " &";
+    QDesktopServices::openUrl(QUrl(ffurl, QUrl::TolerantMode));
+
+    /*ffcmd = "firefox " + ffurl + " &";
     qDebug() << ffcmd;
     system( ffcmd.toLatin1() );
     QClipboard *cb = QApplication::clipboard();
 
     // Copy text into the clipboard
-    cb->setText( ffurl, QClipboard::Clipboard );
+    cb->setText( ffurl, QClipboard::Clipboard );*/
 }
 
 void MolInfoDialog::SendHelp()

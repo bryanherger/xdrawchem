@@ -1057,6 +1057,10 @@ QString Molecule::ToMDLMolfile( int coords )
     foreach ( tmp_pt, up ) {
       localtextdocument.setHtml(tmp_pt->element);
       tmpline = localtextdocument.toPlainText();
+        // probably should strip H here, since it confuses OB
+        if (tmpline.contains("H")) {
+            tmpline = tmpline.replace("H","").replace("2","").replace("3","").replace("4","");
+        }
         qInfo() << "ToMDLMolfile::tmpline = " << tmpline;
       //tmpline = tmp_pt->element;
         if ( tmpline.length() < 3 )

@@ -25,6 +25,8 @@ Render2D::Render2D( QWidget * parent )
     renderWidth = 750;
     dbuffer = QPixmap( renderWidth, renderHeight );
     directdraw = false;
+    text_drag = false;
+    start_drag = NULL;
 
     setBackgroundRole( QPalette::Base );
 

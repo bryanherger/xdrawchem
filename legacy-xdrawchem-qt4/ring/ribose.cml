@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE molecule SYSTEM "cml.dtd" []>
+<molecule id="ribose.cml" convention="CML-1999-05-15">
+  <string title="GenerationDate">Wed Oct 3 14:29:34 2001</string>
+  <string title="GenerationSoftware">XDrawChem 0.9</string>
+  <atom id="a0">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">61.0001 92.0001</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a1">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">86.0001 92.0001</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a2">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">93.7255 68.2237</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a3">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">53.2747 68.2237</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a4">
+    <string builtin="elementType">O</string>
+    <coordinate2 builtin="xy2">73.5001 53.5291</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a5">
+    <string builtin="elementType">C</string>
+    <coordinate2 builtin="xy2">53.2747 43.2237</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a6">
+    <string builtin="elementType">HO</string>
+    <coordinate2 builtin="xy2">28.2747 43.2237</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a7">
+    <string builtin="elementType">HO</string>
+    <coordinate2 builtin="xy2">61.0001 117</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a8">
+    <string builtin="elementType">OH</string>
+    <coordinate2 builtin="xy2">86.0001 117</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <atom id="a9">
+    <string builtin="elementType">OH</string>
+    <coordinate2 builtin="xy2">93.7255 43.2237</coordinate2>
+    <integer builtin="formalCharge">0</integer>
+  </atom>
+  <bond id="b0" atomRefs="a0 a1">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b1" atomRefs="a1 a2">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b2" atomRefs="a0 a3">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b3" atomRefs="a3 a4">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b4" atomRefs="a2 a4">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b5" atomRefs="a4 a4">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b6" atomRefs="a3 a5">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b7" atomRefs="a5 a6">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b8" atomRefs="a0 a7">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b9" atomRefs="a1 a8">
+    <string builtin="order">1</string>
+  </bond>
+  <bond id="b10" atomRefs="a2 a9">
+    <string builtin="order">1</string>
+  </bond>
+</molecule>
