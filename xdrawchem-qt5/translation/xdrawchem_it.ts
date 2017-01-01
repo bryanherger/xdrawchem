@@ -5,65 +5,9 @@
         <source>untitled</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Title page</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>File Menu/Toolbar</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Drawing Toolbar</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Text</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Selecting and Editing</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Formatting</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Tools</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Internet search</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Available rings and molecules</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;&lt; &amp;Previous</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&amp;Next &gt;&gt;</source>
-        <translation type="obsolete"></translation>
-    </message>
 </context>
 <context>
     <name>ApplicationWindow</name>
-    <message>
-        <source>Click this button to open a file. &lt;br&gt;&lt;br&gt;You can also select the Open command from the File menu.</source>
-        <translation type="obsolete"></translation>
-    </message>
     <message>
         <source>Click this button to save the file you are editing.&lt;br&gt;&lt;br&gt;You can also select the Save command from the File menu.&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
@@ -82,10 +26,6 @@
     </message>
     <message>
         <source>Click this button to paste a selection.&lt;br&gt;&lt;br&gt;You can also select the Paste command from the Edit menu, or press Ctrl+V.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select tool&lt;br&gt;&lt;br&gt;Use the Select tool to select and move items.&lt;br&gt;&lt;br&gt;You can select multiple items and cut, copy, move and rotate them.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -161,10 +101,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set drawing color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Set line thickness</source>
         <translation type="unfinished"></translation>
     </message>
@@ -190,23 +126,23 @@
     </message>
     <message>
         <source>Make selected text &lt;b&gt;bold&lt;/b&gt;</source>
-        <translation type="obsolete"></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;i&gt;Italicize&lt;/i&gt; selected text</source>
-        <translation type="obsolete"></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Underline selected text</source>
-        <translation type="obsolete"></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Superscript selected text</source>
-        <translation type="obsolete"></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Subscript selected text</source>
-        <translation type="obsolete"></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select</source>
@@ -214,10 +150,6 @@
     </message>
     <message>
         <source>Erase</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -233,63 +165,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Draw arrow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw curved arrow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw bracket</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Draw or edit text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw ring</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw symbol</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Canned Structures</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclopropane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclobutane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclopentane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclopentadiene</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclohexane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclohexane - chair conformation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclohexane - boat conformation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Benzene</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -397,18 +273,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Fixed &amp;length and angle</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&amp;Set fixed length and angle</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Set &amp;background color</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
         <source>T&amp;ools</source>
         <translation type="unfinished"></translation>
     </message>
@@ -421,27 +285,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Calculate empirical formula</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Calculate molecular weight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Elemental analysis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Predict 13C NMR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Predict IR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Input SMILES</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -451,14 +299,6 @@
     <message>
         <source>&amp;Manual</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;About...</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&amp;References...</source>
-        <translation type="obsolete"></translation>
     </message>
     <message>
         <source>What&apos;s &amp;This</source>
@@ -511,44 +351,6 @@
     <message>
         <source>No molecules in the database match the query.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occured.  The server cannot find the selected molecule.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>
-Bryan Herger
-herger@chemistry.gatech.edu
-Please subscribe to the mailing list for information about future releases.
-Send a blank message to xdrawchem-announce-request@lists.sourceforge.net
-Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
-See file LICENSE.txt for more details</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>
-Bryan Herger
-herger@chemistry.gatech.edu
-
-Please subscribe to the mailing list for information about future releases.
-Send a blank message to xdrawchem-announce-request@lists.sourceforge.net
-
-Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
-See file LICENSE.txt for more details</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>
-Bryan Herger
-herger@chemistry.gatech.edu
-
-Please subscribe to the mailing list for information about future releases.
-Send a message to xdrawchem-announce-request@lists.sourceforge.net with &apos;subscribe&apos; as the subject.
-
-Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
-See file LICENSE.txt for more details</source>
-        <translation type="obsolete"></translation>
     </message>
     <message>
         <source>Click this button to open a file.&lt;br&gt;&lt;br&gt;You can also select the Open command from the File menu.</source>
@@ -623,64 +425,8 @@ See file LICENSE.txt for more details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>
-Bryan Herger
-herger@chemistry.gatech.edu
-
-Please subscribe to the mailing list for information about future releases.
-Send a message to xdrawchem-announce-request@lists.sourceforge.net with &apos;subscribe&apos; as the subject.
-
-XDrawChem is copyight (C) 2002 Bryan Herger.
-Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
-See file COPYRIGHT.txt for more details</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
         <source>How to get help</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Current information on XDrawChem can always be found at
-http://www.prism.gatech.edu/~gte067k/xdrawchem/
-The latest release will be posted here.
-
-There are two mailing lists:  xdrawchem-announce, where new releases will be announced,
-and xdrawchem-user, for open discussion among XDrawChem users.
-Subscribe by sending a blank e-mail with subject &quot;subscribe&quot; to 
-&quot;xdrawchem-announce-request@lists.sourceforge.net&quot; or
-&quot;xdrawchem-user-request@lists.sourceforge.net&quot;
-
-You can contact the author directly at
-herger@chemistry.gatech.edu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Make selected text &lt;b&gt;bold&lt;/b&gt; (Ctrl+B)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;i&gt;Italicize&lt;/i&gt; selected text (Ctrl+I)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Underline selected text (Ctrl+U)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Superscript selected text (Ctrl-Plus)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subscript selected text (Ctrl-Minus)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import via OpenBabel</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Export via OpenBabel</source>
-        <translation type="obsolete"></translation>
     </message>
     <message>
         <source>Compare 1H NMR</source>
@@ -688,19 +434,6 @@ herger@chemistry.gatech.edu</source>
     </message>
     <message>
         <source>Create custom ring</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>
-Bryan Herger
-herger@chemistry.gatech.edu
-
-Please subscribe to the mailing list for information about future releases.
-Send a message to xdrawchem-announce-request@lists.sourceforge.net with &apos;subscribe&apos; as the subject.
-
-XDrawChem is copyright (C) 2002 Bryan Herger.
-Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
-See file COPYRIGHT.txt for more details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -948,10 +681,6 @@ See file COPYRIGHT.txt for more details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Import file using OpenBabel</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
         <source>--Select a filter-- (*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -969,14 +698,6 @@ See file COPYRIGHT.txt for more details</source>
     </message>
     <message>
         <source>Cannot open the specified file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically Add &amp;hydrogens</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Test tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1004,13 +725,412 @@ Conversion failed in ioiface.cpp</source>
         <source>Cannot write the specified file.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Click this button to zoom in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click this button to zoom out.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select tool&lt;br&gt;&lt;br&gt;Use the Select tool to select and move items inside a box.&lt;br&gt;&lt;br&gt;You can select multiple items and cut, copy, move and rotate them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lasso tool&lt;br&gt;&lt;br&gt;Use the Lasso tool to select and move items by drawing a loop around them.&lt;br&gt;&lt;br&gt;You can select multiple items and cut, copy, move and rotate them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chain tool&lt;br&gt;&lt;br&gt;Use the Chain tool to draw aliphatic chains.  The length of each segment is the current bond length.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wavy Line tool&lt;br&gt;&lt;br&gt;Use the Wavy Line tool to draw wavy lines, as shown on the button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left-justify selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right-justify selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lasso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw aliphatic chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw wavy bond</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to &amp;external program...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert s&amp;ymbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Deselect All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal (100%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle &amp;grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;XDC settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predict 1H NMR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predict pKa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predict octanol-water partition (Kow)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get bond identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input InChI or SMILES</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output InChI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build 3D model of molecule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Did You Know?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to external program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This function will open a 3-D version of one molecule
+in an external modelling program.
+
+Send to program:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ghemical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>KryoMol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to external program failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save file for external program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not execute the external program.
+Please verify that it is installed correctly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plus sign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minus sign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delta plus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delta minus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1e symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2e symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2e line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ring up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Orbital</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Double orbital</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Antibody</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Newman projection symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Newman projection - staggered (anti)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Newman projection - eclipsed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top harpoon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom harpoon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Middle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Did not work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dashed arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BI1 arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BI2 arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retro arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90&#xc2;&#xb0; cw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90&#xc2;&#xb0; ccw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>180&#xc2;&#xb0; cw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>180&#xc2;&#xb0; ccw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>270&#xc2;&#xb0; cw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>270&#xc2;&#xb0; ccw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cubic bezier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cubic bezier - half arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cubic bezier - full arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Square bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Curve bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Brace bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Box bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ellipse bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed square bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Circle bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+Bryan Herger
+bherger@users.sourceforge.net
+
+Please subscribe to the mailing list for information about future releases.
+Send a message to xdrawchem-announce-request@lists.sourceforge.net with &apos;subscribe&apos; as the subject.
+
+XDrawChem is copyright (C) 2004 Bryan Herger.
+Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
+OpenBabel code copyright (C) 2003 by the OpenBabel project team.
+See file COPYRIGHT.txt for more details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current information on XDrawChem can always be found at
+http://xdrawchem.sourceforge.net/
+The latest release will be posted here, as well as links to mailing lists and the bug tracker.
+
+Please submit bugs using the SourceForge tracker: http://www.sourceforge.net/tracker/?group_id=34518
+
+There are two mailing lists:  xdrawchem-announce, where new releases will be announced,
+and xdrawchem-user, for open discussion among XDrawChem users.
+Subscribe by sending a blank e-mail with subject &quot;subscribe&quot; to 
+&quot;xdrawchem-announce-request@lists.sourceforge.net&quot; or
+&quot;xdrawchem-user-request@lists.sourceforge.net&quot;
+
+You can contact the author directly at
+bherger@users.sourceforge.net</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom = %1 %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDC Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change XDrawChem settings:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Main font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ruler font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CDXML - ChemDraw text/XML format (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CDX - ChemDraw binary format (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite existing file: %1 ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[*] Biotin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BondEditDialog</name>
-    <message>
-        <source>Color</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Arrow editor</source>
         <translation type="unfinished"></translation>
@@ -1167,6 +1287,81 @@ Conversion failed in ioiface.cpp</source>
         <source>p orbital</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NR arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrow thickness:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wavy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bond thickness:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Double bond alignment:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>p double</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bead</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CharSelDialog</name>
+    <message>
+        <source>Insert symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ChemData</name>
@@ -1221,6 +1416,22 @@ Conversion failed in ioiface.cpp</source>
         <source>1H NMR compare error</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Octanol-water partition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated octanol-water partition constant (log Kow) = %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>InChI string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>InChI string for selected molecule:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CustomRingDialog</name>
@@ -1238,18 +1449,129 @@ Conversion failed in ioiface.cpp</source>
     </message>
 </context>
 <context>
+    <name>CustomRingWidget</name>
+    <message>
+        <source>Title: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DYKDialog</name>
+    <message>
+        <source>Did You Know?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Don&apos;t show this dialog at startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous tip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next tip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can be run from the command line
+to produce images.
+Type &quot;xdrawchem --help&quot; for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When in select mode, you can edit most objects
+by right-clicking on them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When drawing bonds, you can edit the bond style
+by right-clicking on the bond.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When in select mode, press Shift+LeftButton and drag
+over part of a molecule to select the entire molecule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When in select mode, press Ctrl+LeftButton
+on a molecule to get molecule information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bond length, bond angle, and units are set
+in the Drawing Settings option under the Format menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can attach a subscript to a bracket by selecting
+the text tool, then clicking on the bracket.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can toggle the grid display by pressing Ctrl+G.
+Turning the grid on or off does not affect whether
+objects snap to the grid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A number of ring and molecule templates are available
+from the ring tool, including single and fused rings,
+amino acids, and nucleosides.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remember to select a file type when
+opening or saving documents.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The option &quot;Clean up molecule&quot; under
+the Tools menu can be used to refine structures
+such as rings and macromolecules.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It&apos;s possible to attach rings to structures
+by selecting a ring and clicking on an atom.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can automatically attach
+amino acids from N-terminal to C-terminal
+(but the result isn&apos;t always pretty :)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Be sure to check for updates at
+http://xdrawchem.sourceforge.net/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can draw over 100,000 substances using
+its Internet database.  Select Find on internet
+from the File menu to search for compounds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can identify compounds by CAS number
+and occasionally by name.
+Select Molecule information from the Tools menu
+and click on a molecule.  However, this only works
+if the compound is listed in the database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FixedDialog</name>
     <message>
         <source>Set fixed angle and length</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fixed angle:</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Fixed length:</source>
-        <translation type="obsolete"></translation>
     </message>
     <message>
         <source>OK</source>
@@ -1283,6 +1605,46 @@ Conversion failed in ioiface.cpp</source>
         <source>Double bond spacing:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Units:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pixels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not show grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show square grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show hex grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Snap to grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grid spacing:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cm</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GraphDialog</name>
@@ -1304,15 +1666,18 @@ Conversion failed in ioiface.cpp</source>
     </message>
 </context>
 <context>
+    <name>GraphWidget</name>
+    <message>
+        <source>Red is reactant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blue is product</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HTTP</name>
-    <message>
-        <source>Accessing network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please wait.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>HelpWindow</name>
@@ -1352,18 +1717,6 @@ Conversion failed in ioiface.cpp</source>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Backward</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Forward</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MolInfoDialog</name>
@@ -1380,10 +1733,6 @@ Conversion failed in ioiface.cpp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Analysis = </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1395,6 +1744,46 @@ Conversion failed in ioiface.cpp</source>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>CAS:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PubChem compound:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other names:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other names: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CAS: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PubChem compound: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Analysis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search PubChem</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Molecule</name>
@@ -1404,6 +1793,248 @@ Conversion failed in ioiface.cpp</source>
     </message>
     <message>
         <source>Product</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predicted 1H-NMR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Intensity: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Multiplicity: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predicted 13C-NMR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predicted IR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1350-1000, C-N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1300-1000, C-O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1660-1600, C=C (cis/vinyl strong; trans weak)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1690-1640, C=N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1700 (narrow), C=O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1350-1300, S=O (~1050 if R-(S=O)-R&apos;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2250 (narrow), nitrile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~3000 (broad), C-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>two peaks: ~3400, ~3300, primary N-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~3300 (broad), secondary N-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2550 (broad), S-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~3400 (broad), O-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2270 (narrow), -N=C=O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2125 (narrow), -N=C=S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1525 (narrow), -NO2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1600 (narrow), aromatic ring C=C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1475 (narrow), aromatic ring C=C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10.5 (Guanidine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9 (a-carbon between two ketones)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (a-carbon between two ketones)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (a-carbon between ketone and ester)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>13 (a-carbon between two esters)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 (Aromatic primary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9-10 (Alkene-primary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (Aliphatic primary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-4 (pyrrole)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>14.4 (secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (aliphatic secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>6.8 (conjugated secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 (aromatic secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1-3 (purine/pyrimidine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 (tertiary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 (aliphatic tertiary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8 (Peroxy acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-1 (sulfonic acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 (Aromatic carboxylic acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4.5 (Aliphatic carboxylic acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 (Aliphatic carboxylic acid, a-halide)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1.3 (Aliphatic carboxylic acid, 2 a-halide)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 (Aromatic -OH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>16 (Aliphatic -OH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>7.8 (Aromatic -SH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10.6 (Aliphatic -SH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated pKa&apos;s:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There seem to be no sites with pKa between -1 and 15.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated pKa&apos;s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elemental analysis:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No reactions found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following reactions could have resulted in this product:
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+Target bonds will be highlighted in green.
+To see reactions affecting a highlighted bond, right-click on the bond and select Info.
+To clear highlights, select Undo from the Edit menu, or press Ctrl+Z.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse reactions list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No reactions in the database could yield the selected molecule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save 3D file as...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MDL molfile (*.mol)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1422,6 +2053,14 @@ Conversion failed in ioiface.cpp</source>
     </message>
     <message>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose Structure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a molecule from list and click OK:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1522,6 +2161,30 @@ Conversion failed in ioiface.cpp</source>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Custom paper size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pixels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page height:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PeptDialog</name>
@@ -1614,10 +2277,6 @@ three-letter abbreviations:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Click on a molecule to determine its IUPAC name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Click on a molecule to determine its SMILES string</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1681,6 +2340,146 @@ three-letter abbreviations:</source>
         <source>Please type or edit the subscript for this bracket:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lasso mode: left click and hold to draw lasso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Chain mode: left click and drag to draw aliphatic chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Wavy Line mode: left click to draw line, right click to edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw graphic object: cubic bezier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left-click to draw Newman projection template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to calculate its pKa(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule for possible retrosynthesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to display its bond identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to calculate its octanol-water partition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to generate 3-D coordinates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to guess its name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Object information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bond</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Curved Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill color...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shape...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Molecule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select mode: left click on objects to move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Line - Length = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, Angle = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw aliphatic chain - Length = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> bonds</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RingDialog</name>
@@ -1700,10 +2499,6 @@ three-letter abbreviations:</source>
 <context>
     <name>SmilesDialog</name>
     <message>
-        <source>Enter SMILES string</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1712,7 +2507,70 @@ three-letter abbreviations:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter SMILES string:</source>
+        <source>Enter InChI or SMILES string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter InChI or SMILES string:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TextShapeDialog</name>
+    <message>
+        <source>Edit text shape</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No shape</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rectangle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Height:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1797,121 +2655,20 @@ three-letter abbreviations:</source>
 </context>
 <context>
     <name>XManual</name>
+</context>
+<context>
+    <name>XRuler</name>
     <message>
-        <source>&lt;center&gt;&lt;b&gt;Welcome to XDrawChem!&lt;/b&gt;&lt;br&gt;Bryan Herger&lt;br&gt;herger@chemistry.gatech.edu&lt;br&gt;&lt;/center&gt;&lt;p&gt;&lt;b&gt;Navigating the manual:&lt;/b&gt;&lt;p&gt;At the bottom of the window there are three buttons.  These are:&lt;p&gt;Close - close the manual.&lt;br&gt;Prev - go to the previous manual page.&lt;br&gt;Next - go to the next manual page.&lt;p&gt;The number between Prev and Next tells what page you are viewing.&lt;br&gt;You can jump to any page by selecting the page title from the combo box at the top.&lt;p&gt;A note on keyboard shortcuts:  key names are abbreviated.  For example, &quot;Ctrl+O&quot; means hold the control (Ctrl) key and press O.</source>
-        <translation type="obsolete"></translation>
+        <source>px</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;Overview&lt;/b&gt;&lt;p&gt;The application window consists of five major elements:&lt;br&gt;The menu bar at the top;&lt;br&gt;The file/edit toolbar below the menu bar;&lt;br&gt;The drawing toolbar, on the left;&lt;br&gt;The status bar, along the bottom;&lt;br&gt;and the drawing area, the large area in the middle.&lt;p&gt;The File/Edit toolbar shows commonly used items which are also found under the File and Edit menus.&lt;p&gt;The Drawing toolbar shows available drawing tools.&lt;p&gt;To get help on a toolbar button, click on the &lt;img source=&quot;whatsthisicon&quot;&gt;&lt;b&gt;What&apos;s This?&lt;/b&gt; button, then the button you want help with.&lt;p&gt;The status bar shows error messages, information, and usually a tip on how to use the current drawing tool.&lt;p&gt;The following pages describe all the buttons and menu options.</source>
-        <translation type="obsolete"></translation>
+        <source>in</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;The File Menu and Toolbar Buttons&lt;/b&gt;&lt;p&gt;&lt;img source=&quot;fileopenicon&quot;&gt;&lt;b&gt;Open File&lt;/b&gt; (Ctrl+O) Open a file. A dialog will appear asking you to select a file. This will overwrite the drawing in the current window!&lt;br&gt;Files which are not native (XDC) format will be scaled to the current fixed length on loading.&lt;p&gt;&lt;img source=&quot;filesaveicon&quot;&gt;&lt;b&gt;Save File&lt;/b&gt; (Ctrl+S) Save the current file.  If it is a new file, you will be prompted for a directory and filename to save to.&lt;p&gt;&lt;b&gt;Save as...&lt;/b&gt; Save the current file with a different name.&lt;br&gt;&lt;p&gt;&lt;b&gt;Save image&lt;/b&gt; Saves the current drawing as an image (BMP, PNG, EPS formats available).  The entire drawing is saved.&lt;p&gt;&lt;b&gt;Page Setup&lt;/b&gt; Opens a window allowing you to choose paper size and orientation.&lt;p&gt;&lt;img source=&quot;fileprinticon&quot;&gt;&lt;b&gt;Print&lt;/b&gt; (Ctrl+P) Prints the current drawing.  A dialog will appear, allowing you to select destination printer or file, paper size, orientation, etc.&lt;p&gt;&lt;b&gt;Close&lt;/b&gt; (Ctrl+W) Closes this window.&lt;p&gt;&lt;b&gt;Quit&lt;/b&gt; (Ctrl+Q) Closes all windows and exits the application.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Drawing&lt;/b&gt;&lt;p&gt;The toolbar on the left side show available drawing tools.  Click on a tool, then click and drag in the drawing area to draw.&lt;p&gt;&lt;img source=&quot;selecttoolicon&quot;&gt;&lt;b&gt;Select tool&lt;/b&gt; Select objects in the drawing.  Click on individual objects to select, or left-click and drag to select multiple objects.&lt;br&gt;After selecting objects, you can move them by dragging with the left mouse button, or roatet them by dragging with the right mouse button.&lt;p&gt;&lt;img source=&quot;erasetoolicon&quot;&gt;&lt;b&gt;Erase tool&lt;/b&gt; Erase individual objects. Move mouse over object to highlight and left-click to delete.&lt;p&gt;&lt;img source=&quot;linetoolicon&quot;&gt;&lt;b&gt;Line tool&lt;/b&gt; Draw lines (bonds).  This tool will automatically snap endpoints of lines together. Start or finish drawing near the endpoint of another line.  The highlight square will indicate which line it will snap to. Create double and triple bonds by drawing over an existing line.&lt;p&gt;&lt;img source=&quot;dashtoolicon&quot;&gt;&lt;b&gt;Dashed line tool&lt;/b&gt; Draw dashed lines.  These can also be drawn over existing bonds to form e.g. aromatic bonds or resonance forms.&lt;p&gt;&lt;img source=&quot;uplinetoolicon&quot;&gt;&lt;b&gt;Up Line tool&lt;/b&gt; Draw up-facing stereospecific bonds.&lt;p&gt;&lt;img source=&quot;downlinetoolicon&quot;&gt;&lt;b&gt;Down Line tool&lt;/b&gt; Draw down-facing stereospecific bonds.&lt;p&gt;&lt;img source=&quot;arrowtoolicon&quot;&gt;&lt;b&gt;Arrow tool&lt;/b&gt; Draw arrows.  Arrows cannot snap to any other object.&lt;p&gt;&lt;img source=&quot;curvearrowtoolicon&quot;&gt;&lt;b&gt;Curved arrow tool&lt;/b&gt; Draw curved arrows.  Click and hold this tool and a submenu will appear.  Select a curved arrow from the menu.&lt;p&gt;&lt;img source=&quot;brackettoolicon&quot;&gt;&lt;b&gt;Bracket tool&lt;/b&gt; Draw brackets. Click and hold this tool and a submenu will appear.  Select a bracket from the menu. Left-click and drag to draw brackets.&lt;p&gt;&lt;img source=&quot;texttoolicon&quot;&gt;&lt;b&gt;Text tool&lt;/b&gt; Add text.  Click on the endpoint of a line or an intersection to label it.&lt;br&gt;The next page describes text in great detail.&lt;p&gt;&lt;img source=&quot;ringtoolicon&quot;&gt;&lt;b&gt;Ring tool&lt;/b&gt; Add rings and other predefined molecules. A dialog box will appear with rings and molecules XChemDraw is able to draw.  Or, click and hold to get a picture list of &apos;favorite&apos; rings.&lt;br&gt;Directions to put molecules on the &apos;favorite&apos; list appear later.&lt;p&gt;&lt;img source=&quot;symboltoolicon&quot;&gt;&lt;b&gt;Symbol tool&lt;/b&gt; Add symbols.  Click and hold for a picture menu of symbols.  Select a symbol from the menu.  Click on a point to put a symbol on that point -- the symbol will move with the point.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Text&lt;/b&gt;&lt;p&gt;Select the &lt;img source=&quot;texttoolicon&quot;&gt;Text tool to add or edit text.  Click anywhere to add text, click on a point to add a label (e.g., the element or functional group). Click on existing text to edit.&lt;p&gt;While you are editing, select text by dragging over with the cursor, or hold Shift and Arrow-Left or Right.  Use the &lt;img source=&quot;supericon&quot;&gt;Superscript and &lt;img source=&quot;subicon&quot;&gt;Subscript buttons on the top toolbar to add or remove super- and subscript. You can also make the text &lt;img source=&quot;boldtool&quot;&gt;&lt;b&gt;bold&lt;/b&gt;, &lt;img source=&quot;italictool&quot;&gt;&lt;i&gt;italic&lt;/i&gt;, or &lt;img source=&quot;underlinetool&quot;&gt;&lt;u&gt;underlined&lt;/u&gt; in a similar manner.&lt;p&gt;While editing, you can change the font and size of the text being edited by changing the font and size on the top toolbar.  Note that this affects the entire text being edited.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Selecting and Editing&lt;/b&gt;&lt;p&gt;Important note:  you can only cut, copy, and paste between XDrawChem windows.  To import drawings into other applications, use &lt;b&gt;Save image&lt;/b&gt; to create an image, or save as an MDL Molfile.&lt;p&gt;&lt;b&gt;Selecting&lt;/b&gt;&lt;p&gt;Select using the &lt;img source=&quot;selecttoolicon&quot;&gt;&lt;b&gt;Select tool&lt;/b&gt;.  Click and drag to highlight a selection.  Alternatively, the Select tool can be used to drag individual objects and points.  Move the cursor over an object and the cursor will become a four-way arrow.  Click and drag with the left button to move.&lt;p&gt;&lt;b&gt;Changing objects&lt;/b&gt;&lt;p&gt;To change an object after drawing it, choose the select tool and highlight the object.  Right-click on it.  A dialog box will appear (except for Text object) allowing you to change properties of the object.&lt;p&gt;&lt;b&gt;Rotate and resize&lt;/b&gt;&lt;p&gt;To rotate or resize, select multiple objects.  A box will appear around the selection.  Click and drag the box in the top right to rotate; click and drag the box in the bottom right to resize.&lt;p&gt;&lt;b&gt;Editing&lt;/b&gt;&lt;br&gt;&lt;b&gt;Undo&lt;/b&gt; (Ctrl+Z) Undo the last action.  The last 16 actions may be undone.&lt;br&gt;&lt;img source=&quot;cuticon&quot;&gt;&lt;b&gt;Cut&lt;/b&gt; (Ctrl+X) Cut a selection from this drawing.&lt;br&gt;&lt;img source=&quot;copyicon&quot;&gt;&lt;b&gt;Copy&lt;/b&gt; (Ctrl+C) Copy a selection from this drawing.&lt;br&gt;&lt;img source=&quot;pasteicon&quot;&gt;&lt;b&gt;Paste&lt;/b&gt; (Ctrl+V) Paste something that was cut or copied.&lt;br&gt;&lt;b&gt;Clear&lt;/b&gt; (Del) Erases the current selection permanently.&lt;br&gt;&lt;b&gt;Select all&lt;/b&gt; (Ctrl+A) Select all objects in the drawing.&lt;br&gt;There are two sub-menus:&lt;br&gt;&lt;b&gt;Rotate:&lt;/b&gt; Rotate the selection by 90, 180, or 270 degrees.&lt;br&gt;&lt;b&gt;Flip:&lt;/b&gt; Flip the selection about a horizontal or vertical line.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Formatting&lt;/b&gt;&lt;p&gt;&lt;b&gt;Fixed line length and angles&lt;/b&gt; To set fixed line length and angles, check the &apos;Fixed length/angles&apos; option under the Format menu.  The fixed length may be changed in the &apos;Set fixed length/angle&apos; dialog.  Units are in pixels.  To print to scale, use 50 pixels as the fixed length, save as an image and print at 100 dpi for 1/2 inch lines, for example.&lt;p&gt;&lt;b&gt;Changing font and font size&lt;/b&gt; To change font parameters, select a new font and size from the top toolbar.&lt;p&gt;&lt;b&gt;Changing color&lt;/b&gt; To change color, click on the Set Color button on the top toolbar.  It is the button showing the current drawing color (default is black) with an arrow to the right.  A window will appear allowing you to select the new drawing color.&lt;p&gt;&lt;b&gt;Changing the background&lt;/b&gt; Select &apos;Set Background Color&apos; from the Format menu.  A window will appear allowing you to select a new background color.&lt;p&gt;&lt;b&gt;Changing line width&lt;/b&gt; To change line width, select a line width from the pulldown of numbers to the right of the color list.&lt;p&gt;&lt;b&gt;Auto Layout&lt;/b&gt; To automatically adjust the position of molecules and arrows, select the objects you wish to line up. Select Auto Layout under the Tools menu or press Ctrl+L.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Tools&lt;/b&gt;&lt;p&gt;The Tools menu has several useful functions:&lt;br&gt;&lt;b&gt;Auto layout&lt;/b&gt; (Ctrl+L) is described  on the previous page.&lt;br&gt;&lt;b&gt;Calculate empirical formula&lt;/b&gt; Select this option and click on a molecule.  A label will appear above the molecule showing its empirical formula.&lt;br&gt;&lt;b&gt;Calculate molecular weight&lt;/b&gt; Select this option and click on a molecule.  A label will appear under the molecule with its molecular weight.&lt;br&gt;&lt;b&gt;Calculate empirical formula&lt;/b&gt; Select this option and click on a molecule.  A window will pop up with the percent composition of carbon, hydrogen, oxygen, and nitrogen.&lt;br&gt;&lt;b&gt;Predict 13C NMR&lt;/b&gt; Select this option and click on a molecule.  A dialog will appear with a picture of the molecule and the predicted peaks.  You can print the picture and peak list exactly as shown on the screen.&lt;br&gt;&lt;b&gt;Predict IR&lt;/b&gt; Select this option and click on a molecule.  A dialog will appear with a picture of the molecule and the predicted peaks.  You can print the picture and peak list exactly as shown on the screen.&lt;br&gt;</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Internet database searches&lt;/b&gt;&lt;p&gt;XDrawChem can retrieve molecules from its own network database.  Structures in the database are taken from the public NCI database.  See References in Help menu.&lt;p&gt;Choose Find on Internet from the File menu or press Ctrl+F to open the search dialog.  The server is set at compile time, or by the environment variable XDC_SERVER.  It can also be changed here.  Select CAS-Number or Formula search from the pulldown menu.  Type the search string in the bottom text box.  Check exact match if you want to find an exact formula; CAS number searches are always assumed to be exact match searaches.  Press Search.  If only one molecule is found, it is automatically inserted.  If multiple molecules are found, you will be presented with a list of molecules.  Click on the CAS number to select the molecule and press Select to insert the molecule into the current drawing.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;img source=&quot;ringtoolicon&quot;&gt;&lt;b&gt;Ring and Molecules in XDrawChem&apos;s library&lt;/b&gt;&lt;p&gt;Press and hold the left mouse button on the Ring tool button to open the ring menu.  The following structures are available:&lt;p&gt;Rings: cyclopentane, imidazole, cyclohexane, benzene.&lt;p&gt;Molecules:&lt;br&gt;All 20 standard amino acids.&lt;br&gt;Standard nucleic acids: adenine, guanine, cytosine, thymine, uracil.&lt;p&gt;&lt;b&gt;Adding molecules&lt;/b&gt;&lt;br&gt;To add a molecule to the Ring dialog, simply save a CML format file of it to the RINGDIR directory (see INSTALL.txt).  The molecule will appear by the name it is saved as (e.g., save methyl t-butyl ether as &apos;mtbe.cml&apos; and &apos;mtbe&apos; will appear on the molecule list next time the dialog is opened.)&lt;p&gt;&lt;b&gt;The Favorite list&lt;/b&gt;&lt;br&gt;The Favorite list is the last meu item under the ring menu.  To add molecules to this list, simply put the molecule in the RINGDIR directory (see INSTALL.txt), as well as a PNG image of the molecule with the same name.  For instance, one could add acetone by placing a CML file named &apos;acetone.cml&apos; in RINGDIR, as well as a PNG file named &apos;acetone.png&apos;.  See files in RINGDIR already; XDrawChem installs with benzene, imidazole, cyclopentane, and cyclohexane on the favorite list.&lt;br&gt;To remove a picture from the Favorite list, delete its corresponding picture (PNG file).</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;&lt; &amp;Prev</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&amp;Next &gt;&gt;</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;&lt; &amp;Previous</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Selecting and Editing&lt;/b&gt;&lt;p&gt;Important note:  you can only cut, copy, and paste between XDrawChem windows.  To import drawings into other applications, use &lt;b&gt;Save image&lt;/b&gt; to create an image, or save as an MDL Molfile.&lt;p&gt;&lt;b&gt;Selecting, Moving, Drag and Drop&lt;/b&gt;&lt;p&gt;Select using the &lt;img source=&quot;selecttoolicon&quot;&gt;&lt;b&gt;Select tool&lt;/b&gt;.  Click and drag to highlight a selection.  Alternatively, the Select tool can be used to drag individual objects and points.  Move the cursor over an object and the cursor will become a four-way arrow.  Click and drag with the left button to move.&lt;p&gt;You can drag and drop selections into other applications.  Use the right mouse button to drag the selected region to another application.  The destination application must be able to accept image drops of type image/png or image/bmp.&lt;b&gt;Changing objects&lt;/b&gt;&lt;p&gt;To change an object after drawing it, choose the select tool and highlight the object.  Right-click on it.  A dialog box will appear (except for Text object) allowing you to change properties of the object.&lt;p&gt;&lt;b&gt;Rotate and resize&lt;/b&gt;&lt;p&gt;To rotate or resize, select multiple objects.  A box will appear around the selection.  Click and drag the box in the top right to rotate; click and drag the box in the bottom right to resize.&lt;p&gt;&lt;b&gt;Editing&lt;/b&gt;&lt;br&gt;&lt;b&gt;Undo&lt;/b&gt; (Ctrl+Z) Undo the last action.  The last 16 actions may be undone.&lt;br&gt;&lt;img source=&quot;cuticon&quot;&gt;&lt;b&gt;Cut&lt;/b&gt; (Ctrl+X) Cut a selection from this drawing.&lt;br&gt;&lt;img source=&quot;copyicon&quot;&gt;&lt;b&gt;Copy&lt;/b&gt; (Ctrl+C) Copy a selection from this drawing.  The Copy command also copies the selection to the system clipboard as an image.&lt;br&gt;&lt;img source=&quot;pasteicon&quot;&gt;&lt;b&gt;Paste&lt;/b&gt; (Ctrl+V) Paste something that was cut or copied.&lt;br&gt;&lt;b&gt;Clear&lt;/b&gt; (Del) Erases the current selection permanently.&lt;br&gt;&lt;b&gt;Select all&lt;/b&gt; (Ctrl+A) Select all objects in the drawing.&lt;br&gt;There are two sub-menus:&lt;br&gt;&lt;b&gt;Rotate:&lt;/b&gt; Rotate the selection by 90, 180, or 270 degrees.&lt;br&gt;&lt;b&gt;Flip:&lt;/b&gt; Flip the selection about a horizontal or vertical line.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Title page</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>File Menu/Toolbar</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Drawing Toolbar</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Text</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Selecting and Editing</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Formatting</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Tools</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Internet search</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>Available rings and molecules</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Selecting and Editing&lt;/b&gt;&lt;p&gt;Important note:  you can cut, copy, and paste between XDrawChem windows.  It is possible to copy images into other applications, or to drag and drop selections.  If the application will not accept copy or drag and drop, use &lt;b&gt;Save image&lt;/b&gt; to create an image, or save as an MDL Molfile.  It is not possible to paste or drag items into XDrawChem from other applications.&lt;p&gt;&lt;b&gt;Selecting, Moving, Drag and Drop&lt;/b&gt;&lt;p&gt;Select using the &lt;img source=&quot;selecttoolicon&quot;&gt;&lt;b&gt;Select tool&lt;/b&gt;.  Click and drag to highlight a selection.  Alternatively, the Select tool can be used to drag individual objects and points.  Move the cursor over an object and the cursor will become a four-way arrow.  Click and drag with the left button to move.&lt;p&gt;You can drag and drop selections into other applications.  Use the right mouse button to drag the selected region to another application.  The destination application must be able to accept image drops of type image/png or image/bmp.&lt;p&gt;&lt;b&gt;Changing objects&lt;/b&gt;&lt;p&gt;To change an object after drawing it, choose the select tool and highlight the object.  Right-click on it.  A dialog box will appear (except for Text object) allowing you to change properties of the object.&lt;p&gt;&lt;b&gt;Rotate and resize&lt;/b&gt;&lt;p&gt;To rotate or resize, select multiple objects.  A box will appear around the selection.  Click and drag the box in the top right to rotate; click and drag the box in the bottom right to resize.&lt;p&gt;&lt;b&gt;Editing&lt;/b&gt;&lt;br&gt;&lt;b&gt;Undo&lt;/b&gt; (Ctrl+Z) Undo the last action.  The last 16 actions may be undone.&lt;br&gt;&lt;img source=&quot;cuticon&quot;&gt;&lt;b&gt;Cut&lt;/b&gt; (Ctrl+X) Cut a selection from this drawing.&lt;br&gt;&lt;img source=&quot;copyicon&quot;&gt;&lt;b&gt;Copy&lt;/b&gt; (Ctrl+C) Copy a selection from this drawing.  The Copy command also copies the selection to the system clipboard as an image.&lt;br&gt;&lt;img source=&quot;pasteicon&quot;&gt;&lt;b&gt;Paste&lt;/b&gt; (Ctrl+V) Paste something that was cut or copied.&lt;br&gt;&lt;b&gt;Clear&lt;/b&gt; (Del) Erases the current selection permanently.&lt;br&gt;&lt;b&gt;Select all&lt;/b&gt; (Ctrl+A) Select all objects in the drawing.&lt;br&gt;There are two sub-menus:&lt;br&gt;&lt;b&gt;Rotate:&lt;/b&gt; Rotate the selection by 90, 180, or 270 degrees.&lt;br&gt;&lt;b&gt;Flip:&lt;/b&gt; Flip the selection about a horizontal or vertical line.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Selecting and Editing&lt;/b&gt;&lt;p&gt;&lt;b&gt;Selecting, Moving, Drag and Drop&lt;/b&gt;&lt;p&gt;Select using the &lt;img source=&quot;selecttoolicon&quot;&gt;&lt;b&gt;Select tool&lt;/b&gt;.  Click and drag to highlight a selection.  Alternatively, the Select tool can be used to drag individual objects and points.  Move the cursor over an object and the cursor will become a four-way arrow.  Click and drag with the left button to move.&lt;p&gt;You can drag and drop selections into other applications.  Use the right mouse button to drag the selected region to another application.  The destination application must be able to accept image drops of type image/png or image/bmp.&lt;p&gt;&lt;b&gt;Changing objects&lt;/b&gt;&lt;p&gt;To change an object after drawing it, choose the select tool and highlight the object.  Right-click on it.  A dialog box will appear (except for Text object) allowing you to change properties of the object.&lt;p&gt;&lt;b&gt;Rotate and resize&lt;/b&gt;&lt;p&gt;To rotate or resize, select multiple objects.  A box will appear around the selection.  Click and drag the box in the top right to rotate; click and drag the box in the bottom right to resize.&lt;p&gt;&lt;b&gt;Editing&lt;/b&gt;&lt;br&gt;&lt;b&gt;Undo&lt;/b&gt; (Ctrl+Z) Undo the last action.  The last 16 actions may be undone.&lt;br&gt;&lt;img source=&quot;cuticon&quot;&gt;&lt;b&gt;Cut&lt;/b&gt; (Ctrl+X) Cut a selection from this drawing.&lt;br&gt;&lt;img source=&quot;copyicon&quot;&gt;&lt;b&gt;Copy&lt;/b&gt; (Ctrl+C) Copy a selection from this drawing.  The Copy command also copies the selection to the system clipboard as an image.&lt;br&gt;&lt;img source=&quot;pasteicon&quot;&gt;&lt;b&gt;Paste&lt;/b&gt; (Ctrl+V) Paste something that was cut or copied.&lt;br&gt;&lt;b&gt;Clear&lt;/b&gt; (Del) Erases the current selection permanently.&lt;br&gt;&lt;b&gt;Select all&lt;/b&gt; (Ctrl+A) Select all objects in the drawing.&lt;br&gt;There are two sub-menus:&lt;br&gt;&lt;b&gt;Rotate:&lt;/b&gt; Rotate the selection by 90, 180, or 270 degrees.&lt;br&gt;&lt;b&gt;Flip:&lt;/b&gt; Flip the selection about a horizontal or vertical line.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Selecting and Editing&lt;/b&gt;&lt;p&gt;Important note:  you can cut, copy, and paste between XDrawChem windows.  It is possible to copy images into other applications, or to drag and drop selections.  If the application will not accept copy or drag and drop, use &lt;b&gt;Save image&lt;/b&gt; to create an image, or save as an MDL Molfile.  It is not possible to paste or drag items into XDrawChem from other applications.</source>
-        <translation type="obsolete"></translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;&lt;b&gt;Selecting, Moving, Drag and Drop&lt;/b&gt;&lt;p&gt;Select using the &lt;img source=&quot;selecttoolicon&quot;&gt;&lt;b&gt;Select tool&lt;/b&gt;.  Click and drag to highlight a selection.  Alternatively, the Select tool can be used to drag individual objects and points.  Move the cursor over an object and the cursor will become a four-way arrow.  Click and drag with the left button to move.&lt;p&gt;You can drag and drop selections into other applications.  Use the right mouse button to drag the selected region to another application.  The destination application must be able to accept image drops of type image/png or image/bmp.&lt;p&gt;&lt;b&gt;Changing objects&lt;/b&gt;&lt;p&gt;To change an object after drawing it, choose the select tool and highlight the object.  Right-click on it.  A dialog box will appear (except for Text object) allowing you to change properties of the object.&lt;p&gt;&lt;b&gt;Rotate and resize&lt;/b&gt;&lt;p&gt;To rotate or resize, select multiple objects.  A box will appear around the selection.  Click and drag the box in the top right to rotate; click and drag the box in the bottom right to resize.&lt;p&gt;&lt;b&gt;Editing&lt;/b&gt;&lt;br&gt;&lt;b&gt;Undo&lt;/b&gt; (Ctrl+Z) Undo the last action.  The last 16 actions may be undone.&lt;br&gt;&lt;img source=&quot;cuticon&quot;&gt;&lt;b&gt;Cut&lt;/b&gt; (Ctrl+X) Cut a selection from this drawing.&lt;br&gt;&lt;img source=&quot;copyicon&quot;&gt;&lt;b&gt;Copy&lt;/b&gt; (Ctrl+C) Copy a selection from this drawing.  The Copy command also copies the selection to the system clipboard as an image.&lt;br&gt;&lt;img source=&quot;pasteicon&quot;&gt;&lt;b&gt;Paste&lt;/b&gt; (Ctrl+V) Paste something that was cut or copied.&lt;br&gt;&lt;b&gt;Clear&lt;/b&gt; (Del) Erases the current selection permanently.&lt;br&gt;&lt;b&gt;Select all&lt;/b&gt; (Ctrl+A) Select all objects in the drawing.&lt;br&gt;There are two sub-menus:&lt;br&gt;&lt;b&gt;Rotate:&lt;/b&gt; Rotate the selection by 90, 180, or 270 degrees.&lt;br&gt;&lt;b&gt;Flip:&lt;/b&gt; Flip the selection about a horizontal or vertical line.</source>
-        <translation type="obsolete"></translation>
+        <source>cm</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

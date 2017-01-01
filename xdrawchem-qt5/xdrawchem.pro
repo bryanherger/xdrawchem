@@ -191,3 +191,17 @@ SOURCES = xdrawchem/application.cpp \
           xdrawchem/xml_cml.cpp \
           xdrawchem/xml_reader.cpp \
           xdrawchem/xruler.cpp
+
+TRANSLATIONS = translation/xdrawchem_da.ts \
+	translation/xdrawchem_dk.ts \
+	translation/xdrawchem_es.ts \
+	translation/xdrawchem_it.ts \
+	translation/xdrawchem_nl.ts \
+	translation/xdrawchem_pt_BR.ts \
+	translation/xdrawchem_de.ts \
+	translation/xdrawchem_en.ts \
+	translation/xdrawchem_fr.ts \
+	translation/xdrawchem_jp.ts \
+	translation/xdrawchem_pl.ts \
+	translation/xdrawchem_pt.ts
+

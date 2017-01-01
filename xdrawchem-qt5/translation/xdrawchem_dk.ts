@@ -33,10 +33,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select tool&lt;br&gt;&lt;br&gt;Use the Select tool to select and move items.&lt;br&gt;&lt;br&gt;You can select multiple items and cut, copy, move and rotate them.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Erase tool&lt;br&gt;&lt;br&gt;Use the Erase tool to erase individual items.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -109,10 +105,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set drawing color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Set line thickness</source>
         <translation type="unfinished"></translation>
     </message>
@@ -137,35 +129,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Make selected text &lt;b&gt;bold&lt;/b&gt; (Ctrl+B)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;i&gt;Italicize&lt;/i&gt; selected text (Ctrl+I)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Underline selected text (Ctrl+U)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Superscript selected text (Ctrl-Plus)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subscript selected text (Ctrl-Minus)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Erase</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -181,63 +149,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Draw arrow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw curved arrow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw bracket</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Draw or edit text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw ring</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Draw symbol</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Canned Structures</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclopropane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclobutane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclopentane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclopentadiene</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclohexane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclohexane - chair conformation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclohexane - boat conformation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Benzene</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -373,10 +285,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically Add &amp;hydrogens</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Set background &amp;color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -417,18 +325,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Calculate empirical formula</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Calculate molecular weight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Elemental analysis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Predict 13C NMR</source>
         <translation type="unfinished"></translation>
     </message>
@@ -441,15 +337,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Input SMILES</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Output SMILES</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Test tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -517,35 +405,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>
-Bryan Herger
-herger@chemistry.gatech.edu
-
-Please subscribe to the mailing list for information about future releases.
-Send a message to xdrawchem-announce-request@lists.sourceforge.net with &apos;subscribe&apos; as the subject.
-
-XDrawChem is copyright (C) 2002 Bryan Herger.
-Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
-See file COPYRIGHT.txt for more details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>How to get help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Current information on XDrawChem can always be found at
-http://www.prism.gatech.edu/~gte067k/xdrawchem/
-The latest release will be posted here.
-
-There are two mailing lists:  xdrawchem-announce, where new releases will be announced,
-and xdrawchem-user, for open discussion among XDrawChem users.
-Subscribe by sending a blank e-mail with subject &quot;subscribe&quot; to 
-&quot;xdrawchem-announce-request@lists.sourceforge.net&quot; or
-&quot;xdrawchem-user-request@lists.sourceforge.net&quot;
-
-You can contact the author directly at
-herger@chemistry.gatech.edu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -554,10 +414,6 @@ herger@chemistry.gatech.edu</source>
     </message>
     <message>
         <source>No molecules in the database match the query.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occured.  The server cannot find the selected molecule.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -849,13 +705,432 @@ Conversion failed in ioiface.cpp</source>
         <source>User-defined</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Click this button to zoom in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click this button to zoom out.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select tool&lt;br&gt;&lt;br&gt;Use the Select tool to select and move items inside a box.&lt;br&gt;&lt;br&gt;You can select multiple items and cut, copy, move and rotate them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lasso tool&lt;br&gt;&lt;br&gt;Use the Lasso tool to select and move items by drawing a loop around them.&lt;br&gt;&lt;br&gt;You can select multiple items and cut, copy, move and rotate them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chain tool&lt;br&gt;&lt;br&gt;Use the Chain tool to draw aliphatic chains.  The length of each segment is the current bond length.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wavy Line tool&lt;br&gt;&lt;br&gt;Use the Wavy Line tool to draw wavy lines, as shown on the button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left-justify selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right-justify selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make selected text &lt;b&gt;bold&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;i&gt;Italicize&lt;/i&gt; selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Underline selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Superscript selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscript selected text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lasso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw aliphatic chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw wavy bond</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to &amp;external program...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert s&amp;ymbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Deselect All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal (100%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle &amp;grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;XDC settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predict 1H NMR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predict pKa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predict octanol-water partition (Kow)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse reactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get bond identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input InChI or SMILES</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output InChI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build 3D model of molecule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Did You Know?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to external program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This function will open a 3-D version of one molecule
+in an external modelling program.
+
+Send to program:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ghemical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>KryoMol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to external program failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save file for external program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not execute the external program.
+Please verify that it is installed correctly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plus sign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minus sign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delta plus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delta minus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1e symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2e symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2e line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ring up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Orbital</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Double orbital</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Antibody</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Newman projection symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Newman projection - staggered (anti)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Newman projection - eclipsed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Top harpoon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom harpoon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Middle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Did not work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dashed arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BI1 arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BI2 arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retro arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90&#xc2;&#xb0; cw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90&#xc2;&#xb0; ccw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>180&#xc2;&#xb0; cw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>180&#xc2;&#xb0; ccw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>270&#xc2;&#xb0; cw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>270&#xc2;&#xb0; ccw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cubic bezier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cubic bezier - half arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cubic bezier - full arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Square bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Curve bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Brace bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Box bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ellipse bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed square bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Circle bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+Bryan Herger
+bherger@users.sourceforge.net
+
+Please subscribe to the mailing list for information about future releases.
+Send a message to xdrawchem-announce-request@lists.sourceforge.net with &apos;subscribe&apos; as the subject.
+
+XDrawChem is copyright (C) 2004 Bryan Herger.
+Portions copyright (C) 1997-2000 Dr. Christoph Steinbeck and the JChemPaint project
+OpenBabel code copyright (C) 2003 by the OpenBabel project team.
+See file COPYRIGHT.txt for more details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current information on XDrawChem can always be found at
+http://xdrawchem.sourceforge.net/
+The latest release will be posted here, as well as links to mailing lists and the bug tracker.
+
+Please submit bugs using the SourceForge tracker: http://www.sourceforge.net/tracker/?group_id=34518
+
+There are two mailing lists:  xdrawchem-announce, where new releases will be announced,
+and xdrawchem-user, for open discussion among XDrawChem users.
+Subscribe by sending a blank e-mail with subject &quot;subscribe&quot; to 
+&quot;xdrawchem-announce-request@lists.sourceforge.net&quot; or
+&quot;xdrawchem-user-request@lists.sourceforge.net&quot;
+
+You can contact the author directly at
+bherger@users.sourceforge.net</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom = %1 %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDC Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change XDrawChem settings:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Main font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ruler font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CDXML - ChemDraw text/XML format (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CDX - ChemDraw binary format (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite file?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite existing file: %1 ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[*] Biotin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BondEditDialog</name>
-    <message>
-        <source>Color</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Arrow editor</source>
         <translation type="unfinished"></translation>
@@ -1012,6 +1287,81 @@ Conversion failed in ioiface.cpp</source>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NR arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrow thickness:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wavy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bond thickness:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Double bond alignment:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>p double</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bead</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CharSelDialog</name>
+    <message>
+        <source>Insert symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ChemData</name>
@@ -1066,6 +1416,22 @@ Conversion failed in ioiface.cpp</source>
         <source>SMILES string for selected molecule:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Octanol-water partition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated octanol-water partition constant (log Kow) = %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>InChI string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>InChI string for selected molecule:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CustomRingDialog</name>
@@ -1079,6 +1445,125 @@ Conversion failed in ioiface.cpp</source>
     </message>
     <message>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CustomRingWidget</name>
+    <message>
+        <source>Title: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DYKDialog</name>
+    <message>
+        <source>Did You Know?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Don&apos;t show this dialog at startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous tip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next tip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can be run from the command line
+to produce images.
+Type &quot;xdrawchem --help&quot; for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When in select mode, you can edit most objects
+by right-clicking on them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When drawing bonds, you can edit the bond style
+by right-clicking on the bond.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When in select mode, press Shift+LeftButton and drag
+over part of a molecule to select the entire molecule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When in select mode, press Ctrl+LeftButton
+on a molecule to get molecule information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bond length, bond angle, and units are set
+in the Drawing Settings option under the Format menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can attach a subscript to a bracket by selecting
+the text tool, then clicking on the bracket.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can toggle the grid display by pressing Ctrl+G.
+Turning the grid on or off does not affect whether
+objects snap to the grid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A number of ring and molecule templates are available
+from the ring tool, including single and fused rings,
+amino acids, and nucleosides.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remember to select a file type when
+opening or saving documents.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The option &quot;Clean up molecule&quot; under
+the Tools menu can be used to refine structures
+such as rings and macromolecules.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It&apos;s possible to attach rings to structures
+by selecting a ring and clicking on an atom.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can automatically attach
+amino acids from N-terminal to C-terminal
+(but the result isn&apos;t always pretty :)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Be sure to check for updates at
+http://xdrawchem.sourceforge.net/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can draw over 100,000 substances using
+its Internet database.  Select Find on internet
+from the File menu to search for compounds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XDrawChem can identify compounds by CAS number
+and occasionally by name.
+Select Molecule information from the Tools menu
+and click on a molecule.  However, this only works
+if the compound is listed in the database.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1120,6 +1605,46 @@ Conversion failed in ioiface.cpp</source>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Units:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pixels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>degrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not show grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show square grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show hex grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Snap to grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grid spacing:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cm</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GraphDialog</name>
@@ -1141,15 +1666,18 @@ Conversion failed in ioiface.cpp</source>
     </message>
 </context>
 <context>
+    <name>GraphWidget</name>
+    <message>
+        <source>Red is reactant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blue is product</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HTTP</name>
-    <message>
-        <source>Accessing network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please wait.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>HelpWindow</name>
@@ -1189,18 +1717,6 @@ Conversion failed in ioiface.cpp</source>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Backward</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Forward</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MolInfoDialog</name>
@@ -1217,10 +1733,6 @@ Conversion failed in ioiface.cpp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Analysis = </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1232,6 +1744,46 @@ Conversion failed in ioiface.cpp</source>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>CAS:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PubChem compound:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other names:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other names: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CAS: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PubChem compound: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Analysis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search PubChem</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Molecule</name>
@@ -1241,6 +1793,248 @@ Conversion failed in ioiface.cpp</source>
     </message>
     <message>
         <source>Product</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predicted 1H-NMR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Intensity: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Multiplicity: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predicted 13C-NMR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predicted IR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1350-1000, C-N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1300-1000, C-O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1660-1600, C=C (cis/vinyl strong; trans weak)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1690-1640, C=N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1700 (narrow), C=O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1350-1300, S=O (~1050 if R-(S=O)-R&apos;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2250 (narrow), nitrile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~3000 (broad), C-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>two peaks: ~3400, ~3300, primary N-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~3300 (broad), secondary N-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2550 (broad), S-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~3400 (broad), O-H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2270 (narrow), -N=C=O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~2125 (narrow), -N=C=S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1525 (narrow), -NO2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1600 (narrow), aromatic ring C=C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>~1475 (narrow), aromatic ring C=C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10.5 (Guanidine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9 (a-carbon between two ketones)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (a-carbon between two ketones)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (a-carbon between ketone and ester)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>13 (a-carbon between two esters)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 (Aromatic primary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9-10 (Alkene-primary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (Aliphatic primary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-4 (pyrrole)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>14.4 (secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>11 (aliphatic secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>6.8 (conjugated secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 (aromatic secondary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1-3 (purine/pyrimidine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 (tertiary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 (aliphatic tertiary amine)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8 (Peroxy acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-1 (sulfonic acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 (Aromatic carboxylic acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4.5 (Aliphatic carboxylic acid)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 (Aliphatic carboxylic acid, a-halide)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1.3 (Aliphatic carboxylic acid, 2 a-halide)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 (Aromatic -OH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>16 (Aliphatic -OH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>7.8 (Aromatic -SH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10.6 (Aliphatic -SH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated pKa&apos;s:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There seem to be no sites with pKa between -1 and 15.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated pKa&apos;s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elemental analysis:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No reactions found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following reactions could have resulted in this product:
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+Target bonds will be highlighted in green.
+To see reactions affecting a highlighted bond, right-click on the bond and select Info.
+To clear highlights, select Undo from the Edit menu, or press Ctrl+Z.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse reactions list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No reactions in the database could yield the selected molecule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save 3D file as...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MDL molfile (*.mol)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1259,6 +2053,14 @@ Conversion failed in ioiface.cpp</source>
     </message>
     <message>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose Structure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a molecule from list and click OK:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1357,6 +2159,30 @@ Conversion failed in ioiface.cpp</source>
     </message>
     <message>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom paper size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pixels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page height:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1459,10 +2285,6 @@ three-letter abbreviations:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Click on a molecule to determine its IUPAC name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Click on a molecule to determine its SMILES string</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1518,6 +2340,146 @@ three-letter abbreviations:</source>
         <source>Please type or edit the subscript for this bracket:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lasso mode: left click and hold to draw lasso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Chain mode: left click and drag to draw aliphatic chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Wavy Line mode: left click to draw line, right click to edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw graphic object: cubic bezier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left-click to draw Newman projection template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to calculate its pKa(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule for possible retrosynthesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to display its bond identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to calculate its octanol-water partition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to generate 3-D coordinates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule to guess its name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click on a molecule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Object information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bond</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bracket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Curved Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill color...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shape...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Molecule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select mode: left click on objects to move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw Line - Length = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, Angle = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw aliphatic chain - Length = </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> bonds</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RingDialog</name>
@@ -1537,11 +2499,70 @@ three-letter abbreviations:</source>
 <context>
     <name>SmilesDialog</name>
     <message>
-        <source>Enter SMILES string</source>
+        <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter SMILES string:</source>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter InChI or SMILES string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter InChI or SMILES string:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TextShapeDialog</name>
+    <message>
+        <source>Edit text shape</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No shape</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rectangle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Circle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Height:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1629,6 +2650,21 @@ three-letter abbreviations:</source>
     <message>
         <source>Peaks of product:
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>XRuler</name>
+    <message>
+        <source>px</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cm</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

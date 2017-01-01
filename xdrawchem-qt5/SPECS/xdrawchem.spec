@@ -1,13 +1,13 @@
 Summary: XDrawChem is an application for drawing and analyzing chemical structures and reactions.
 Name: xdrawchem
-Version: 1.9.11
+Version: 1.10.0
 Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://www.woodsidelabs.com/chemistry/xdrawchem.php
 Source0: https://sourceforge.net/projects/%{name}/files/%{name}/%{version}/%{name}-%{version}-%{release}.rpmsrc.tar.gz
 Requires: openbabel qt5-qtbase
-BuildRequires: openbabel openbabel-devel qt5-qtbase-devel
+BuildRequires: openbabel openbabel-devel qt5-qtbase qt5-qtbase-devel
 BuildRoot: /var/tmp/%{name}-buildroot
 
 %description
