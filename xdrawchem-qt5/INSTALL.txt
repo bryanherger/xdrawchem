@@ -1,6 +1,7 @@
 To install XDrawChem:
 
 1) Install recent Qt and OpenBabel from packages or source.
+If installing from packages, please also install the "devel" packages as well, e.g. qt5-qtbase-devel and openbabel-devel.
 XDrawChem is built with Qt 5.6 and OpenBabel 2.2.3
 Please file an issue on GitHub if these versions or newer fail.
 
