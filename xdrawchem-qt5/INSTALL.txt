@@ -1,23 +1,13 @@
 To install XDrawChem:
 
-1) Download and install Qt-3.0 (or later) from http://www.trolltech.com/ if
-   it is not already installed on your system.
-   You must also install OpenBabel 2.0 or later from 
-   http://openbabel.sourceforge.net/
-   You should also obtain and install BUILD3D from the Files section of 
-   the sourceforge.net project web page:
-   http://sourceforge.net/projects/xdrawchem
+1) Install recent Qt and OpenBabel from packages or source.
+XDrawChem is built with Qt 5.6 and OpenBabel 2.2.3
+Please file an issue on GitHub if these versions or newer fail.
 
-   The "configure" script checks for the presence of Qt and OpenBabel, as
-   well as for the correct version.
+2) Type "qmake".
+   This will generate the XDrawChem Makefiles.
 
-   Some users have reported compile problems with gcc 3.0 and 3.2 series
-   compilers.  We recommend upgrading to gcc 3.3 or later.
-
-2) Type "./configure".
-   This will build and install XDrawChem and OpenBabel.
-
-   Then type "make", followed by (as root) "make install"
+   Then type "make", followed by (as root) "make install" to build and install.
 
 After installation:
 3) Type "xdrawchem" to run the program.  Also, you may wish to type
