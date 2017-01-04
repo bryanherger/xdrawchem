@@ -4,7 +4,7 @@ Welcome to XDrawChem!
 
 Please visit the project page at http://www.woodsidelabs.com/chemistry/xdrawchem.php
 
-Current release (1.10.0-1) source tarball, as well as RPM and Mac DMG binaries are available at SourceForge: https://sourceforge.net/projects/xdrawchem/files/xdrawchem/1.10.0/
+Current release (1.10.1-1) source tarball, as well as RPM and Mac DMG binaries are available at SourceForge: https://sourceforge.net/projects/xdrawchem/files/xdrawchem/1.10.1/
 
 This repository conatins three (!) versions of XDrawChem:
 
