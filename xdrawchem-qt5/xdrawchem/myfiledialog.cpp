@@ -1,3 +1,4 @@
+#include <QtGlobal>
 #include <QLayout>
 
 #include "myfiledialog.h"
@@ -5,6 +6,8 @@
 MyFileDialog::MyFileDialog( QWidget *parent )
     : QFileDialog( parent )
 {
+    setOption( QFileDialog::DontUseNativeDialog, true );
+    setAcceptMode( QFileDialog::AcceptSave );
     trans_toggle = new QCheckBox( tr( "Transparent" ), this );
     trans_toggle->setChecked( false );
     layout()->addWidget( trans_toggle ); ///TODO: place

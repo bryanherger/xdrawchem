@@ -11,6 +11,7 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include <QtGlobal>
 #include <QString>
 #include <QLabel>
 #include <QMenu>

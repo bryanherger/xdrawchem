@@ -22,10 +22,6 @@ connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
 #ifndef QT_NO_SSL
     connect(reply, SIGNAL(sslErrors(QList<QSslError>)), SLOT(sslErrors(QList<QSslError>)));
 #endif
-//while (!reply->isFinished()) {
-//qDebug() << "isRunning: " << reply->isRunning() << "isFinished: " << reply->isFinished();
-//sleep(1);
-//}
 }
 
 void HTTP::slotError(const QNetworkReply::NetworkError e)
@@ -50,7 +46,7 @@ void HTTP::execute(QString xurl)
 {
         QUrl url = QUrl::fromUserInput(xurl);
         doDownload(url);
-        while (!finished) { qDebug() << "Waiting..."; sleep(1); }
+        while (!finished) { qDebug() << "Waiting..."; }
 }
 
 void HTTP::sslErrors(const QList<QSslError> &sslErrors)

@@ -1123,16 +1123,21 @@ QPixmap Render2D::MakePixmap( bool transp )
     update();
     r.setTopLeft( zoomCorrect( r.topLeft() ) );
     r.setBottomRight( zoomCorrect( r.bottomRight() ) );
+
+    // hack to avoid cropping text
+    r.adjust( -10, -10, 10, 10 );
+
     QPixmap pm( r.size() );
 
     qDebug() << "X1:" << r.left() << " Y1:" << r.top();
     qDebug() << "W:" << r.width() << " H:" << r.height();
 
-    while ( !finishedPainting ) {
-        qDebug() << "Waiting...";
-    }
-    pm = QPixmap::grabWidget( this, r.left(), r.top(), r.width(), r.height() );
+    //while ( !finishedPainting ) {
+    //    qInfo() << "Waiting...";
+    //}
     //bitBlt( &pm, 0, 0, this, r.left(), r.top(), r.width(), r.height() );
+    // deprecated: pm = QPixmap::grabWidget( this, r.left(), r.top(), r.width(), r.height() );
+    pm = grab( r );
 
     pm = pm.scaled( finalsize.width(), finalsize.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation );
 
@@ -1169,7 +1174,8 @@ QPixmap Render2D::MakeFullPixmap()
     update();
     QPixmap pm( size() );
 
-    pm = QPixmap::grabWidget( this, rect() );
+    // deprecated: pm = QPixmap::grabWidget( this, rect() );
+    pm = grab( rect() );
 
     return pm;
 }

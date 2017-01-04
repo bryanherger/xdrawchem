@@ -1461,64 +1461,11 @@ void ApplicationWindow::savePicture()
             return;
         }
         if ( pm != 0 ) {
-            // check for "convert" (ImageMagick)
-            bool imagemagick = false;
-            QString n1, cmd1;
-
-            n1.setNum( getpid() );
-            n1.prepend( "/tmp/" );
-            cmd1 = "convert > " + n1;
-            system( cmd1.toLatin1() );
-
-//      QFile f1( n1 );
-//      f1.open(QIODevice::ReadOnly);
-//      f1.readLine(cmd1, 256);
-
-            QFile f1( n1 );
-
-            if ( !f1.open( QIODevice::ReadOnly | QIODevice::Text ) )
-                return;
-
-            QTextStream in( &f1 );
-
-            cmd1 = in.readLine();
-
-            if ( cmd1.contains( "ImageMagick" ) > 0 ) {
-                qDebug() << "ImageMagick is present";
-                imagemagick = true;
-            }
-
-            cmd1 = "rm " + n1;
-            system( cmd1.toLatin1() );
-
-            QPixmap tosave;
-
-            // use "tosave" with ImageMagick to specify size
-            tosave = m_renderer->MakePixmap( fd.isTransparent() );
-            QString sizehint;
-
-            n1.setNum( tosave.width() );
-            sizehint = n1;
-            sizehint.append( "x" );
-            n1.setNum( tosave.height() );
-            sizehint.append( n1 );
-            if ( imagemagick ) {
-                n1 = selectedFile;
-                n1.append( ".eps" );
-                m_renderer->SaveEPS( n1 );
-                //cmd1 = "convert -antialias " + n1 + " " + selectedFile;
-                cmd1 = "convert -antialias -size " + sizehint + " " + n1 + " -resize " + sizehint + " " + selectedFile;
-                system( cmd1.toLatin1() );
-                cmd1 = "rm " + n1;
-                system( cmd1.toLatin1() );
-                was_saved = true;
-            } else {
-                tosave = m_renderer->MakePixmap( fd.isTransparent() );
+                QPixmap tosave = m_renderer->MakePixmap( fd.isTransparent() );
                 if ( pm == 1 )  // PNG
                     was_saved = tosave.save( selectedFile, "PNG" );
                 if ( pm == 2 )  // BMP
                     was_saved = tosave.save( selectedFile, "BMP" );
-            }
             if ( was_saved )
                 statusBar()->showMessage( tr( "Saved picture file " ) + selectedFile );
             else
@@ -1537,63 +1484,15 @@ void ApplicationWindow::savePNG()
 {
     bool was_saved;
 
-    // check for "convert" (ImageMagick)
-    bool imagemagick = false;
-    QString n1, cmd1;
-
-    n1.setNum( getpid() );
-    n1.prepend( "/tmp/" );
-    cmd1 = "convert > " + n1;
-    system( cmd1.toLatin1() );
-
-//  QFile f1( n1 );
-//  f1.open(QIODevice::ReadOnly);
-//  f1.readLine(cmd1, 256);
-
-    QFile f1( n1 );
-
-    if ( !f1.open( QIODevice::ReadOnly | QIODevice::Text ) )
-        return;
-
-    QTextStream in( &f1 );
-
-    cmd1 = in.readLine();
-
-    if ( cmd1.contains( "ImageMagick" ) > 0 ) {
-        qDebug() << "ImageMagick is present";
-        imagemagick = true;
-    }
-
-    cmd1 = "rm " + n1;
-    system( cmd1.toLatin1() );
-
     QPixmap tosave;
 
     tosave = m_renderer->MakePixmap( ni_tflag );
-    QString sizehint;
-
-    n1.setNum( tosave.width() );
-    sizehint = n1;
-    sizehint.append( "x" );
-    n1.setNum( tosave.height() );
-    sizehint.append( n1 );
-    if ( imagemagick ) {
-        n1 = ni_savefile;
-        n1.append( ".eps" );
-        m_renderer->SaveEPS( n1 );
-        cmd1 = "convert -antialias -size " + sizehint + " " + n1 + " -resize " + sizehint + " " + ni_savefile;
-        system( cmd1.toLatin1() );
-        cmd1 = "rm " + n1;
-        system( cmd1.toLatin1() );
-        was_saved = true;
-    } else {
         was_saved = tosave.save( ni_savefile, "PNG" );
-    }
-
     //QPixmap tosave = m_renderer->MakePixmap( ni_tflag );
     //was_saved = tosave.save(ni_savefile, "PNG");
-    if ( was_saved == false )
-        qDebug() << "save PNG failed";
+    if ( was_saved == false ) {
+        qWarning() << "save PNG failed for " << ni_savefile;
+    }
     close();                  // this function is only used in non-interactive mode
 }
 

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cerrno>
 
+#include <QtGlobal>
 #include <QBitmap>
 
 #include "application.h"

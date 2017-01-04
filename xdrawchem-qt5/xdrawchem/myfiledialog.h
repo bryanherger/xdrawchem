@@ -6,6 +6,7 @@
 
 class MyFileDialog : public QFileDialog
 {
+    Q_OBJECT
 public:
     MyFileDialog( QWidget *parent );
     bool isTransparent();
