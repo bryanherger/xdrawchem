@@ -1,6 +1,6 @@
 Summary: XDrawChem is an application for drawing and analyzing chemical structures and reactions.
 Name: xdrawchem
-Version: 1.10.1
+Version: 1.10.2
 Release: 1
 License: GPL
 Group: Applications/Productivity

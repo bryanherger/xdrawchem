@@ -14,6 +14,7 @@ ChemData::ChemData( QObject *parent )
     : QObject( parent )
 {
     thick_kludge = -1;
+    notSaved = false;
 }
 
 void ChemData::drawAll()
@@ -36,6 +37,8 @@ void ChemData::FinishMove()
             tmp_mol->Changed();
         }
     }
+
+    notSaved = true;
 }
 
 Molecule *ChemData::firstMolecule()
@@ -54,6 +57,7 @@ Molecule *ChemData::firstMolecule()
 void ChemData::addMolecule( Molecule * m1 )
 {
     drawlist.append( m1 );
+    notSaved = true;
 }
 
 void ChemData::addArrow( DPoint * s, DPoint * e, QColor c, int t, int p2, bool hl )
@@ -67,6 +71,7 @@ void ChemData::addArrow( DPoint * s, DPoint * e, QColor c, int t, int p2, bool h
     if ( hl )
         a1->Highlight( true );
     drawlist.append( a1 );
+    notSaved = true;
 }
 
 void ChemData::addCurveArrow( DPoint * s, DPoint * e, QColor c, QString s1, bool hl )
@@ -79,6 +84,7 @@ void ChemData::addCurveArrow( DPoint * s, DPoint * e, QColor c, QString s1, bool
     if ( hl )
         a1->Highlight( true );
     drawlist.append( a1 );
+    notSaved = true;
 }
 
 void ChemData::addBracket( DPoint * s, DPoint * e, QColor c, int type, bool hl )
@@ -91,6 +97,7 @@ void ChemData::addBracket( DPoint * s, DPoint * e, QColor c, int type, bool hl )
     if ( hl )
         a1->Highlight( true );
     drawlist.append( a1 );
+    notSaved = true;
 }
 
 void ChemData::addText( Text * t )
@@ -109,11 +116,13 @@ void ChemData::addText( Text * t )
         }
         qDebug() << "FYI, add text failed";
     }
+    notSaved = true;
 }
 
 void ChemData::addGraphicObject( GraphicObject * t )
 {
     drawlist.append( t );
+    notSaved = true;
 }
 
 void ChemData::addBond( DPoint * s, DPoint * e, int thick, int order, QColor c, bool hl )
@@ -136,6 +145,7 @@ void ChemData::addBond( DPoint * s, DPoint * e, int thick, int order, QColor c, 
         m->SetChemdata( this );
         m->addBond( s, e, thick, order, c, hl );
         drawlist.append( m );
+        notSaved = true;
         return;
     }
     // one point exists, or both in same molecule
@@ -145,6 +155,7 @@ void ChemData::addBond( DPoint * s, DPoint * e, int thick, int order, QColor c, 
     }
     if ( ( ( m1 != 0 ) && ( m2 == 0 ) ) || ( m1 == m2 ) ) {
         m1->addBond( s, e, thick, order, c, hl );
+        notSaved = true;
         return;
     }
     // both points exist in different molecules
@@ -154,6 +165,7 @@ void ChemData::addBond( DPoint * s, DPoint * e, int thick, int order, QColor c, 
         drawlist.removeAll( m2 );
         delete m2;
     }
+    notSaved = true;
 }
 
 void ChemData::addSymbol( DPoint * a, QString symbolfile, bool hl )
@@ -174,6 +186,7 @@ void ChemData::addSymbol( DPoint * a, QString symbolfile, bool hl )
         }
     }
     drawlist.append( s1 );
+    notSaved = true;
 }
 
 Molecule *ChemData::insideMolecule( DPoint * t1 )
@@ -251,6 +264,7 @@ void ChemData::Erase( Drawable * d )
     }
     // Split Molecules as needed
     DetectSplit();
+    notSaved = true;
 }
 
 void ChemData::EraseSelected()
@@ -289,6 +303,7 @@ void ChemData::EraseSelected()
     }
     // Split Molecules as needed
     DetectSplit();
+    notSaved = true;
 }
 
 // Split Molecule's which hold multiple structures (e.g. after delete)
@@ -354,24 +369,28 @@ void ChemData::Move( double dx, double dy )
 {
     foreach ( tmp_draw, drawlist )
         tmp_draw->Move( dx, dy );
+    notSaved = true;
 }
 
 void ChemData::Resize( DPoint * d1, double dy )
 {
     foreach ( tmp_draw, drawlist )
         tmp_draw->Resize( d1, dy );
+    notSaved = true;
 }
 
 void ChemData::Rotate( DPoint * d1, double dy )
 {
     foreach ( tmp_draw, drawlist )
         tmp_draw->Rotate( d1, dy );
+    notSaved = true;
 }
 
 void ChemData::Flip( DPoint * d1, int dy )
 {
     foreach ( tmp_draw, drawlist )
         tmp_draw->Flip( d1, dy );
+    notSaved = true;
 }
 
 // Find minimum rectangle needed to enclose selection

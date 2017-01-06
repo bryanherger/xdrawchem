@@ -1487,7 +1487,7 @@ void ApplicationWindow::savePNG()
     QPixmap tosave;
 
     tosave = m_renderer->MakePixmap( ni_tflag );
-        was_saved = tosave.save( ni_savefile, "PNG" );
+    was_saved = tosave.save( ni_savefile, "PNG" );
     //QPixmap tosave = m_renderer->MakePixmap( ni_tflag );
     //was_saved = tosave.save(ni_savefile, "PNG");
     if ( was_saved == false ) {
@@ -1516,7 +1516,7 @@ void ApplicationWindow::closeEvent( QCloseEvent * ce )
         return;
     }
 
-    switch ( QMessageBox::information( this, "XDrawChem question", "The document has been changed since " "the last save.", "Save Now", "Cancel", "Leave Anyway", 0, 1 ) ) {
+    switch ( QMessageBox::information( this, tr("Save before closing?"), tr("The document has been changed since the last save."), "Save Now", "Cancel", "Leave Anyway", 0, 1 ) ) {
     case 0:
         save();
         ce->accept();

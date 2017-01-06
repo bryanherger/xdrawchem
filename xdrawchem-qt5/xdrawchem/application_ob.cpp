@@ -79,22 +79,11 @@ void ApplicationWindow::OBNewLoad( QString infile, QString infilter )
 {
     //io_type inFileType = UNDEFINED;
     ///OBFileFormat fileFormat;
-
-    OBConversion Conv;
-    OBFormat *inFormat = 0;
-
-    if ( infilter.left( 2 ) == QString::fromLatin1( "--" ) ) {
-        inFormat = Conv.FormatFromExt( infile.toLatin1().data() );
-        if ( inFormat == 0 ) {
-            QMessageBox::warning( 0, tr( "Could not determine file type" ), tr( "Please select a file type from the list." ) );
-            return;
-        }
-    }
     filename = infile;
     filefilter = infilter;
 
     /* handled internally */
-    if ( ( infilter.left( 3 ) == "XDC" ) || ( infilter.left( 3 ) == "CDX" ) ) {
+    if ( ( infilter.left( 3 ) == "XDC" ) || ( infilter.left( 3 ) == "CDX" ) || ( infile.endsWith(".XDC", Qt::CaseInsensitive) ) ) {
         QString realFileName = filename;
 
         QFile f( filename );
@@ -121,6 +110,18 @@ void ApplicationWindow::OBNewLoad( QString infile, QString infilter )
         return;
     }
     /* end XDC/CDX code */
+
+    OBConversion Conv;
+    OBFormat *inFormat = 0;
+
+    if ( infilter.left( 2 ) == QString::fromLatin1( "--" ) ) {
+        inFormat = Conv.FormatFromExt( infile.toLatin1().data() );
+        if ( inFormat == 0 ) {
+            QMessageBox::warning( 0, tr( "Could not determine file type" ), tr( "Please select a file type from the list." ) );
+            return;
+        }
+    }
+
     /* rest done by OpenBabel */
 
     int cutpt = infilter.indexOf( QString::fromLatin1( " -- " ) );
@@ -169,6 +170,8 @@ void ApplicationWindow::OBExport()
 
     fd.setFileMode( QFileDialog::AnyFile );
     fd.setNameFilters( writeFilters );
+    fd.setAcceptMode( QFileDialog::AcceptSave );
+    fd.selectNameFilter("XDC - XDrawChem native format (*)");
     if ( fd.exec() == QDialog::Accepted ) {
         if ( ftest.exists( fd.selectedFiles()[0] ) ) {
             i = QMessageBox::warning( this, tr( "Overwrite file?" ), tr( "Overwrite existing file: %1 ?" ).arg( fd.selectedFiles()[0] ), QMessageBox::Ok, QMessageBox::Cancel );

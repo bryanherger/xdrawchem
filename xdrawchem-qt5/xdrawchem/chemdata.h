@@ -29,7 +29,7 @@ class ChemData : public QObject
 public:
     void setRender2D(Render2D *r1) { r = r1; }
     Render2D *getRender2D() { return r; }
-    bool edited() { return false; }
+    bool edited() { return notSaved; }
 
     // defined in chemdata.cpp
     ChemData( QObject *parent = 0 );
@@ -133,6 +133,8 @@ public:
         else
             clip = clip1;
     }
+    bool needsSave() { return notSaved; }
+    void saved() { notSaved = false; }
 
 public slots:
     void XDCEventHandler( XDC_Event * );
@@ -177,6 +179,8 @@ private:
     Text *tt, *tt_mw, *tt_ef, *tt_ea;
     // hack for setting ring thickness
     int thick_kludge;
+    // has this document changed since last save?
+    bool notSaved;
 };
 
 #endif

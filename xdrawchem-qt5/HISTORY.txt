@@ -1,4 +1,9 @@
-verion 1.10.0:
+version 1.10.2:
+
+version 1.10.1:
+Fixes as noted in Git commits.  Slack build, PNG image save.
+
+version 1.10.0:
 First release based on Qt5.  Significant contributed code, bug fixes.
 
 version 1.9.11:

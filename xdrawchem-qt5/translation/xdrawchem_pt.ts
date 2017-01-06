@@ -1128,6 +1128,14 @@ bherger@users.sourceforge.net</source>
         <source>Add new...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Save before closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document has been changed since the last save.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BondEditDialog</name>
@@ -1675,9 +1683,6 @@ if the compound is listed in the database.</source>
         <source>Blue is product</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>HTTP</name>
 </context>
 <context>
     <name>HelpWindow</name>
@@ -2652,9 +2657,6 @@ three-letter abbreviations:</source>
 </source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>XManual</name>
 </context>
 <context>
     <name>XRuler</name>

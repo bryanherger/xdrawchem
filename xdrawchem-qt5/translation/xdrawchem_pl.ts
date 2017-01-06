@@ -1295,6 +1295,14 @@ bherger@users.sourceforge.net</source>
         <source>Add new...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Save before closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document has been changed since the last save.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BondEditDialog</name>

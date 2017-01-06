@@ -1,4 +1,4 @@
-Welcome to XDrawChem! (version 1.10.1)
+Welcome to XDrawChem! (version 1.10.2)
 
 Mostly written by Bryan Herger, bherger@users.sourceforge.net
 See acknowledgements below for specific contributions.

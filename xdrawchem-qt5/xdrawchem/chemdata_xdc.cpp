@@ -34,7 +34,7 @@ bool ChemData::load_native( QString wholefile )
     if ( d1 >= 0 ) {
         d2 = wholefile.indexOf( "</pagesize>" );
         line = wholefile.mid( d1 + 10, d2 - d1 - 10 );
-        qDebug() << "PAGESIZE:" << line;
+        qInfo() << "PAGESIZE:" << line;
         if ( line == "PAGE_LETTER" )
             psize = PAGE_LETTER;
         if ( line == "PAGE_LEGAL" )
@@ -47,15 +47,17 @@ bool ChemData::load_native( QString wholefile )
             psize = PAGE_800;
         if ( line == "PAGE_1024" )
             psize = PAGE_1024;
+        wholefile.remove( d1, d2 - d1 + 11 );
     }
     d1 = wholefile.indexOf( "<pageorient>" );
     if ( d1 >= 0 ) {
         d2 = wholefile.indexOf( "</pageorient>" );
         line = wholefile.mid( d1 + 12, d2 - d1 - 12 );
-        qDebug() << "PAGEORIENT:" << line;
+        qInfo() << "PAGEORIENT:" << line;
         // porient defaults to PAGE_PORTRAIT
         if ( line == "PAGE_LANDSCAPE" )
             porient = PAGE_LANDSCAPE;
+        wholefile.remove( d1, d2 - d1 + 13 );
     }
     r->setPageSizeAndOrientation();
     // read and set color
@@ -70,15 +72,18 @@ bool ChemData::load_native( QString wholefile )
         QColor bc1( rn, gn, bn );
 
         r->setBGColor( bc1 );
+        wholefile = wholefile.remove( d1, d2 - d1 + 10 );
     }
 
+    qInfo() << "wholefile:" << wholefile;
     do {
         thistag = ReadTag( wholefile, ptr );
-        // ReadTag returns a null at EOF (ideally).
-        if ( thistag.isNull() )
+        qInfo() << "thistag:" << thistag;
+        // ReadTag returns a null at EOF (ideally).  Or, empty string in Qt5...
+        if ( thistag.isEmpty() )
             break;
         // check what object type this is
-        if ( thistag.contains( "<arrow" ) > 0 ) {
+        if ( thistag.contains( "<arrow" ) ) {
             d1 = wholefile.indexOf( "<arrow" );
             d2 = wholefile.indexOf( "</arrow>" );
             thistag = wholefile.mid( d1, d2 - d1 + 8 );
@@ -90,7 +95,7 @@ bool ChemData::load_native( QString wholefile )
             ptr = 0;
             continue;
         }
-        if ( thistag.contains( "<graphicobject" ) > 0 ) {
+        if ( thistag.contains( "<graphicobject" ) ) {
             d1 = wholefile.indexOf( "<graphicobject" );
             d2 = wholefile.indexOf( "</graphicobject>" );
             thistag = wholefile.mid( d1, d2 - d1 + 16 );
@@ -102,7 +107,7 @@ bool ChemData::load_native( QString wholefile )
             ptr = 0;
             continue;
         }
-        if ( thistag.contains( "<curvearrow" ) > 0 ) {
+        if ( thistag.contains( "<curvearrow" ) ) {
             d1 = wholefile.indexOf( "<curvearrow" );
             d2 = wholefile.indexOf( "</curvearrow>" );
             thistag = wholefile.mid( d1, d2 - d1 + 13 );
@@ -114,7 +119,7 @@ bool ChemData::load_native( QString wholefile )
             ptr = 0;
             continue;
         }
-        if ( thistag.contains( "<text" ) > 0 ) {
+        if ( thistag.contains( "<text" ) ) {
             d1 = wholefile.indexOf( "<text" );
             d2 = wholefile.indexOf( "</text>" );
             thistag = wholefile.mid( d1, d2 - d1 + 7 );
@@ -126,7 +131,7 @@ bool ChemData::load_native( QString wholefile )
             ptr = 0;
             continue;
         }
-        if ( thistag.contains( "<bracket" ) > 0 ) {
+        if ( thistag.contains( "<bracket" ) ) {
             d1 = wholefile.indexOf( "<bracket" );
             d2 = wholefile.indexOf( "</bracket>" );
             thistag = wholefile.mid( d1, d2 - d1 + 10 );
@@ -138,7 +143,7 @@ bool ChemData::load_native( QString wholefile )
             ptr = 0;
             continue;
         }
-        if ( thistag.contains( "<symbol" ) > 0 ) {
+        if ( thistag.contains( "<symbol" ) ) {
             d1 = wholefile.indexOf( "<symbol" );
             d2 = wholefile.indexOf( "</symbol>" );
             thistag = wholefile.mid( d1, d2 - d1 + 9 );
@@ -150,7 +155,7 @@ bool ChemData::load_native( QString wholefile )
             ptr = 0;
             continue;
         }
-        if ( thistag.contains( "<molecule" ) > 0 ) {
+        if ( thistag.contains( "<molecule" ) ) {
             d1 = wholefile.indexOf( "<molecule" );
             d2 = wholefile.indexOf( "</molecule>" );
             thistag = wholefile.mid( d1, d2 - d1 + 11 );
@@ -163,6 +168,7 @@ bool ChemData::load_native( QString wholefile )
             ptr = 0;
             continue;
         }
+        //qInfo() << "reached end, ptr = " << ptr;
     } while ( ptr < wholefile.length() );
 
     return false;
