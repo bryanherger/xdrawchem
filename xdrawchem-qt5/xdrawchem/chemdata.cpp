@@ -21,7 +21,6 @@ void ChemData::drawAll()
 {
     // draw all objects in ChemData
     foreach ( tmp_draw, drawlist ) {
-        qDebug() << "drawAll: " << tmp_draw;
         tmp_draw->Render();
     }
 }
@@ -127,9 +126,7 @@ void ChemData::addGraphicObject( GraphicObject * t )
 
 void ChemData::addBond( DPoint * s, DPoint * e, int thick, int order, QColor c, bool hl )
 {
-    //qDebug() << "Request to add bond:" ;
-    //qDebug() << "(" << s->x << "," << s->y << ")-(" << e->x << "," << e->y << ")";
-    //qDebug() ;
+    //qInfo() << "Request to add bond:" << s->element << "(" << s->x << "," << s->y << ")-" << e->element << "(" << e->x << "," << e->y << "), order " << order;
     Drawable *m1 = 0, *m2 = 0;
 
     foreach ( tmp_draw, drawlist ) {
@@ -138,10 +135,11 @@ void ChemData::addBond( DPoint * s, DPoint * e, int thick, int order, QColor c, 
         if ( tmp_draw->Find( e ) == true )
             m2 = tmp_draw;
     }
+    //qInfo() << "m1 = " << (m1 == 0 ? -1 : m1->Type()) << ", m2 = " << (m2 == 0 ? -1 : m2->Type());
     // neither point exists -- create new Molecule
     if ( ( m1 == 0 ) && ( m2 == 0 ) ) {
+        //qInfo() << "neither point exists, create new Molecule";
         Molecule *m = new Molecule( r );
-
         m->SetChemdata( this );
         m->addBond( s, e, thick, order, c, hl );
         drawlist.append( m );
@@ -154,14 +152,16 @@ void ChemData::addBond( DPoint * s, DPoint * e, int thick, int order, QColor c, 
         m2 = 0;
     }
     if ( ( ( m1 != 0 ) && ( m2 == 0 ) ) || ( m1 == m2 ) ) {
+        //qInfo() << "one point exists, or both in same molecule";
         m1->addBond( s, e, thick, order, c, hl );
         notSaved = true;
         return;
     }
     // both points exist in different molecules
     if ( m1 != m2 ) {
+        //qInfo() << "both points exist in different molecules";
         m1->addBond( s, e, thick, order, c, hl );
-        m1->addMolecule( m2 );
+        m1->addMolecule( m2 ); // before or after addBond?
         drawlist.removeAll( m2 );
         delete m2;
     }

@@ -615,7 +615,7 @@ void Molecule::AddPeak( double d1, QString s1, QString s2 )
 // add hydrogens to atoms.  Only add to carbon if to_carbons == true
 void Molecule::AddHydrogens( bool to_carbon )
 {
-    qInfo() << "AddHydrogens(" << to_carbon << "), prefs = " << preferences.getFixHydrogens();
+    qDebug() << "AddHydrogens(" << to_carbon << "), prefs = " << preferences.getFixHydrogens();
     up = AllPoints();
     int h = 0, sumbonds = 0;
     double dx;
@@ -636,7 +636,7 @@ void Molecule::AddHydrogens( bool to_carbon )
             }
         }
         // save # of bonds found
-        qInfo() << tmp_pt->toQPoint() << "(" << tmp_pt->element << "): found substituents = " << sumbonds;
+        qDebug() << tmp_pt->toQPoint() << "(" << tmp_pt->element << "): found substituents = " << sumbonds;
         tmp_pt->substituents = sumbonds;
         tmp_pt->C13_shift = least_hindered_side;
         // update Text, if it exists, with least hindered side
@@ -711,7 +711,7 @@ void Molecule::AddHydrogens( bool to_carbon )
         // don't add if hydrogen already present
         if ( tmp_pt->element.contains( "H" ) == 0 ) {
             h = MolData::Hydrogens( tmp_pt->element ) - sumbonds;
-            qInfo() << "Found hydrogens: " << h;
+            qDebug() << "Found hydrogens: " << h;
             if ( h > 1 )
                 hnum.setNum( h );
             else
@@ -813,7 +813,7 @@ void Molecule::Reactivity( int react_type )
         qDebug() << "--- list ends ---";
         // we will also have to consider R group substitution here.
         // call Molecule::Retro() (in retro.cpp) to do matching
-        int nr = Retro();
+        /*int nr = */Retro();
     }
     if ( react_type == MODE_TOOL_CHARGES ) {
         // just look at atom types and assign AMBER-like partial charges

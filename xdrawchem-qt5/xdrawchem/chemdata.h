@@ -30,6 +30,8 @@ public:
     void setRender2D(Render2D *r1) { r = r1; }
     Render2D *getRender2D() { return r; }
     bool edited() { return notSaved; }
+    bool needsSave() { return notSaved; }
+    void saved() { notSaved = false; }
 
     // defined in chemdata.cpp
     ChemData( QObject *parent = 0 );
@@ -133,8 +135,6 @@ public:
         else
             clip = clip1;
     }
-    bool needsSave() { return notSaved; }
-    void saved() { notSaved = false; }
 
 public slots:
     void XDCEventHandler( XDC_Event * );

@@ -50,7 +50,7 @@ int Molecule::Retro()
 
     QTextStream tin( &fin );
     QString line, thisbond, norbond, pat, rxn;
-    int i1, i2;
+    int i1;//, i2;
 
     do {
         line = tin.readLine();
@@ -141,8 +141,8 @@ QString Molecule::RetroBondName( Bond * lbond, bool runsssr )
     // within each level.
 
     QStringList innerstrlist1, innerstrlist2, innerstrlist3;
-    Bond *local_tmp_bond, *inner_tmp_bond;
-    DPoint *outer1, *outer2, *inner1, *inner2, *inner3;
+    Bond *local_tmp_bond;//, *inner_tmp_bond;
+    DPoint *outer1, *outer2, *inner1;//, *inner2, *inner3;
     QString canonicalBond, leveltmpstr, outer1el, outer2el;
 
     canonicalBond == QString();
@@ -212,8 +212,9 @@ QString Molecule::RetroTraverseBonds( DPoint * parentNode, DPoint * thisNode, Bo
 /*  QListIterator<Bond *> innerIter1(bonds), innerIter2(bonds), innerIter(bonds),
     outerIter(bonds);*/
     QStringList innerstrlist1, innerstrlist2, innerstrlist3;
-    Bond *local_tmp_bond, *inner_tmp_bond;
-    DPoint *outer1, *outer2, *inner1, *inner2, *inner3;
+    //Bond *local_tmp_bond
+    Bond *inner_tmp_bond;
+    DPoint *outer1, /**outer2,*/ *inner1;//, *inner2, *inner3;
     QString canonicalBond, leveltmpstr, leftMarker, rightMarker, thislevelstr, outer1el, outer2el;
 
     if ( tlevel == 3 ) {

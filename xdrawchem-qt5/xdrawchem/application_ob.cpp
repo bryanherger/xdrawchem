@@ -107,6 +107,7 @@ void ApplicationWindow::OBNewLoad( QString infile, QString infilter )
         statusBar()->showMessage( tr( "Loaded document " ) + filename );
         m_chemData->DeselectAll();
         m_renderer->update();
+        m_chemData->saved();
         return;
     }
     /* end XDC/CDX code */
@@ -140,6 +141,7 @@ void ApplicationWindow::OBNewLoad( QString infile, QString infilter )
         QMessageBox::warning( 0, tr( "Problem while opening the file" ), tr( "Cannot open the specified file." ) );
         return;
     }
+    qInfo() << "OB loading " << inFormat;
     Conv.SetInAndOutFormats( inFormat, inFormat );
     Conv.Read( mol, &inFileStream );
     SelectAll();
@@ -151,6 +153,7 @@ void ApplicationWindow::OBNewLoad( QString infile, QString infilter )
     m_chemData->DeselectAll();
     m_renderer->update();
     m_renderer->setMode_Select();
+    m_chemData->saved();
     setWindowTitle( QString( XDC_VERSION ) + QString( " - " ) + filename );
     statusBar()->showMessage( tr( "Loaded document " ) + filename );
 }

@@ -26,8 +26,8 @@ void NewGraphWidget::paintEvent( QPaintEvent *pe )
 {
     QPainter p;
     QString s, ft;
-    bool cmp2 = false;
-    int cx = 10, cy = 10;
+    //bool cmp2 = false;
+    //int cx = 10, cy = 10;
 
     if ( output == 0 )
         p.begin( this );

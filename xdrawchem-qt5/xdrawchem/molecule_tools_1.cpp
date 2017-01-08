@@ -480,7 +480,7 @@ double Molecule::CalcKOW()
     double ri = 0.0, qi = 0.0, dg = 0.0, fkow;
 
     DPoint *alt_pt1, *alt_pt2, *alt_pt3;
-    int testcount;
+    //int testcount;
 
     foreach ( tmp_pt, up ) {
         if ( tmp_pt->hit )

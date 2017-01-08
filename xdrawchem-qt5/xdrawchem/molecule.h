@@ -67,6 +67,7 @@ public:
     QList<DPoint *> AllPoints();
     QList<Drawable *> AllObjects();
     QList<Bond *> AllBonds();
+    QList<Text *> AllLabels();
     QList<Molecule *> MakeSplit();
     int Members() { return bonds.count(); }
     QString ToXML( QString );

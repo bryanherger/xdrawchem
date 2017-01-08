@@ -937,7 +937,7 @@ class SDG {
 		int ringNumber, SPoint target,
 		int annulAxisOrientation, // iph
 		double toggleStartAngleSign ){ // b
-    int i;
+    //int i;
     double phi = 0, aaa, bbb, ax, ay, x, y;
     Ring *ring = sssr.at(ringNumber);
     //Atom node = new Atom();

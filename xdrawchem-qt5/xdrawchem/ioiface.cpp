@@ -20,11 +20,6 @@
 #include <algorithm>
 #include <iostream>
 
-/*
-//Added by qt3to4:
-#include <Q3PtrList>
-*/
-
 #include "ioiface.h"
 #include "dpoint.h"
 #include "chemdata.h"
@@ -35,10 +30,11 @@
 struct Point
 {
 
-    float x, y;
+    double x, y;
+    int idx;
     bool operator==( const Point & point ) const
     {
-        return ( x == point.x && y == point.y );
+        return ( /*x == point.x && y == point.y*/idx == point.idx );
     }
     bool operator<( const Point & point ) const
     {
@@ -115,8 +111,8 @@ void IOIface::convertToChemData()
     std::map < Point, DPoint *, pt_cmp > points;
     std::map < Point, DPoint *, pt_cmp >::iterator itr;
 
-    //int i=0;
-    float x, y;
+    int i=0;
+    double x, y;
 
     /* look through bonds and store points found since ChemData::addBond() requires
        DPoint*, and not DPoint. */
@@ -125,7 +121,6 @@ void IOIface::convertToChemData()
 
         atom1 = bond->GetBeginAtom();
         atom2 = bond->GetEndAtom();
-
         x = atom1->GetX();
         x = ( x + 5 ) * 15 + 100;
         y = atom1->GetY();
@@ -133,10 +128,13 @@ void IOIface::convertToChemData()
 
         point.x = x;
         point.y = y;
+        point.idx = atom1->GetIdx();
 
         itr = points.find( point );
         if ( itr == points.end() ) {
-            std::cerr << "true";
+            //qInfo() << "atom1:idx " << atom1->GetIdx();
+            //std::cerr << "true";
+            i++;
             points[point] = new DPoint( x, y );
         }
 
@@ -147,12 +145,17 @@ void IOIface::convertToChemData()
 
         point.x = x;
         point.y = y;
+        point.idx = atom2->GetIdx();
 
         itr = points.find( point );
-        if ( itr == points.end() )
+        if ( itr == points.end() ) {
+            //qInfo() << "atom2:idx " << atom2->GetIdx();
+            i++;
             points[point] = new DPoint( x, y );
-
+        }
     }
+    //qInfo() << "ioiface points: " << i;
+    i = 0;
 
     /* use information from previous for-loop and add bonds and labels */
 
@@ -160,6 +163,10 @@ void IOIface::convertToChemData()
 
         atom1 = bond->GetBeginAtom();
         atom2 = bond->GetEndAtom();
+
+        // TODO: this should be configurable.
+        if (atom1->GetAtomicNum() == 1) continue; // skip hydrogens for now
+        if (atom2->GetAtomicNum() == 1) continue; // skip hydrogens for now
 
         x = atom1->GetX();
         x = ( x + 5 ) * 15 + 100;
@@ -188,7 +195,6 @@ void IOIface::convertToChemData()
         //set elements
         if ( !atom1->IsCarbon() ) {
             QString str( "<element>" );
-
             str += IOIface::symbol[atom1->GetAtomicNum() - 1];
             str += "</element>";
             s->SetElementFromXML( str );
@@ -204,7 +210,9 @@ void IOIface::convertToChemData()
 
         }
 
+        //qInfo() << "adding bond: " << atom1->GetIdx() << "|" << atom2->GetIdx() << ", with order " << bondorder;
         chemdata->addBond( s, e, 1, bondorder, QColor( "black" ), true );
+        i++;
 
         //label atoms if not Carbon
 
@@ -236,6 +244,7 @@ void IOIface::convertToChemData()
 
         }
     }
+    //qInfo() << "ioiface added bonds: " << i;
 }
 
 //

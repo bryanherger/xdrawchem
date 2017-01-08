@@ -326,7 +326,7 @@ void Render2D::mousePressEvent( QMouseEvent * e1 )
     // MODE_TEXT with right button
     if ( ( mode == MODE_TEXT ) && mouse3down ) {
         rtclickpopup = new QMenu( this );
-        int id1;
+        //int id1;
         bool menu_ok = false;
 
         if ( highlightobject != 0 ) {
@@ -598,7 +598,7 @@ void Render2D::mouseDoubleClickEvent( QMouseEvent * e1 )
         curqpt = GridLock( curqpt );
     }
 
-    bool allowedit = false;
+    //bool allowedit = false;
 
     moved = false;
 
@@ -1900,7 +1900,7 @@ void Render2D::paintEvent( QPaintEvent * )
     // clear buffer pixmap
     dbuffer.fill( bgcolor );
     // draw grid as needed
-    int i1, cl1;
+    //int i1, cl1;
 
     if ( preferences.getDrawGrid() == GRID_SQUARE || preferences.getDrawGrid() == GRID_HEX )
         painter->drawPixmap( 0, 0, grid );
@@ -2014,8 +2014,8 @@ void Render2D::createGrid()
 
     if ( preferences.getDrawGrid() == GRID_SQUARE ) {
         i1 = qRound( preferences.getGridSpacing() * zoomFactor );
-        int width = parentWidget()->size().width();
-        int height = parentWidget()->size().height();
+        //int width = parentWidget()->size().width();
+        //int height = parentWidget()->size().height();
 
         gridPainter->setPen( QPen( QColor( 128, 128, 128 ), 1, Qt::DotLine ) );
         // draw horizontal

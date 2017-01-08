@@ -29,10 +29,7 @@ doc.path = $${PREFIX}/share/xdrawchem/doc
 doc.files = doc/*
 INSTALLS += ringdir doc
 QMAKE_CXXFLAGS_DEBUG += -O0 -g3
-QMAKE_CXXFLAGS_GNUCXX11 =
-QMAKE_CXXFLAGS_CXX11    =
 
-//DEFINES += QT_NO_CAST_TO_ASCII
 CONFIG += debug
 QT += xml network core widgets printsupport network gui
 

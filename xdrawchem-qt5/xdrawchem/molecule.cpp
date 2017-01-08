@@ -392,6 +392,11 @@ QList < Bond * >Molecule::AllBonds()
     return bonds;
 }
 
+QList < Text * >Molecule::AllLabels()
+{
+    return labels;
+}
+
 // Create a list of unique DPoints to move
 void Molecule::MakeTomoveList()
 {
@@ -692,14 +697,23 @@ void Molecule::addSymbol( Symbol * s )
 // add a molecule to this one.  The Drawable passed had better be a Molecule!
 void Molecule::addMolecule( Drawable *m1 )
 {
-    qDebug() << "Uh-oh!  Need to merge";
-    for ( tmp_bond = m1->bondsFirst(); tmp_bond != 0; tmp_bond = m1->bondsNext() ) {
+    //qInfo() << "Molecule::addMolecule";
+    int i = 0;
+    /*for ( tmp_bond = m1->bondsFirst(); tmp_bond != 0; tmp_bond = m1->bondsNext() ) {
         bonds.append( tmp_bond );
-    }
-    for ( tmp_text = m1->labelsFirst(); tmp_text != 0; tmp_text = m1->labelsNext() ) {
+        i++;
+    }*/
+    i = bonds.count();
+    bonds.append( ((Molecule *)m1)->AllBonds() );
+    //qInfo() << "Merged bonds: " << (bonds.count() - i);
+    /*for ( tmp_text = m1->labelsFirst(); tmp_text != 0; tmp_text = m1->labelsNext() ) {
         tmp_text->setMolecule( this );
         labels.append( tmp_text );
-    }
+        i++;
+    }*/
+    i = labels.count();
+    labels.append( ((Molecule *)m1)->AllLabels() );
+    //qInfo() << "Merged labels: " << (labels.count() - i);
     Changed();
 }
 
