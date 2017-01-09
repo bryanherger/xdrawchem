@@ -5,7 +5,6 @@ TARGET = xdrawchem
 exists(/usr/include/openbabel-2.0/openbabel/mol.h) {
 INCLUDEPATH += /usr/include/openbabel-2.0
 LIBS += -lopenbabel
-OB
 }
 exists(/usr/local/include/openbabel-2.0/openbabel/mol.h) {
 INCLUDEPATH += /usr/local/include/openbabel-2.0
