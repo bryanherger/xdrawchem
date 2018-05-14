@@ -59,6 +59,16 @@ void ChemData::addMolecule( Molecule * m1 )
     notSaved = true;
 }
 
+Molecule* ChemData::findMolecule(DPoint* p) {
+    for(int i=0; i < drawlist.size(); i++) {
+        if(drawlist[i]->Find(p) && drawlist[i]->Type() == TYPE_MOLECULE) {
+            return (Molecule*) drawlist[i];
+        }
+    }
+
+    return NULL;
+}
+
 void ChemData::addArrow( DPoint * s, DPoint * e, QColor c, int t, int p2, bool hl )
 {
     Arrow *a1 = new Arrow( r );

@@ -611,12 +611,20 @@ void Render2D::mouseDoubleClickEvent( QMouseEvent * e1 )
     qDebug() << "mouseDoubleClickEvent received";
 
     if ( highlightobject != 0 ) {
+        // there is an object being hovered over
         if ( highlightobject->Type() == TYPE_TEXT ) {
+            // make text editable
             qDebug() << "Activate text object?";
             doubleClickFlag = true;
             prev_mode = mode;
             mode = MODE_TEXT;
             DrawText_mousePressEvent( e1, curqpt );
+            return;
+        }
+
+        if (highlightobject->Type() == TYPE_BOND) {
+            // edit bond on double click
+            highlightobject->Edit();
             return;
         }
     }
@@ -806,7 +814,7 @@ void Render2D::mouseReleaseEvent( QMouseEvent *e1 )
                 emit XDCEventSignal( evt );
 
                 savedBondOrder = -1;
-                //c->addBond(startpoint, endpoint, thick, 1, currentColor);
+                // c->addBond(startpoint, endpoint, thick, 1, currentColor);
             }
         }
         startpoint = 0;

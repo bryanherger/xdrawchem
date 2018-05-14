@@ -144,6 +144,7 @@ void Bond::Render()
 
     double abl = 1.0;
 
+    // TODO: scale according molecule size
     abl = ( double ) thick / 2.0 + preferences.getDoubleBondOffset();
 
     // check for order 2 special case (center double bond)
@@ -438,6 +439,12 @@ double Bond::Enthalpy()
 double Bond::Length()
 {
     return start->distanceTo( end );
+}
+
+void Bond::reverse() {
+    DPoint* copy = start;
+    start = end;
+    end = copy;
 }
 
 // kate: tab-width 4; indent-width 4; space-indent on; replace-trailing-space-save on;

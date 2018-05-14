@@ -141,6 +141,7 @@ void ApplicationWindow::OBNewLoad( QString infile, QString infilter )
         QMessageBox::warning( 0, tr( "Problem while opening the file" ), tr( "Cannot open the specified file." ) );
         return;
     }
+
     qInfo() << "OB loading " << inFormat;
     Conv.SetInAndOutFormats( inFormat, inFormat );
     Conv.Read( mol, &inFileStream );

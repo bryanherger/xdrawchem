@@ -340,7 +340,7 @@ void Render2D::keyPressEvent( QKeyEvent * k )
             // emulate ChemDraw(R) "hot key" behavior
             QString tmpstr = k->text();
 
-            qDebug() << "hot key:" << tmpstr << ":";
+           qDebug() << "hot key:" << tmpstr << ":";
             if ( tmpstr.length() < 1 )
                 return;
             tmpstr = tmpstr.toUpper();
@@ -380,9 +380,13 @@ void Render2D::keyPressEvent( QKeyEvent * k )
                 }
 
                 if ( highlightobject->Type() != TYPE_TEXT ) {
+                    // some random key press -> no need for a text editor
+                    delete localtexteditor;
+                    localtexteditor = 0;
+
                     hotkeymode = false;
                     mode = hkprevmode;
-                    return;
+                    return; // a seg fault will occur otherwise!!!
                 }
 
                 text_exists = true;

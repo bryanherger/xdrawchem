@@ -45,7 +45,7 @@ ringdir.files = ring/*
 doc.path = $${PREFIX}/share/xdrawchem/doc
 doc.files = doc/*
 INSTALLS += ringdir doc
-QMAKE_CXXFLAGS_DEBUG += -O0 -g3
+QMAKE_CXXFLAGS_DEBUG += -O0 -g3 -g -rdynamic
 
 CONFIG += debug
 QT += xml network core widgets printsupport network gui
@@ -127,7 +127,8 @@ HEADERS = xdrawchem/aa_xpm.h \
           xdrawchem/xdc_toolbutton.h \
           xdrawchem/xml_cml.h \
           xdrawchem/xml_reader.h \
-          xdrawchem/xruler.h
+          xdrawchem/xruler.h \
+          xdrawchem/vector2D.h
 
 SOURCES = xdrawchem/application.cpp \
           xdrawchem/application_ob.cpp \
@@ -204,7 +205,8 @@ SOURCES = xdrawchem/application.cpp \
           xdrawchem/xdc_toolbutton.cpp \
           xdrawchem/xml_cml.cpp \
           xdrawchem/xml_reader.cpp \
-          xdrawchem/xruler.cpp
+          xdrawchem/xruler.cpp \
+          xdrawchem/vector2D.cpp
 
 TRANSLATIONS = translation/xdrawchem_da.ts \
 	translation/xdrawchem_dk.ts \

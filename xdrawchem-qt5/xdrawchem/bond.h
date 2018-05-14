@@ -10,6 +10,8 @@
 #include "drawable.h"
 #include "dpoint.h"
 #include "moldata.h"
+#include "vector2D.h"
+#include "algorithm"
 
 #define BOND_LEFT 0
 #define BOND_RIGHT 1
@@ -101,6 +103,94 @@ public:
         QPoint mp1( (int)dx, (int)dy );
         return mp1;
     }
+
+    /**
+     * @brief getAngleBetween Gets the angle between this bond and another one
+     * @param bond The bond to calculate the angle with
+     * @return The angle between the bonds in radians
+     */
+    double getAngleBetween(Bond* bond) {
+        Vector2D* thisVector = this->toVector();
+        Vector2D* otherVector = bond->toVector();
+
+        thisVector->normalize();
+        otherVector->normalize();
+
+        thisVector->normalize();
+        otherVector->normalize();
+        double angle = acos(thisVector->dotProduct(otherVector));
+
+        delete thisVector;
+        delete otherVector;
+
+        return angle;
+    }
+
+    /**
+     * @brief getAngleBetweenDirectional Gets the angle this bond has to be rotated (via a standard rotational matrix) in order
+     * to point int the same direction as the given one
+     * @param bond The bond to calculate the angle to
+     * @return The respective angle
+     */
+    double getAngleBetweenDirectional(Bond* bond) {
+        Vector2D* thisVector = this->toVector();
+        Vector2D* otherVector = bond->toVector();
+
+        if (this->start != bond->start) {
+            thisVector->reverse();
+        }
+
+        thisVector->normalize();
+        otherVector->normalize();
+
+        double angle = atan2(thisVector->x * otherVector->y - thisVector->y * otherVector->x,
+                             thisVector->x * otherVector->x + thisVector->y * otherVector->y);
+
+        delete thisVector;
+        delete otherVector;
+
+        return angle < 0 ? 2 * M_PI + angle : angle;
+    }
+
+    /**
+     * @brief getAngleBetweenDirectional Gets the angle this bond has to be rotated
+     * (via a standard rotational matrix in a left-handed coordinate system) in order
+     * to point int the same direction as the given one
+     * @param bond The bond to calculate the angle to
+     * @return The respective angle
+     */
+    double getAngleBetweenDirectionalLeftHanded(Bond* bond) {
+        Vector2D* thisVector = this->toVector();
+        Vector2D* otherVector = bond->toVector();
+
+        if (this->start != bond->start) {
+            thisVector->reverse();
+        }
+
+        thisVector->normalize();
+        otherVector->normalize();
+
+        // minus because of left-handed coordinate system
+        double angle = atan2(- thisVector->crossProduct(otherVector), thisVector->dotProduct(otherVector));
+
+        delete thisVector;
+        delete otherVector;
+
+        return angle < 0 ? 2 * M_PI + angle : angle;
+    }
+
+    /**
+     * @brief toVector Transforms this bond into a vector pointing from the starting point to the end point
+     * @return The respective vector
+     */
+    Vector2D* toVector() {
+        return new Vector2D(end->x - start->x, end->y - start->y);
+    }
+
+    /**
+     * @brief reverse Reverses the direction of this bond by switching its start and end point
+     */
+    void reverse();
 
 private:
     // Renderer

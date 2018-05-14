@@ -1,0 +1,8 @@
+build*/
+*.o
+*.obj
+*.settings
+*.project
+*.user
+*.autosave
+*.cproject
