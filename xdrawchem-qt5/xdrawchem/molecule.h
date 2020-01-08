@@ -3,6 +3,10 @@
 #ifndef MOLECULE_H
 #define MOLECULE_H
 
+#include <openbabel/atom.h>
+#include <openbabel/bond.h>
+#include <openbabel/elements.h>
+#include <openbabel/math/vector3.h>
 #include <openbabel/mol.h>
 #include <openbabel/obconversion.h>
 
