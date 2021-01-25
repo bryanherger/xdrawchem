@@ -20,6 +20,9 @@
 
 #include "chemdata.h"
 
+#include <openbabel/atom.h>
+#include <openbabel/bond.h>
+#include <openbabel/math/vector3.h>
 #include <openbabel/mol.h>
 
 using namespace OpenBabel;

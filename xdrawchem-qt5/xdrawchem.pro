@@ -2,8 +2,8 @@ TEMPLATE = app
 TARGET = xdrawchem
 
 # edit to match your OB install
-exists(/usr/include/openbabel-2.0/openbabel/mol.h) {
-INCLUDEPATH += /usr/include/openbabel-2.0
+exists(/usr/include/openbabel3/openbabel/mol.h) {
+INCLUDEPATH += /usr/include/openbabel3
 LIBS += -lopenbabel
 }
 exists(/usr/local/include/openbabel-2.0/openbabel/mol.h) {
