@@ -6,6 +6,10 @@ exists(/usr/include/openbabel3/openbabel/mol.h) {
 INCLUDEPATH += /usr/include/openbabel3
 LIBS += -lopenbabel
 }
+exists(/usr/local/include/openbabel3/openbabel/mol.h) {
+INCLUDEPATH += /usr/local/include/openbabel3
+LIBS += -lopenbabel
+}
 exists(/usr/local/include/openbabel-2.0/openbabel/mol.h) {
 INCLUDEPATH += /usr/local/include/openbabel-2.0
 LIBS += -lopenbabel
