@@ -1,14 +1,18 @@
-# xdrawchem
+# XDrawChem: a two-dimensional molecule drawing program
 
 Welcome to XDrawChem!
 
 Please visit the project page at http://www.woodsidelabs.com/chemistry/xdrawchem.php
 
-Current release (1.10.1-1) source tarball, as well as RPM and Mac DMG binaries are available at SourceForge: https://sourceforge.net/projects/xdrawchem/files/xdrawchem/1.10.1/
+Current release (1.10.1-1) source tarball, as well as RPM and Mac DMG binaries are available via SourceForge at https://sourceforge.net/projects/xdrawchem/files/xdrawchem/1.10.1/
 
-This repository conatins three (!) versions of XDrawChem:
+### Installation
 
-xdrawchem-qt5 - this is the main development and release version (1.9.11 onwards).  It is based on Qt 5.x.
+The current source code is in the xdrawchem-qt5 folder (v1.9.11 onwards).  It requires OpenBabel 3.x and Qt 5.x.  Please see the INSTALL document in xdrawchem-qt5 for installation directions.
+
+### Other stuff
+
+This repository conatins two legacy versions of XDrawChem:
 
 legacy-xdrawchem-qt3 - this is the legacy Qt3 version (1.9.10 and prior).  It is based on Qt 3.x.
 
@@ -17,5 +21,4 @@ legacy-xdrawchem-qt4 - this is a contributed version.  It is based on Qt 4.
 
 Enjoy!
 
-Bryan Herger
-bherger@users.sf.net
+Bryan Herger - bherger@users.sf.net
