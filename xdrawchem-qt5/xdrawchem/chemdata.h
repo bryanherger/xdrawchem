@@ -38,6 +38,7 @@ public:
     void drawAll();
     Molecule *firstMolecule();
     void addMolecule( Molecule * );
+    Molecule* findMolecule(DPoint* p);
     void addBond( DPoint *, DPoint *, int, int, QColor, bool hl = false );
     void addArrow( DPoint *, DPoint *, QColor, int, int, bool hl = false );
     void addCurveArrow( DPoint *, DPoint *, QColor, QString, bool hl = false );
