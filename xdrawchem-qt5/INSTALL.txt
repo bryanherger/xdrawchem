@@ -1,14 +1,19 @@
-To install XDrawChem:
+XDrawChem is available in binary format from SourceForge and several common package repositories.
 
-1) Install recent Qt and OpenBabel from packages or source.
-If installing from packages, please also install the "devel" packages as well, e.g. qt5-qtbase-devel and openbabel-devel.
-XDrawChem is built with Qt 5.6 and OpenBabel 2.2.3
+To build and install XDrawChem from GitHub source:
+
+1) Install recent Qt 5.x from packages or source.
+Build and install OpenBabel from current GitHub release at https://github.com/openbabel/openbabel
+If installing from packages, please also install the "devel" packages as well, e.g. qt5-qtbase-devel.
+XDrawChem is built with Qt 5.6 and OpenBabel 3.0
 Please file an issue on GitHub if these versions or newer fail.
 
 2) Type "qmake".
    This will generate the XDrawChem Makefiles.
 
-   Then type "make", followed by (as root) "make install" to build and install.
+   Then type "make" to build, followed by (as root or sudo) "make install" to install.
+   
+   Please report any issues on GitHub, including full console output of build/install.
 
 After installation:
 3) Type "xdrawchem" to run the program.  Also, you may wish to type
