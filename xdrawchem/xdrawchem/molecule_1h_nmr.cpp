@@ -133,12 +133,13 @@ void Molecule::AddNMRprotons()
 
 void Molecule::RemoveNMRprotons()
 {
-    for (Bond *tmp_bond : bonds) {
-        if ( tmp_bond->End()->nmr_proton == true ) {
-            bonds.removeAll( tmp_bond );
-            delete tmp_bond;
+    int i;
 
-            tmp_bond = bonds.first();
+    for ( i = bonds.size() - 1; i >= 0; --i ) {
+        Bond *tmp_bond = bonds[i];
+        if ( tmp_bond->End()->nmr_proton == true ) {
+            delete tmp_bond;
+            bonds.removeAt(i);
         }
     }
 }
