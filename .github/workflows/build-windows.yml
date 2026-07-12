@@ -56,43 +56,51 @@ jobs:
 
       - name: Build OpenBabel from source
         if: steps.cache-openbabel.outputs.cache-hit != 'true'
-        shell: pwsh
+        shell: cmd
         run: |
-          # Clone the 3.2.1 release tag (shallow)
-          git clone --depth 1 --branch openbabel-3-2-1 `
-            https://github.com/openbabel/openbabel.git ob-src
+          :: Re-source MSVC into this cmd session; variables already dumped to GITHUB_ENV by the earlier step,
+          :: but GitHub Actions cmd steps still need vcvarsall to put cl.exe/ninja on PATH for the step.
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
 
-          # Configure with explicit flags to force EXPORTS and shared libraries
-          cmake -S ob-src -B ob-build `
-            -G Ninja `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DCMAKE_INSTALL_PREFIX=C:\OpenBabel `
-            -DBUILD_GUI=OFF `
-            -DENABLE_TESTS=OFF `
-            -DWITH_INCHI=OFF `
-            -DWITH_MAEPARSER=OFF `
-            -DWITH_COORDGEN=OFF `
-            -DBUILD_SHARED=OFF `
-            -DBUILD_SHARED_LIBS=OFF `
-            -DBUILD_STATIC=ON `
-            -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON `
-            -DCMAKE_DISABLE_FIND_PACKAGE_LibXml2=TRUE `
-            -DCMAKE_DISABLE_FIND_PACKAGE_ZLIB=TRUE `
-            -DCMAKE_DISABLE_FIND_PACKAGE_Cairo=TRUE `
+          :: Clone the 3.2.1 release tag (shallow)
+          git clone --depth 1 --branch openbabel-3-2-1 https://github.com/openbabel/openbabel.git ob-src
+
+          :: Patch deprecated std::binary_function in older MSVC toolsets / C++17 modes
+          powershell -NoProfile -Command "Get-ChildItem ob-src -Recurse -Filter '*.h' | ForEach-Object { (Get-Content $_.FullName) -replace 'std::binary_function<([^>]+),\s*([^>]+),\s*([^>]+)>', 'std::function<bool(\1,\2)>' | Set-Content $_.FullName }"
+
+          :: Patch root CMakeLists to skip the tools subdirectory. OpenBabel 3.2.1's tools/ build pulls in
+          :: the obabel executable target which requires PTHREAD_LIBRARY (not available on Windows).
+          :: We only need the OpenBabel library for XDrawChem.
+          powershell -NoProfile -Command "\$txt = Get-Content ob-src/CMakeLists.txt -Raw; if (-not (\$txt -match 'BUILD_TOOLS')) { \$txt = \$txt -replace 'add_subdirectory\(tools\)', '# XDrawChem: tools/ skipped - PTHREAD_LIBRARY not available on Windows; library only\\n#if(BUILD_TOOLS)\\n#  add_subdirectory(tools)\\n#endif()' }; Set-Content ob-src/CMakeLists.txt \$txt -NoNewline"
+
+          :: Configure with explicit flags to build static libraries
+          cmake -S ob-src -B ob-build ^
+            -G Ninja ^
+            -DCMAKE_BUILD_TYPE=Release ^
+            -DCMAKE_INSTALL_PREFIX=C:\OpenBabel ^
+            -DBUILD_GUI=OFF ^
+            -DENABLE_TESTS=OFF ^
+            -DWITH_INCHI=OFF ^
+            -DWITH_MAEPARSER=OFF ^
+            -DWITH_COORDGEN=OFF ^
+            -DBUILD_SHARED=OFF ^
+            -DBUILD_SHARED_LIBS=OFF ^
+            -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON ^
+            -DCMAKE_DISABLE_FIND_PACKAGE_LibXml2=TRUE ^
+            -DCMAKE_DISABLE_FIND_PACKAGE_ZLIB=TRUE ^
+            -DCMAKE_DISABLE_FIND_PACKAGE_Cairo=TRUE ^
             -DCMAKE_DISABLE_FIND_PACKAGE_Boost=TRUE
 
-          # Build (verbose) and install
-          cmake --build ob-build --config Release -j $env:NUMBER_OF_PROCESSORS --verbose
-          if ($LASTEXITCODE -ne 0) { throw "OpenBabel build failed" }
+          :: Build (verbose) and install
+          cmake --build ob-build --config Release -j %NUMBER_OF_PROCESSORS% --verbose
+          if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%
 
           cmake --install ob-build --config Release --verbose
-          if ($LASTEXITCODE -ne 0) { throw "OpenBabel install failed" }
+          if %ERRORLEVEL% neq 0 exit /b %ERRORLEVEL%
 
-          Write-Host "=== ob-build artifacts (*.dll, *.lib) ==="
-          Get-ChildItem ob-build -Recurse -Include "*.dll","*.lib" | Select-Object FullName
+          powershell -NoProfile -Command "Write-Host '=== ob-build artifacts (*.dll, *.lib) ==='; Get-ChildItem ob-build -Recurse -Include '*.dll','*.lib' | Select-Object FullName"
 
-          Write-Host "=== Installed C:\OpenBabel listing (depth 3) ==="
-          Get-ChildItem C:\OpenBabel -Depth 3 | Select-Object FullName
+          powershell -NoProfile -Command "Write-Host '=== Installed C:\OpenBabel listing (depth 3) ==='; Get-ChildItem C:\OpenBabel -Depth 3 | Select-Object FullName"
 
       - name: Export OpenBabel path
         shell: pwsh
