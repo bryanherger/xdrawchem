@@ -45,6 +45,38 @@ jobs:
             --outputdir C:\Qt
         shell: pwsh
 
+      - name: Discover MSVC path
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          if (-not (Test-Path $vswhere)) {
+            $vswhere = "${env:ProgramFiles}\Microsoft Visual Studio\Installer\vswhere.exe"
+          }
+          if (-not (Test-Path $vswhere)) {
+            $vswhere = (Get-Command vswhere.exe -ErrorAction SilentlyContinue).Source
+          }
+          if (-not $vswhere) {
+            Write-Error "vswhere.exe not found"
+            exit 1
+          }
+
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vsPath -or -not (Test-Path $vsPath)) {
+            Write-Error "No suitable Visual Studio installation found"
+            exit 1
+          }
+
+          $vcvars = Join-Path $vsPath 'VC\Auxiliary\Build\vcvarsall.bat'
+          if (-not (Test-Path $vcvars)) {
+            Write-Error "vcvarsall.bat not found at $vcvars"
+            exit 1
+          }
+          $vcvars = $vcvars.Trim('"')
+          Write-Host "Discovered VCVARS_PATH: $vcvars"
+          "VCVARS_PATH=$vcvars" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
+
       - name: Cache OpenBabel build
         id: cache-openbabel
         uses: actions/cache@v5
@@ -140,40 +172,11 @@ jobs:
           echo "OB_ROOT=C:\OpenBabel"
           echo "C:\OpenBabel" | Out-File -FilePath "$env:RUNNER_TEMP\ob_root.txt" -Encoding UTF8
 
-      - name: Discover MSVC and OpenBabel paths
+      - name: Discover OpenBabel paths
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
 
-          # --- Locate latest Visual Studio installation via vswhere ---
-          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-          if (-not (Test-Path $vswhere)) {
-            $vswhere = "${env:ProgramFiles}\Microsoft Visual Studio\Installer\vswhere.exe"
-          }
-          if (-not (Test-Path $vswhere)) {
-            $vswhere = (Get-Command vswhere.exe -ErrorAction SilentlyContinue).Source
-          }
-          if (-not $vswhere) {
-            Write-Error "vswhere.exe not found"
-            exit 1
-          }
-
-          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
-          if (-not $vsPath -or -not (Test-Path $vsPath)) {
-            Write-Error "No suitable Visual Studio installation found"
-            exit 1
-          }
-
-          $vcvars = Join-Path $vsPath 'VC\Auxiliary\Build\vcvarsall.bat'
-          if (-not (Test-Path $vcvars)) {
-            Write-Error "vcvarsall.bat not found at $vcvars"
-            exit 1
-          }
-          $vcvars = $vcvars.Trim("`"")
-          Write-Host "Discovered VCVARS_PATH: $vcvars"
-          Write-Output "VCVARS_PATH=$vcvars" >> $env:GITHUB_ENV
-
-          # --- Discover OpenBabel library ---
           $obRoot = 'C:\OpenBabel'
           $obLibCandidates = @(
             "$obRoot\lib\openbabel-3.lib",
