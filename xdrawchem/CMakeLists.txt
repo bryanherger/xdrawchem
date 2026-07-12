@@ -19,6 +19,14 @@ string(REGEX REPLACE "[^0-9.].*$" "" APP_VERSION_NUMERIC "${APP_VERSION}")
 
 project(xdrawchem VERSION ${APP_VERSION_NUMERIC} LANGUAGES CXX)
 
+# ── MSVC compatibility ───────────────────────────────────────────────────────
+# OpenBabel 3.2.1 uses POSIX strcasecmp / strdup which are unavailable on MSVC.
+# Force-include this header and suppress the related deprecation warnings.
+if(MSVC)
+  add_compile_options(/FI"${CMAKE_CURRENT_SOURCE_DIR}/win_compat.h")
+  add_compile_definitions(_CRT_NONSTDC_NO_DEPRECATE _CRT_SECURE_NO_DEPRECATE)
+endif()
+
 # ── C++ standard ───────────────────────────────────────────────────────────────
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
