@@ -83,7 +83,7 @@ jobs:
         shell: cmd
         run: |
           :: Activate MSVC environment for this step so cl.exe/ninja are on PATH.
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          call "%VCVARS_PATH%" x64
           :: Ensure MSVC tools are preferred over any MinGW that may be on PATH.
           set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
 
@@ -123,54 +123,91 @@ jobs:
           echo "OB_ROOT=C:\OpenBabel"
           echo "C:\OpenBabel" | Out-File -FilePath "$env:RUNNER_TEMP\ob_root.txt" -Encoding UTF8
 
+      - name: Discover MSVC and OpenBabel paths
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+
+          # --- Locate latest Visual Studio installation via vswhere ---
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          if (-not (Test-Path $vswhere)) {
+            $vswhere = "${env:ProgramFiles}\Microsoft Visual Studio\Installer\vswhere.exe"
+          }
+          if (-not (Test-Path $vswhere)) {
+            $vswhere = (Get-Command vswhere.exe -ErrorAction SilentlyContinue).Source
+          }
+          if (-not $vswhere) {
+            Write-Error "vswhere.exe not found"
+            exit 1
+          }
+
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vsPath -or -not (Test-Path $vsPath)) {
+            Write-Error "No suitable Visual Studio installation found"
+            exit 1
+          }
+
+          $vcvars = Join-Path $vsPath 'VC\Auxiliary\Build\vcvarsall.bat'
+          if (-not (Test-Path $vcvars)) {
+            Write-Error "vcvarsall.bat not found at $vcvars"
+            exit 1
+          }
+          Write-Host "Discovered VCVARS_PATH: $vcvars"
+          echo "VCVARS_PATH=$vcvars" >> $env:GITHUB_ENV
+
+          # --- Discover OpenBabel library ---
+          $obRoot = 'C:\OpenBabel'
+          $obLibCandidates = @(
+            "$obRoot\lib\openbabel-3.lib",
+            "$obRoot\lib\openbabel3.lib",
+            "$obRoot\lib\openbabel.lib",
+            "$obRoot\lib\libopenbabel.a",
+            "$obRoot\bin\openbabel-3.lib",
+            "$obRoot\bin\openbabel3.lib",
+            "$obRoot\bin\openbabel.lib",
+            "$obRoot\bin\libopenbabel.a"
+          )
+          $obLib = $obLibCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $obLib) {
+            $obLib = Get-ChildItem $obRoot -Recurse -Filter '*.lib' | Select-Object -First 1 -ExpandProperty FullName
+          }
+          if (-not $obLib) {
+            $obLib = Get-ChildItem $obRoot -Recurse -Filter '*.a' | Select-Object -First 1 -ExpandProperty FullName
+          }
+          if (-not $obLib) {
+            Write-Error "OpenBabel library not found in $obRoot"
+            exit 1
+          }
+          Write-Host "Discovered OB_LIB: $obLib"
+          echo "OB_LIB=$obLib" >> $env:GITHUB_ENV
+
+          # --- Discover OpenBabel include dir ---
+          $obInclude = Get-ChildItem "$obRoot\include" -Directory -Recurse -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -match '(?i)openbabel' } |
+            Select-Object -First 1 -ExpandProperty FullName
+          if (-not $obInclude) {
+            $obInclude = "$obRoot\include\openbabel3"
+          }
+          Write-Host "Discovered OB_INCLUDE: $obInclude"
+          echo "OB_INCLUDE=$obInclude" >> $env:GITHUB_ENV
+
+          # --- Diagnostics: show every .lib/.a under OB_ROOT ---
+          Write-Host "=== OpenBabel libraries under $obRoot ==="
+          Get-ChildItem $obRoot -Recurse -Include '*.lib','*.a' | Select-Object FullName
+
       - name: Configure CMake
         shell: cmd
         run: |
-          :: Activate MSVC environment for this step so the correct compiler
-          :: is selected; otherwise CMake may pick MinGW gcc from PATH.
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          :: Activate MSVC environment using the path discovered by vswhere.
+          call "%VCVARS_PATH%" x64
           set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
 
           set QT_DIR=C:\Qt\${{ env.QT_VERSION }}\msvc2019_64
-          set OB_ROOT=%OB_ROOT%
 
-          :: Diagnostics: list candidate library locations.
-          echo All .lib files in OB_ROOT (recursive):
-          powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.lib' | Select-Object FullName"
-          echo All .a files in OB_ROOT (recursive):
-          powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.a' | Select-Object FullName"
-
-          :: Candidate library names, in priority order.  OpenBabel built with
-          :: MinGW produces a static libopenbabel.a; MSVC produces .lib files.
-          set OB_LIB=
-          for %%F in (
-            "%OB_ROOT%\lib\openbabel-3.lib"
-            "%OB_ROOT%\lib\openbabel3.lib"
-            "%OB_ROOT%\lib\openbabel.lib"
-            "%OB_ROOT%\lib\libopenbabel.a"
-            "%OB_ROOT%\bin\openbabel-3.lib"
-            "%OB_ROOT%\bin\openbabel3.lib"
-            "%OB_ROOT%\bin\openbabel.lib"
-            "%OB_ROOT%\bin\libopenbabel.a"
-          ) do if not defined OB_LIB if exist %%F set OB_LIB=%%~F
-
-          :: Fallback: any .lib, then any .a under OB_ROOT.
-          if not defined OB_LIB (
-            for /f "delims=" %%F in ('powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.lib' | Select-Object -First 1 -ExpandProperty FullName"') do set OB_LIB=%%F
-          )
-          if not defined OB_LIB (
-            for /f "delims=" %%F in ('powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.a' | Select-Object -First 1 -ExpandProperty FullName"') do set OB_LIB=%%F
-          )
-
-          if not defined OB_LIB (
-            echo OpenBabel library not found in OB_ROOT (no .lib/.a files found under %OB_ROOT%).
-            exit /b 1
-          )
-          echo Using OB lib: %OB_LIB%
-
-          :: Locate include dir dynamically (openbabel3 or openbabel).
-          for /f "delims=" %%D in ('powershell -NoProfile -Command "$d = Get-ChildItem %OB_ROOT%\include -Directory -Recurse -ErrorAction SilentlyContinue ^| Where-Object { $_.Name -match '(?i)openbabel' } ^| Select-Object -First 1 -ExpandProperty FullName; if ($d) { $d } else { '%OB_ROOT%\include\openbabel3' }"') do set OB_INCLUDE=%%D
-          echo Using OB include: %OB_INCLUDE%
+          :: Diagnostics
+          echo Using VCVARS_PATH: %VCVARS_PATH%
+          echo Using OB_LIB:    %OB_LIB%
+          echo Using OB_INCLUDE: %OB_INCLUDE%
 
           cmake -S xdrawchem -B build ^
             -G Ninja ^
@@ -189,7 +226,7 @@ jobs:
         shell: cmd
         run: |
           :: Ensure MSVC environment is active for the build as well.
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          call "%VCVARS_PATH%" x64
           set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
           cmake --build build --config Release -j %NUMBER_OF_PROCESSORS% --verbose
 
