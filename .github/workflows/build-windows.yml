@@ -31,11 +31,9 @@ jobs:
 
       # Set up MSVC environment first — required by both OpenBabel
       # and XDrawChem cmake builds (provides cl.exe, nmake, ninja).
-      - name: Set up MSVC
-        shell: cmd
-        run: |
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-          set >> "%GITHUB_ENV%"
+      # MSVC environment must be loaded in every cmd step that uses cl.exe/
+      # ninja, because GitHub Actions shells do not persist vcvars across
+      # steps.  Each step that calls cmake/build therefore sources vcvarsall.
 
       - name: Install Qt6 via aqtinstall
         run: |
@@ -86,6 +84,8 @@ jobs:
         run: |
           :: Activate MSVC environment for this step so cl.exe/ninja are on PATH.
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          :: Ensure MSVC tools are preferred over any MinGW that may be on PATH.
+          set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
 
           :: Configure with explicit flags to build static libraries
           cmake -S ob-src -B ob-build ^
@@ -120,64 +120,78 @@ jobs:
         shell: pwsh
         run: |
           echo "OB_ROOT=C:\OpenBabel" >> $env:GITHUB_ENV
+          echo "OB_ROOT=C:\OpenBabel"
+          echo "C:\OpenBabel" | Out-File -FilePath "$env:RUNNER_TEMP\ob_root.txt" -Encoding UTF8
 
       - name: Configure CMake
-        shell: pwsh
+        shell: cmd
         run: |
-          $QT_DIR = "C:\Qt\${{ env.QT_VERSION }}\msvc2019_64"
+          :: Activate MSVC environment for this step so the correct compiler
+          :: is selected; otherwise CMake may pick MinGW gcc from PATH.
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
 
-          $OB_ROOT = $env:OB_ROOT
-          # Dump all .lib files to help debugging
-          Write-Host "All .lib files in OB_ROOT (recursive):"
-          Get-ChildItem $OB_ROOT -Recurse -Filter "*.lib" | Select-Object FullName
+          set QT_DIR=C:\Qt\${{ env.QT_VERSION }}\msvc2019_64
+          set OB_ROOT=%OB_ROOT%
 
-          # Prefer import libs that contain 'openbabel' in the filename (case-insensitive)
-          $foundLib = Get-ChildItem $OB_ROOT -Recurse -Filter "*.lib" `
-            -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -match '(?i)openbabel' } |
-            Select-Object -First 1
+          :: Diagnostics: list candidate library locations.
+          echo All .lib files in OB_ROOT (recursive):
+          powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.lib' | Select-Object FullName"
+          echo All .a files in OB_ROOT (recursive):
+          powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.a' | Select-Object FullName"
 
-          # Fallback: use the first .lib found under OB_ROOT if no openbabel-named lib exists
-          if (-not $foundLib) {
-            Write-Warning "No import lib with 'openbabel' in the filename found — falling back to first .lib"
-            $foundLib = Get-ChildItem $OB_ROOT -Recurse -Filter "*.lib" -ErrorAction SilentlyContinue | Select-Object -First 1
-          }
+          :: Candidate library names, in priority order.  OpenBabel built with
+          :: MinGW produces a static libopenbabel.a; MSVC produces .lib files.
+          set OB_LIB=
+          for %%F in (
+            "%OB_ROOT%\lib\openbabel-3.lib"
+            "%OB_ROOT%\lib\openbabel3.lib"
+            "%OB_ROOT%\lib\openbabel.lib"
+            "%OB_ROOT%\lib\libopenbabel.a"
+            "%OB_ROOT%\bin\openbabel-3.lib"
+            "%OB_ROOT%\bin\openbabel3.lib"
+            "%OB_ROOT%\bin\openbabel.lib"
+            "%OB_ROOT%\bin\libopenbabel.a"
+          ) do if not defined OB_LIB if exist %%F set OB_LIB=%%~F
 
-          if (-not $foundLib) {
-            throw "OpenBabel import lib not found in OB_ROOT (no .lib files found under $OB_ROOT). See lib listing above."
-          }
+          :: Fallback: any .lib, then any .a under OB_ROOT.
+          if not defined OB_LIB (
+            for /f "delims=" %%F in ('powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.lib' | Select-Object -First 1 -ExpandProperty FullName"') do set OB_LIB=%%F
+          )
+          if not defined OB_LIB (
+            for /f "delims=" %%F in ('powershell -NoProfile -Command "Get-ChildItem %OB_ROOT% -Recurse -Filter '*.a' | Select-Object -First 1 -ExpandProperty FullName"') do set OB_LIB=%%F
+          )
 
-          $OB_LIB = $foundLib.FullName
-          Write-Host "Using OB lib: $OB_LIB"
+          if not defined OB_LIB (
+            echo OpenBabel library not found in OB_ROOT (no .lib/.a files found under %OB_ROOT%).
+            exit /b 1
+          )
+          echo Using OB lib: %OB_LIB%
 
-          # Try to locate include dir dynamically (openbabel3 or openbabel)
-          $incCandidate = Get-ChildItem "$OB_ROOT\include" -Directory -Recurse -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -match '(?i)openbabel' } |
-            Select-Object -First 1
+          :: Locate include dir dynamically (openbabel3 or openbabel).
+          for /f "delims=" %%D in ('powershell -NoProfile -Command "$d = Get-ChildItem %OB_ROOT%\include -Directory -Recurse -ErrorAction SilentlyContinue ^| Where-Object { $_.Name -match '(?i)openbabel' } ^| Select-Object -First 1 -ExpandProperty FullName; if ($d) { $d } else { '%OB_ROOT%\include\openbabel3' }"') do set OB_INCLUDE=%%D
+          echo Using OB include: %OB_INCLUDE%
 
-          if ($incCandidate) {
-            $OB_INCLUDE = $incCandidate.FullName
-          } else {
-            $OB_INCLUDE = "$OB_ROOT\include\openbabel3"
-            Write-Warning "Include dir with 'openbabel' not found under $OB_ROOT\include. Falling back to $OB_INCLUDE"
-          }
-          Write-Host "Using OB include: $OB_INCLUDE"
-
-          cmake -S xdrawchem -B build `
-            -G Ninja `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DCMAKE_PREFIX_PATH="$QT_DIR" `
-            -DRINGHOME="ring" `
-            -DOpenBabel_FOUND=TRUE `
-            "-DOpenBabel_INCLUDE_DIR=$OB_INCLUDE" `
-            "-DOpenBabel_INCLUDE_DIRS=$OB_INCLUDE" `
-            "-DOpenBabel_LIBRARY=$OB_LIB" `
-            "-DOpenBabel_LIBRARIES=$OB_LIB"
+          cmake -S xdrawchem -B build ^
+            -G Ninja ^
+            -DCMAKE_BUILD_TYPE=Release ^
+            -DCMAKE_C_COMPILER=cl.exe ^
+            -DCMAKE_CXX_COMPILER=cl.exe ^
+            -DCMAKE_PREFIX_PATH="%QT_DIR%" ^
+            -DRINGHOME="ring" ^
+            -DOpenBabel_FOUND=TRUE ^
+            -DOpenBabel_INCLUDE_DIR="%OB_INCLUDE%" ^
+            -DOpenBabel_INCLUDE_DIRS="%OB_INCLUDE%" ^
+            -DOpenBabel_LIBRARY="%OB_LIB%" ^
+            -DOpenBabel_LIBRARIES="%OB_LIB%"
 
       - name: Build
-        shell: pwsh
+        shell: cmd
         run: |
-          cmake --build build --config Release -j $env:NUMBER_OF_PROCESSORS
+          :: Ensure MSVC environment is active for the build as well.
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
+          cmake --build build --config Release -j %NUMBER_OF_PROCESSORS% --verbose
 
       - name: Gather runtime dependencies (windeployqt)
         shell: pwsh
