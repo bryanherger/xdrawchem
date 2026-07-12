@@ -69,20 +69,22 @@ jobs:
         shell: pwsh
         run: |
           $txt = Get-Content ob-src/CMakeLists.txt -Raw
-          if (-not ($txt -match "^\s*#\s*add_subdirectory\(tools\)")) {
-            $txt = $txt -replace "^(\s*)add_subdirectory\(tools\)", '$1# add_subdirectory(tools)  # disabled: only need the library'
-            Set-Content ob-src/CMakeLists.txt $txt
-            Write-Host "Patched: ob-src/CMakeLists.txt (disabled tools)"
-          } else {
-            Write-Host "ob-src/CMakeLists.txt already patched"
+          $txt = $txt -replace '(?m)^(\s*)add_subdirectory\(tools\)', '$1# add_subdirectory(tools)  # disabled: only need library'
+          Set-Content ob-src/CMakeLists.txt $txt
+
+          $verify = Get-Content ob-src/CMakeLists.txt -Raw
+          $matches = $verify | Select-String -Pattern '(?m)^(\s*)add_subdirectory\(tools\)' -AllMatches
+          if ($matches.Matches.Count -gt 0) {
+            Write-Error "Failed to patch ob-src/CMakeLists.txt: add_subdirectory(tools) still present"
+            exit 1
           }
+          Write-Host "Patched: ob-src/CMakeLists.txt (disabled tools)"
 
       - name: Build OpenBabel from source
         if: steps.cache-openbabel.outputs.cache-hit != 'true'
         shell: cmd
         run: |
-          :: Re-source MSVC into this cmd session; variables already dumped to GITHUB_ENV by the earlier step,
-          :: but GitHub Actions cmd steps still need vcvarsall to put cl.exe/ninja on PATH for the step.
+          :: Activate MSVC environment for this step so cl.exe/ninja are on PATH.
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
 
           :: Configure with explicit flags to build static libraries
