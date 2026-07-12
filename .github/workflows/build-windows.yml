@@ -83,7 +83,22 @@ jobs:
         shell: cmd
         run: |
           :: Activate MSVC environment for this step so cl.exe/ninja are on PATH.
+          @echo VCVARS_PATH=%VCVARS_PATH%
+          if "%VCVARS_PATH%"=="" (
+            echo ERROR: VCVARS_PATH not set
+            exit /b 1
+          )
           call "%VCVARS_PATH%" x64
+          if %ERRORLEVEL% neq 0 (
+            echo ERROR: vcvarsall.bat failed with exit code %ERRORLEVEL%
+            exit /b %ERRORLEVEL%
+          )
+          where cl.exe
+          if %ERRORLEVEL% neq 0 (
+            echo ERROR: cl.exe not on PATH
+            exit /b 1
+          )
+
           :: Ensure MSVC tools are preferred over any MinGW that may be on PATH.
           set PATH=%PATH:C:\mingw64\bin;=%
           set PATH=%PATH:C:\mingw64\bin=%
@@ -154,8 +169,9 @@ jobs:
             Write-Error "vcvarsall.bat not found at $vcvars"
             exit 1
           }
+          $vcvars = $vcvars.Trim("`"")
           Write-Host "Discovered VCVARS_PATH: $vcvars"
-          echo "VCVARS_PATH=$vcvars" >> $env:GITHUB_ENV
+          Write-Output "VCVARS_PATH=$vcvars" >> $env:GITHUB_ENV
 
           # --- Discover OpenBabel library ---
           $obRoot = 'C:\OpenBabel'
@@ -180,8 +196,9 @@ jobs:
             Write-Error "OpenBabel library not found in $obRoot"
             exit 1
           }
+          $obLib = $obLib.Trim("`"")
           Write-Host "Discovered OB_LIB: $obLib"
-          echo "OB_LIB=$obLib" >> $env:GITHUB_ENV
+          Write-Output "OB_LIB=$obLib" >> $env:GITHUB_ENV
 
           # --- Discover OpenBabel include dir ---
           $obInclude = Get-ChildItem "$obRoot\include" -Directory -Recurse -ErrorAction SilentlyContinue |
@@ -190,8 +207,9 @@ jobs:
           if (-not $obInclude) {
             $obInclude = "$obRoot\include\openbabel3"
           }
+          $obInclude = $obInclude.Trim("`"")
           Write-Host "Discovered OB_INCLUDE: $obInclude"
-          echo "OB_INCLUDE=$obInclude" >> $env:GITHUB_ENV
+          Write-Output "OB_INCLUDE=$obInclude" >> $env:GITHUB_ENV
 
           # --- Diagnostics: show every .lib/.a under OB_ROOT ---
           Write-Host "=== OpenBabel libraries under $obRoot ==="
@@ -201,7 +219,21 @@ jobs:
         shell: cmd
         run: |
           :: Activate MSVC environment using the path discovered by vswhere.
+          @echo VCVARS_PATH=%VCVARS_PATH%
+          if "%VCVARS_PATH%"=="" (
+            echo ERROR: VCVARS_PATH not set
+            exit /b 1
+          )
           call "%VCVARS_PATH%" x64
+          if %ERRORLEVEL% neq 0 (
+            echo ERROR: vcvarsall.bat failed with exit code %ERRORLEVEL%
+            exit /b %ERRORLEVEL%
+          )
+          where cl.exe
+          if %ERRORLEVEL% neq 0 (
+            echo ERROR: cl.exe not on PATH
+            exit /b 1
+          )
           set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
 
           set QT_DIR=C:\Qt\${{ env.QT_VERSION }}\msvc2019_64
