@@ -351,12 +351,10 @@ jobs:
           !insertmacro MUI_UNPAGE_INSTFILES
           !insertmacro MUI_LANGUAGE "English"
 
-          Function .onInit
-            SetShellVarContext all
-          FunctionEnd
-
           Section "XDrawChem" SecMain
+            SetShellVarContext all
             DetailPrint "StartMenu folder=$SMPROGRAMS"
+
             SetOutPath "$INSTDIR"
             File /r "dist\xdrawchem\*.*"
 
@@ -394,6 +392,8 @@ jobs:
           SectionEnd
 
           Section "Uninstall"
+            SetShellVarContext all
+
             RMDir /r "$INSTDIR"
             Delete "$SMPROGRAMS\XDrawChem\XDrawChem.lnk"
             Delete "$SMPROGRAMS\XDrawChem\Uninstall.lnk"
@@ -404,7 +404,7 @@ jobs:
             DeleteRegKey HKCR ".mol"
             DeleteRegKey HKCR "XDrawChem.molfile"
           SectionEnd
-          "@ | Out-File -Encoding UTF8 installer.nsi
+          "@ | ForEach-Object { $_ } | Out-String | ForEach-Object { [System.IO.File]::WriteAllText("installer.nsi", $_, [System.Text.UTF8Encoding]::new($false)) }
 
       - name: Build installer with NSIS
         shell: pwsh
