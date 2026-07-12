@@ -85,20 +85,22 @@ jobs:
           :: Activate MSVC environment for this step so cl.exe/ninja are on PATH.
           call "%VCVARS_PATH%" x64
           :: Ensure MSVC tools are preferred over any MinGW that may be on PATH.
+          set PATH=%PATH:C:\mingw64\bin;=%
+          set PATH=%PATH:C:\mingw64\bin=%
           set PATH=%VCINSTALLDIR%\bin\HostX64\x64;%PATH%
 
-          :: Configure with explicit flags to build static libraries
+          :: Configure with explicit MSVC compilers to build shared libraries
           cmake -S ob-src -B ob-build ^
             -G Ninja ^
             -DCMAKE_BUILD_TYPE=Release ^
+            -DCMAKE_C_COMPILER=cl.exe ^
+            -DCMAKE_CXX_COMPILER=cl.exe ^
             -DCMAKE_INSTALL_PREFIX=C:\OpenBabel ^
             -DBUILD_GUI=OFF ^
             -DENABLE_TESTS=OFF ^
             -DWITH_INCHI=OFF ^
             -DWITH_MAEPARSER=OFF ^
             -DWITH_COORDGEN=OFF ^
-            -DBUILD_SHARED=OFF ^
-            -DBUILD_SHARED_LIBS=OFF ^
             -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON ^
             -DCMAKE_DISABLE_FIND_PACKAGE_LibXml2=TRUE ^
             -DCMAKE_DISABLE_FIND_PACKAGE_ZLIB=TRUE ^
@@ -160,11 +162,11 @@ jobs:
           $obLibCandidates = @(
             "$obRoot\lib\openbabel-3.lib",
             "$obRoot\lib\openbabel3.lib",
-            "$obRoot\lib\openbabel.lib",
-            "$obRoot\lib\libopenbabel.a",
             "$obRoot\bin\openbabel-3.lib",
             "$obRoot\bin\openbabel3.lib",
+            "$obRoot\lib\openbabel.lib",
             "$obRoot\bin\openbabel.lib",
+            "$obRoot\lib\libopenbabel.a",
             "$obRoot\bin\libopenbabel.a"
           )
           $obLib = $obLibCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
@@ -255,6 +257,12 @@ jobs:
           $OB_BIN = "$env:OB_ROOT\bin"
           if (Test-Path $OB_BIN) {
             Copy-Item "$OB_BIN\*.dll" dist\xdrawchem\ -ErrorAction SilentlyContinue
+            # Ensure the main MSVC shared OpenBabel import library DLL is present
+            $obDll = "$OB_BIN\openbabel-3.dll"
+            if (Test-Path $obDll) {
+              Copy-Item $obDll dist\xdrawchem\ -ErrorAction SilentlyContinue
+              Write-Host "Copied OpenBabel runtime: $obDll"
+            }
           }
           # Copy OB format plugins
           $OB_PLUGINS = "$env:OB_ROOT\bin\openbabel"
