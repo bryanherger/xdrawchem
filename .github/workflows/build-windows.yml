@@ -374,15 +374,18 @@ jobs:
             ; Uninstaller
             WriteUninstaller "$INSTDIR\uninstall.exe"
 
-            ; Start Menu shortcut
-            CreateDirectory "$SMPROGRAMS\XDrawChem"
-            CreateShortCut  "$SMPROGRAMS\XDrawChem\XDrawChem.lnk" \
-              "$INSTDIR\xdrawchem.exe"
-            CreateShortCut  "$SMPROGRAMS\XDrawChem\Uninstall.lnk" \
-              "$INSTDIR\uninstall.exe"
+            ; Start Menu shortcuts (use ProgramData to avoid empty $SMPROGRAMS)
+            ReadEnvStr $R0 "ProgramData"
+            StrCpy $R1 "$R0\Microsoft\Windows\Start Menu\Programs\XDrawChem"
+            CreateDirectory "$R1"
+            CreateShortCut "$R1\XDrawChem.lnk" "$INSTDIR\xdrawchem.exe"
+            CreateShortCut "$R1\Uninstall.lnk" "$INSTDIR\uninstall.exe"
 
-            ; Desktop shortcut
-            CreateShortCut "$DESKTOP\XDrawChem.lnk" "$INSTDIR\xdrawchem.exe"
+            ; Desktop shortcut (use PUBLIC env var to avoid empty $DESKTOP)
+            ReadEnvStr $R0 "PUBLIC"
+            StrCpy $R2 "$R0\Desktop"
+            CreateDirectory "$R2"
+            CreateShortCut "$R2\XDrawChem.lnk" "$INSTDIR\xdrawchem.exe"
 
             ; File associations
             WriteRegStr HKCR ".mol"  "" "XDrawChem.molfile"
@@ -395,10 +398,12 @@ jobs:
             SetShellVarContext all
 
             RMDir /r "$INSTDIR"
-            Delete "$SMPROGRAMS\XDrawChem\XDrawChem.lnk"
-            Delete "$SMPROGRAMS\XDrawChem\Uninstall.lnk"
-            RMDir  "$SMPROGRAMS\XDrawChem"
-            Delete "$DESKTOP\XDrawChem.lnk"
+            ReadEnvStr $R0 "ProgramData"
+            Delete "$R0\Microsoft\Windows\Start Menu\Programs\XDrawChem\XDrawChem.lnk"
+            Delete "$R0\Microsoft\Windows\Start Menu\Programs\XDrawChem\Uninstall.lnk"
+            RMDir "$R0\Microsoft\Windows\Start Menu\Programs\XDrawChem"
+            ReadEnvStr $R0 "PUBLIC"
+            Delete "$R0\Desktop\XDrawChem.lnk"
             DeleteRegKey HKLM "Software\XDrawChem"
             DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XDrawChem"
             DeleteRegKey HKCR ".mol"
