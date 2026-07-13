@@ -50,15 +50,20 @@ void Molecule::Scale( double bond_length )
 QList < DPoint * >Molecule::BreakRingBonds( DPoint * target1 )
 {
     QList < DPoint * >bb;
+    QList < Bond * >removebonds;
 
     for (Bond *tmp_bond : bonds) {
         if ( tmp_bond->Find( target1 ) == true ) {
             tmp_pt = tmp_bond->otherPoint( target1 );
             tmp_pt->new_order = tmp_bond->Order();
             bb.append( tmp_pt );
-            bonds.removeAll( tmp_bond );
-            tmp_bond = bonds.first();
+            removebonds.append( tmp_bond );
         }
+    }
+
+    for (Bond *tmp_bond : removebonds) {
+        bonds.removeAll( tmp_bond );
+        delete tmp_bond;
     }
 
     return bb;
