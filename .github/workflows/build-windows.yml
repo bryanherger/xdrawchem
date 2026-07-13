@@ -328,12 +328,12 @@ jobs:
             (Get-Content "$env:GITHUB_WORKSPACE\VERSION" -Raw).Trim()
           }
 
-          @"
+          $nsisScript = @'
           !define APPNAME     "XDrawChem"
-          !define APPVERSION  "$VERSION"
+          !define APPVERSION  "__VERSION__"
           !define PUBLISHER   "Bryan Herger"
           !define APPURL      "https://github.com/bryanherger/xdrawchem"
-          !define INSTALLEREXE "XDrawChem-$VERSION-windows-x64.exe"
+          !define INSTALLEREXE "XDrawChem-__VERSION__-windows-x64.exe"
 
           Name "${APPNAME} ${APPVERSION}"
           OutFile "${INSTALLEREXE}"
@@ -409,7 +409,9 @@ jobs:
             DeleteRegKey HKCR ".mol"
             DeleteRegKey HKCR "XDrawChem.molfile"
           SectionEnd
-          "@ | ForEach-Object { $_ } | Out-String | ForEach-Object { [System.IO.File]::WriteAllText("installer.nsi", $_, [System.Text.UTF8Encoding]::new($false)) }
+          '@
+          $nsisScript = $nsisScript -replace '__VERSION__', $VERSION
+          [System.IO.File]::WriteAllText("installer.nsi", $nsisScript, [System.Text.UTF8Encoding]::new($false))
 
       - name: Build installer with NSIS
         shell: pwsh
