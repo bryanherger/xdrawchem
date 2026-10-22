@@ -30,6 +30,20 @@ Render2D::Render2D( QWidget * parent )
 
     setBackgroundRole( QPalette::Base );
 
+    // Initialize the background color from the (possibly persisted)
+    // preference before using it below.
+    bgcolor = preferences.getBGColor();
+
+    // Apply the background color to the widget palette so the canvas paints
+    // that color instead of following the system dark theme via QPalette::Base.
+    {
+        QPalette pal = palette();
+        pal.setColor( QPalette::Base, bgcolor );
+        pal.setColor( QPalette::Window, bgcolor );
+        pal.setColor( backgroundRole(), bgcolor );
+        setPalette( pal );
+    }
+
     resize( renderWidth, renderHeight );
     outputDevice = OUTPUT_SCREEN;
 
@@ -54,7 +68,6 @@ Render2D::Render2D( QWidget * parent )
 
     currentFont = QFont( "Helvetica", 12 );
     currentColor = QColor( 0, 0, 0 );
-    bgcolor = QColor( 255, 255, 255 );
 
     setMouseTracking( true );
     setFocusPolicy( Qt::ClickFocus );

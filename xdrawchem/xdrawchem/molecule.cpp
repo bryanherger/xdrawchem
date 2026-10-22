@@ -33,7 +33,7 @@ Molecule::~Molecule()
 void Molecule::Render()
 {
     /// collect all points
-    AllPoints();
+    QList<DPoint *> pts = AllPoints();
 
     /// update double bond states
     Bond *tb2;
@@ -96,6 +96,62 @@ void Molecule::Render()
         //if (tmp_text->getText() == "C") continue;
         tmp_text->Render();
     }
+
+    // Draw implicit hydrogen labels on-the-fly when enabled.  We do this
+    // here (rather than mutating each atom's persistent element string) so
+    // that toggling the preference on/off updates the display immediately,
+    // including for plain carbon atoms which do not otherwise carry a Text
+    // label.
+    if ( preferences.getFixHydrogens() ) {
+        for (DPoint *tmp_pt : pts) {
+            QString el = tmp_pt->element;
+            if ( el.isEmpty() )
+                el = "C";
+            // skip fragments with explicit charges and special groups
+            if ( el.contains( '+' ) || el.contains( '-' ) )
+                continue;
+            // skip atoms that already spell out hydrogens in the label
+            if ( el.contains( 'H' ) )
+                continue;
+            // skip special groups that MolData::Hydrogens handles by name
+            if ( el == "CO" || el == "SO" )
+                continue;
+            int sumbonds = 0;
+            for (Bond *tmp_bond : bonds) {
+                if ( tmp_bond->Find( tmp_pt ) ) {
+                    if ( tmp_bond->Order() < 4 )
+                        sumbonds += tmp_bond->Order();
+                    else
+                        sumbonds += 1;
+                }
+            }
+            int h = MolData::Hydrogens( el ) - sumbonds;
+            if ( h <= 0 )
+                continue;
+            // Place the label next to the atom, offset in the direction of
+            // least substitution so it does not overlap a bond.
+            int side = 0;
+            for (Bond *tmp_bond : bonds) {
+                if ( tmp_bond->Find( tmp_pt ) ) {
+                    double dx = tmp_pt->x - tmp_bond->otherPoint( tmp_pt )->x;
+                    if ( dx > 0.5 )
+                        side++;
+                    else if ( dx < -0.5 )
+                        side--;
+                }
+            }
+            QString label;
+            if ( h > 1 )
+                label = QString( "H%1" ).arg( h );
+            else
+                label = QString( "H" );
+            QPoint hp = tmp_pt->toQPoint();
+            // Shift the label slightly so it is visible beside the atom.
+            hp.setX( hp.x() + ( side <= 0 ? 8 : -8 ) );
+            r->drawString( label, hp, QColor( 0, 0, 0 ), QFont( "Helvetica", 10 ) );
+        }
+    }
+
     CalcOffsets();
     for (Symbol *tmp_sym : symbols)
         tmp_sym->Render();
