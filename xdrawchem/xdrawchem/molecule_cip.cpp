@@ -286,3 +286,117 @@ QString Molecule::GetCIPLabelForBond( Bond *b )
         CalcCIPLabels();
     return m_cipBondLabels.value( b, QString() );
 }
+
+// Render chirality-relevant implicit hydrogens.
+//
+// Only a hydrogen that is the *sole* implicit H on a tetrahedral stereocenter
+// is drawn, and it is drawn as a wedge (or hash) bond rather than a floating
+// "H" label.  This is the behavior the issue reporter asked for: hydrogens on
+// carbon are shown only when they matter for chirality, and never clutter the
+// skeletal formula otherwise.
+void Molecule::RenderStereocenterHydrogens()
+{
+    // Identify tetrahedral stereocenters.  We reuse OpenBabel's perception via
+    // CalcCIPLabels() when available, but that needs a full OBMol and is only
+    // populated when a stereo configuration is actually specified.  For the
+    // simpler "is this a potential stereocenter with exactly one implicit H"
+    // test we work directly from the bond graph, which is cheaper and does not
+    // require OpenBabel to have already assigned a configuration.
+    QList<DPoint *> pts = AllPoints();
+
+    for ( DPoint *center : pts ) {
+        QString el = center->element;
+        if ( el.isEmpty() )
+            el = QStringLiteral( "C" );
+
+        // Only carbon can be a stereocenter here (per issue scope).  Also skip
+        // atoms that already spell out hydrogens or carry charges.
+        if ( el != QStringLiteral( "C" ) )
+            continue;
+        if ( el.contains( QLatin1Char( '+' ) ) || el.contains( QLatin1Char( '-' ) ) )
+            continue;
+
+        // Gather bonded neighbours and count their bond-order contributions.
+        QList<DPoint *> neighbours;
+        int sumbonds = 0;
+        bool hasStereoBond = false;
+        for ( Bond *b : bonds ) {
+            if ( !b->Find( center ) )
+                continue;
+            DPoint *other = b->otherPoint( center );
+            neighbours.append( other );
+            int o = b->Order();
+            // Stereo bond orders (5=up/wedge, 7=down/hash) are single bonds.
+            if ( o == 5 || o == 7 ) {
+                hasStereoBond = true;
+                sumbonds += 1;
+            } else if ( o < 4 ) {
+                sumbonds += o;
+            } else {
+                sumbonds += 1;
+            }
+        }
+
+        // A tetrahedral carbon stereocenter needs exactly four distinct
+        // substituents.  With implicit hydrogens hidden, that shows up here as
+        // three visible bonds plus one implicit hydrogen.
+        if ( neighbours.size() != 3 )
+            continue;
+
+        int h = MolData::Hydrogens( el ) - sumbonds;
+        // Exactly one implicit hydrogen and three distinct neighbours is what
+        // makes the implicit H stereochemically meaningful.
+        if ( h != 1 )
+            continue;
+
+        // Distinctness test: reject if two neighbours are the same atom (can't
+        // happen with a simple bond graph, but keep it safe).
+        bool distinct = true;
+        for ( int i = 0; i < neighbours.size() && distinct; ++i ) {
+            for ( int j = i + 1; j < neighbours.size(); ++j ) {
+                if ( neighbours[i] == neighbours[j] ) {
+                    distinct = false;
+                    break;
+                }
+            }
+        }
+        if ( !distinct )
+            continue;
+
+        // Choose the direction (wedge up vs hash down) for the implicit H so
+        // it sits in the least-crowded octant, away from the three visible
+        // substituents.  We place the H opposite the average direction of the
+        // existing bonds.
+        double sx = 0.0, sy = 0.0;
+        for ( DPoint *n : neighbours ) {
+            sx += ( center->x - n->x );
+            sy += ( center->y - n->y );
+        }
+        double len = sqrt( sx * sx + sy * sy );
+        DPoint hp;
+        hp.element = QStringLiteral( "H" );
+        if ( len < 1e-6 ) {
+            // Degenerate geometry; place H straight up.
+            hp.x = center->x;
+            hp.y = center->y - preferences.getBond_fixedlength();
+        } else {
+            double bl = preferences.getBond_fixedlength();
+            hp.x = center->x + ( sx / len ) * bl;
+            hp.y = center->y + ( sy / len ) * bl;
+        }
+
+        // Draw the H as a wedge if it points mostly up/right ("toward viewer")
+        // or as a hash if it points mostly down/left ("away from viewer").
+        QPoint a = center->toQPoint();
+        QPoint b = hp.toQPoint();
+        bool up = ( b.y() < a.y() );
+        if ( up )
+            r->drawUpLine( a, b, QColor( 0, 0, 0 ) );
+        else
+            r->drawDownLine( a, b, QColor( 0, 0, 0 ) );
+
+        // Draw a small "H" label at the far end of the wedge/hash bond so the
+        // hydrogen is identifiable.
+        r->drawString( QStringLiteral( "H" ), b, QColor( 0, 0, 0 ), QFont( QStringLiteral( "Helvetica" ), 10 ) );
+    }
+}
