@@ -619,6 +619,10 @@ ApplicationWindow::ApplicationWindow()
     fixedArrowAction->setCheckable( true );
     fixedArrowAction->setChecked( preferences.getArrow_fixed() );
 
+    fixHydrogensAction = format->addAction( tr( "Show implicit &hydrogens" ), this, &ApplicationWindow::setFixHydrogens );
+    fixHydrogensAction->setCheckable( true );
+    fixHydrogensAction->setChecked( preferences.getFixHydrogens() );
+
     format->addSeparator();
 
     format->addAction( tr( "Set background &color" ), this, &ApplicationWindow::BackgroundColor );
@@ -1238,18 +1242,17 @@ void ApplicationWindow::setFixed_bond()
     }
 }
 
-/*
-void ApplicationWindow::setFix_Hydrogens()
+void ApplicationWindow::setFixHydrogens()
 {
-    if ( format->isItemChecked( fix_hydrogens ) ) {
-        format->setItemChecked( fix_hydrogens, false );
-        preferences.setFixHydrogens( false );
-    } else {
-        format->setItemChecked( fix_hydrogens, true );
-        preferences.setFixHydrogens( true );
-    }
+    bool show = fixHydrogensAction->isChecked();
+    preferences.setFixHydrogens( show );
+    fixHydrogensAction->setChecked( show );
+    // Re-run Molecule::Changed() on every molecule so implicit hydrogens
+    // are added/removed to match the new preference, then repaint.
+    m_chemData->refreshMolecules();
+    if ( m_renderer )
+        m_renderer->update();
 }
-*/
 
 ApplicationWindow::~ApplicationWindow()
 {

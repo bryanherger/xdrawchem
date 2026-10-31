@@ -33,7 +33,7 @@ Molecule::~Molecule()
 void Molecule::Render()
 {
     /// collect all points
-    AllPoints();
+    QList<DPoint *> pts = AllPoints();
 
     /// update double bond states
     Bond *tb2;
@@ -96,6 +96,15 @@ void Molecule::Render()
         //if (tmp_text->getText() == "C") continue;
         tmp_text->Render();
     }
+
+    // Draw stereochemically-relevant implicit hydrogens as wedge/hash bonds.
+    // Unlike the old "show every implicit H" behavior (rejected by the issue
+    // reporter), this only renders a hydrogen when it is the sole implicit H
+    // on a tetrahedral stereocenter, so the user can express chirality without
+    // cluttering skeletal formulas.
+    if ( preferences.getFixHydrogens() )
+        RenderStereocenterHydrogens();
+
     CalcOffsets();
     for (Symbol *tmp_sym : symbols)
         tmp_sym->Render();

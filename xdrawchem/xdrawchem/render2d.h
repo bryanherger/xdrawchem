@@ -191,8 +191,11 @@ public slots:
       UpdatePageGeometry();
     }
     void setBGColor(QColor bc1) {
+      bgcolor = bc1;
+      preferences.setBGColor( bc1 );
       QPalette palette;
       palette.setColor(backgroundRole(), bc1);
+      palette.setColor(QPalette::Base, bc1);
       setPalette(palette);
     }
     QColor getBGColor() { return bgcolor; }

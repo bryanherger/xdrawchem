@@ -1884,7 +1884,10 @@ void Render2D::mouseMoveEvent( QMouseEvent * e1 )
 // handle resize event
 void Render2D::resizeEvent( QResizeEvent * rz )
 {
+    renderWidth = rz->size().width();
+    renderHeight = rz->size().height();
     dbuffer = QPixmap( renderWidth, renderHeight );
+    createGrid();
 }
 
 void Render2D::paintEvent( QPaintEvent * )
@@ -2036,12 +2039,22 @@ void Render2D::zoomEvent()
 
 void Render2D::createGrid()
 {
-    grid = QPixmap( renderWidth, renderHeight );
+    // Use the widget's actual current size so the grid covers the whole
+    // canvas.  renderWidth/renderHeight are only the initial (pre-layout)
+    // canvas size and are not kept in sync with the widget geometry, which
+    // is why the grid previously failed to appear until the app restarted.
+    int gw = width();
+    int gh = height();
+    if ( gw <= 0 )
+        gw = renderWidth;
+    if ( gh <= 0 )
+        gh = renderHeight;
+    grid = QPixmap( gw, gh );
     grid.fill( bgcolor );
-    QPainter *gridPainter = new QPainter( &grid );
+    QPainter gridPainter( &grid );
 
     ///TODO: make that an option
-    gridPainter->setRenderHint( QPainter::Antialiasing, true );
+    gridPainter.setRenderHint( QPainter::Antialiasing, true );
 
     int i1, cl1;
 
@@ -2050,15 +2063,15 @@ void Render2D::createGrid()
         //int width = parentWidget()->size().width();
         //int height = parentWidget()->size().height();
 
-        gridPainter->setPen( QPen( QColor( 128, 128, 128 ), 1, Qt::DotLine ) );
+        gridPainter.setPen( QPen( QColor( 128, 128, 128 ), 1, Qt::DotLine ) );
         // draw horizontal
-        for ( cl1 = i1; cl1 < renderHeight; cl1 += i1 ) {
-            gridPainter->drawLine( 0, cl1, renderWidth, cl1 );
+        for ( cl1 = i1; cl1 < gh; cl1 += i1 ) {
+            gridPainter.drawLine( 0, cl1, gw, cl1 );
         }
 
         // draw vertical
-        for ( cl1 = i1; cl1 < renderWidth; cl1 += i1 ) {
-            gridPainter->drawLine( cl1, 0, cl1, renderHeight );
+        for ( cl1 = i1; cl1 < gw; cl1 += i1 ) {
+            gridPainter.drawLine( cl1, 0, cl1, gh );
         }
     } else if ( preferences.getDrawGrid() == GRID_HEX ) {
         bool hexoffset = true;
@@ -2069,22 +2082,23 @@ void Render2D::createGrid()
         float hexelevation = hexhoriz * 1.73205;
         float hex_initx, hex_rightx;
 
-        gridPainter->setPen( QPen( QColor( 128, 128, 128 ), 1, Qt::DotLine ) );
-        for ( float hex_y = 0.0; hex_y < renderHeight; hex_y += hexelevation ) {
+        gridPainter.setPen( QPen( QColor( 128, 128, 128 ), 1, Qt::DotLine ) );
+        for ( float hex_y = 0.0; hex_y < gh; hex_y += hexelevation ) {
             if ( hexoffset )
                 hex_initx = hexhoriz;
             else
                 hex_initx = hexgap;
-            for ( float hex_x = hex_initx; hex_x < renderWidth; hex_x += hexgap ) {
+            for ( float hex_x = hex_initx; hex_x < gw; hex_x += hexgap ) {
                 hex_rightx = hex_x + i1;
-                gridPainter->drawLine( hex_x, hex_y, hex_rightx, hex_y );
-                gridPainter->drawLine( hex_x, hex_y, hex_x - hexhoriz, hex_y + hexelevation );
-                gridPainter->drawLine( hex_rightx, hex_y, hex_rightx + hexhoriz, hex_y + hexelevation );
+                gridPainter.drawLine( hex_x, hex_y, hex_rightx, hex_y );
+                gridPainter.drawLine( hex_x, hex_y, hex_x - hexhoriz, hex_y + hexelevation );
+                gridPainter.drawLine( hex_rightx, hex_y, hex_rightx + hexhoriz, hex_y + hexelevation );
                 hex_x = hex_rightx;
             }
             hexoffset = !hexoffset;
         }
     }
+    gridPainter.end();
 }
 
 // kate: tab-width 4; indent-width 4; space-indent on; replace-trailing-space-save on;

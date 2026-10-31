@@ -177,6 +177,11 @@ public:
     QString GetCIPLabelForBond(Bond *b);       // "E", "Z", or "" for a double bond
     void ClearCIPCache();             // invalidate CIP cache on structure change
 
+    // defined in molecule_cip.cpp
+    // Detect tetrahedral stereocenters and draw their sole implicit hydrogen
+    // as a wedge/hash bond (chirality-relevant hydrogens only).
+    void RenderStereocenterHydrogens();
+
     OpenBabel::OBMol * convertToOBMol();
     bool convertFromOBMol(OpenBabel::OBMol *);
     static const char symbol[110][4];
