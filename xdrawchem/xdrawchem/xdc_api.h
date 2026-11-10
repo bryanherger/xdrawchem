@@ -79,6 +79,15 @@ XdcApiResult apiRender( const QString &structure, const QString &format,
 XdcApiResult apiMake3D( const QString &structure, const QString &format,
                         const QString &output );
 
+// ── One-call name -> drawing ───────────────────────────────────────────────
+// Resolve a name, CAS number, SMILES, InChI or molfile and render it in a
+// single call.  This is the convenience wrapper for the common agent request
+// "draw <compound>": it resolves via PubChem when the query is a name, then
+// paints the depiction, and reports the structures it settled on.
+XdcApiResult apiDraw( const QString &query, const QString &inputFormat,
+                      const QString &output, const QString &outPath,
+                      int widthPx, int heightPx, bool transparent );
+
 // ── PubChem registry lookup ────────────────────────────────────────────────
 // Resolve a name, CAS number, SMILES or InChI to its PubChem compound page.
 // Returns the canonical PubChem URI plus CID and the matched structure, so an

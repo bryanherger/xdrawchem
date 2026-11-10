@@ -182,7 +182,7 @@ also supported for older clients.)
 
 ## What the agent gets
 
-Eleven MCP tools:
+Thirteen MCP tools:
 
 | Tool | Does |
 |---|---|
@@ -194,6 +194,8 @@ Eleven MCP tools:
 | `xdrawchem_compare` | same compound? (names resolved automatically) |
 | `xdrawchem_render` | 2-D depiction (SVG / PNG / PDF) |
 | `xdrawchem_make_3d` | MMFF94/UFF-minimised 3-D conformer |
+| `xdrawchem_draw` | resolve a name/CAS/SMILES/InChI and draw it in one call |
+| `xdrawchem_pubchem_lookup` | PubChem URI + CID for a compound |
 | `xdrawchem_clean_up` | regenerate a clean 2-D layout |
 | `xdrawchem_reaction` | reaction SMILES summary |
 | `xdrawchem_manifest` | version + full command list |

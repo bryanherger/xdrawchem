@@ -325,6 +325,50 @@ def xdrawchem_make_3d(
     ).as_tool_result()
 
 
+@server.tool(description="Resolve a name, CAS number, SMILES or InChI to its PubChem compound page; returns the URI and CID.")
+def xdrawchem_pubchem_lookup(query: str, format: str | None = None) -> tuple[str, bool]:
+    """Look a compound up in PubChem.
+
+    Args:
+        query: Chemical name, CAS number, SMILES, or InChI.
+        format: Optional input kind: auto, name, cas, smiles, inchi.
+    """
+    return call_api("pubchem_lookup", query=query, format=format).as_tool_result()
+
+
+@server.tool(description="Resolve a name, CAS number, SMILES or InChI and draw it in one call (name_to_structure + render).")
+def xdrawchem_draw(
+    query: str,
+    format: str = "svg",
+    out: str | None = None,
+    width: int | None = None,
+    height: int | None = None,
+    transparent: bool = False,
+    input_format: str | None = None,
+) -> tuple[str, bool]:
+    """Draw a compound from a name or structure string.
+
+    Args:
+        query: Chemical name, CAS number, SMILES, InChI, or '@path'.
+        format: Output format: svg, png, or pdf (default svg).
+        out: Optional file path to write to. If omitted, small images are inlined.
+        width: Target width in pixels.
+        height: Target height in pixels.
+        transparent: PNG only — transparent background.
+        input_format: Optional input kind hint.
+    """
+    return call_api(
+        "draw",
+        query=query,
+        format=format,
+        out=out,
+        width=width,
+        height=height,
+        transparent=transparent or None,
+        input_format=input_format,
+    ).as_tool_result()
+
+
 @server.tool(description="Regenerate a clean 2-D layout (like Tools -> Clean Up Molecule); most useful for molfiles with poor geometry.")
 def xdrawchem_clean_up(
     structure: str, format: str = "smiles", input_format: str | None = None

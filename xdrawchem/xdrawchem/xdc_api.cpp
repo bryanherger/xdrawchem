@@ -992,6 +992,85 @@ XdcApiResult apiMake3D( const QString &structure, const QString &format,
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ─────────────────────────────────────────────────────────────────────────────
+// draw — resolve a query and paint it in one call
+// ─────────────────────────────────────────────────────────────────────────────
+
+XdcApiResult apiDraw( const QString &query, const QString &inputFormat,
+                      const QString &output, const QString &outPath,
+                      int widthPx, int heightPx, bool transparent )
+{
+    const QString cmd = QStringLiteral( "draw" );
+    QString q = query.trimmed();
+    if ( q.isEmpty() )
+        return fail( cmd, QStringLiteral( "empty query" ) );
+
+    QString fmt = inputFormat.trimmed().toLower();
+    QString structure;      // what we actually render
+    QString resolvedBy;     // how we got there, reported to the caller
+    QString formula;
+    QString smiles;
+
+    // 1. @path and explicit structure formats go straight to the renderer.
+    const bool looksLikeFile = q.startsWith( QLatin1Char( '@' ) )
+                               || fmt == QLatin1String( "file" );
+    if ( looksLikeFile || fmt == QLatin1String( "molfile" ) ) {
+        structure = q;
+        resolvedBy = looksLikeFile ? QStringLiteral( "file" )
+                                   : QStringLiteral( "molfile" );
+    } else {
+        // 2. Try to read it as a structure first (SMILES / InChI / molfile).
+        OBMol probe;
+        QString probeFormat = fmt;
+        if ( probeFormat == QLatin1String( "name" )
+             || probeFormat == QLatin1String( "cas" ) ) {
+            probeFormat = QString();      // force the name path below
+        }
+        const bool parses = ( probeFormat != QLatin1String( "name" )
+                              && probeFormat != QLatin1String( "cas" )
+                              && readStructureIntoOBMol( probe, q, probeFormat ) );
+
+        if ( parses ) {
+            structure = q;
+            resolvedBy = QStringLiteral( "structure" );
+            formula = QString::fromStdString( probe.GetFormula() );
+            smiles = obMolToFormat( &probe, "can" );
+        } else {
+            // 3. Not a structure — resolve it as a chemical name via PubChem.
+            smiles = nameToSMILES( q );
+            if ( smiles.isEmpty() )
+                return fail( cmd, QStringLiteral( "could not interpret '%1' as a "
+                                                  "structure or a chemical name "
+                                                  "(PubChem lookup failed; check "
+                                                  "spelling and network)" ).arg( q ) );
+            structure = smiles;
+            resolvedBy = QStringLiteral( "pubchem_name" );
+
+            OBMol resolved;
+            if ( readStructureIntoOBMol( resolved, smiles, QStringLiteral( "smi" ) ) )
+                formula = QString::fromStdString( resolved.GetFormula() );
+        }
+    }
+
+    // 4. Paint it with the normal render path.
+    XdcApiResult rendered = apiRender( structure, fmt, output, outPath,
+                                       widthPx, heightPx, transparent );
+    if ( !rendered.ok )
+        return rendered;
+
+    // 5. Report the resolution alongside the image.
+    XdcApiResult res = succeed( cmd );
+    res.payload = rendered.payload;
+    res.payload.insert( QStringLiteral( "query" ), query );
+    res.payload.insert( QStringLiteral( "resolved_by" ), resolvedBy );
+    res.payload.insert( QStringLiteral( "structure" ), structure );
+    if ( !smiles.isEmpty() )
+        res.payload.insert( QStringLiteral( "smiles" ), smiles );
+    if ( !formula.isEmpty() )
+        res.payload.insert( QStringLiteral( "formula" ), formula );
+    return res;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // pubchem_lookup — registry URI for a name / SMILES / InChI
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -1393,6 +1472,19 @@ QJsonObject apiManifest()
             arg( "format_b", "string", false, "Format of B (default auto)" ) },
         QStringLiteral( "JSON {same_structure, same_connectivity, inchikeys}" ) );
 
+    addCommand( QStringLiteral( "draw" ),
+        QStringLiteral( "Resolve a name, CAS number, SMILES or InChI and draw it "
+                        "in one call. Shorthand for name_to_structure + render." ),
+        QJsonArray{
+            arg( "query", "string", true, "Chemical name, CAS number, SMILES, InChI or @path" ),
+            arg( "format", "string", false, "Output: svg|png|pdf (default svg)" ),
+            arg( "out", "string", false, "Write here instead of inlining" ),
+            arg( "width", "integer", false, "Target width in pixels" ),
+            arg( "height", "integer", false, "Target height in pixels" ),
+            arg( "transparent", "boolean", false, "PNG only: transparent background" ),
+            arg( "input_format", "string", false, "Input kind: auto|name|cas|smiles|inchi|molfile|file" ) },
+        QStringLiteral( "SVG text, base64 PNG/PDF, or a file path, plus resolved structure" ) );
+
     addCommand( QStringLiteral( "render" ),
         QStringLiteral( "Draw a 2-D depiction as SVG, PNG or PDF." ),
         QJsonArray{
@@ -1552,6 +1644,11 @@ QString apiDispatch( const QStringList &args, int *exitCode )
     if ( command == QLatin1String( "make_3d" ) )
         return finish( apiMake3D( structureArg( 0, "structure" ),
                                   get( "input_format" ), get( "format" ) ) );
+
+    if ( command == QLatin1String( "draw" ) )
+        return finish( apiDraw( structureArg( 0, "query" ), get( "input_format" ),
+                                get( "format" ), get( "out" ), intArg( "width" ),
+                                intArg( "height" ), boolArg( "transparent" ) ) );
 
     if ( command == QLatin1String( "pubchem_lookup" ) )
         return finish( apiPubChemLookup( structureArg( 0, "query" ), get( "format" ) ) );

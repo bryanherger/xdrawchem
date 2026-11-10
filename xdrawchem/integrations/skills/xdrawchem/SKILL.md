@@ -36,8 +36,10 @@ itself.
 | `validate` | does it parse, and does every atom obey valence rules |
 | `inchi_key` | the 27-character compound identifier |
 | `compare` | are these two the same compound (names resolved automatically) |
-| `render` | draw it — SVG, PNG, or PDF |
+| `draw` | resolve a name/CAS/SMILES/InChI and draw it — one call |
+| `render` | draw an already-known structure — SVG, PNG, or PDF |
 | `make_3d` | MMFF94/UFF-minimised 3-D conformer (Molfile, SDF, XYZ) |
+| `pubchem_lookup` | PubChem URI + CID for a name, CAS, SMILES or InChI |
 | `clean_up` | regenerate a clean 2-D layout (molfiles with poor geometry) |
 | `reaction` | summarise reaction SMILES `reactants>>products` |
 
@@ -53,6 +55,15 @@ Every `structure` argument accepts any of:
 Format is auto-detected; override with `--from` / `--input_format`.
 
 ## Recipes
+
+**"Draw caffeine"** — one call, no resolution step needed:
+
+```bash
+xdrawchem --api draw --query caffeine --format png --width 900 --out caffeine.png
+```
+
+`draw` accepts a name, CAS number, SMILES, InChI or `@path` and reports
+`resolved_by`, `smiles` and `formula` so you can confirm what it drew.
 
 **"What is aspirin and can you draw it?"**
 
@@ -125,7 +136,8 @@ Returns per-side formulas, atom counts, `atom_delta`, and `formula_changed`.
 
 If the agent runtime speaks MCP, use `integrations/mcp/xdrawchem_mcp.py`
 instead of shelling out. It exposes the same nine commands as tools named
-`xdrawchem_convert`, `xdrawchem_describe`, … plus `xdrawchem_manifest`.
+`xdrawchem_convert`, `xdrawchem_draw`, `xdrawchem_describe`, … plus
+`xdrawchem_manifest` (13 tools in total).
 
 ```bash
 pip install "mcp>=2"
@@ -164,6 +176,8 @@ xdrawchem --api describe --structure "CCO"
 xdrawchem --api validate --structure "CCO"
 xdrawchem --api inchi_key --structure "CCO"
 xdrawchem --api compare  --structure_a "CCO" --structure_b "CCO"
+xdrawchem --api draw     --query aspirin --format png --out aspirin.png
+xdrawchem --api pubchem_lookup --query aspirin
 xdrawchem --api render   --structure "CCO" --format svg
 xdrawchem --api make_3d  --structure "CCO" --format mol
 xdrawchem --api reaction --reaction "CCO>>CC=O"
