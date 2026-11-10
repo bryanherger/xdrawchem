@@ -19,6 +19,7 @@ using namespace OpenBabel;
 #include "application.h"
 #include "bond.h"
 #include "molecule.h"
+#include "defs.h"   // STEREO_UP / STEREO_DOWN
 
 struct Point
 {
@@ -193,6 +194,22 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
         }
 
         addBond( s, e, 1, bondorder, QColor( "black" ), true );
+
+        /*  Carry 2-D stereochemistry across into the internal model.
+            Without this the wedge/hash flags on the OBBond are dropped, every
+            Bond::stereo stays STEREO_UNDEFINED, ConvertToOBMol() writes no
+            wedge back out, and Molecule::CalcCIPLabels() sees a flat drawing
+            and reports every stereocentre as unspecified.  That is why R/S
+            labels never appeared for structures opened from a molfile.     */
+        if ( bond->IsWedge() || bond->IsHash() ) {
+            Bond *xdcBond = FindBond( s, e );
+            if ( xdcBond != nullptr ) {
+                if ( bond->IsWedge() )
+                    xdcBond->setStereo( STEREO_UP );
+                else
+                    xdcBond->setStereo( STEREO_DOWN );
+            }
+        }
 
         //label atoms if not Carbon
 
