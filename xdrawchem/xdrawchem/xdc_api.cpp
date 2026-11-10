@@ -973,6 +973,209 @@ XdcApiResult apiMake3D( const QString &structure, const QString &format,
 // clean_up — regenerate a 2-D layout
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// pubchem_lookup — registry URI for a name / SMILES / InChI
+// ─────────────────────────────────────────────────────────────────────────────
+
+namespace {
+
+// One blocking PubChem PUG REST GET, returning the body and HTTP status.
+// Uses a local event loop with a timeout, matching molecule_nts.cpp.
+QByteArray pubchemGet( const QString &url, int *status, QString *error )
+{
+    QNetworkAccessManager nam;
+    QEventLoop loop;
+    QByteArray body;
+    int httpStatus = 0;
+    QString errText;
+
+    QNetworkRequest req( ( QUrl( url ) ) );
+    req.setHeader( QNetworkRequest::UserAgentHeader,
+                   QStringLiteral( "XDrawChem/2.0 (agent-api)" ) );
+    QNetworkReply *reply = nam.get( req );
+
+    QObject::connect( reply, &QNetworkReply::finished, &loop, [&]() {
+        httpStatus = reply->attribute(
+            QNetworkRequest::HttpStatusCodeAttribute ).toInt();
+        if ( httpStatus == 200 )
+            body = reply->readAll();
+        else if ( reply->error() != QNetworkReply::NoError )
+            errText = reply->errorString();
+        else
+            errText = QStringLiteral( "HTTP %1" ).arg( httpStatus );
+        loop.quit();
+    } );
+
+    QTimer::singleShot( 15000, &loop, &QEventLoop::quit );
+    loop.exec();
+    reply->deleteLater();
+
+    if ( status )
+        *status = httpStatus;
+    if ( error )
+        *error = errText;
+    return body;
+}
+
+// One blocking PubChem PUG REST POST (form-encoded), returning the body.
+// Needed for InChI: the InChI string is posted as the `inchi` parameter.
+QByteArray pubchemPost( const QString &url, const QString &field,
+                        const QString &value, int *status, QString *error )
+{
+    QNetworkAccessManager nam;
+    QEventLoop loop;
+    QByteArray body;
+    int httpStatus = 0;
+    QString errText;
+
+    QNetworkRequest req( ( QUrl( url ) ) );
+    req.setHeader( QNetworkRequest::UserAgentHeader,
+                   QStringLiteral( "XDrawChem/2.0 (agent-api)" ) );
+    req.setHeader( QNetworkRequest::ContentTypeHeader,
+                   QStringLiteral( "application/x-www-form-urlencoded" ) );
+
+    QUrlQuery form;
+    form.addQueryItem( field, value );
+
+    QNetworkReply *reply = nam.post( req, form.toString( QUrl::FullyEncoded ).toUtf8() );
+
+    QObject::connect( reply, &QNetworkReply::finished, &loop, [&]() {
+        httpStatus = reply->attribute(
+            QNetworkRequest::HttpStatusCodeAttribute ).toInt();
+        if ( httpStatus == 200 )
+            body = reply->readAll();
+        else if ( reply->error() != QNetworkReply::NoError )
+            errText = reply->errorString();
+        else
+            errText = QStringLiteral( "HTTP %1" ).arg( httpStatus );
+        loop.quit();
+    } );
+
+    QTimer::singleShot( 15000, &loop, &QEventLoop::quit );
+    loop.exec();
+    reply->deleteLater();
+
+    if ( status )
+        *status = httpStatus;
+    if ( error )
+        *error = errText;
+    return body;
+}
+
+} // namespace
+
+XdcApiResult apiPubChemLookup( const QString &query, const QString &format )
+{
+    const QString cmd = QStringLiteral( "pubchem_lookup" );
+    QString q = query.trimmed();
+    if ( q.isEmpty() )
+        return fail( cmd, QStringLiteral( "empty query" ) );
+
+    // Decide which PUG REST namespace the query belongs to.
+    QString namespaceName;
+    QString encodedQuery = QString::fromUtf8( QUrl::toPercentEncoding( q ) );
+    QString fmt = format.trimmed().toLower();
+
+    if ( fmt.isEmpty() ) {
+        if ( q.startsWith( QLatin1String( "InChI=" ) ) )
+            fmt = QStringLiteral( "inchi" );
+        else if ( q.contains( QLatin1Char( 'M' ) )
+                  && q.contains( QLatin1String( "M  END" ) ) )
+            fmt = QStringLiteral( "molfile" );
+        else
+            fmt = QStringLiteral( "auto" );
+    }
+
+    if ( fmt == QLatin1String( "inchi" ) || q.startsWith( QLatin1String( "InChI=" ) ) ) {
+        namespaceName = QStringLiteral( "inchi" );
+    } else if ( fmt == QLatin1String( "smiles" ) || fmt == QLatin1String( "smi" ) ) {
+        namespaceName = QStringLiteral( "smiles" );
+    } else if ( fmt == QLatin1String( "auto" ) ) {
+        // A bare name or CAS number has no SMILES punctuation to speak of.
+        // Try to parse it locally: if it parses, it is a structure.
+        OBMol probe;
+        if ( readStructureIntoOBMol( probe, q, QString() ) ) {
+            namespaceName = QStringLiteral( "smiles" );
+            // Canonicalise so PubChem gets an unambiguous query.
+            QString can = obMolToFormat( &probe, "can" );
+            if ( !can.isEmpty() ) {
+                q = can;
+                encodedQuery = QString::fromUtf8( QUrl::toPercentEncoding( q ) );
+            }
+        } else {
+            namespaceName = QStringLiteral( "name" );
+        }
+    } else if ( fmt == QLatin1String( "name" ) || fmt == QLatin1String( "cas" ) ) {
+        namespaceName = QStringLiteral( "name" );
+    } else {
+        return fail( cmd, QStringLiteral( "unsupported input format '%1' "
+                                          "(use auto, name, smiles or inchi)" )
+                              .arg( fmt ) );
+    }
+
+    // Ask PubChem for the CID first: it is the stable identifier the URI uses.
+    // InChI queries must be POSTed (an InChI is long and contains characters
+    // that break the path form, which PUG REST rejects with HTTP 400).
+    int status = 0;
+    QString err;
+    QByteArray cidBody;
+    if ( namespaceName == QLatin1String( "inchi" ) ) {
+        cidBody = pubchemPost(
+            QStringLiteral( "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchi/cids/TXT" ),
+            QStringLiteral( "inchi" ), q, &status, &err );
+    } else {
+        cidBody = pubchemGet(
+            QStringLiteral( "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/%1/%2/cids/TXT" )
+                .arg( namespaceName, encodedQuery ), &status, &err );
+    }
+
+    QString cid = QString::fromUtf8( cidBody ).trimmed().section( QChar( '\n' ), 0, 0 );
+
+    if ( cid.isEmpty() ) {
+        // A 404 is a clean "not in PubChem"; anything else is a network problem.
+        if ( status == 404 )
+            return fail( cmd, QStringLiteral( "PubChem has no compound matching '%1'" ).arg( q ) );
+        if ( status == 0 )
+            return fail( cmd, QStringLiteral( "could not reach PubChem"
+                                              "%1" ).arg( err.isEmpty()
+                                                          ? QString()
+                                                          : QStringLiteral( ": " ) + err ) );
+        return fail( cmd, QStringLiteral( "PubChem lookup failed (HTTP %1)" ).arg( status ) );
+    }
+
+    bool cidOk = false;
+    const int cidNum = cid.toInt( &cidOk );
+    if ( !cidOk )
+        return fail( cmd, QStringLiteral( "PubChem returned an unparseable CID: '%1'" ).arg( cid ) );
+
+    XdcApiResult res = succeed( cmd );
+    res.payload.insert( QStringLiteral( "query" ), query );
+    res.payload.insert( QStringLiteral( "matched_by" ), namespaceName );
+    res.payload.insert( QStringLiteral( "pubchem_cid" ), cidNum );
+    res.payload.insert( QStringLiteral( "pubchem_uri" ),
+                        QStringLiteral( "https://pubchem.ncbi.nlm.nih.gov/compound/%1" ).arg( cidNum ) );
+
+    // Structure properties, when available.  Failure here is not fatal: the
+    // URI and CID above are already the answer to "where is this in PubChem".
+    QByteArray propBody = pubchemGet(
+        QStringLiteral( "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/%1/"
+                        "property/IsomericSMILES,InChIKey,MolecularFormula,TITLE/TXT" )
+            .arg( cidNum ), &status, &err );
+    QString props = QString::fromUtf8( propBody ).trimmed();
+    if ( !props.isEmpty() ) {
+        const QStringList lines = props.split( QChar( '\n' ), Qt::SkipEmptyParts );
+        if ( lines.size() >= 1 )
+            res.payload.insert( QStringLiteral( "smiles" ), lines.at( 0 ).trimmed() );
+        if ( lines.size() >= 2 )
+            res.payload.insert( QStringLiteral( "inchikey" ), lines.at( 1 ).trimmed() );
+        if ( lines.size() >= 3 )
+            res.payload.insert( QStringLiteral( "formula" ), lines.at( 2 ).trimmed() );
+        if ( lines.size() >= 4 )
+            res.payload.insert( QStringLiteral( "title" ), lines.at( 3 ).trimmed() );
+    }
+    return res;
+}
+
 XdcApiResult apiCleanUp( const QString &structure, const QString &format,
                          const QString &output )
 {
@@ -1193,6 +1396,14 @@ QJsonObject apiManifest()
             arg( "input_format", "string", false, "Input format (default auto)" ) },
         QStringLiteral( "JSON {structure, force_field, atom_count}" ) );
 
+    addCommand( QStringLiteral( "pubchem_lookup" ),
+        QStringLiteral( "Resolve a name, CAS number, SMILES or InChI to its "
+                        "PubChem compound page; returns the URI and CID." ),
+        QJsonArray{
+            arg( "query", "string", true, "Chemical name, CAS number, SMILES or InChI" ),
+            arg( "format", "string", false, "Input kind: auto|name|cas|smiles|inchi (default auto)" ) },
+        QStringLiteral( "JSON {pubchem_uri, pubchem_cid, smiles, inchikey, formula, title}" ) );
+
     addCommand( QStringLiteral( "clean_up" ),
         QStringLiteral( "Regenerate a clean 2-D layout (same as Tools -> Clean Up "
                         "Molecule). Most useful for molfiles with poor geometry." ),
@@ -1323,6 +1534,9 @@ QString apiDispatch( const QStringList &args, int *exitCode )
     if ( command == QLatin1String( "make_3d" ) )
         return finish( apiMake3D( structureArg( 0, "structure" ),
                                   get( "input_format" ), get( "format" ) ) );
+
+    if ( command == QLatin1String( "pubchem_lookup" ) )
+        return finish( apiPubChemLookup( structureArg( 0, "query" ), get( "format" ) ) );
 
     if ( command == QLatin1String( "clean_up" ) )
         return finish( apiCleanUp( structureArg( 0, "structure" ),

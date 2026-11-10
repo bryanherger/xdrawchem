@@ -2396,7 +2396,17 @@ void ApplicationWindow::FromIUPACName()
     }
 
     m_chemData->fromSMILES( smiles );
-    m_renderer->Inserted();
+
+    // Show the new structure selected, but drop back to plain Select mode
+    // afterwards.  Inserted() sets MODE_SELECT_MULTIPLE_SELECTED with the
+    // whole molecule boxed, and in that mode every left click inside the box
+    // starts a whole-molecule drag — individual atoms and bonds could not be
+    // picked up any more.  DeselectAll() in setMode_Select() clears the
+    // selection, so re-highlight after switching back.
+    m_renderer->setMode_Select();
+    if ( Molecule *m1 = m_chemData->firstMolecule() )
+        m1->SelectAll();
+
     updatePropertyPanel();
     m_renderer->update();
 }

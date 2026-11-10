@@ -79,6 +79,12 @@ XdcApiResult apiRender( const QString &structure, const QString &format,
 XdcApiResult apiMake3D( const QString &structure, const QString &format,
                         const QString &output );
 
+// ── PubChem registry lookup ────────────────────────────────────────────────
+// Resolve a name, CAS number, SMILES or InChI to its PubChem compound page.
+// Returns the canonical PubChem URI plus CID and the matched structure, so an
+// agent can cite a source or hand a link to a human.
+XdcApiResult apiPubChemLookup( const QString &query, const QString &format );
+
 // ── Layout cleanup ─────────────────────────────────────────────────────────
 // Re-run structure-diagram generation on a structure, replacing whatever
 // coordinates it came with (hand-drawn, file-supplied, or absent) with a
