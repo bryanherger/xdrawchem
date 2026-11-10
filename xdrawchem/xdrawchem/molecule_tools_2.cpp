@@ -618,9 +618,10 @@ void Molecule::AddPeak( double d1, QString s1, QString s2 )
 }
 
 // add hydrogens to atoms.  Only add to carbon if to_carbons == true
-void Molecule::AddHydrogens( bool to_carbon )
+void Molecule::AddHydrogens( bool to_carbon, bool force )
 {
-    qDebug() << "AddHydrogens(" << to_carbon << "), prefs = " << preferences.getFixHydrogens();
+    qDebug() << "AddHydrogens(" << to_carbon << "), prefs = "
+             << preferences.getFixHydrogens() << ", force = " << force;
     up = AllPoints();
     int h = 0, sumbonds = 0;
     double dx;
@@ -654,8 +655,13 @@ void Molecule::AddHydrogens( bool to_carbon )
             }
         }
     }
-    // add hydrogens if user requested
-    if ( preferences.getFixHydrogens() == false )
+    // Add implicit-hydrogen annotations to the atom labels.
+    //
+    // `force` is used by export paths (the agent API) that must produce the
+    // same depiction the user configured, whatever this process happens to
+    // have loaded into `preferences` — the CLI starts from a fresh Preferences
+    // object and may not have read ~/.xdrawchemrc at all.
+    if ( preferences.getFixHydrogens() == false && !force )
         return;
     for (DPoint *tmp_pt : up) {
         orig_element = tmp_pt->element;
@@ -667,6 +673,7 @@ void Molecule::AddHydrogens( bool to_carbon )
         // don't add to carbons unless specifically instructed
         if ( ( tmp_pt->element == "C" ) && ( to_carbon == false ) )
             continue;
+        // `force` annotates heteroatom hydrogens only; carbons stay skeletal
         // skip special cases
         if ( tmp_pt->element == "CO" )
             continue;

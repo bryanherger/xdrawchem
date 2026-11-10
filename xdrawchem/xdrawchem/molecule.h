@@ -95,7 +95,12 @@ public:
     //QString IUPAC_Name();
     void AllNeighbors();
     void MakeSSSR();
-    void AddHydrogens(bool to_carbon = false);
+    // Annotate atom labels with implicit hydrogens (e.g. "O" -> "OH").
+    // to_carbon: also annotate carbons (normally left skeletal).
+    // force: annotate regardless of the live preference, for export paths
+    // that must match what the user configured even though this process has
+    // not loaded their configuration.
+    void AddHydrogens(bool to_carbon = false, bool force = false);
     double SumBondEnthalpy();
     void Scale(double bond_length = -1.0);
     void AddPeak(double, QString, QString);

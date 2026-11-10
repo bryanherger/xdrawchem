@@ -165,6 +165,20 @@ static bool readStructureIntoOBMol( OBMol &mol, const QString &structure,
 // Structure loading into a live XDrawChem document
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Annotate implicit hydrogens on heteroatoms for export.
+//
+// The GUI toggles this via Preferences -> Show implicit hydrogens, and
+// Molecule::SDG() calls AddHydrogens() when a structure is parsed.  A CLI
+// process constructs a fresh Preferences object and never reads the user's
+// rc file, so that call sees the default (off) and the export draws bare 'O'
+// where the user's configuration asks for 'OH'.  Forcing here makes the
+// agent output match what the same structure looks like in the GUI.
+static void annotateImplicitHydrogens( Molecule *m )
+{
+    if ( m != nullptr )
+        m->AddHydrogens( /*to_carbon*/ false, /*force*/ true );
+}
+
 Molecule *apiLoadMolecule( ChemData *cd, const QString &structure,
                            const QString &format, QString *error )
 {
@@ -195,6 +209,8 @@ Molecule *apiLoadMolecule( ChemData *cd, const QString &structure,
             Molecule *m = cd->firstMolecule();
             if ( !m && error )
                 *error = QStringLiteral( "could not parse %1" ).arg( s );
+            else
+                annotateImplicitHydrogens( m );
             return m;
         }
         s = QString::fromUtf8( raw );
@@ -218,6 +234,8 @@ Molecule *apiLoadMolecule( ChemData *cd, const QString &structure,
     if ( !m && error )
         *error = QStringLiteral( "could not parse structure as %1" )
                  .arg( fmt.isEmpty() ? QStringLiteral( "auto" ) : fmt );
+    else
+        annotateImplicitHydrogens( m );
     return m;
 }
 
