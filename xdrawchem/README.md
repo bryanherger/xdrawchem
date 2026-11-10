@@ -18,8 +18,11 @@ xdrawchem --api render --structure "CCO" --format svg --out ethanol.svg
 
 The same functions are available as an **MCP server**
 (`integrations/mcp/xdrawchem_mcp.py`) and an **agent skill**
-(`integrations/skills/xdrawchem/SKILL.md`). See
-[doc/AGENT_API.md](doc/AGENT_API.md) for the full reference.
+(`integrations/skills/xdrawchem/SKILL.md`).
+
+- [doc/AGENT_API.md](doc/AGENT_API.md) — the API reference
+- [doc/INTEGRATIONS.md](doc/INTEGRATIONS.md) — setup for Claude Desktop,
+  Claude Code, OpenClaw, and any other MCP client or skill-based agent
 
 ---
 
