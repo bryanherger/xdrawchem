@@ -552,6 +552,42 @@ void ChemData::AutoLayout()
     }                           // for (...)
 }
 
+// Add a single molecule from a structure string.  Accepts SMILES, InChI
+// ("InChI=1S/...") or an MDL molfile block (a string containing the standard
+// header plus "M  END").  Returns the new Molecule, or nullptr on failure.
+// No dialogs, no status-bar messages: safe to call from a headless agent.
+Molecule *ChemData::fromString( const QString &structure )
+{
+    QString s = structure.trimmed();
+    if ( s.isEmpty() )
+        return nullptr;
+
+    // A Molfile keeps its leading blank line, so do not trim() it away
+    // before handing it to OpenBabel.
+    bool looksLikeMolfile = ( s.contains( "M  END" ) || s.contains( "V2000" )
+                              || s.contains( "V3000" ) );
+
+    Molecule *m1 = new Molecule( r, this );
+    if ( looksLikeMolfile ) {
+        if ( !m1->FromMolfile( structure ) ) {
+            delete m1;
+            return nullptr;
+        }
+    } else {
+        m1->FromSMILES( s );
+    }
+
+    if ( m1->AllPoints().isEmpty() ) {
+        delete m1;
+        return nullptr;
+    }
+    m1->SelectAll();
+    drawlist.append( m1 );
+    notSaved = true;
+    emit SignalMoleculeChanged();
+    return m1;
+}
+
 void ChemData::fromSMILES( QString sm )
 {
     Molecule *m1 = new Molecule( r );

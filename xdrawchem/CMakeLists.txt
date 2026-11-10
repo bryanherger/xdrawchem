@@ -151,6 +151,8 @@ set(XDC_SOURCES
     xdrawchem/molecule_smiles.cpp
     xdrawchem/molecule_iupac.cpp
     xdrawchem/molecule_nts.cpp
+    # Headless agent API (used by the CLI and by tests)
+    xdrawchem/xdc_api.cpp
     xdrawchem/molecule_smarts.cpp
     xdrawchem/render2d_svg.cpp
     xdrawchem/molecule_valence.cpp
@@ -257,6 +259,7 @@ set(XDC_HEADERS
     xdrawchem/setofrings.h
     xdrawchem/smilesdialog.h
     xdrawchem/molecule_nts.h
+    xdrawchem/xdc_api.h
     xdrawchem/sorf.h
     xdrawchem/sugar_xpm.h
     xdrawchem/symbol.h
@@ -300,6 +303,7 @@ target_link_libraries(xdrawchem_obj PUBLIC
 add_executable(xdrawchem
     $<TARGET_OBJECTS:xdrawchem_obj>
     xdrawchem/main.cpp
+    xdrawchem/xdc_api_cli.cpp
     ${XDC_HEADERS}
 )
 set_target_properties(xdrawchem PROPERTIES AUTOMOC OFF AUTOUIC OFF AUTORCC OFF)

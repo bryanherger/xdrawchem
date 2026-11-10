@@ -9,6 +9,9 @@
 ## Status at v2.0.1
 
 **Completed in v2.1 cycle:**
+- Headless agent API (`xdrawchem --api`) exposing 9 chemistry commands as JSON
+- MCP server (`integrations/mcp/xdrawchem_mcp.py`) exposing the same commands as tools
+- Agent skill (`integrations/skills/xdrawchem/SKILL.md`) + `doc/AGENT_API.md`
 - 3D structure generation restored using local OpenBabel (OBBuilder + MMFF94/UFF minimization)
 - MDL Mol/SDF I/O fully implemented via OpenBabel (was previously stubbed out)
 - SDF multi-record browser UI for browsing and importing individual records

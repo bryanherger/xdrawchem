@@ -184,11 +184,20 @@ public:
 
     OpenBabel::OBMol * convertToOBMol();
     bool convertFromOBMol(OpenBabel::OBMol *);
+    // Build this Molecule from an MDL molfile/SDF block held in a string.
+    // Used by headless/agent callers that have structure text, not a file.
+    // Implemented in molecule_obmol.cpp.
+    bool FromMolfile( const QString &molblock );
     static const char symbol[110][4];
 
     // not appropriate but best way to handle ToolDialog requests.
     QList<Peak *> peaklist;
     Peak *tmp_peak;
+
+public:
+    // Export/headless use: draw this molecule (and its bonds/labels) with a
+    // different Render2D, without re-parsing the structure.
+    void setRenderer( Render2D *r1 );
 
 private:
     // Renderer

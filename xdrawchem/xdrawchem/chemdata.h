@@ -21,6 +21,7 @@ extern Preferences preferences;
 
 class Render2D;
 class Clipboard;
+class Molecule;
 
 class ChemData : public QObject
 {
@@ -29,6 +30,9 @@ class ChemData : public QObject
 public:
     void setRender2D(Render2D *r1) { r = r1; }
     Render2D *getRender2D() { return r; }
+    // Export/headless use: retarget every molecule in the document at another
+    // Render2D so a document can be painted into an off-screen target.
+    void rebindRender2D( Render2D *r1 );
     bool edited() { return notSaved; }
     bool needsSave() { return notSaved; }
     void saved() { notSaved = false; }
@@ -118,6 +122,10 @@ public:
 
     // defined in chemdata_tools.cpp
     void Save3D( QString );
+    // Add a single Molecule built from a SMILES, InChI, or Molfile string.
+    // Unlike fromSMILES(), this returns the created Molecule (or nullptr)
+    // and performs no GUI interaction, so headless callers can use it.
+    Molecule *fromString( const QString &structure );
     void clearAllGroups();
     void Tool( DPoint *, int );
     void AutoLayout();

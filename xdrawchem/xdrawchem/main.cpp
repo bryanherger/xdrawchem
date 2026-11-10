@@ -21,6 +21,7 @@
 #include "application.h"
 #include "clipboard.h"
 #include "xdc_logging.h"
+#include "xdc_api.h"
 
 #include "defs.h"
 #include "prefs.h"
@@ -41,6 +42,9 @@ QTextStream out( stdout );
 Preferences preferences;
 
 void usage();                 // defined below
+
+// Headless agent API: defined in xdc_api_cli.cpp.  Returns an exit code.
+int apiMain( const QStringList &args );
 
 #if !defined(_WIN32) && !defined(_WIN64)
 void handler(int sig) {
@@ -63,6 +67,33 @@ int main( int argc, char **argv )
 #endif
 
     int ae;
+
+    // ── Headless agent API ─────────────────────────────────────────────────
+    // `xdrawchem --api <command> [--key value ...]` prints JSON and exits.
+    // Handled before any GUI setup so scripts and MCP servers never flash a
+    // window; the offscreen platform keeps Qt pixmap painting headless.
+    {
+        QStringList argl;
+        for ( int i = 1; i < argc; ++i )
+            argl.append( QString::fromLocal8Bit( argv[i] ) );
+        int apiIdx = argl.indexOf( QStringLiteral( "--api" ) );
+        if ( apiIdx >= 0 ) {
+            for ( int i = 0; i < apiIdx; ++i ) {
+                if ( argl.at( i ) == QStringLiteral( "--help" )
+                     || argl.at( i ) == QStringLiteral( "-h" ) ) {
+                    usage();
+                    return 0;
+                }
+            }
+            // QApplication (not QGuiApplication): the API builds Render2D,
+            // which is a QWidget, so the widgets module must be initialised.
+            // The offscreen platform keeps it headless — no window appears.
+            if ( qEnvironmentVariableIsEmpty( "QT_QPA_PLATFORM" ) )
+                qputenv( "QT_QPA_PLATFORM", "offscreen" );
+            QApplication app( argc, argv );
+            return apiMain( argl.mid( apiIdx + 1 ) );
+        }
+    }
 
     // parse command line options
     QStringList cmds;
@@ -258,6 +289,9 @@ void usage()
     out << "-png <output file>: Create a PNG image of input file and exit" << Qt::endl;
     out << "-t: Make transparent PNG (also specify -png)" << Qt::endl;
     out << "-3d: Make 3D model of input file (output MDL mofile)" << Qt::endl;
+    out << "--api: Headless JSON API for agents and scripts." << Qt::endl;
+    out << "       xdrawchem --api                 -> command manifest" << Qt::endl;
+    out << "       xdrawchem --api describe --structure CCO" << Qt::endl;
     out << "-h, --help:  Display this help" << Qt::endl;
     out << "-v, --version:  Display the version information" << Qt::endl;
 

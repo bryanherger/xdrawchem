@@ -102,6 +102,13 @@ void Render2D::drawLine( QPoint a, QPoint b, int t, QColor c1, int s )
         //p.setPen(QPen(c1, t, DotLine));
         painter->setPen( QPen( c1, t, Qt::DotLine ) );
     //p.drawLine(a, b);
+    // export-only viewport shift (see setExportViewport); no-op on screen
+    if ( export_dx != 0 || export_dy != 0 ) {
+        a.rx() += export_dx;
+        a.ry() += export_dy;
+        b.rx() += export_dx;
+        b.ry() += export_dy;
+    }
     painter->drawLine( a, b );
 }
 
@@ -114,6 +121,8 @@ void Render2D::drawPolyline( QPainterPath a1, QColor c1 )
   for (int cc = 0; cc < lastpoint; cc++)
     drawLine(a1[cc], a1[cc+1], 1, c1);*/
     ///TODO
+    if ( export_dx != 0 || export_dy != 0 )
+        a1.translate( export_dx, export_dy );
     painter->drawPath( a1 );
 }
 
@@ -122,7 +131,15 @@ void Render2D::drawPolyline( QVector<QPoint> p, QColor c1 )
     qDebug() << "Render2D::drawPolyline() 2";
     if (!p.isEmpty()) {
         painter->setPen( c1 );
-        painter->drawLines( p );
+        if ( export_dx != 0 || export_dy != 0 ) {
+            QVector<QPoint> shifted;
+            shifted.reserve( p.size() );
+            for ( const QPoint &pt : p )
+                shifted.append( pt + QPoint( export_dx, export_dy ) );
+            painter->drawLines( shifted );
+        } else {
+            painter->drawLines( p );
+        }
     }
 //    for ( int i = 0; i < p.size(); ++i )
 //        drawLine( p.at( i ), p.at( i + 1 ), 1, c1 );
@@ -787,6 +804,8 @@ void Render2D::drawString( QString s1, QPoint a, QColor c1, QFont f )
      */
     painter->setPen( c1 );
     painter->setFont( f );
+    if ( export_dx != 0 || export_dy != 0 )
+        a += QPoint( export_dx, export_dy );
     painter->drawText( a, s1 );
 }
 

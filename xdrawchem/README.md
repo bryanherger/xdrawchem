@@ -5,6 +5,22 @@ supporting CML, MDL Mol/SDF, CDXML, XDC, and SMILES file formats.
 It integrates with OpenBabel for format conversion, SMILES generation,
 InChI, and 3D coordinate generation.
 
+## For AI agents
+
+XDrawChem also runs headless, for scripts and AI agents:
+
+```bash
+xdrawchem --api                                    # list every command (JSON)
+xdrawchem --api name_to_structure --name aspirin   # name -> structure
+xdrawchem --api describe --structure "CCO"         # formula, MW, SMILES, InChI…
+xdrawchem --api render --structure "CCO" --format svg --out ethanol.svg
+```
+
+The same functions are available as an **MCP server**
+(`integrations/mcp/xdrawchem_mcp.py`) and an **agent skill**
+(`integrations/skills/xdrawchem/SKILL.md`). See
+[doc/AGENT_API.md](doc/AGENT_API.md) for the full reference.
+
 ---
 
 ## Requirements

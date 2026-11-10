@@ -30,6 +30,22 @@ Molecule::~Molecule()
     peaklist.clear();
 }
 
+// Rebind this molecule, its bonds, and its labels to another Render2D.
+// Used by the headless export path so Drawables paint into an export target
+// (QSvgGenerator, QPrinter) rather than the hidden on-screen canvas.
+void Molecule::setRenderer( Render2D *r1 )
+{
+    r = r1;
+    for ( Bond *b : bonds ) {
+        if ( b != nullptr )
+            b->setRenderer( r1 );
+    }
+    for ( Text *t : labels ) {
+        if ( t != nullptr )
+            t->setRenderer( r1 );
+    }
+}
+
 void Molecule::Render()
 {
     /// collect all points
