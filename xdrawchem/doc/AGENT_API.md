@@ -118,6 +118,20 @@ xdrawchem --api make_3d --structure "CCO" --format xyz
 Same path as the GUI's "Build 3D model": OpenBabel `OBBuilder`, then MMFF94
 minimisation (UFF fallback). The reply reports which `force_field` was used.
 
+### `clean_up` — regenerate a 2-D layout
+
+```bash
+xdrawchem --api clean_up --structure "@messy.mol" --format mol
+```
+
+Runs structure-diagram generation again — the same operation as the GUI's
+**Tools → Clean Up Molecule**. Most useful for molfiles whose coordinates are
+hand-drawn or poorly laid out.
+
+Be aware: SMILES input already gets a clean layout at parse time, so cleanup
+on SMILES usually returns an identical arrangement (`connectivity_unchanged`
+will be `true`). Pass molfile coordinates to actually change geometry.
+
 ### `reaction` — reaction summary
 
 ```bash

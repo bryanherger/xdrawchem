@@ -723,26 +723,58 @@ QByteArray renderDocumentToSVG( ChemData *cd, int width, int height )
 QImage apiRenderPNG( ChemData *cd, Render2D *r, int widthPx, int heightPx,
                      bool transparent )
 {
-    Q_UNUSED( heightPx );
     if ( cd == nullptr || r == nullptr )
         return QImage();
 
-    // Use the widget's own rendering path (MakePixmap) rather than painting
-    // into a private QImage.  Label placement in Text::Render() and the
-    // structure layout both consult the live Render2D (text metrics, zoom,
-    // font kludge), so a detached painter produces misplaced labels.  The
-    // widget is offscreen, but it is still a real, correctly configured
-    // Render2D — exactly what the GUI uses when it exports a PNG.
-    QPixmap pm = r->MakePixmap( transparent );
-    if ( pm.isNull() )
+    // Measure the drawing. Bond::BoundingBox() only reports geometry for
+    // highlighted bonds, so select first (same dance MakePixmap does).
+    cd->SelectAll();
+    QRect bounds = cd->selectionBox();
+    cd->DeselectAll();
+    if ( !bounds.isValid() || bounds.width() < 2 || bounds.height() < 2 )
         return QImage();
 
-    if ( widthPx > 0 ) {
-        int h = qRound( pm.height() * ( double( widthPx ) / pm.width() ) );
-        pm = pm.scaled( widthPx, h, Qt::KeepAspectRatio, Qt::SmoothTransformation );
-    }
+    const int margin = 10;
+    const int logicalW = bounds.width() + 2 * margin;
+    const int logicalH = bounds.height() + 2 * margin;
 
-    return pm.toImage().convertToFormat( QImage::Format_ARGB32_Premultiplied );
+    // Paint at the requested resolution instead of grabbing the widget at
+    // canvas size and scaling that up (which only magnifies existing pixels
+    // and makes text soft).  QPainter scales vectors and text at draw time,
+    // so one pass at the final size stays sharp.
+    const double scale = ( widthPx > 0 )
+                         ? double( widthPx ) / double( logicalW )
+                         : 1.0;
+    const int outW = ( widthPx > 0 ) ? widthPx : logicalW;
+    const int outH = ( heightPx > 0 ) ? heightPx
+                                      : qRound( logicalH * scale );
+
+    QImage img( outW, outH, QImage::Format_ARGB32_Premultiplied );
+    img.fill( transparent ? Qt::transparent : Qt::white );
+
+    QPainter p;
+    if ( !p.begin( &img ) )
+        return QImage();
+    p.setRenderHint( QPainter::Antialiasing, true );
+    p.setRenderHint( QPainter::TextAntialiasing, true );
+    p.setRenderHint( QPainter::SmoothPixmapTransform, true );
+
+    Render2D scratch;
+    scratch.setChemData( cd );
+    scratch.setExternalPainter( &p );
+
+    p.scale( scale, scale );
+    p.translate( -bounds.left() + margin, -bounds.top() + margin );
+
+    // Drawables cache their Render2D pointer from parse time; retarget them
+    // at the export renderer so primitives land in this image.
+    cd->rebindRender2D( &scratch );
+    cd->drawAll();
+
+    p.end();
+    scratch.setExternalPainter( nullptr );
+
+    return img;
 }
 
 QByteArray apiRenderPDF( ChemData *cd, Render2D *r )
@@ -938,6 +970,79 @@ XdcApiResult apiMake3D( const QString &structure, const QString &format,
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// clean_up — regenerate a 2-D layout
+// ─────────────────────────────────────────────────────────────────────────────
+
+XdcApiResult apiCleanUp( const QString &structure, const QString &format,
+                         const QString &output )
+{
+    const QString cmd = QStringLiteral( "clean_up" );
+
+    QString out = output.trimmed().toLower();
+    if ( out.isEmpty() )
+        out = QStringLiteral( "smiles" );
+    if ( out == QLatin1String( "molfile" ) )
+        out = QStringLiteral( "mol" );
+    if ( out == QLatin1String( "canonical" ) )
+        out = QStringLiteral( "can" );
+    if ( out != QLatin1String( "smiles" ) && out != QLatin1String( "smi" )
+         && out != QLatin1String( "can" ) && out != QLatin1String( "mol" )
+         && out != QLatin1String( "sdf" ) )
+        return fail( cmd, QStringLiteral( "unsupported output '%1' "
+                                          "(use smiles, canonical, mol or sdf)" )
+                              .arg( out ) );
+
+    // Build a document so the real CleanUp() runs — it is the same path the
+    // GUI's Tools -> Clean Up Molecule uses.
+    ChemData cd;
+    Render2D r;
+    cd.setRender2D( &r );
+    r.setChemData( &cd );
+
+    QString err;
+    Molecule *m = apiLoadMolecule( &cd, structure, format, &err );
+    if ( m == nullptr )
+        return fail( cmd, err.isEmpty()
+                          ? QStringLiteral( "could not parse structure" ) : err );
+
+    // Record the input layout so we can report whether cleanup changed it.
+    auto bboxOf = []( Molecule *mol ) {
+        mol->SelectAll();
+        QRect b = mol->BoundingBoxAll();
+        mol->DeselectAll();
+        return b;
+    };
+    QRect before = bboxOf( m );
+    QString smilesBefore = m->ToSMILES();
+
+    m->CleanUp();
+    cd.drawAll();
+
+    QRect after = bboxOf( m );
+    QString smilesAfter = m->ToSMILES();
+    QString result = ( out == QLatin1String( "mol" ) || out == QLatin1String( "sdf" ) )
+                     ? m->ToMDLMolfile()
+                     : smilesAfter.trimmed();
+
+    XdcApiResult res = succeed( cmd );
+    res.payload.insert( QStringLiteral( "output_format" ), out );
+    res.payload.insert( QStringLiteral( "structure" ), result );
+    res.payload.insert( QStringLiteral( "smiles" ), smilesAfter.trimmed() );
+    res.payload.insert( QStringLiteral( "connectivity_unchanged" ),
+                        smilesBefore == smilesAfter );
+    res.payload.insert( QStringLiteral( "bounds_before" ),
+                        QStringLiteral( "%1x%2" ).arg( before.width() ).arg( before.height() ) );
+    res.payload.insert( QStringLiteral( "bounds_after" ),
+                        QStringLiteral( "%1x%2" ).arg( after.width() ).arg( after.height() ) );
+    res.payload.insert( QStringLiteral( "note" ),
+                        QStringLiteral( "Re-ran structure-diagram generation. "
+                                        "For SMILES input the layout was already "
+                                        "generated at parse time; pass molfile "
+                                        "coordinates to actually change geometry." ) );
+    return res;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // reaction
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -1088,6 +1193,15 @@ QJsonObject apiManifest()
             arg( "input_format", "string", false, "Input format (default auto)" ) },
         QStringLiteral( "JSON {structure, force_field, atom_count}" ) );
 
+    addCommand( QStringLiteral( "clean_up" ),
+        QStringLiteral( "Regenerate a clean 2-D layout (same as Tools -> Clean Up "
+                        "Molecule). Most useful for molfiles with poor geometry." ),
+        QJsonArray{
+            arg( "structure", "string", true, "Structure text (or @path)" ),
+            arg( "format", "string", false, "Output: smiles|canonical|mol|sdf (default smiles)" ),
+            arg( "input_format", "string", false, "Input format (default auto)" ) },
+        QStringLiteral( "JSON {structure, smiles, connectivity_unchanged}" ) );
+
     addCommand( QStringLiteral( "reaction" ),
         QStringLiteral( "Summarise a reaction given as reaction SMILES "
                         "('reactants>>products')." ),
@@ -1209,6 +1323,10 @@ QString apiDispatch( const QStringList &args, int *exitCode )
     if ( command == QLatin1String( "make_3d" ) )
         return finish( apiMake3D( structureArg( 0, "structure" ),
                                   get( "input_format" ), get( "format" ) ) );
+
+    if ( command == QLatin1String( "clean_up" ) )
+        return finish( apiCleanUp( structureArg( 0, "structure" ),
+                                   get( "input_format" ), get( "format" ) ) );
 
     if ( command == QLatin1String( "reaction" ) )
         return finish( apiReaction( structureArg( 0, "reaction" ), get( "format" ) ) );

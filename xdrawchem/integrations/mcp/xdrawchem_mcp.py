@@ -325,6 +325,22 @@ def xdrawchem_make_3d(
     ).as_tool_result()
 
 
+@server.tool(description="Regenerate a clean 2-D layout (like Tools -> Clean Up Molecule); most useful for molfiles with poor geometry.")
+def xdrawchem_clean_up(
+    structure: str, format: str = "smiles", input_format: str | None = None
+) -> tuple[str, bool]:
+    """Re-run structure-diagram generation on a structure.
+
+    Args:
+        structure: Structure input. SMILES, InChI, molfile block, or '@path'.
+        format: Output format: smiles, canonical, mol, or sdf (default smiles).
+        input_format: Optional input format hint.
+    """
+    return call_api(
+        "clean_up", structure=structure, format=format, input_format=input_format
+    ).as_tool_result()
+
+
 @server.tool(description="Summarise a reaction given as reaction SMILES ('reactants>>products').")
 def xdrawchem_reaction(reaction: str) -> tuple[str, bool]:
     """Describe a reaction.

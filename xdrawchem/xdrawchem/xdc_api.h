@@ -79,6 +79,16 @@ XdcApiResult apiRender( const QString &structure, const QString &format,
 XdcApiResult apiMake3D( const QString &structure, const QString &format,
                         const QString &output );
 
+// ── Layout cleanup ─────────────────────────────────────────────────────────
+// Re-run structure-diagram generation on a structure, replacing whatever
+// coordinates it came with (hand-drawn, file-supplied, or absent) with a
+// clean 2-D layout.  This is the same operation as the GUI's
+// Tools -> Clean Up Molecule.  Useful for molfiles with poor geometry; for
+// SMILES input the parse already generated coordinates, so the result is
+// usually equivalent to the input layout.
+XdcApiResult apiCleanUp( const QString &structure, const QString &format,
+                         const QString &output );
+
 // ── Reactions ──────────────────────────────────────────────────────────────
 // Describe a reaction SMILES/reaction molfile: reactants, products, atom and
 // bond changes, stoichiometry.

@@ -38,6 +38,7 @@ itself.
 | `compare` | are these two the same compound (names resolved automatically) |
 | `render` | draw it — SVG, PNG, or PDF |
 | `make_3d` | MMFF94/UFF-minimised 3-D conformer (Molfile, SDF, XYZ) |
+| `clean_up` | regenerate a clean 2-D layout (molfiles with poor geometry) |
 | `reaction` | summarise reaction SMILES `reactants>>products` |
 
 ## Structure input
@@ -103,6 +104,15 @@ xdrawchem --api make_3d --structure "CCO" --format xyz
 
 The reply names the `force_field` actually used (MMFF94, falling back to UFF).
 
+**Tidy a poorly laid-out molfile:**
+
+```bash
+xdrawchem --api clean_up --structure "@messy.mol" --format mol
+```
+
+This is the GUI's Tools → Clean Up Molecule. On SMILES input the layout was
+already generated at parse time, so expect `connectivity_unchanged: true`.
+
 **Reactions:**
 
 ```bash
@@ -137,6 +147,11 @@ python3 integrations/mcp/xdrawchem_mcp.py --check  # verify it finds the binary
 - **Stereochemistry.** `compare` reports `same_connectivity` (ignores stereo)
   and `same_structure` (requires it). Pick deliberately.
 - **Big images.** Pass `--out` for anything large; inline payloads are capped.
+  PNG is painted at the requested width, so `--width 1200` is genuinely sharp
+  rather than an upscaled grab.
+- **Cleanup does not fix SMILES layout.** `clean_up` re-runs the same
+  structure-diagram generator used at parse time; irregular fused-ring angles
+  are a layout-algorithm limitation, not missing cleanup.
 - **Exit code.** `0` on success, `1` on failure — but always parse `ok`, since
   the JSON is the contract.
 
