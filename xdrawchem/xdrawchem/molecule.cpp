@@ -431,12 +431,24 @@ void Molecule::MakeTomoveList()
                 tomove.append( tmp_pt );
         }
     }
-    // Fallback: include directly highlighted atoms (from NewSelectRect).
-    // This enables partial-molecule moves when atoms are selected but
-    // bonds are not highlighted (e.g. functional group selection).
-    for (DPoint *tmp_pt : AllPoints()) {
-        if ( tmp_pt->isHighlighted() && tomove.contains( tmp_pt ) == 0 )
-            tomove.append( tmp_pt );
+    /*  Fallback for atom-only selections: only when no bond was selected.
+
+        Hovering a bond marks its endpoints as a side effect of
+        Drawable::Highlight(true), and in a ring those atoms are shared with
+        neighbouring bonds.  The unconditional sweep below therefore pulled
+        stray atoms into `tomove`, so dragging one highlighted bond also moved
+        atoms belonging to an adjacent bond that was not itself highlighted.
+
+        A marquee/drag selection sets the bond flags directly
+        (Bond::isWithinRect(), plus ChemData::NewSelectRect()'s whole-molecule
+        fallback), so restricting this branch to the "no bonds highlighted"
+        case still covers selecting atoms without bonds, while hover residue
+        can no longer leak into a bond drag.                                    */
+    if ( tomove.isEmpty() ) {
+        for (DPoint *tmp_pt : AllPoints()) {
+            if ( tmp_pt->isHighlighted() && tomove.contains( tmp_pt ) == 0 )
+                tomove.append( tmp_pt );
+        }
     }
 }
 

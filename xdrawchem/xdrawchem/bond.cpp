@@ -88,11 +88,19 @@ void Bond::Render()
     double myangle, x1, y1, x2, y2, lx, ly, cf = 0.02;
     QColor c1;
 
-    // effectiveHighlighted: bond renders red if directly highlighted,
-    // OR if both endpoint atoms are highlighted (covers partial selection
-    // and whole-molecule selection via NewSelectRect atom highlighting).
-    bool effectiveHighlighted = highlighted ||
-        (start->isHighlighted() && end->isHighlighted());
+    /*  A bond renders red when IT is highlighted.  It deliberately does not
+        infer selection from its endpoint atoms.
+
+        An earlier revision used `highlighted || (start->isHighlighted() &&
+        end->isHighlighted())` so that whole-molecule selection — which marks
+        atoms via ChemData::SelectAll()/NewSelectRect() — would colour the
+        bonds too.  In a ring every bond shares an atom with its neighbours, so
+        hovering one bond (which marks its atoms) made the adjacent bonds
+        render as selected as well; measured by instrumenting the hover
+        handler and dumping each bond's own flag alongside both endpoint
+        flags.  Callers that select a whole molecule now call SelectAll(),
+        which sets the bond flags directly, so the inference is unnecessary. */
+    bool effectiveHighlighted = highlighted;
 
     if ( effectiveHighlighted )
         c1 = QColor( 255, 0, 0 );
