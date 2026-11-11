@@ -5,9 +5,38 @@ Entries are derived from the Debian changelog and commit history.
 
 ---
 
-## 2.1.0 — 2026-05-25
+## 2.1.0 — 2026-11-11
 
 ### New Features
+- **Headless agent API for AI assistants and scripts** — `xdrawchem --api <command>`
+  exposes twelve chemistry operations as JSON, with no display required (the CLI
+  sets `QT_QPA_PLATFORM=offscreen` itself). Every reply is an envelope led by
+  `ok`; failures never raise.
+  - `convert` — SMILES / InChI / InChIKey / Molfile / SDF / CML / XYZ / formula
+  - `name_to_structure` — chemical name or CAS number to structure (PubChem)
+  - `describe` — formula, molecular weight, counts, charge, SMILES, InChI,
+    InChIKey, and (when PubChem knows the compound) IUPAC name, CAS and CID
+  - `validate` — parse check plus valence check, listing offending atoms
+  - `inchi_key` — the standard 27-character identifier
+  - `compare` — same compound? names resolved automatically
+  - `render` — 2-D depiction as SVG, PNG or PDF
+  - `draw` — resolve a name/CAS/SMILES/InChI and draw it in one call
+  - `make_3d` — MMFF94/UFF-minimised 3-D conformer
+  - `pubchem_lookup` — canonical PubChem URI and CID for a compound
+  - `clean_up` — regenerate a 2-D layout (same as Tools → Clean Up Molecule)
+  - `reaction` — reaction SMILES summary with per-side formulas and atom deltas
+- **MCP server** — `integrations/mcp/xdrawchem_mcp.py` exposes the same commands
+  as thirteen Model Context Protocol tools, so assistants that speak MCP (Claude
+  Desktop, Claude Code, OpenClaw and others) can call XDrawChem directly. The
+  server wraps the CLI, so the two cannot drift apart.
+- **Agent skill** — `integrations/skills/xdrawchem/SKILL.md` provides the command
+  table, worked recipes and pitfalls for runtimes that load instruction files
+  rather than MCP servers. Setup for each client is documented in
+  `doc/INTEGRATIONS.md`, with the API reference in `doc/AGENT_API.md`.
+- **Configurable background colour** — `bgcolor` is now a persisted preference
+  (`BGCOLOR` in `~/.xdrawchemrc`) applied to the canvas, so a colour chosen via
+  Format → Set background color survives a restart and no longer follows the
+  desktop theme. Addresses the readability complaint in issue #22.
 - **3D structure generation restored** — Tools → "Build 3D model of molecule" now
   produces a 3D MDL molfile locally using OpenBabel's `OBBuilder` for initial
   coordinate generation followed by 250 steps of MMFF94 (or UFF fallback)
@@ -20,13 +49,56 @@ Entries are derived from the Debian changelog and commit history.
   a browser dialog lists all records with molecule names and lets the user
   navigate with Previous/Next, import individual records, or import all at once.
 - **CIP R/S and E/Z stereochemistry labels** — Tools → "Show CIP labels" toggles
-  display of Cahn-Ingold-Prelog descriptors computed by OpenBabel.
-  - **R/S** (tetrahedral): shown in bold blue text next to chiral centers
-    (e.g. asymmetric carbon atoms with wedge/hash bonds).
+  display of Cahn-Ingold-Prelog descriptors.
+  - **R/S** (tetrahedral): shown in bold blue text next to chiral centers.
   - **E/Z** (cis/trans): shown at the midpoint of stereogenic double bonds.
   - Labels are cached and only recomputed when the molecule structure changes.
+  - **The R/S letter is not yet reliable, so the feature ships disabled.** The
+    descriptor is derived from Open Babel's winding without first ranking the
+    substituents by CIP priority, which makes the letter arbitrary — a hand-drawn
+    lactic acid centre reads "R" whether the bond is a wedge or a hash. Use
+    **Tools → Show CIP labels** to enable it, or set
+    `XDRAWCHEM_ENABLE_CIP_LABELS=1`; a `SHOW_CIP_LABELS true` line left in a
+    preferences file from an earlier build is ignored. E/Z labels are unaffected.
+    Tracked in issue #27, targeted at 2.2.
 
 ### Bug Fixes
+- **Grid rendering** — `createGrid()` sized its pixmap from stale pre-layout
+  canvas dimensions instead of the widget's actual geometry, so the grid did not
+  appear until the application restarted. It now sizes from `width()`/`height()`
+  and regenerates on resize. The heap-allocated `QPainter` it leaked is replaced
+  with a stack painter plus an explicit `end()`, which also fixes repeated
+  **Ctrl+G** toggles stopping after one or two presses.
+- **Bond drag moved the whole molecule** — `Molecule::Move()` reused a stale atom
+  list; after any rotation of an unhighlighted molecule the list held every atom,
+  so dragging one bond shifted the entire structure. It now rebuilds from the
+  current selection each time, and ring placement uses a new
+  `moveSelectedAtoms()` that reuses the set `Rotate()` just built.
+- **Released bond stayed highlighted** — a `SignalMouseOperationFinished` emit
+  added for the property panel fired on every mouse release and left the bond
+  under the cursor selected until the pointer moved away. Removed; the panel
+  still refreshes through `SignalMoleculeChanged` and `SignalSelectionChanged`.
+- **Hovering a bond highlighted its neighbours** — two places treated an atom's
+  highlight flag as a proxy for bond selection. In a ring every bond shares an
+  atom with its neighbours, so hovering one bond made adjacent bonds render as
+  selected, and the move list could drag atoms of a bond that was not
+  highlighted. `Bond::Render()` now colours a bond only when that bond is
+  highlighted, and the atom fallback in `MakeTomoveList()` runs only when no bond
+  is highlighted.
+- **Atom and bond dragging after Name to Structure** — the command left the
+  renderer in `MODE_SELECT_MULTIPLE_SELECTED` with the whole molecule boxed, so
+  every click inside the box moved the entire molecule and individual atoms could
+  not be picked up. It now returns to plain Select mode and re-highlights the new
+  molecule.
+- **Grainy PNG output at larger sizes** — `apiRenderPNG()` grabbed the canvas and
+  scaled the result up, magnifying existing pixels. It now paints at the
+  requested resolution in a single `QPainter` pass, so vectors and text are
+  rasterised at final size.
+- **Implicit heteroatom hydrogens missing from exported images** — `AddHydrogens()`
+  annotated labels only when the live preference was set, but a CLI process never
+  loads `~/.xdrawchemrc`, so hydroxyls rendered as a bare `O` and a carboxylic acid
+  was indistinguishable from a second carbonyl. Export paths now force the
+  annotation.
 - **Memory leaks in `application_ob.cpp`** — `OBNewLoad()` and `OBNewSave()`
   now properly delete temporary `OBMol` objects.
 - **Memory leak in `molecule_obmol.cpp`** — `convertToOBMol()` no longer leaks
@@ -51,6 +123,10 @@ Entries are derived from the Debian changelog and commit history.
 ### Documentation
 - README: updated screenshot to reflect current UI.
 - `backlog.md`: refreshed to reflect completed v2.1 items.
+- **Agent integration docs** — `doc/AGENT_API.md` documents the headless API
+  (commands, JSON contract, implementation notes); `doc/INTEGRATIONS.md` covers
+  wiring the MCP server and skill into Claude Desktop, Claude Code, OpenClaw and
+  any other MCP client, including troubleshooting.
 
 ---
 
