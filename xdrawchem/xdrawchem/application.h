@@ -96,7 +96,7 @@ public slots:
     void Rotate270();
     void setFixed_arrow();
     void setFixed_bond();
-//    void setFix_Hydrogens();
+    void setFixHydrogens();
     void MoleculeInfo();
     void CalcEA();
     void CalcEF();
@@ -211,7 +211,8 @@ private:
 
     QAction *justifyLeftAction, *justifyCenterAction, *justifyRightAction,
             *boldAction, *italicAction, *underlineAction, *superscriptAction, *subscriptAction,
-            *insertSymbolAction, *fixedBondAction, *fixedArrowAction;
+            *insertSymbolAction, *fixedBondAction, *fixedArrowAction,
+            *fixHydrogensAction;
 
     /// regular arrows
     QToolButton *drawArrowButton;

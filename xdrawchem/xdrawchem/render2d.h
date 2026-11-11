@@ -4,6 +4,8 @@
 #define RENDER2D_H
 
 #include <QPainterPath>
+
+class QPainter;
 #include <QTextCharFormat>
 #include <QTextEdit>
 #include <QProcess>
@@ -28,6 +30,14 @@ class Render2D : public QWidget
 Q_OBJECT
 
 public:
+    // Headless/export use: point the shared `painter` member at a caller-owned
+    // QPainter (e.g. one targeting a QSvgGenerator or QPrinter) so Drawables
+    // can be rendered without a widget paintEvent.  Pass nullptr to detach.
+    void setExternalPainter(QPainter *p) { painter = p; }
+    // Export/headless use: shift every drawing primitive by (dx,dy) and treat
+    // the canvas as the given size, without touching zoom or the live layout.
+    void setExportViewport( int dx, int dy ) { export_dx = dx; export_dy = dy; }
+    void setCanvasSize( int w, int h ) { renderWidth = w; renderHeight = h; resize( w, h ); }
     void setChemData(ChemData *c1) { c = c1; }
     // defined in render2d.cpp
     Render2D(QWidget *parent = nullptr);
@@ -298,6 +308,9 @@ private:
     QTextStream output_ts;
     // SVG position correction
     int svg_dx, svg_dy;
+    // export-only translation applied by the drawing primitives (see
+    // setExportViewport); 0,0 during normal on-screen painting
+    int export_dx = 0, export_dy = 0;
     // Output printer and related classes
     QList<Paintable *> paintqueue;
     QPrinter *printer;

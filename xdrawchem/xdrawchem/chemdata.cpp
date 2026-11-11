@@ -19,6 +19,17 @@ ChemData::ChemData( QObject *parent )
     notSaved = false;
 }
 
+// Retarget every molecule at another Render2D.  The Drawables cache their
+// renderer, so an export path that paints through its own Render2D must call
+// this first or the drawing lands on the original (possibly hidden) canvas.
+void ChemData::rebindRender2D( Render2D *r1 )
+{
+    for ( Drawable *d : drawlist ) {
+        if ( d->Type() == TYPE_MOLECULE )
+            ( (Molecule *) d )->setRenderer( r1 );
+    }
+}
+
 void ChemData::drawAll()
 {
     // draw all objects in ChemData

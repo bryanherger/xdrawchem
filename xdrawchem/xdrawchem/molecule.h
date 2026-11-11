@@ -95,7 +95,12 @@ public:
     //QString IUPAC_Name();
     void AllNeighbors();
     void MakeSSSR();
-    void AddHydrogens(bool to_carbon = false);
+    // Annotate atom labels with implicit hydrogens (e.g. "O" -> "OH").
+    // to_carbon: also annotate carbons (normally left skeletal).
+    // force: annotate regardless of the live preference, for export paths
+    // that must match what the user configured even though this process has
+    // not loaded their configuration.
+    void AddHydrogens(bool to_carbon = false, bool force = false);
     double SumBondEnthalpy();
     void Scale(double bond_length = -1.0);
     void AddPeak(double, QString, QString);
@@ -177,13 +182,27 @@ public:
     QString GetCIPLabelForBond(Bond *b);       // "E", "Z", or "" for a double bond
     void ClearCIPCache();             // invalidate CIP cache on structure change
 
+    // defined in molecule_cip.cpp
+    // Detect tetrahedral stereocenters and draw their sole implicit hydrogen
+    // as a wedge/hash bond (chirality-relevant hydrogens only).
+    void RenderStereocenterHydrogens();
+
     OpenBabel::OBMol * convertToOBMol();
     bool convertFromOBMol(OpenBabel::OBMol *);
+    // Build this Molecule from an MDL molfile/SDF block held in a string.
+    // Used by headless/agent callers that have structure text, not a file.
+    // Implemented in molecule_obmol.cpp.
+    bool FromMolfile( const QString &molblock );
     static const char symbol[110][4];
 
     // not appropriate but best way to handle ToolDialog requests.
     QList<Peak *> peaklist;
     Peak *tmp_peak;
+
+public:
+    // Export/headless use: draw this molecule (and its bonds/labels) with a
+    // different Render2D, without re-parsing the structure.
+    void setRenderer( Render2D *r1 );
 
 private:
     // Renderer

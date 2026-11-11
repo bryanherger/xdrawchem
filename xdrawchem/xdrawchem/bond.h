@@ -179,6 +179,10 @@ public:
      */
     void reverse();
 
+public:
+    // Export/headless use: draw this bond with a different Render2D.
+    void setRenderer( Render2D *r1 ) { r = r1; }
+
 private:
     // Renderer
     Render2D *r;

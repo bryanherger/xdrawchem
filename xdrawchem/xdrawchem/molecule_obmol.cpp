@@ -9,6 +9,7 @@ OB_COMPAT_BEGIN
 OB_COMPAT_END
 using namespace OpenBabel;
 
+#include <sstream>
 #include <vector>
 #include <map>
 #include <algorithm>
@@ -45,6 +46,35 @@ struct pt_cmp
 };
 
 using namespace OpenBabel;
+
+// Build this Molecule from an MDL molfile/SDF block held in a string.
+// Headless/agent callers hand us structure text rather than a filename, so
+// this bypasses ChemData::load_mdl() (which needs a file and pops dialogs).
+// Accepts both V2000 and V3000 blocks; a leading blank line is optional.
+bool Molecule::FromMolfile( const QString &molblock )
+{
+    if ( molblock.trimmed().isEmpty() )
+        return false;
+
+    QByteArray data = molblock.toUtf8();
+
+    OBConversion conv;
+    if ( !conv.SetInFormat( "mol" ) )
+        return false;
+
+    std::istringstream iss( data.constData() );
+    OBMol obmol;
+    if ( !conv.Read( &obmol, &iss ) || obmol.NumAtoms() == 0 )
+        return false;
+
+    // Perception pass: MDL molfiles carry no explicit hydrogen counts on
+    // atoms, so H's must be inferred before converting to the internal model
+    // (which draws implicit hydrogens from the atom's H count).  Without this
+    // every molfile-derived structure renders as a hydrogen-free skeleton.
+    obmol.AddHydrogens();
+
+    return convertFromOBMol( &obmol );
+}
 
 const char Molecule::symbol[110][4] = {
     "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
