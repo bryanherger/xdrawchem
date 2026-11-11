@@ -442,12 +442,33 @@ void Molecule::MakeTomoveList()
 
 void Molecule::Move( double dx, double dy )
 {
-    // Only call MakeTomoveList() if tomove is empty.
-    // This preserves the tomove list populated by Rotate() during
-    // SmartPlace ring placement, preventing atoms from being left behind.
-    if ( tomove.size() == 0 )
-        MakeTomoveList();
+    /*  Rebuild the atom list from the current selection every time.
 
+        An earlier change guarded this with `if ( tomove.size() == 0 )` so a
+        Rotate()-then-Move() sequence (SmartPlace ring placement) would keep
+        using the same atoms.  The guard is too broad: Rotate() falls back to
+        *every* atom when nothing is highlighted, so after any such rotation
+        the list stayed populated with the whole molecule, and the next drag
+        of a single highlighted bond moved the entire structure instead of
+        just that bond — the behaviour v2.0rc1 had.
+
+        The ring-placement sequence is handled explicitly instead: SmartPlace
+        calls moveSelectedAtoms() right after Rotate(), which reuses the list
+        Rotate() just built rather than recomputing it.                     */
+    MakeTomoveList();
+
+    for (DPoint *tmp_pt : tomove) {
+        tmp_pt->x += dx;
+        tmp_pt->y += dy;
+    }
+}
+
+/*  Move exactly the atoms in `tomove`, without rebuilding the list.
+    Used by code that has just computed the atom set itself (for example
+    Molecule::Rotate() during ring placement) and needs the subsequent
+    translation to act on that same set.                                     */
+void Molecule::moveSelectedAtoms( double dx, double dy )
+{
     for (DPoint *tmp_pt : tomove) {
         tmp_pt->x += dx;
         tmp_pt->y += dy;

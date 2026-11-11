@@ -1219,9 +1219,20 @@ void Render2D::mouseReleaseEvent( QMouseEvent *e1 )
         smartplace = 0;
         return;
     }
-    // After any mouse operation completes, notify listeners so the property
-    // panel can refresh regardless of which code path was taken.
-    emit SignalMouseOperationFinished();
+    /*  Deliberately no SignalMouseOperationFinished emit here.
+
+        One was added after v2.0rc1 as a "catch every path" refresh for the
+        property panel.  It made mouse release leave the bond under the cursor
+        still highlighted, because updatePropertyPanel() re-queries the
+        highlighted molecule (Molecule::highlightedMolecule() falls back to
+        firstMolecule() when nothing is selected) and that re-entry disturbed
+        the hover state.  Measured: removing it restored the rc1 behaviour of
+        clearing the highlight on release, while the drag defect proved to be
+        independent (it was Molecule::Move() reusing a stale atom list).
+
+        The panel still refreshes through SignalMoleculeChanged and
+        SignalSelectionChanged, which fire on the structural edits that
+        actually change what it displays.                                   */
 }
 
 void Render2D::mouseMoveEvent( QMouseEvent * e1 )
