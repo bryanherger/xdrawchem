@@ -191,9 +191,19 @@ public slots:
       UpdatePageGeometry();
     }
     void setBGColor(QColor bc1) {
-      QPalette palette;
-      palette.setColor(backgroundRole(), bc1);
-      setPalette(palette);
+      bgcolor = bc1;
+      preferences.setBGColor( bc1 );
+      QPalette pal = palette();
+      pal.setColor(backgroundRole(), bc1);
+      pal.setColor(QPalette::Base, bc1);
+      pal.setColor(QPalette::Window, bc1);
+      setPalette(pal);
+      // The canvas paints its own background from the `bgcolor` member in
+      // paintEvent() (dbuffer.fill(bgcolor)), and the grid pixmap is filled
+      // with it too.  Replacing the palette alone does not repaint either, so
+      // a colour chosen at runtime only appeared after a restart.
+      createGrid();
+      update();
     }
     QColor getBGColor() { return bgcolor; }
     void setWaitCursor() { setCursor(Qt::WaitCursor); }
@@ -206,9 +216,12 @@ signals:
     void XDCEventSignal(XDC_Event *);
     void textOn( QFont );
     void TextOff();
-    // Emitted at the end of every mouse interaction (on release).
-    // ApplicationWindow uses this to refresh the property panel so it
-    // always reflects the current selection / last-edited molecule.
+    // NOTE: no SignalMouseOperationFinished emit remains.  It was removed
+    // because firing it on every mouse release disturbed hover highlighting
+    // (a released bond stayed selected until the cursor moved elsewhere); see
+    // the comment at the end of Render2D::mouseReleaseEvent().  The signal is
+    // kept declared so existing connect() sites stay valid, but it currently
+    // never fires.
     void SignalMouseOperationFinished();
 
 protected:

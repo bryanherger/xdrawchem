@@ -586,7 +586,9 @@ void ChemData::SmartPlace( QString sf, DPoint * t1 )
 
     dx = t1->x - tmp_pt->x;
     dy = t1->y - tmp_pt->y;
-    m1->Move( dx, dy );
+    // Reuse the atom set Rotate() just built: Molecule::Move() now rebuilds
+    // from the selection, which would drop the rotated set here.
+    m1->moveSelectedAtoms( dx, dy );
     QList < DPoint * >nb = m1->BreakRingBonds( tmp_pt );
     for (DPoint *tmp_pt : nb) {
         addBond( tmp_pt, t1, 1, tmp_pt->new_order, QColor( 0, 0, 0 ), true );
@@ -610,7 +612,9 @@ void ChemData::SmartPlaceToo( QString sf, DPoint * t1 )
 
     dx = t1->x - tmp_pt->x;
     dy = t1->y - tmp_pt->y;
-    m1->Move( dx, dy );
+    // Reuse the atom set Rotate() just built: Molecule::Move() now rebuilds
+    // from the selection, which would drop the rotated set here.
+    m1->moveSelectedAtoms( dx, dy );
     QList < DPoint * >nb = m1->BreakRingBonds( tmp_pt );
     for (DPoint *tmp_pt : nb) {
         addBond( tmp_pt, t1, 1, tmp_pt->new_order, QColor( 0, 0, 0 ), true );
@@ -645,7 +649,9 @@ void ChemData::SmartPlaceThree( QString sf, DPoint * t1 )
 
     dx = t1->x - tmp_pt->x;
     dy = t1->y - tmp_pt->y;
-    m1->Move( dx, dy );
+    // Reuse the atom set Rotate() just built: Molecule::Move() now rebuilds
+    // from the selection, which would drop the rotated set here.
+    m1->moveSelectedAtoms( dx, dy );
     QList < DPoint * >nb = m1->BreakRingBonds( tmp_pt );
     for (DPoint *tmp_pt : nb) {
         addBond( tmp_pt, t1, 1, tmp_pt->new_order, QColor( 0, 0, 0 ), true );

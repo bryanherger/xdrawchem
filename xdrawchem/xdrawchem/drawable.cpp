@@ -163,11 +163,20 @@ void Drawable::Highlight()
 void Drawable::Highlight( bool hl )
 {
     highlighted = hl;
-    if ( hl == true ) {
-        start->setHighlighted( true );
-    } else {
-    }
+    if ( start != 0 )
+        start->setHighlighted( hl );
+    if ( hl == true && end != 0 )
+        end->setHighlighted( true );
 }
+
+/*  Note on the asymmetry above: highlighting marks both endpoints, but
+    un-highlighting must clear them too.  It previously cleared only the
+    Drawable's own flag, so a bond's start atom stayed marked after the bond
+    was un-highlighted.  When the cursor then crossed an adjacent bond, the
+    hover code saw a still-highlighted atom and kept the previous bond looking
+    selected until the whole document was deselected.  Clearing `end` on the
+    way in is kept as it was, to avoid changing what gets drawn during a
+    hover.                                                                   */
 
 bool Drawable::Highlighted()
 {

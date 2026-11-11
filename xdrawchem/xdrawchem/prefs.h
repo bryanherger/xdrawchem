@@ -3,8 +3,10 @@
 #ifndef PREFS_H
 #define PREFS_H
 
+#include <QtGlobal>
 #include <QTextStream>
 #include <QFont>
+#include <QColor>
 #include <QCheckBox>
 #include <QLabel>
 #include <QPushButton>
@@ -27,7 +29,7 @@ public:
         bond_fixedlength = 25.0;
         bond_fixedangle = 15.0;
         dbond_offset = 2.0;
-        fix_hydrogens = true;
+        fix_hydrogens = false;
         paper_size = PAGE_LETTER;  // perhaps change for Europe/Japan release :)
         paper_orient = PAGE_PORTRAIT;
         paper_width = 750;
@@ -42,6 +44,7 @@ public:
         zoom = 100;
         mainFont = QFont( "Helvetica", 10 );
         rulerFont = QFont( "Courier", 8 );
+        bgcolor = QColor( 255, 255, 255 );
         bondcenter = false;
         showCIPLabels = false;
     }
@@ -144,13 +147,23 @@ public:
             if (line.toUpper().contains("RULERFONT") > 0) {
                 rulerFont.fromString( line.mid(10) );
             }
+            if (line.toUpper().contains("BGCOLOR") > 0) {
+                bgcolor = QColor( line.mid(8).trimmed() );
+            }
             if (line.toUpper().contains("SHOW_CIP_LABELS") > 0) {
-                if (line.toUpper().contains("TRUE")) {
+                //  CIP R/S labels are currently known to be incorrect: the
+                //  letter is derived from Open Babel's winding without ranking
+                //  the substituents by CIP priority (issue #27), so a wrong
+                //  descriptor would be displayed.  Keep the feature off until
+                //  that is fixed, even for a preferences file that saved
+                //  "true" from an earlier build.
+                if (line.toUpper().contains("TRUE")
+                    && qEnvironmentVariableIsSet( "XDRAWCHEM_ENABLE_CIP_LABELS" ) ) {
                     showCIPLabels = true;
-                    qDebug() << "CIP: Loaded SHOW_CIP_LABELS = true";
+                    qDebug() << "CIP: loaded SHOW_CIP_LABELS = true (opt-in via env)";
                 } else {
                     showCIPLabels = false;
-                    qDebug() << "CIP: Loaded SHOW_CIP_LABELS = false";
+                    qDebug() << "CIP: CIP labels disabled (see issue #27)";
                 }
             }
         } while (!tin.atEnd());
@@ -205,6 +218,7 @@ public:
         tout << "GRIDSPACE " << gridspace << Qt::endl;
         tout << "MAINFONT " << mainFont.toString() << Qt::endl;
         tout << "RULERFONT " << rulerFont.toString() << Qt::endl;
+        tout << "BGCOLOR " << bgcolor.name() << Qt::endl;
         if (showCIPLabels)
             tout << "SHOW_CIP_LABELS true" << Qt::endl;
         else
@@ -261,6 +275,8 @@ public:
     void setMainFont( QFont ff1 ) { mainFont = ff1; }
     QFont getRulerFont() { return rulerFont; }
     void setRulerFont( QFont ff1 ) { rulerFont = ff1; }
+    QColor getBGColor() { return bgcolor; }
+    void setBGColor( QColor c1 ) { bgcolor = c1; }
     bool showCIPLabels = false;
 
     void setCustomRingDir(QString d1)
@@ -303,6 +319,7 @@ private:
     int gridmode, gridspace, drawgrid, snapgrid;
     int zoom;  // not saved.
     QFont mainFont, rulerFont;  // added at user request
+    QColor bgcolor;  // drawing canvas background color
     bool bondcenter;
 };
 

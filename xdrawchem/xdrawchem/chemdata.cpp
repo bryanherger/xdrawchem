@@ -56,6 +56,15 @@ Molecule *ChemData::firstMolecule()
     return 0;
 }
 
+void ChemData::refreshMolecules()
+{
+    for ( Drawable *tmp_draw : drawlist ) {
+        if ( tmp_draw->Type() == TYPE_MOLECULE ) {
+            ( (Molecule *) tmp_draw )->Changed();
+        }
+    }
+}
+
 // Returns the first molecule containing a highlighted (selected) atom.
 // Falls back to firstMolecule() if nothing is highlighted.
 Molecule *ChemData::highlightedMolecule()

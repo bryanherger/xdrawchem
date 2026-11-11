@@ -208,6 +208,12 @@ private:
     // function to fill it
     void MakeTomoveList();
     QList<DPoint *> tomove;
+public:
+    // Move exactly the atoms currently in `tomove` without rebuilding it.
+    // For callers that computed the atom set themselves (Rotate() during ring
+    // placement) and need the following translation to act on that same set.
+    void moveSelectedAtoms(double dx, double dy);
+private:
     // used for elemental analysis (set by CalcEmpiricalFormula)
     double nc, nh, no, nn, nmw;
     // Molecule's SSSR

@@ -431,23 +431,56 @@ void Molecule::MakeTomoveList()
                 tomove.append( tmp_pt );
         }
     }
-    // Fallback: include directly highlighted atoms (from NewSelectRect).
-    // This enables partial-molecule moves when atoms are selected but
-    // bonds are not highlighted (e.g. functional group selection).
-    for (DPoint *tmp_pt : AllPoints()) {
-        if ( tmp_pt->isHighlighted() && tomove.contains( tmp_pt ) == 0 )
-            tomove.append( tmp_pt );
+    /*  Fallback for atom-only selections: only when no bond was selected.
+
+        Hovering a bond marks its endpoints as a side effect of
+        Drawable::Highlight(true), and in a ring those atoms are shared with
+        neighbouring bonds.  The unconditional sweep below therefore pulled
+        stray atoms into `tomove`, so dragging one highlighted bond also moved
+        atoms belonging to an adjacent bond that was not itself highlighted.
+
+        A marquee/drag selection sets the bond flags directly
+        (Bond::isWithinRect(), plus ChemData::NewSelectRect()'s whole-molecule
+        fallback), so restricting this branch to the "no bonds highlighted"
+        case still covers selecting atoms without bonds, while hover residue
+        can no longer leak into a bond drag.                                    */
+    if ( tomove.isEmpty() ) {
+        for (DPoint *tmp_pt : AllPoints()) {
+            if ( tmp_pt->isHighlighted() && tomove.contains( tmp_pt ) == 0 )
+                tomove.append( tmp_pt );
+        }
     }
 }
 
 void Molecule::Move( double dx, double dy )
 {
-    // Only call MakeTomoveList() if tomove is empty.
-    // This preserves the tomove list populated by Rotate() during
-    // SmartPlace ring placement, preventing atoms from being left behind.
-    if ( tomove.size() == 0 )
-        MakeTomoveList();
+    /*  Rebuild the atom list from the current selection every time.
 
+        An earlier change guarded this with `if ( tomove.size() == 0 )` so a
+        Rotate()-then-Move() sequence (SmartPlace ring placement) would keep
+        using the same atoms.  The guard is too broad: Rotate() falls back to
+        *every* atom when nothing is highlighted, so after any such rotation
+        the list stayed populated with the whole molecule, and the next drag
+        of a single highlighted bond moved the entire structure instead of
+        just that bond — the behaviour v2.0rc1 had.
+
+        The ring-placement sequence is handled explicitly instead: SmartPlace
+        calls moveSelectedAtoms() right after Rotate(), which reuses the list
+        Rotate() just built rather than recomputing it.                     */
+    MakeTomoveList();
+
+    for (DPoint *tmp_pt : tomove) {
+        tmp_pt->x += dx;
+        tmp_pt->y += dy;
+    }
+}
+
+/*  Move exactly the atoms in `tomove`, without rebuilding the list.
+    Used by code that has just computed the atom set itself (for example
+    Molecule::Rotate() during ring placement) and needs the subsequent
+    translation to act on that same set.                                     */
+void Molecule::moveSelectedAtoms( double dx, double dy )
+{
     for (DPoint *tmp_pt : tomove) {
         tmp_pt->x += dx;
         tmp_pt->y += dy;
