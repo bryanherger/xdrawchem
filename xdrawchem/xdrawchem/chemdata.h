@@ -50,7 +50,8 @@ public:
     // Re-run Molecule::Changed() on every molecule (e.g. after a global
     // preference such as implicit-hydrogen display is toggled).
     void refreshMolecules();
-    void addBond( DPoint *, DPoint *, int, int, QColor, bool hl = false );    void addArrow( DPoint *, DPoint *, QColor, int, int, bool hl = false );
+    void addBond( DPoint *, DPoint *, int, int, QColor, bool hl = false );
+    void addArrow( DPoint *, DPoint *, QColor, int, int, bool hl = false );
     void addCurveArrow( DPoint *, DPoint *, QColor, QString, bool hl = false );
     void addBracket( DPoint *, DPoint *, QColor, int, bool hl = false );
     void addText( Text *);

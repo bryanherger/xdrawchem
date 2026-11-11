@@ -3,6 +3,7 @@
 #ifndef PREFS_H
 #define PREFS_H
 
+#include <QtGlobal>
 #include <QTextStream>
 #include <QFont>
 #include <QColor>
@@ -150,12 +151,19 @@ public:
                 bgcolor = QColor( line.mid(8).trimmed() );
             }
             if (line.toUpper().contains("SHOW_CIP_LABELS") > 0) {
-                if (line.toUpper().contains("TRUE")) {
+                //  CIP R/S labels are currently known to be incorrect: the
+                //  letter is derived from Open Babel's winding without ranking
+                //  the substituents by CIP priority (issue #27), so a wrong
+                //  descriptor would be displayed.  Keep the feature off until
+                //  that is fixed, even for a preferences file that saved
+                //  "true" from an earlier build.
+                if (line.toUpper().contains("TRUE")
+                    && qEnvironmentVariableIsSet( "XDRAWCHEM_ENABLE_CIP_LABELS" ) ) {
                     showCIPLabels = true;
-                    qDebug() << "CIP: Loaded SHOW_CIP_LABELS = true";
+                    qDebug() << "CIP: loaded SHOW_CIP_LABELS = true (opt-in via env)";
                 } else {
                     showCIPLabels = false;
-                    qDebug() << "CIP: Loaded SHOW_CIP_LABELS = false";
+                    qDebug() << "CIP: CIP labels disabled (see issue #27)";
                 }
             }
         } while (!tin.atEnd());
