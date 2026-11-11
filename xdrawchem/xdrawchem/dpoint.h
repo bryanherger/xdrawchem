@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include <QString>
+#include <QHash>
 #include <QColor>
 #include <QFont>
 #include <QList>
@@ -356,6 +357,36 @@ public:
       if (localElement == "I") atom1 = 53;
       return atom1;
     }
+    // Static element-symbol to atomic-number lookup for CIP priority ranking.
+    // Unlike getAtomicNumber() this is const and tolerates unknown labels:
+    // it strips charge markers and hydrogen counts, then looks up the bare
+    // symbol, so "CH3" and "NH2" resolve without enumerating every group.
+    static int atomicNumberFor( const QString &element )
+    {
+        QString el = element;
+        el.remove( QRegularExpression( "[+-]" ) );
+        el.remove( QRegularExpression( "\\d+" ) );
+        while ( el.length() > 1 && el.at( 0 ) == QLatin1Char( 'H' ) )
+            el.remove( 0, 1 );
+        while ( el.length() > 1 && el.endsWith( QLatin1Char( 'H' ) ) )
+            el.chop( 1 );
+        if ( el.isEmpty() )
+            return 6;                       // bare skeleton: carbon
+
+        static const QHash<QString, int> table = {
+            { "H", 1 }, { "He", 2 }, { "Li", 3 }, { "Be", 4 }, { "B", 5 },
+            { "C", 6 }, { "N", 7 }, { "O", 8 }, { "F", 9 }, { "Ne", 10 },
+            { "Na", 11 }, { "Mg", 12 }, { "Al", 13 }, { "Si", 14 },
+            { "P", 15 }, { "S", 16 }, { "Cl", 17 }, { "Ar", 18 },
+            { "K", 19 }, { "Ca", 20 }, { "Se", 34 }, { "Br", 35 },
+            { "I", 53 }, { "X", 0 }
+        };
+        if ( table.contains( el ) )
+            return table.value( el );
+        const QString cap = el.left( 1 ).toUpper() + el.mid( 1 ).toLower();
+        return table.contains( cap ) ? table.value( cap ) : 0;
+    }
+
     QString baseElement() {
         int tc1 = getAtomicNumber();
         if (tc1 == 1) return "H";
