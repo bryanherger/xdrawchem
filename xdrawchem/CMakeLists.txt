@@ -147,6 +147,7 @@ set(XDC_SOURCES
     xdrawchem/molecule_1h_nmr.cpp
     xdrawchem/molecule.cpp
     xdrawchem/molecule_cip.cpp
+    xdrawchem/molecule_cip_priority.cpp
     xdrawchem/molecule_obmol.cpp
     xdrawchem/molecule_smiles.cpp
     xdrawchem/molecule_iupac.cpp

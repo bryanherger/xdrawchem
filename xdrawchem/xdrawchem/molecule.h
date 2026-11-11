@@ -4,6 +4,9 @@
 #define MOLECULE_H
 
 
+#include <QPair>
+#include <QList>
+
 #include "render2d.h"
 #include "chemdata.h"
 #include "drawable.h"
@@ -181,6 +184,13 @@ public:
     QString GetCIPLabelForPoint(DPoint *dp);   // "R", "S", or "" for a chiral center
     QString GetCIPLabelForBond(Bond *b);       // "E", "Z", or "" for a double bond
     void ClearCIPCache();             // invalidate CIP cache on structure change
+
+    // CIP priority ranking of a stereocentre's substituents (highest first).
+    // Defined in molecule_cip_priority.cpp.  `refs` holds the ligand DPoints;
+    // nullptr stands for an implicit hydrogen.  The returned list is ordered
+    // by descending CIP priority and carries each ligand's signature string.
+    QList<QPair<DPoint *, QString>>
+        cipRankLigands( DPoint *center, const QList<DPoint *> &refs ) const;
 
     // defined in molecule_cip.cpp
     // Detect tetrahedral stereocenters and draw their sole implicit hydrogen
