@@ -43,11 +43,28 @@ bool Molecule::FromMolfile( const QString &molblock )
     if ( !conv.Read( &obmol, &iss ) || obmol.NumAtoms() == 0 )
         return false;
 
-    // Perception pass: MDL molfiles carry no explicit hydrogen counts on
-    // atoms, so H's must be inferred before converting to the internal model
-    // (which draws implicit hydrogens from the atom's H count).  Without this
-    // every molfile-derived structure renders as a hydrogen-free skeleton.
-    obmol.AddHydrogens();
+    /*  Hydrogens stay implicit.
+
+        Two things were wrong here.  Calling OpenBabel's AddHydrogens() on
+        import materialised every hydrogen as a real atom, so a six-atom
+        molfile became a twelve-atom drawing with a vertex and an "H" label per
+        hydrogen — the opposite of a skeletal formula.  And molfiles written by
+        most tools (PubChem among them) already contain explicit hydrogens, so
+        those arrived as atoms too and were drawn as "H3C", "CH" fragments
+        scattered over the structure.
+
+        XDrawChem's model is a 2-D drawing: a DPoint carries an element and the
+        implicit hydrogen count follows from the element and the bond orders
+        (MolData::Hydrogens() minus the summed orders).  That is how hand-drawn
+        structures work and how SMILES imports work, so drop the explicit ones
+        on the way in and let them stay implicit.  DeleteHydrogens() also
+        rewrites any stereo reference to the deleted atom as an implicit one,
+        so a wedge to a hydrogen survives as a wedge to an implicit hydrogen.
+
+        Nothing is lost: Tools -> Add hydrogens can still materialise them, and
+        exporting goes through convertToOBMol(), which writes what it is given.
+                                                                        */
+    obmol.DeleteHydrogens();
 
     return convertFromOBMol( &obmol );
 }
@@ -163,13 +180,19 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
             wedge back out, and Molecule::CalcCIPLabels() sees a flat drawing
             and reports every stereocentre as unspecified.  That is why R/S
             labels never appeared for structures opened from a molfile.     */
+        /*  A wedge narrows at the bond's begin atom, which is the order
+            addBond() above used, so the flags map straight onto Bond::order
+            5 (up) and 7 (down).  setOrder() sets Bond::stereo as well, so the
+            wedge reaches the drawing *and* the stereochemistry perception —
+            setting only the stereo member left the bond drawn as a plain
+            line, with a descriptor that pointed at an invisible wedge.     */
         if ( bond->IsWedge() || bond->IsHash() ) {
             Bond *xdcBond = FindBond( s, e );
             if ( xdcBond != nullptr ) {
                 if ( bond->IsWedge() )
-                    xdcBond->setStereo( STEREO_UP );
+                    xdcBond->setOrder( 5 );
                 else
-                    xdcBond->setStereo( STEREO_DOWN );
+                    xdcBond->setOrder( 7 );
             }
         }
 
@@ -177,25 +200,24 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
 
         if ( atom1->GetAtomicNum() != 6 ) {
 
+            /*  Order matters: Text::setText() writes through `start` — the
+                point the Text is attached to — and returns silently when that
+                is still null.  Setting the text before the point left every
+                heteroatom label empty, so a molfile carrying three oxygens
+                rendered as a bare hydrocarbon skeleton.  Attach the point
+                first, then the text.                                    */
             text = new Text( r );
-            QString str = symbol[atom1->GetAtomicNum() - 1];
-
-            text->setText( str );
             text->setPoint( s );
-            str.fill( ' ' );
-//            text->setTextMask( str );
+            text->setText( symbol[atom1->GetAtomicNum() - 1] );
+            text->setJustify( JUSTIFY_CENTER );
             addText( text );
         }
 
         if ( atom2->GetAtomicNum() != 6 ) {
 
             text = new Text( r );
-            QString str = symbol[atom2->GetAtomicNum() - 1];
-
-            text->setText( str );
             text->setPoint( e );
-            str.fill( ' ' );
-//            text->setTextMask( str );
+            text->setText( symbol[atom2->GetAtomicNum() - 1] );
             text->setJustify( JUSTIFY_CENTER );
             addText( text );
 

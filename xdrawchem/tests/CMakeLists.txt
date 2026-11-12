@@ -148,6 +148,19 @@ set_tests_properties(tst_cip PROPERTIES
     TIMEOUT 120
 )
 
+# ── Test: MDL import — labels, wedges, hydrogen handling ─────────────────────
+# Issue #32.  A molfile rendered with no heteroatom labels, an invisible wedge,
+# and every explicit hydrogen drawn as a vertex.
+xdc_test(tst_molfile
+    tst_molfile.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_molfile PRIVATE xdrawchem_obj)
+set_tests_properties(tst_molfile PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
 # ── Test: ACS style, canonical SMILES, dative bond ────────────────────────────
 # Tests Preferences values (no display), ToCanonicalSMILES (needs OB),
 # and dative bond order storage. QTEST_APPLESS_MAIN.
