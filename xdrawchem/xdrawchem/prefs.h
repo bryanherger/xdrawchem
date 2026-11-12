@@ -46,7 +46,13 @@ public:
         rulerFont = QFont( "Courier", 8 );
         bgcolor = QColor( 255, 255, 255 );
         bondcenter = false;
+        /*  Off unless the environment asks for it.  Applying the override here
+            matters for headless runs: the API and the export paths build their
+            own ChemData and never call LoadPrefs(), so a switch consulted only
+            there would do nothing for `xdrawchem --api render`.  LoadPrefs()
+            applies it again after the file so the environment still wins. */
         showCIPLabels = false;
+        applyCIPLabelEnvOverride();
     }
 
     void setFile( QString fn, bool fb )
@@ -60,8 +66,26 @@ public:
         saveFileName = fn;
     }
 
+    /*  Explicit override, applied after the preferences file so it wins.
+        Accepted values are 1, true, yes and on, case-insensitive; anything
+        else turns the labels off.  This is the switch the documentation
+        points headless and scripted users at, so it has to work with no
+        preferences file present at all — hence the call below, before the
+        file is opened.                                                */
+    void applyCIPLabelEnvOverride()
+    {
+        const QString v = qEnvironmentVariable( "XDRAWCHEM_ENABLE_CIP_LABELS" )
+                              .trimmed().toLower();
+        if ( v.isEmpty() )
+            return;
+        showCIPLabels = ( v == QLatin1String( "1" ) || v == QLatin1String( "true" )
+                          || v == QLatin1String( "yes" ) || v == QLatin1String( "on" ) );
+    }
+
     bool LoadPrefs()
     {
+        applyCIPLabelEnvOverride();
+
         QFile fin( fileName );
 
         if ( fin.open(QIODevice::ReadOnly ) == false )
@@ -151,24 +175,19 @@ public:
                 bgcolor = QColor( line.mid(8).trimmed() );
             }
             if (line.toUpper().contains("SHOW_CIP_LABELS") > 0) {
-                //  CIP R/S labels are currently known to be incorrect: the
-                //  letter is derived from Open Babel's winding without ranking
-                //  the substituents by CIP priority (issue #27), so a wrong
-                //  descriptor would be displayed.  Keep the feature off until
-                //  that is fixed, even for a preferences file that saved
-                //  "true" from an earlier build.
-                if (line.toUpper().contains("TRUE")
-                    && qEnvironmentVariableIsSet( "XDRAWCHEM_ENABLE_CIP_LABELS" ) ) {
-                    showCIPLabels = true;
-                    qDebug() << "CIP: loaded SHOW_CIP_LABELS = true (opt-in via env)";
-                } else {
-                    showCIPLabels = false;
-                    qDebug() << "CIP: CIP labels disabled (see issue #27)";
-                }
+                /*  Honour what the user saved.  This used to force the feature
+                    off regardless, because the descriptors were wrong while
+                    issue #27 was open; that is fixed, so a saved "true" means
+                    the user turned it on and expects it to stay on.  The
+                    default for a preferences file that never mentions it is
+                    still off (see the member initialiser).                */
+                showCIPLabels = line.toUpper().contains("TRUE");
             }
         } while (!tin.atEnd());
 
         fin.close();
+
+        applyCIPLabelEnvOverride();
 
         return true;
     }
