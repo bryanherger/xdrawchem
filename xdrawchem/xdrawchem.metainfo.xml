@@ -70,6 +70,17 @@
   </screenshots>
 
   <releases>
+    <release version="2.1.1" date="2026-11-11" type="stable">
+      <description>
+        <p>XDrawChem 2.1.1 — stereochemistry correctness release.</p>
+        <ul>
+          <li>CIP R/S labels are now correct for structures parsed from SMILES, and the wedge that goes with the descriptor is drawn</li>
+          <li>CIP labels remain off by default; enable via Tools &#8594; Show CIP labels or XDRAWCHEM_ENABLE_CIP_LABELS</li>
+          <li>Cis/trans double bonds imported from SMILES are drawn in the geometry they were specified with</li>
+          <li>Fix crash when reading a molfile whose atoms shared a screen position</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.1.0" date="2026-05-25" type="stable">
       <description>
         <p>XDrawChem 2.1.0 — first stable release of the Qt6-based series.</p>
