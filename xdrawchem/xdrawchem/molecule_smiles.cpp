@@ -8,7 +8,6 @@
 #include <string>
 #include <sstream>
 #include <map>
-
 #include "ob_compat.h"
 OB_COMPAT_BEGIN
 #include <openbabel/atom.h>
@@ -17,6 +16,9 @@ OB_COMPAT_BEGIN
 #include <openbabel/math/vector3.h>
 #include <openbabel/mol.h>
 #include <openbabel/obconversion.h>
+#include <openbabel/stereo/cistrans.h>
+#include <openbabel/stereo/stereo.h>
+#include <openbabel/stereo/tetrahedral.h>
 OB_COMPAT_END
 using namespace OpenBabel;
 
@@ -342,6 +344,215 @@ void Molecule::FromInChI( QString sm )
 
 // convert InChI or SMILES string to Molecule
 // (Ideally, you should call this function just after creating)
+/*  Carry an imported stereo configuration onto the internal model.
+
+    Why this is needed
+    ------------------
+    OpenBabel stores SMILES chirality as a tetrahedral *configuration*
+    (`OBStereo::Ref` ids, a winding and a view), not as 2-D wedge flags.
+    Straight after OBConversion::Read() of `C[C@H](O)C(=O)O` every bond
+    reports IsWedge() == IsHash() == false, so the atom/bond copy in
+    FromSMILES() has nothing to read and the stereochemistry is dropped.
+    SDG() then lays the molecule out from scratch and ignores stereo.
+
+    Molecule::CalcCIPLabels() rebuilds an OBMol from coordinates and asks
+    OpenBabel's perception for tetrahedral configs.  On a flat drawing there
+    is nothing to perceive, every config comes back with specified == false,
+    and no R/S label is produced — which is exactly the symptom in issue #27.
+
+    What this does
+    --------------
+    Writes the coordinates SDG() has just produced back into the OBMol, then
+    asks OpenBabel which single bond per stereocentre should be drawn as a
+    wedge or hash for the drawing to reproduce the parsed configuration
+    (TetStereoToWedgeHash).  That choice depends on the coordinates, which is
+    why it has to happen after SDG().  The result is stored on Bond::stereo,
+    so convertToOBMol() re-emits it and the molfile and SMILES paths agree.
+
+    Verified with a standalone probe against OpenBabel 3.1.1: for the two
+    lactic-acid enantiomers TetStereoToWedgeHash returns Up and Down
+    respectively, and re-perceiving a coordinates+wedge-only OBMol (the shape
+    convertToOBMol() builds) yields refs [0,2,3] versus [0,3,2] with
+    specified == true.  The earlier note in #27 that it "returns the same
+    BondDirection for both" was measured without 2-D coordinates, where it
+    cannot decide.
+
+    Cis/trans is the second half.  SDG() draws every alkene as the extended
+    zigzag, which is the correct picture for a trans alkene and the wrong one
+    for a cis alkene.  The E/Z descriptor in CalcCIPLabels() is derived from
+    the coordinates (which is right for a hand-drawn structure), so a cis
+    alkene imported from SMILES came out labelled E.  Where the parsed config
+    says cis and the layout came out trans, mirror the far half of the
+    molecule across the double-bond axis.
+*/
+void Molecule::ApplyImportedStereo( OBMol *obmol,
+                                    const QMap<unsigned long, DPoint *> &byId )
+{
+    if ( obmol == nullptr || byId.isEmpty() )
+        return;
+
+    // Feed SDG()'s coordinates back to OpenBabel.  Scale is irrelevant to
+    // stereo perception, relative geometry is not.
+    QMap<DPoint *, unsigned long> idOf;
+    obmol->SetDimension( 2 );
+    for ( unsigned int i = 1; i <= obmol->NumAtoms(); ++i ) {
+        OBAtom *obAtom = obmol->GetAtom( i );
+        if ( obAtom == nullptr )
+            continue;
+        DPoint *pt = byId.value( obAtom->GetId(), nullptr );
+        if ( pt == nullptr )
+            continue;
+        obAtom->SetVector( pt->x, pt->y, 0.0 );
+        idOf.insert( pt, obAtom->GetId() );
+    }
+
+    // --- Tetrahedral centres: pick one wedge/hash bond per centre ---------
+    std::map<OBBond *, OBStereo::BondDirection> updown;
+    std::map<OBBond *, OBStereo::Ref> origin;
+    if ( TetStereoToWedgeHash( *obmol, updown, origin ) ) {
+        for ( const auto &entry : updown ) {
+            OBBond *obBond = entry.first;
+            if ( obBond == nullptr )
+                continue;
+
+            DPoint *p0 = byId.value( obBond->GetBeginAtom()->GetId(), nullptr );
+            DPoint *p1 = byId.value( obBond->GetEndAtom()->GetId(), nullptr );
+            if ( p0 == nullptr || p1 == nullptr )
+                continue;
+
+            Bond *xdcBond = FindBond( p0, p1 );
+            if ( xdcBond == nullptr )
+                continue;
+
+            /*  A wedge narrows at the atom it starts from.  XDrawChem stores
+                that as Bond::order 5 (up) or 7 (down) — the representation
+                Bond::Render() draws and setOrder() maps to STEREO_UP/DOWN —
+                on a Bond whose Start() is the narrow end (convertToOBMol()
+                writes OB_WEDGE_BOND on Start -> End), so orient the bond to
+                match the origin OpenBabel chose.                        */
+            const unsigned long narrow =
+                origin.count( obBond ) ? origin[obBond]
+                                       : obBond->GetBeginAtom()->GetId();
+            DPoint *narrowPt = byId.value( narrow, nullptr );
+            if ( narrowPt != nullptr && xdcBond->Start() != narrowPt )
+                xdcBond->reverse();
+
+            if ( entry.second == OBStereo::UpBond )
+                xdcBond->setOrder( 5 );      // also sets STEREO_UP
+            else if ( entry.second == OBStereo::DownBond )
+                xdcBond->setOrder( 7 );      // also sets STEREO_DOWN
+        }
+    }
+
+    // --- Cis/trans: make the drawing match the configuration it came from -
+    OBStereoFacade facade( obmol, false );   // configs as parsed, no re-perception
+    for ( OBCisTransStereo *ct : facade.GetAllCisTransStereo() ) {
+        if ( ct == nullptr )
+            continue;
+        OBCisTransStereo::Config cfg = ct->GetConfig();
+        if ( !cfg.specified )
+            continue;
+
+        DPoint *beginPt = byId.value( cfg.begin, nullptr );
+        DPoint *endPt = byId.value( cfg.end, nullptr );
+        if ( beginPt == nullptr || endPt == nullptr )
+            continue;
+
+        Bond *dbl = FindBond( beginPt, endPt );
+        if ( dbl == nullptr || dbl->Order() != 2 )
+            continue;
+
+        // A ring double bond cannot be mirrored without breaking the ring, and
+        // CalcCIPLabels() does not label those anyway.
+        MakeSSSR();
+        bool inRing = false;
+        for ( QList<DPoint *> *ring : this_sssr.sssr ) {
+            if ( ring->contains( beginPt ) && ring->contains( endPt ) ) {
+                inRing = true;
+                break;
+            }
+        }
+        if ( inRing )
+            continue;
+
+        // Highest-priority *drawn* substituent on each end.  CalcCIPLabels()
+        // compares the same two atoms, so the two stay consistent.
+        auto highestPriority = [this]( DPoint *centre, DPoint *other ) -> DPoint * {
+            DPoint *best = nullptr;
+            for ( Bond *b : bonds ) {
+                if ( !b->Find( centre ) )
+                    continue;
+                DPoint *cand = b->otherPoint( centre );
+                if ( cand == nullptr || cand == other )
+                    continue;
+                if ( best == nullptr
+                     || cand->getAtomicNumber() > best->getAtomicNumber() )
+                    best = cand;
+            }
+            return best;
+        };
+
+        DPoint *subBegin = highestPriority( beginPt, endPt );
+        DPoint *subEnd = highestPriority( endPt, beginPt );
+        if ( subBegin == nullptr || subEnd == nullptr )
+            continue;
+
+        // Which side of the double-bond line does each substituent sit on?
+        const double dx = endPt->x - beginPt->x;
+        const double dy = endPt->y - beginPt->y;
+        auto sideOf = [&]( DPoint *p ) -> double {
+            return dx * ( p->y - beginPt->y ) - dy * ( p->x - beginPt->x );
+        };
+        const bool drawnCis = ( sideOf( subBegin ) > 0 ) == ( sideOf( subEnd ) > 0 );
+
+        // What the parsed configuration asked for.
+        const bool wantCis = ct->IsCis( idOf.value( subBegin, OBStereo::NoRef ),
+                                        idOf.value( subEnd, OBStereo::NoRef ) );
+        if ( drawnCis == wantCis )
+            continue;
+
+        // Mirror everything reachable from the far end without crossing the
+        // double bond, about the axis through it.  Reflection is rigid, so
+        // bond lengths and angles survive.
+        QList<DPoint *> farSide;
+        QSet<DPoint *> seen;
+        QList<DPoint *> queue;
+        queue.append( endPt );
+        seen.insert( beginPt );
+        seen.insert( endPt );
+        while ( !queue.isEmpty() ) {
+            DPoint *cur = queue.takeFirst();
+            farSide.append( cur );
+            for ( Bond *b : bonds ) {
+                if ( !b->Find( cur ) )
+                    continue;
+                DPoint *nb = b->otherPoint( cur );
+                if ( nb == nullptr || seen.contains( nb ) )
+                    continue;
+                seen.insert( nb );
+                queue.append( nb );
+            }
+        }
+
+        const double len2 = dx * dx + dy * dy;
+        if ( len2 < 1e-9 )
+            continue;
+
+        for ( DPoint *p : farSide ) {
+            const double vx = p->x - endPt->x;
+            const double vy = p->y - endPt->y;
+            const double proj = ( vx * dx + vy * dy ) / len2;
+            const double px = proj * dx;
+            const double py = proj * dy;
+            // Reflect: p - 2 * (component perpendicular to the axis)
+            p->x = endPt->x + 2.0 * px - vx;
+            p->y = endPt->y + 2.0 * py - vy;
+        }
+    }
+
+    ClearCIPCache();
+}
+
 void Molecule::FromSMILES( QString sm )
 {
     qInfo() << "FromSMILES: " << sm;
@@ -411,6 +622,15 @@ void Molecule::FromSMILES( QString sm )
     }
     qInfo() << "Before SDG, Atoms: " << AllPoints().size() << ", Bonds: " << bonds.size();
     SDG( false );               // generate structure coordinates
+
+    /*  Recover the stereochemistry the SMILES text carried.  OpenBabel keeps
+        it as a configuration rather than as wedge flags, so it has to be
+        turned into wedges now that SDG() has produced a layout.  Without this
+        both the R/S labels and the cis/trans drawing are wrong.            */
+    QMap<unsigned long, DPoint *> byId;
+    for ( const auto &entry : hashit )
+        byId.insert( entry.first->GetId(), entry.second );
+    ApplyImportedStereo( &myMol, byId );
 }
 
 //

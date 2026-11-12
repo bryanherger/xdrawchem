@@ -99,24 +99,24 @@ private slots:
     }
 
     // ── Tetrahedral R/S ──────────────────────────────────────────────────────
-    // (R)-lactic acid: (R)-2-hydroxypropanoic acid.
-    void r_lactic_acid_is_labelled_R()
+    // Lactic acid is the fixture that caught a wrong assumption: the `@`/`@@`
+    // prefix does not map to a fixed CIP letter, because the letters depend on
+    // the order the substituents appear in the SMILES string.  These two cases
+    // are pinned to an external standard rather than to the intent of the
+    // notation:
+    //
+    //   obabel -:"C[C@H](O)C(=O)O" -oinchi
+    //   InChI=1S/C3H6O3/.../t2-/m0/s1      (identical to PubChem CID 107689,
+    //                                      L-(+)-lactic acid, which is (S))
+    //   obabel -:"C[C@@H](O)C(=O)O" -oinchi
+    //   InChI=1S/C3H6O3/.../t2-/m1/s1      (D-lactic acid, which is (R))
+    //
+    // So C[C@H](O)C(=O)O is (S), not (R).  The original expectation here said
+    // the opposite; it was wrong and the code was right.
+    void lactic_acid_cc_at_h_is_labelled_S()
     {
         Molecule m( nullptr );
-        m.FromSMILES( "C[C@H](O)C(=O)O" );
-
-        const QStringList labels = allPointLabels( &m );
-        QVERIFY2( labels.count() == 1,
-                  qPrintable( QStringLiteral( "expected exactly one stereocentre, "
-                                              "got: " ) + labels.join( QLatin1Char( ',' ) ) ) );
-        QCOMPARE( labels.first(), QStringLiteral( "R" ) );
-    }
-
-    // (S)-lactic acid: the mirror image must invert.
-    void s_lactic_acid_is_labelled_S()
-    {
-        Molecule m( nullptr );
-        m.FromSMILES( "C[C@@H](O)C(=O)O" );
+        m.FromSMILES( "C[C@H](O)C(=O)O" );      // (S)-lactic acid
 
         const QStringList labels = allPointLabels( &m );
         QVERIFY2( labels.count() == 1,
@@ -125,8 +125,22 @@ private slots:
         QCOMPARE( labels.first(), QStringLiteral( "S" ) );
     }
 
-    // Alanine: nitrogen instead of oxygen at the stereocentre, same handedness
-    // convention. (S)-alanine is "N[C@@H](C)C(=O)O".
+    // The mirror image must invert: D-lactic acid is (R).
+    void lactic_acid_cc_at_at_h_is_labelled_R()
+    {
+        Molecule m( nullptr );
+        m.FromSMILES( "C[C@@H](O)C(=O)O" );     // (R)-lactic acid
+
+        const QStringList labels = allPointLabels( &m );
+        QVERIFY2( labels.count() == 1,
+                  qPrintable( QStringLiteral( "expected exactly one stereocentre, "
+                                              "got: " ) + labels.join( QLatin1Char( ',' ) ) ) );
+        QCOMPARE( labels.first(), QStringLiteral( "R" ) );
+    }
+
+    // Alanine: nitrogen instead of oxygen at the stereocentre.  Verified the
+    // same way: N[C@@H](C)C(=O)O is InChI .../t2-/m0/s1, which is L-alanine,
+    // and L-alanine is (S).
     void s_alanine_is_labelled_S()
     {
         Molecule m( nullptr );
@@ -199,12 +213,12 @@ private slots:
     void clearing_the_cache_recomputes_labels()
     {
         Molecule m( nullptr );
-        m.FromSMILES( "C[C@H](O)C(=O)O" );      // (R)-lactic acid
+        m.FromSMILES( "C[C@H](O)C(=O)O" );      // (S)-lactic acid, see above
 
-        QCOMPARE( allPointLabels( &m ), QStringList( { QStringLiteral( "R" ) } ) );
+        QCOMPARE( allPointLabels( &m ), QStringList( { QStringLiteral( "S" ) } ) );
 
         m.ClearCIPCache();
-        QCOMPARE( allPointLabels( &m ), QStringList( { QStringLiteral( "R" ) } ) );
+        QCOMPARE( allPointLabels( &m ), QStringList( { QStringLiteral( "S" ) } ) );
     }
 
     // ── Consistency: labels must survive repeated queries ───────────────────
@@ -219,6 +233,69 @@ private slots:
         const QStringList second = allBondLabels( &m );
         QCOMPARE( first, second );
         QCOMPARE( first, QStringList( { QStringLiteral( "E" ) } ) );
+    }
+
+    // ── Depiction: the wedge must actually be drawn ──────────────────────────
+    // A descriptor that disagrees with the picture is worse than no descriptor,
+    // so the stereo configuration has to reach the renderer, not just the label
+    // map.  XDrawChem draws a wedge from Bond::order 5 and a hash from 7.
+    void chirality_from_smiles_is_drawn_as_a_stereo_bond()
+    {
+        Molecule up( nullptr );
+        up.FromSMILES( "C[C@H](O)C(=O)O" );
+        int wedges = 0, hashes = 0;
+        for ( Bond *b : up.getBonds() ) {
+            if ( b->Order() == 5 ) ++wedges;
+            if ( b->Order() == 7 ) ++hashes;
+        }
+        QCOMPARE( wedges + hashes, 1 );
+
+        // The enantiomer must be drawn the other way round.
+        Molecule down( nullptr );
+        down.FromSMILES( "C[C@@H](O)C(=O)O" );
+        int wedges2 = 0, hashes2 = 0;
+        for ( Bond *b : down.getBonds() ) {
+            if ( b->Order() == 5 ) ++wedges2;
+            if ( b->Order() == 7 ) ++hashes2;
+        }
+        QCOMPARE( wedges2 + hashes2, 1 );
+        QVERIFY2( wedges != wedges2,
+                  "the two enantiomers must not be drawn identically" );
+    }
+
+    // ── Molfile path ────────────────────────────────────────────────────────
+    // The wedge-to-Bond::stereo bridge in convertFromOBMol() and the bond-order
+    // normalisation in convertToOBMol() have to keep working together.  This is
+    // the (S)-lactic acid depiction Open Babel writes for C[C@H](O)C(=O)O,
+    // with the wedge on bond 2-1.
+    void molfile_wedge_is_labelled_S()
+    {
+        const QString molblock = QStringLiteral(
+            "\n"                                     // molecule name (empty)
+            " OpenBabel11112622262D\n"                 // program line
+            "\n"                                     // comment line
+            "  6  5  0  0  1  0  0  0  0  0999 V2000\n"
+            "    1.7321    1.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"
+            "    0.8660    1.5000    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0\n"
+            "    0.8660    2.5000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n"
+            "    0.0000    1.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"
+            "   -0.8660    1.5000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n"
+            "   -0.0000    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n"
+            "  2  1  1  1  0  0  0\n"
+            "  2  3  1  0  0  0  0\n"
+            "  2  4  1  0  0  0  0\n"
+            "  4  5  2  0  0  0  0\n"
+            "  4  6  1  0  0  0  0\n"
+            "M  END\n" );
+
+        Molecule m( nullptr );
+        QVERIFY2( m.FromMolfile( molblock ), "molfile should parse" );
+
+        const QStringList labels = allPointLabels( &m );
+        QVERIFY2( labels.count() == 1,
+                  qPrintable( QStringLiteral( "expected one stereocentre, got: " )
+                              + labels.join( QLatin1Char( ',' ) ) ) );
+        QCOMPARE( labels.first(), QStringLiteral( "S" ) );
     }
 };
 

@@ -6,6 +6,7 @@
 
 #include <QPair>
 #include <QList>
+#include <QMap>
 
 #include "render2d.h"
 #include "chemdata.h"
@@ -199,6 +200,15 @@ public:
 
     OpenBabel::OBMol * convertToOBMol();
     bool convertFromOBMol(OpenBabel::OBMol *);
+    /*  Carry an imported stereo configuration onto the internal model.
+        OpenBabel stores SMILES chirality as a tetrahedral configuration
+        rather than 2-D wedge flags, so a straight atom/bond copy loses it.
+        Call this after SDG() has assigned coordinates: it derives which bond
+        to wedge (or hash) so the drawing reproduces the parsed configuration,
+        and it fixes a cis-alkene drawn as the default zigzag.  `byId` maps
+        OBStereo ids to points.  Implemented in molecule_smiles.cpp.        */
+    void ApplyImportedStereo( OpenBabel::OBMol *obmol,
+                              const QMap<unsigned long, DPoint *> &byId );
     // Build this Molecule from an MDL molfile/SDF block held in a string.
     // Used by headless/agent callers that have structure text, not a file.
     // Implemented in molecule_obmol.cpp.

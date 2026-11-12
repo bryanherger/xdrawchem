@@ -294,6 +294,15 @@ OBMol *Molecule::convertToOBMol()
         end = allpoints.indexOf( tmp_bond->End() ) + 1;
         order = tmp_bond->Order();
         bst = tmp_bond->Stereo();
+        /*  A wedge or hash is a single bond that happens to be drawn as one.
+            XDrawChem stores that as Bond::order 5 (up) or 7 (down) — the same
+            representation the CML reader uses — and sets Bond::stereo to
+            match.  Open Babel's bond order must stay 1 or the bond is read as
+            aromatic (5) or as a nonsense order (7), which wrecks perception
+            and any downstream chemistry.  The wedge itself travels in the
+            flags below.                                                */
+        if ( order == 5 || order == 7 )
+            order = 1;
         if ( bst == STEREO_UP )
             flag |= OB_WEDGE_BOND;
         if ( bst == STEREO_DOWN )
