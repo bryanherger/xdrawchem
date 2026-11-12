@@ -445,6 +445,9 @@ void Molecule::ApplyImportedStereo( OBMol *obmol,
     }
 
     // --- Cis/trans: make the drawing match the configuration it came from -
+    // Ring membership is needed per double bond below, and MakeSSSR() is not
+    // free, so do it once up front.
+    MakeSSSR();
     OBStereoFacade facade( obmol, false );   // configs as parsed, no re-perception
     for ( OBCisTransStereo *ct : facade.GetAllCisTransStereo() ) {
         if ( ct == nullptr )
@@ -464,7 +467,6 @@ void Molecule::ApplyImportedStereo( OBMol *obmol,
 
         // A ring double bond cannot be mirrored without breaking the ring, and
         // CalcCIPLabels() does not label those anyway.
-        MakeSSSR();
         bool inRing = false;
         for ( QList<DPoint *> *ring : this_sssr.sssr ) {
             if ( ring->contains( beginPt ) && ring->contains( endPt ) ) {
