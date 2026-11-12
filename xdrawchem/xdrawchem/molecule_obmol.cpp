@@ -21,31 +21,6 @@ using namespace OpenBabel;
 #include "molecule.h"
 #include "defs.h"   // STEREO_UP / STEREO_DOWN
 
-struct Point
-{
-
-    float x, y;
-    bool operator==( const Point & point ) const
-    {
-        return ( x == point.x && y == point.y );
-    }
-    bool operator<( const Point & point ) const
-    {
-        return ( x * x + y * y ) < ( point.x * point.x + point.y * point.y );
-    }
-
-};
-
-struct pt_cmp
-{
-
-    bool operator() ( const Point & one, const Point & two ) const
-    {
-        return one < two;
-    }
-
-};
-
 using namespace OpenBabel;
 
 // Build this Molecule from an MDL molfile/SDF block held in a string.
@@ -97,14 +72,24 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
     OBBond *bond;
     OBAtom *atom1, *atom2;
     DPoint *s, *e;
-    Point point;
     Text *text;
 
     std::vector < OBBond * >::iterator bonditr;
-    std::map < Point, DPoint *, pt_cmp > points;
-    std::map < Point, DPoint *, pt_cmp >::iterator itr;
 
-    //int i=0;
+    /*  Map OpenBabel atoms to the points that represent them.
+
+        This used to be a std::map keyed on the atom's screen position, with a
+        comparator ordering points by squared distance from the origin
+        (`x*x + y*y`).  That is not a strict weak ordering: two distinct atoms
+        can share a distance and are then treated as the same key, so the map's
+        internal ordering was undefined.  The bond loop below then dereferenced
+        find() without checking for end().
+
+        That crashed with SIGSEGV on ubuntu-22.04 but not on 24.04 for a plain
+        lactic-acid molfile — the signature of undefined behaviour rather than a
+        wrong branch.  Keying on the atom removes the question.            */
+    std::map < OBAtom *, DPoint * > atomPoints;
+
     float x, y;
 
     /* look through bonds and store points found since ChemData::addBond() requires
@@ -120,26 +105,16 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
         y = atom1->GetY();
         y = ( y + 5 ) * 15 + 100;
 
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        if ( itr == points.end() ) {
-            std::cerr << "true";
-            points[point] = new DPoint( x, y );
-        }
+        if ( atomPoints.find( atom1 ) == atomPoints.end() )
+            atomPoints[atom1] = new DPoint( x, y );
 
         x = atom2->GetX();
         x = ( x + 5 ) * 15 + 100;
         y = atom2->GetY();
         y = ( y + 5 ) * 15 + 100;
 
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        if ( itr == points.end() )
-            points[point] = new DPoint( x, y );
+        if ( atomPoints.find( atom2 ) == atomPoints.end() )
+            atomPoints[atom2] = new DPoint( x, y );
 
     }
 
@@ -150,27 +125,14 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
         atom1 = bond->GetBeginAtom();
         atom2 = bond->GetEndAtom();
 
-        x = atom1->GetX();
-        x = ( x + 5 ) * 15 + 100;
-        y = atom1->GetY();
-        y = ( y + 5 ) * 15 + 100;
-
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        s = ( *itr ).second;
-
-        x = atom2->GetX();
-        x = ( x + 5 ) * 15 + 100;
-        y = atom2->GetY();
-        y = ( y + 5 ) * 15 + 100;
-
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        e = ( *itr ).second;
+        auto sit = atomPoints.find( atom1 );
+        auto eit = atomPoints.find( atom2 );
+        if ( sit == atomPoints.end() || eit == atomPoints.end() )
+            continue;
+        s = sit->second;
+        e = eit->second;
+        if ( s == nullptr || e == nullptr )
+            continue;
 
         int bondorder = bond->GetBondOrder();
 
