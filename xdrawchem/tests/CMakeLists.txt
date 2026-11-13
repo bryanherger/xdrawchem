@@ -161,6 +161,19 @@ set_tests_properties(tst_aromatic PROPERTIES
     TIMEOUT 120
 )
 
+# ── Test: atom label placement ────────────────────────────────────────────────
+# Issue #34.  Labels were drawn on their atom, so bonds ran through the glyphs
+# and neighbouring labels merged.
+xdc_test(tst_labels
+    tst_labels.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_labels PRIVATE xdrawchem_obj)
+set_tests_properties(tst_labels PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
 # ── Test: MDL import — labels, wedges, hydrogen handling ─────────────────────
 # Issue #32.  A molfile rendered with no heteroatom labels, an invisible wedge,
 # and every explicit hydrogen drawn as a vertex.

@@ -4,6 +4,8 @@
 #include "render2d.h"
 #include "drawable.h"
 #include <QSet>
+#include <QPointF>
+#include <cmath>
 
 #include "molecule.h"
 #include "text.h"
@@ -79,6 +81,102 @@ static bool bondIsInRing( const QList<Bond *> &bonds, Bond *target )
         }
     }
     return false;
+}
+
+/*  Place each atom label clear of its atom.
+
+    A label is positioned at the atom, so the bond that arrives there runs
+    through the glyphs, and two labels on neighbouring atoms merge into one run
+    of text — glucose's CH2OH and C4 hydroxyls came out as "OHOH" and were
+    unreadable (issue #34).
+
+    The push is away from the mean direction of the atom's neighbours, by half
+    the label's own width plus a small gap, so a terminal "OH" sits just beyond
+    the end of its bond and a label in a crowded corner moves into the space
+    outside the ring.  Measured before changing anything: glucose's ring is a
+    regular hexagon (edges 24.7-25.6, angles 118-122 degrees), so the layout was
+    never the cause and this is not masking a geometry fault.
+
+    Free-standing text (no atom behind it) stays exactly where it was put.
+*/
+// Where this label's glyphs will land, offset and all.
+QRect Molecule::labelBoxFor( Text *t )
+{
+    const QRect b = r->GetTextDimensions( t->getText(), t->getFont() );
+    return QRect( t->GetTopLeftPoint(), b.size() );
+}
+
+void Molecule::UpdateLabelOffsets()
+{
+    for ( Text *tmp_text : labels ) {
+        DPoint *anchor = tmp_text->Start();
+        if ( anchor == nullptr || anchor->neighbors.isEmpty() ) {
+            tmp_text->clearLabelOffset();
+            continue;
+        }
+
+        double sx = 0.0, sy = 0.0;
+        for ( DPoint *nb : anchor->neighbors ) {
+            if ( nb == nullptr )
+                continue;
+            sx += anchor->x - nb->x;
+            sy += anchor->y - nb->y;
+        }
+        const double len = std::hypot( sx, sy );
+        if ( len < 1e-6 ) {          // degenerate geometry: leave it alone
+            tmp_text->clearLabelOffset();
+            continue;
+        }
+
+        const QRect box = r->GetTextDimensions( tmp_text->getText(),
+                                               tmp_text->getFont() );
+        const double push = box.width() / 2.0 + 3.0;
+        tmp_text->setLabelOffset( QPointF( sx / len * push, sy / len * push ) );
+    }
+
+    /*  Separate labels that still collide.
+
+        Pushing each label away from its own atom is not enough where two
+        labelled atoms sit close together and their outward directions point at
+        each other — glucose's CH2OH oxygen and the adjacent ring oxygen do
+        exactly that, and their boxes still overlapped by 8x14 units.
+
+        A few relaxing passes are enough for the handful of labels a structure
+        has: while two boxes intersect, move each one half the overlap apart
+        along the line joining their centres.                           */
+    for ( int pass = 0; pass < 8; ++pass ) {
+        bool moved = false;
+        for ( int i = 0; i < labels.count(); ++i ) {
+            for ( int j = i + 1; j < labels.count(); ++j ) {
+                Text *a = labels.at( i );
+                Text *b = labels.at( j );
+                if ( a->Start() == nullptr || b->Start() == nullptr )
+                    continue;
+
+                const QRect ba = labelBoxFor( a );
+                const QRect bb = labelBoxFor( b );
+                const QRect both = ba.intersected( bb );
+                if ( !both.isValid() || both.width() <= 0 || both.height() <= 0 )
+                    continue;
+
+                const QPointF ca = ba.center();
+                const QPointF cb = bb.center();
+                QPointF dir = ca - cb;
+                if ( std::hypot( dir.x(), dir.y() ) < 1e-6 )
+                    dir = QPointF( 0, -1 );
+                const double d = std::hypot( dir.x(), dir.y() );
+                dir /= d;
+
+                // half the smaller overlap dimension, each, plus a gap
+                const double step = qMin( both.width() / 2.0, both.height() / 2.0 ) + 1.0;
+                a->setLabelOffset( a->getLabelOffset() + dir * step );
+                b->setLabelOffset( b->getLabelOffset() - dir * step );
+                moved = true;
+            }
+        }
+        if ( !moved )
+            break;
+    }
 }
 
 void Molecule::Render()
@@ -190,6 +288,8 @@ void Molecule::Render()
 
     for (Bond *tmp_bond : bonds)
         tmp_bond->Render();
+
+    UpdateLabelOffsets();
 
     for (Text *tmp_text : labels) {
         // ignore if just "C"
@@ -355,6 +455,7 @@ QRect Molecule::BoundingBoxAll()
     QRect fr;
 
     SelectAll();
+    UpdateLabelOffsets();       // labels count towards the box, offsets and all
     fr = BoundingBox();
     DeselectAll();
     return fr;

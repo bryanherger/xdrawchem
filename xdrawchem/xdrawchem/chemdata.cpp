@@ -482,10 +482,14 @@ QRect ChemData::selectionBox()
     right += 5;
     top -= 3;
     bottom += 3;
-    if ( left < 0 )
-        left = 0;
-    if ( top < 0 )
-        top = 0;
+    /*  No clamping to the origin.
+
+        These were pinned at zero, which silently cropped anything drawn at a
+        negative canvas coordinate — including an atom label pushed outwards
+        clear of its atom (issue #34).  The export path scales and translates
+        by this rectangle, so a negative edge is perfectly workable; callers
+        that genuinely need a non-negative rectangle can clamp for themselves.
+                                                                        */
     return QRect( QPoint( left, top ), QPoint( right, bottom ) );
 }
 
