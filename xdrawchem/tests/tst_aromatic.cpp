@@ -230,6 +230,57 @@ private slots:
         }
     }
 
+    // ── Fused rings ──────────────────────────────────────────────────────────
+    // A bond shared by two rings has ring bonds on both sides, so "toward the
+    // interior" is ambiguous: either side is inside one of the rings.  What
+    // must hold is that the chosen side is inside *a* ring, not floating
+    // outside both.  Naphthalene is the control for the fused case.
+    void naphthalene_inner_lines_are_inside_a_ring()
+    {
+        Render2D r;
+        Molecule m( &r );
+        m.FromSMILES( "c1ccc2ccccc2c1" );
+        m.Render();
+
+        int checked = 0;
+        for ( Bond *b : m.getBonds() ) {
+            if ( b->Order() != 2 || b->WSide() == 2 )
+                continue;
+
+            // Every ring that contains this bond.
+            QList<QList<DPoint *>> rings;
+            for ( int size = 3; size <= 8; ++size ) {
+                QList<DPoint *> atoms;
+                QSet<DPoint *> path;
+                atoms.append( b->Start() );
+                path.insert( b->Start() );
+                path.insert( b->End() );
+                if ( findCycle( m.getBonds(), b, b->End(), b->Start(), path,
+                                size - 1, atoms ) ) {
+                    atoms.append( b->End() );
+                    rings.append( atoms );
+                }
+            }
+            if ( rings.isEmpty() )
+                continue;
+            ++checked;
+
+            bool insideSomeRing = false;
+            for ( const QList<DPoint *> &ring : rings )
+                if ( ( b->WSide() == 1 ) == interiorIsPlusSide( b, ring ) )
+                    insideSomeRing = true;
+
+            QVERIFY2( insideSomeRing,
+                      qPrintable( QStringLiteral(
+                          "double bond (%1,%2)-(%3,%4) draws its second line "
+                          "outside every ring that contains it" )
+                          .arg( b->Start()->x ).arg( b->Start()->y )
+                          .arg( b->End()->x ).arg( b->End()->y ) ) );
+        }
+        QVERIFY2( checked >= 5,
+                  qPrintable( QStringLiteral( "expected several ring double "
+                                              "bonds, checked %1" ).arg( checked ) ) );
+    }
 };
 
 QTEST_MAIN( TestAromatic )
