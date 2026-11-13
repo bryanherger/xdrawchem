@@ -148,6 +148,19 @@ set_tests_properties(tst_cip PROPERTIES
     TIMEOUT 120
 )
 
+# ── Test: aromatic ring depiction ────────────────────────────────────────────
+# Issue #33.  A substituted benzene ring drew two double bonds meeting at one
+# atom, which a six-membered ring cannot have.
+xdc_test(tst_aromatic
+    tst_aromatic.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_aromatic PRIVATE xdrawchem_obj)
+set_tests_properties(tst_aromatic PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
 # ── Test: MDL import — labels, wedges, hydrogen handling ─────────────────────
 # Issue #32.  A molfile rendered with no heteroatom labels, an invisible wedge,
 # and every explicit hydrogen drawn as a vertex.

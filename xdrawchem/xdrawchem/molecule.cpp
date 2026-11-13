@@ -3,6 +3,8 @@
 #include "moldata.h"
 #include "render2d.h"
 #include "drawable.h"
+#include <QSet>
+
 #include "molecule.h"
 #include "text.h"
 #include "dpoint.h"
@@ -46,6 +48,39 @@ void Molecule::setRenderer( Render2D *r1 )
     }
 }
 
+// Is this bond part of a cycle?  True when its endpoints are still connected
+// once the bond itself is removed.  Used to decide which side a ring double
+// bond's second line goes on; a ring bond and a chain bond want opposite
+// answers, and nothing local to the bond distinguishes them.
+static bool bondIsInRing( const QList<Bond *> &bonds, Bond *target )
+{
+    if ( target == nullptr || target->Start() == nullptr || target->End() == nullptr )
+        return false;
+
+    QSet<DPoint *> seen;
+    QList<DPoint *> queue;
+    queue.append( target->End() );
+    seen.insert( target->End() );
+
+    while ( !queue.isEmpty() ) {
+        DPoint *cur = queue.takeFirst();
+        for ( Bond *b : bonds ) {
+            if ( b == target )
+                continue;               // the bond under test does not count
+            if ( !b->Find( cur ) )
+                continue;
+            DPoint *next = b->otherPoint( cur );
+            if ( next == nullptr || seen.contains( next ) )
+                continue;
+            if ( next == target->Start() )
+                return true;
+            seen.insert( next );
+            queue.append( next );
+        }
+    }
+    return false;
+}
+
 void Molecule::Render()
 {
     /// collect all points
@@ -58,6 +93,55 @@ void Molecule::Render()
 
     for (Bond *tb2 : bonds) {
         if ( tb2->Order() == 2 ) {
+            /*  Which side of the bond gets the second line?
+
+                For a double bond inside a ring the answer is geometric: the
+                ring lies on one side, so that is where the line goes.  For
+                everything else — a carbonyl, an alkene in a chain — the
+                conventional depiction puts it on the *opposite* side to the
+                substituents, so the two cases want opposite rules.
+
+                The previous rule counted other bonds at either endpoint and
+                compared how many made an angle below 180 degrees.  That is
+                blind to which side of the bond those neighbours are on, and it
+                counts substituents as if they were ring continuations.  In
+                aspirin the carboxyl group at one ring carbon made the counts
+                tie, the tie fell through to "side 1", and for that
+                particular bond side 1 is outwards — so the second line was
+                drawn outside the ring and collided with the carboxyl bond
+                (issue #33).
+
+                A ring bond is decided by projecting the neighbours onto the
+                perpendicular: both ring continuations sit on the interior
+                side, so the vote is unambiguous.  Chain bonds keep the old
+                behaviour, which is right for them.                            */
+            if ( bondIsInRing( bonds, tb2 ) ) {
+                const double myangle =
+                    ( Drawable::getAngle( tb2->Start(), tb2->End() ) + 90.0 )
+                    * M_PI / 180.0;
+                const double px = cos( myangle );
+                const double py = sin( myangle );
+
+                int plus = 0, minus = 0;
+                for ( DPoint *ep : { tb2->Start(), tb2->End() } ) {
+                    for ( Bond *other : bonds ) {
+                        if ( other == tb2 || !other->Find( ep ) )
+                            continue;
+                        DPoint *nb = other->otherPoint( ep );
+                        if ( nb == nullptr )
+                            continue;
+                        const double d = ( nb->x - ep->x ) * px
+                                       + ( nb->y - ep->y ) * py;
+                        if ( d > 0.0 )
+                            ++plus;
+                        else if ( d < 0.0 )
+                            ++minus;
+                    }
+                }
+                tb2->RenderSide( plus > minus ? 1 : 0 );
+                continue;
+            }
+
             nleft = 0;
             nright = 0;
             for (Bond *tmp_bond : bonds) {
