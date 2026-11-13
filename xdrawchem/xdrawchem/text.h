@@ -98,6 +98,17 @@ public:
     void setDataType( int d1 ) { DataType = d1; }
     int getDataType() { return DataType; }
     QFont getFont() { return font; }
+
+    /*  Displacement applied to this label's drawn position, in canvas units.
+
+        Atom labels are otherwise centred exactly on their atom, so a bond runs
+        into the glyphs and two labels on adjacent atoms merge.  Molecule::Render()
+        works out an outward direction from the atom's neighbours and sets the
+        push here; GetTopLeftPoint() adds it, so hit-testing and the label's
+        background box move with the glyphs.                              */
+    void setLabelOffset( const QPointF &o ) { labelOffset = o; }
+    void clearLabelOffset() { labelOffset = QPointF( 0, 0 ); }
+    QPointF getLabelOffset() { return labelOffset; }
     void MoveCursor( DPoint * );
     void Select( DPoint *, DPoint * );
     QRect BoundingBox();
@@ -161,6 +172,7 @@ private:
     int whichside;  // 1 = left, 2 = right
     // Text font(s) - regular, bold, italic, underline
     QFont font, bfont, ifont, ufont;
+    QPointF labelOffset{ 0, 0 };
     // justify -- how/where to draw this text
     int justify, tjustify;
     // dimensions of text box

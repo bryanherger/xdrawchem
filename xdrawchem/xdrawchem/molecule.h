@@ -31,6 +31,14 @@ public:
     Render2D *getRender2D() { return r; }
     void SetChemdata( ChemData *cd1 ) { cd = cd1; }
     void Render();  // draw this object
+
+    /*  Work out where each atom label should sit, clear of its atom, and store
+        it on the Text.  Called from Render() and from BoundingBoxAll(): the
+        export path measures the drawing before it draws it, and a label that
+        is pushed outwards has to be inside the measured box or it gets
+        clipped.  See issue #34.                                          */
+    void UpdateLabelOffsets();
+    QRect labelBoxFor( Text * );
     int Type();  // return type of object
     bool Find( DPoint * );   // is this DPoint present in this Molecule?
     DPoint *FindNearestPoint( DPoint *, double & );

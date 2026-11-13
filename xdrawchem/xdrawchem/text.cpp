@@ -1198,7 +1198,7 @@ QPoint Text::GetTopLeftPoint()
     bool leftcenter = true;
 
     if ( justify == JUSTIFY_TOPLEFT ) {
-        return start->toQPoint();
+        return start->toQPoint() + labelOffset.toPoint();
     } else {
         QPoint a;
         QRect b = r->GetTextDimensions( start->element, font );
@@ -1231,7 +1231,7 @@ QPoint Text::GetTopLeftPoint()
             a.setX( qRound( start->x - b.width() + rc / 2.0 ) );
         }
         a.setY( qRound( start->y - b.height() / 2.0 ) );
-        return a;
+        return a + labelOffset.toPoint();
     }
 }
 
