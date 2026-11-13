@@ -66,7 +66,13 @@ bool Molecule::FromMolfile( const QString &molblock )
                                                                         */
     obmol.DeleteHydrogens();
 
-    return convertFromOBMol( &obmol );
+    if ( !convertFromOBMol( &obmol ) )
+        return false;
+
+    if ( preferences.getFixHydrogens() )
+        AddStereocenterHydrogens();
+
+    return true;
 }
 
 const char Molecule::symbol[110][4] = {

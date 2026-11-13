@@ -22,6 +22,7 @@ OB_COMPAT_END
 #include <QPainter>
 
 #include "molecule.h"
+#include "moldata.h"
 #include "render2d.h"
 #include "bond.h"
 #include "dpoint.h"
@@ -363,116 +364,148 @@ QString Molecule::GetCIPLabelForBond( Bond *b )
     return m_cipBondLabels.value( b, QString() );
 }
 
-// Render chirality-relevant implicit hydrogens.
-//
-// Only a hydrogen that is the *sole* implicit H on a tetrahedral stereocenter
-// is drawn, and it is drawn as a wedge (or hash) bond rather than a floating
-// "H" label.  This is the behavior the issue reporter asked for: hydrogens on
-// carbon are shown only when they matter for chirality, and never clutter the
-// skeletal formula otherwise.
-void Molecule::RenderStereocenterHydrogens()
+/*  Materialise the implicit hydrogen at a stereocentre.
+
+    The reporter of #22/#26 asked for hydrogens that *matter* — the ones on a
+    stereocentre, which carry the stereochemistry — and no others cluttering a
+    skeletal formula.  The previous implementation painted a wedge during
+    Render(), choosing up versus down from screen position:
+
+        bool up = ( b.y() < a.y() );
+
+    Where a hydrogen lands on screen says nothing about whether it points
+    towards or away from the viewer, so the wedge depicted nothing.  It was
+    also paint-time only: not a Bond, not selectable, lost on save and reload.
+
+    Here the hydrogen becomes a real atom and a real Bond, so it survives a
+    round trip and can be picked up with the mouse.  The wedge direction is not
+    guessed: it is chosen so that Open Babel's perception of the new structure
+    reproduces the descriptor the centre had before — the same machinery that
+    fixed #27.  If neither direction reproduces it, the bond is left as a hash
+    and the case is reported, because a wrong wedge is worse than a visible
+    default.
+
+    Only centres that already have a CIP descriptor get a hydrogen: that means
+    Open Babel perceived an actual configuration, so there is a real
+    stereocentre to depict rather than three bonds and an assumption.
+*/
+void Molecule::AddStereocenterHydrogens()
 {
-    // Identify tetrahedral stereocenters.  We reuse OpenBabel's perception via
-    // CalcCIPLabels() when available, but that needs a full OBMol and is only
-    // populated when a stereo configuration is actually specified.  For the
-    // simpler "is this a potential stereocenter with exactly one implicit H"
-    // test we work directly from the bond graph, which is cheaper and does not
-    // require OpenBabel to have already assigned a configuration.
-    QList<DPoint *> pts = AllPoints();
+    // Descriptors first — this is what tells us which points are stereogenic
+    // and gives us the letter to preserve.
+    ClearCIPCache();
+    CalcCIPLabels();
 
-    for ( DPoint *center : pts ) {
-        QString el = center->element;
-        if ( el.isEmpty() )
-            el = QStringLiteral( "C" );
+    const QMap<DPoint *, QString> wanted = m_cipPointLabels;
+    if ( wanted.isEmpty() )
+        return;
 
-        // Only carbon can be a stereocenter here (per issue scope).  Also skip
-        // atoms that already spell out hydrogens or carry charges.
-        if ( el != QStringLiteral( "C" ) )
-            continue;
-        if ( el.contains( QLatin1Char( '+' ) ) || el.contains( QLatin1Char( '-' ) ) )
+    for ( auto it = wanted.constBegin(); it != wanted.constEnd(); ++it ) {
+        DPoint *centre = it.key();
+        if ( centre == nullptr || centre->element != QLatin1String( "C" ) )
             continue;
 
-        // Gather bonded neighbours and count their bond-order contributions.
+        // Count the drawn bonds and their order contributions.
         QList<DPoint *> neighbours;
         int sumbonds = 0;
-        bool hasStereoBond = false;
+        bool alreadyExplicit = false;
         for ( Bond *b : bonds ) {
-            if ( !b->Find( center ) )
+            if ( !b->Find( centre ) )
                 continue;
-            DPoint *other = b->otherPoint( center );
+            DPoint *other = b->otherPoint( centre );
+            if ( other == nullptr )
+                continue;
+            if ( other->element == QLatin1String( "H" ) )
+                alreadyExplicit = true;
             neighbours.append( other );
-            int o = b->Order();
-            // Stereo bond orders (5=up/wedge, 7=down/hash) are single bonds.
-            if ( o == 5 || o == 7 ) {
-                hasStereoBond = true;
+            // wedge/hash orders 5 and 7 are single bonds
+            if ( b->Order() == 5 || b->Order() == 7 )
                 sumbonds += 1;
-            } else if ( o < 4 ) {
-                sumbonds += o;
-            } else {
-                sumbonds += 1;
-            }
+            else
+                sumbonds += qBound( 1, b->Order(), 3 );
         }
-
-        // A tetrahedral carbon stereocenter needs exactly four distinct
-        // substituents.  With implicit hydrogens hidden, that shows up here as
-        // three visible bonds plus one implicit hydrogen.
-        if ( neighbours.size() != 3 )
+        if ( alreadyExplicit || neighbours.count() != 3 )
             continue;
 
-        int h = MolData::Hydrogens( el ) - sumbonds;
-        // Exactly one implicit hydrogen and three distinct neighbours is what
-        // makes the implicit H stereochemically meaningful.
-        if ( h != 1 )
+        if ( MolData::Hydrogens( centre->element ) - sumbonds != 1 )
             continue;
 
-        // Distinctness test: reject if two neighbours are the same atom (can't
-        // happen with a simple bond graph, but keep it safe).
-        bool distinct = true;
-        for ( int i = 0; i < neighbours.size() && distinct; ++i ) {
-            for ( int j = i + 1; j < neighbours.size(); ++j ) {
-                if ( neighbours[i] == neighbours[j] ) {
-                    distinct = false;
-                    break;
-                }
-            }
-        }
-        if ( !distinct )
-            continue;
+        /*  Where to put the hydrogen?
 
-        // Choose the direction (wedge up vs hash down) for the implicit H so
-        // it sits in the least-crowded octant, away from the three visible
-        // substituents.  We place the H opposite the average direction of the
-        // existing bonds.
+            "Opposite the mean of the three bonds" is the obvious answer and it
+            is wrong often enough to matter: on lactic acid it lands on top of
+            the carboxyl group.  Try a fan of directions around that bisector
+            instead and take the one with the most room — the largest distance
+            to the nearest existing atom.  Cheap, deterministic, and it does
+            not need to know anything about rings.                        */
         double sx = 0.0, sy = 0.0;
         for ( DPoint *n : neighbours ) {
-            sx += ( center->x - n->x );
-            sy += ( center->y - n->y );
+            sx += centre->x - n->x;
+            sy += centre->y - n->y;
         }
-        double len = sqrt( sx * sx + sy * sy );
-        DPoint hp;
-        hp.element = QStringLiteral( "H" );
-        if ( len < 1e-6 ) {
-            // Degenerate geometry; place H straight up.
-            hp.x = center->x;
-            hp.y = center->y - preferences.getBond_fixedlength();
-        } else {
-            double bl = preferences.getBond_fixedlength();
-            hp.x = center->x + ( sx / len ) * bl;
-            hp.y = center->y + ( sy / len ) * bl;
+        const double bl = preferences.getBond_fixedlength();
+        double baseAngle = std::atan2( sy, sx );
+        if ( std::hypot( sx, sy ) < 1e-6 )
+            baseAngle = -M_PI / 2.0;        // degenerate: straight up
+
+        const QList<DPoint *> allPts = AllPoints();
+        double bestAngle = baseAngle;
+        double bestClearance = -1.0;
+        for ( int step = 0; step < 12; ++step ) {
+            const double angle = baseAngle + ( step * 30.0 * M_PI / 180.0 );
+            const double hx = centre->x + std::cos( angle ) * bl;
+            const double hy = centre->y + std::sin( angle ) * bl;
+
+            double clearance = 1e18;
+            for ( DPoint *other : allPts ) {
+                if ( other == centre )
+                    continue;
+                clearance = qMin( clearance, std::hypot( hx - other->x,
+                                                         hy - other->y ) );
+            }
+            // prefer the fan direction when clearances tie, so the result is
+            // stable rather than dependent on iteration order
+            if ( clearance > bestClearance + 1e-9 ) {
+                bestClearance = clearance;
+                bestAngle = angle;
+            }
         }
 
-        // Draw the H as a wedge if it points mostly up/right ("toward viewer")
-        // or as a hash if it points mostly down/left ("away from viewer").
-        QPoint a = center->toQPoint();
-        QPoint b = hp.toQPoint();
-        bool up = ( b.y() < a.y() );
-        if ( up )
-            r->drawUpLine( a, b, QColor( 0, 0, 0 ) );
-        else
-            r->drawDownLine( a, b, QColor( 0, 0, 0 ) );
+        DPoint *hp = new DPoint;
+        hp->element = QLatin1String( "H" );
+        hp->x = centre->x + std::cos( bestAngle ) * bl;
+        hp->y = centre->y + std::sin( bestAngle ) * bl;
 
-        // Draw a small "H" label at the far end of the wedge/hash bond so the
-        // hydrogen is identifiable.
-        r->drawString( QStringLiteral( "H" ), b, QColor( 0, 0, 0 ), QFont( QStringLiteral( "Helvetica" ), 10 ) );
+        Text *hlabel = new Text( r );
+        hlabel->setPoint( hp );
+        hlabel->setText( QStringLiteral( "H" ) );
+        hlabel->setJustify( JUSTIFY_CENTER );
+        hlabel->Highlight( false );
+
+        addBond( centre, hp, 1, 5, QColor( 0, 0, 0 ), false );
+        addText( hlabel );
+
+        Bond *hb = FindBond( centre, hp );
+
+        /*  Choose the wedge direction that reproduces the descriptor.
+
+            Perception depends on the real geometry, so this is a measurement
+            rather than a rule of thumb: try the wedge, recompute, and flip if
+            the letter changed.                                           */
+        const QString before = it.value();
+        bool ok = false;
+        for ( int attempt = 0; attempt < 2 && hb != nullptr; ++attempt ) {
+            ClearCIPCache();
+            if ( GetCIPLabelForPoint( centre ) == before ) {
+                ok = true;
+                break;
+            }
+            hb->setOrder( attempt == 0 ? 7 : 5 );
+        }
+        if ( !ok && hb != nullptr )
+            qInfo() << "stereocentre hydrogen: could not reproduce" << before
+                    << "for the centre at" << centre->x << centre->y;
     }
+
+    ClearCIPCache();
 }
