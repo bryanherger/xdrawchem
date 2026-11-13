@@ -4,6 +4,10 @@
 #define MOLECULE_H
 
 
+#include <QPair>
+#include <QList>
+#include <QMap>
+
 #include "render2d.h"
 #include "chemdata.h"
 #include "drawable.h"
@@ -182,6 +186,13 @@ public:
     QString GetCIPLabelForBond(Bond *b);       // "E", "Z", or "" for a double bond
     void ClearCIPCache();             // invalidate CIP cache on structure change
 
+    // CIP priority ranking of a stereocentre's substituents (highest first).
+    // Defined in molecule_cip_priority.cpp.  `refs` holds the ligand DPoints;
+    // nullptr stands for an implicit hydrogen.  The returned list is ordered
+    // by descending CIP priority and carries each ligand's signature string.
+    QList<QPair<DPoint *, QString>>
+        cipRankLigands( DPoint *center, const QList<DPoint *> &refs ) const;
+
     // defined in molecule_cip.cpp
     // Detect tetrahedral stereocenters and draw their sole implicit hydrogen
     // as a wedge/hash bond (chirality-relevant hydrogens only).
@@ -189,6 +200,15 @@ public:
 
     OpenBabel::OBMol * convertToOBMol();
     bool convertFromOBMol(OpenBabel::OBMol *);
+    /*  Carry an imported stereo configuration onto the internal model.
+        OpenBabel stores SMILES chirality as a tetrahedral configuration
+        rather than 2-D wedge flags, so a straight atom/bond copy loses it.
+        Call this after SDG() has assigned coordinates: it derives which bond
+        to wedge (or hash) so the drawing reproduces the parsed configuration,
+        and it fixes a cis-alkene drawn as the default zigzag.  `byId` maps
+        OBStereo ids to points.  Implemented in molecule_smiles.cpp.        */
+    void ApplyImportedStereo( OpenBabel::OBMol *obmol,
+                              const QMap<unsigned long, DPoint *> &byId );
     // Build this Molecule from an MDL molfile/SDF block held in a string.
     // Used by headless/agent callers that have structure text, not a file.
     // Implemented in molecule_obmol.cpp.

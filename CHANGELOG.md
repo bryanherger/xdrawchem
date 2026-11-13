@@ -5,6 +5,53 @@ Entries are derived from the Debian changelog and commit history.
 
 ---
 
+## 2.1.1 — 2026-11-11
+
+### Bug Fixes
+- **CIP R/S descriptors were wrong, or missing entirely, for structures parsed
+  from SMILES.** OpenBabel stores SMILES chirality as a tetrahedral
+  configuration rather than as 2-D wedge flags, and `FromSMILES()` copied atoms
+  and bonds only, so the stereochemistry was dropped. The layout pass then
+  ignored stereo, and by the time the descriptor was computed from coordinates
+  there was nothing left to perceive — every stereocentre came back unspecified
+  and no label was produced.
+
+  Imported structures now carry their configuration into the drawing: after the
+  layout pass, XDrawChem asks OpenBabel which single bond to wedge (or hash) for
+  the depiction to reproduce what was parsed, and stores it as the same
+  stereo-bond representation a hand-drawn wedge uses. The descriptor and the
+  picture therefore agree.
+- **Cis/trans double bonds imported from SMILES were drawn trans regardless.**
+  The 2-D layout draws every alkene as the extended zigzag, so a cis alkene came
+  out as a trans drawing and was then labelled `E` — honestly reporting the
+  wrong picture. Where the parsed configuration says cis and the layout came out
+  trans, the far half of the molecule is now mirrored across the double-bond
+  axis. The E/Z descriptor, which is derived from the geometry, is correct for
+  both hand-drawn and imported structures.
+- **Crash reading a molfile whose atoms shared a screen position.**
+  `convertFromOBMol()` mapped OpenBabel atoms to points through a `std::map`
+  ordered by squared distance from the origin. Two atoms at the same distance
+  were treated as the same key, which violated the container's ordering
+  requirements, and the subsequent lookup was dereferenced without checking for
+  `end()`. Reading a plain lactic-acid molfile crashed on Ubuntu 22.04 but not
+  24.04 — the signature of undefined behaviour. The map is now keyed on the atom
+  itself.
+- **Wedges were passed to OpenBabel as bond order 5 or 7.** A wedge bond read
+  back into OpenBabel was interpreted as aromatic (5) or as a nonsense order (7),
+  which broke stereochemistry perception for any structure containing a drawn
+  wedge. Bond order is normalised to 1 with the wedge carried in the bond flags.
+
+### Behaviour
+- **CIP labels remain off by default.** Enable with **Tools → Show CIP labels**
+  or by setting `XDRAWCHEM_ENABLE_CIP_LABELS=1`. The descriptors are now
+  trustworthy, but displaying them is still opt-in: they are one more thing on
+  the canvas, and most drawings do not need them.
+- R/S ranking implements the CIP hierarchy rule to four bonds deep and does not
+  cover sequence-rule sub-rules 3–5, stereogenic lone pairs, or
+  pseudoasymmetric `r`/`s`. See `doc/STEREOCHEMISTRY.md` for the exact scope.
+
+---
+
 ## 2.1.0 — 2026-11-11
 
 ### New Features

@@ -215,21 +215,97 @@ void Molecule::CalcCIPLabels()
         if ( !centerPt )
             continue;
 
-        // Determine R/S from winding and view direction.
-        // Clockwise + ViewFrom  → R
-        // AntiClockwise + ViewFrom → S
-        // The inverse is true for ViewTowards, but OB normalizes these
-        // for us in GetConfig().  We just use the returned winding.
-        QString label;
-        if ( cfg.winding == OpenBabel::OBStereo::Clockwise )
-            label = QStringLiteral( "R" );
-        else if ( cfg.winding == OpenBabel::OBStereo::AntiClockwise )
-            label = QStringLiteral( "S" );
-        else
-            label = QString(); // UnknownWinding
+        /*  R/S from the CIP-ranked ligands.
 
-        if ( !label.isEmpty() )
-            m_cipPointLabels.insert( centerPt, label );
+            `cfg.winding` alone is not enough: it describes the order of
+            `cfg.refs`, which OpenBabel emits in perception order, not CIP
+            priority order.  Reading it directly gave a letter that never
+            changed when the substituents changed — measured on a hand-drawn
+            centre and on a PubChem (S)-lactic acid SDF, which read "R".
+
+            R/S is: rank the four ligands by CIP priority, then determine
+            whether the sequence 1 -> 2 -> 3 runs clockwise when the lowest
+            priority ligand (4) points away.
+
+            OpenBabel gives us `refs` (three explicit ligand ids) plus `from`
+            (the viewing/id ligand, often an implicit H).  Both orders are
+            needed: the *stored* order as `refs`, and the *priority* order
+            from cipRankLigands().  Relating the two is a permutation, whose
+            parity tells us whether the stored winding must be inverted.     */
+
+        // Assemble the four ligand refs and their DPoints.  cfg.refs is a
+        // std::vector<unsigned long>, so copy it into a QList explicitly.
+        QList<OpenBabel::OBStereo::Ref> ligandRefs;
+        for ( OpenBabel::OBStereo::Ref r : cfg.refs )
+            ligandRefs.append( r );
+        if ( ligandRefs.count() == 3 && cfg.from != OpenBabel::OBStereo::NoRef )
+            ligandRefs.append( cfg.from );
+        if ( ligandRefs.count() != 4 )
+            continue;
+
+        QList<DPoint *> ligandPoints;
+        bool mapped = true;
+        for ( OpenBabel::OBStereo::Ref ref : ligandRefs ) {
+            if ( ref == OpenBabel::OBStereo::ImplicitRef ) {
+                ligandPoints.append( nullptr );
+                continue;
+            }
+            DPoint *pt = obAtomIdToPoint.value( ref, nullptr );
+            if ( pt == nullptr )
+                mapped = false;
+            ligandPoints.append( pt );
+        }
+        if ( !mapped )
+            continue;
+
+        const QList<QPair<DPoint *, QString>> ranked =
+            cipRankLigands( centerPt, ligandPoints );
+        if ( ranked.count() != 4 )
+            continue;
+
+        // Two ligands with identical signatures means no stereocentre.
+        if ( ranked.at( 0 ).second == ranked.at( 1 ).second
+             || ranked.at( 2 ).second == ranked.at( 3 ).second )
+            continue;
+
+        // Position of each ranked ligand within the stored ligandRefs order.
+        QList<int> order;
+        for ( const auto &entry : ranked ) {
+            const int idx = ligandPoints.indexOf( entry.first );
+            order.append( idx );
+        }
+        if ( order.contains( -1 ) )
+            continue;
+
+        // Parity of the permutation taking priority order to stored order.
+        int inversions = 0;
+        for ( int i = 0; i < 4; ++i )
+            for ( int j = i + 1; j < 4; ++j )
+                if ( order.at( i ) > order.at( j ) )
+                    ++inversions;
+        const bool odd = ( inversions % 2 ) != 0;
+
+        if ( cfg.winding != OpenBabel::OBStereo::Clockwise
+             && cfg.winding != OpenBabel::OBStereo::AntiClockwise )
+            continue;
+
+        /*  Sense of the priority order as seen with ligand 4 pointing away.
+            Clockwise 1->2->3 is R *when looking from the far side*; OpenBabel
+            reports the winding as seen from `view`'s direction, and a 2-D
+            depiction is viewed from the front, so the reported winding is the
+            mirror of the CIP convention.  Measured: with the direct mapping
+            the (S) and (R) lactic-acid files came out "R" and "S" — both
+            inverted — which is this sign, not the permutation parity.        */
+        bool clockwise = ( cfg.winding == OpenBabel::OBStereo::Clockwise );
+        if ( odd )
+            clockwise = !clockwise;
+        if ( cfg.view == OpenBabel::OBStereo::ViewTowards )
+            clockwise = !clockwise;
+
+        const QString label = clockwise ? QStringLiteral( "S" )
+                                        : QStringLiteral( "R" );
+
+        m_cipPointLabels.insert( centerPt, label );
     }
     qDebug() << "CIP: R/S labels found:" << m_cipPointLabels.size();
 

@@ -30,6 +30,12 @@ public:
             wside = w;
     }
 
+    // Which side of the bond the second line of a double bond goes on:
+    // 1 = the +perpendicular side (rotate Start->End by +90 degrees), 0 = the
+    // other side, 2 = centred.  Read back by tests and by anyone who needs to
+    // know what the renderer decided.
+    int WSide() { return wside; }
+
     int Type();  // return type of object
     bool Find( DPoint * ); // does this Bond contain this DPoint?
     DPoint *FindNearestPoint( DPoint *, double & );

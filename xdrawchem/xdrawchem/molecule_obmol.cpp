@@ -19,31 +19,7 @@ using namespace OpenBabel;
 #include "application.h"
 #include "bond.h"
 #include "molecule.h"
-
-struct Point
-{
-
-    float x, y;
-    bool operator==( const Point & point ) const
-    {
-        return ( x == point.x && y == point.y );
-    }
-    bool operator<( const Point & point ) const
-    {
-        return ( x * x + y * y ) < ( point.x * point.x + point.y * point.y );
-    }
-
-};
-
-struct pt_cmp
-{
-
-    bool operator() ( const Point & one, const Point & two ) const
-    {
-        return one < two;
-    }
-
-};
+#include "defs.h"   // STEREO_UP / STEREO_DOWN
 
 using namespace OpenBabel;
 
@@ -67,11 +43,28 @@ bool Molecule::FromMolfile( const QString &molblock )
     if ( !conv.Read( &obmol, &iss ) || obmol.NumAtoms() == 0 )
         return false;
 
-    // Perception pass: MDL molfiles carry no explicit hydrogen counts on
-    // atoms, so H's must be inferred before converting to the internal model
-    // (which draws implicit hydrogens from the atom's H count).  Without this
-    // every molfile-derived structure renders as a hydrogen-free skeleton.
-    obmol.AddHydrogens();
+    /*  Hydrogens stay implicit.
+
+        Two things were wrong here.  Calling OpenBabel's AddHydrogens() on
+        import materialised every hydrogen as a real atom, so a six-atom
+        molfile became a twelve-atom drawing with a vertex and an "H" label per
+        hydrogen — the opposite of a skeletal formula.  And molfiles written by
+        most tools (PubChem among them) already contain explicit hydrogens, so
+        those arrived as atoms too and were drawn as "H3C", "CH" fragments
+        scattered over the structure.
+
+        XDrawChem's model is a 2-D drawing: a DPoint carries an element and the
+        implicit hydrogen count follows from the element and the bond orders
+        (MolData::Hydrogens() minus the summed orders).  That is how hand-drawn
+        structures work and how SMILES imports work, so drop the explicit ones
+        on the way in and let them stay implicit.  DeleteHydrogens() also
+        rewrites any stereo reference to the deleted atom as an implicit one,
+        so a wedge to a hydrogen survives as a wedge to an implicit hydrogen.
+
+        Nothing is lost: Tools -> Add hydrogens can still materialise them, and
+        exporting goes through convertToOBMol(), which writes what it is given.
+                                                                        */
+    obmol.DeleteHydrogens();
 
     return convertFromOBMol( &obmol );
 }
@@ -96,14 +89,24 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
     OBBond *bond;
     OBAtom *atom1, *atom2;
     DPoint *s, *e;
-    Point point;
     Text *text;
 
     std::vector < OBBond * >::iterator bonditr;
-    std::map < Point, DPoint *, pt_cmp > points;
-    std::map < Point, DPoint *, pt_cmp >::iterator itr;
 
-    //int i=0;
+    /*  Map OpenBabel atoms to the points that represent them.
+
+        This used to be a std::map keyed on the atom's screen position, with a
+        comparator ordering points by squared distance from the origin
+        (`x*x + y*y`).  That is not a strict weak ordering: two distinct atoms
+        can share a distance and are then treated as the same key, so the map's
+        internal ordering was undefined.  The bond loop below then dereferenced
+        find() without checking for end().
+
+        That crashed with SIGSEGV on ubuntu-22.04 but not on 24.04 for a plain
+        lactic-acid molfile — the signature of undefined behaviour rather than a
+        wrong branch.  Keying on the atom removes the question.            */
+    std::map < OBAtom *, DPoint * > atomPoints;
+
     float x, y;
 
     /* look through bonds and store points found since ChemData::addBond() requires
@@ -119,26 +122,16 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
         y = atom1->GetY();
         y = ( y + 5 ) * 15 + 100;
 
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        if ( itr == points.end() ) {
-            std::cerr << "true";
-            points[point] = new DPoint( x, y );
-        }
+        if ( atomPoints.find( atom1 ) == atomPoints.end() )
+            atomPoints[atom1] = new DPoint( x, y );
 
         x = atom2->GetX();
         x = ( x + 5 ) * 15 + 100;
         y = atom2->GetY();
         y = ( y + 5 ) * 15 + 100;
 
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        if ( itr == points.end() )
-            points[point] = new DPoint( x, y );
+        if ( atomPoints.find( atom2 ) == atomPoints.end() )
+            atomPoints[atom2] = new DPoint( x, y );
 
     }
 
@@ -149,27 +142,14 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
         atom1 = bond->GetBeginAtom();
         atom2 = bond->GetEndAtom();
 
-        x = atom1->GetX();
-        x = ( x + 5 ) * 15 + 100;
-        y = atom1->GetY();
-        y = ( y + 5 ) * 15 + 100;
-
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        s = ( *itr ).second;
-
-        x = atom2->GetX();
-        x = ( x + 5 ) * 15 + 100;
-        y = atom2->GetY();
-        y = ( y + 5 ) * 15 + 100;
-
-        point.x = x;
-        point.y = y;
-
-        itr = points.find( point );
-        e = ( *itr ).second;
+        auto sit = atomPoints.find( atom1 );
+        auto eit = atomPoints.find( atom2 );
+        if ( sit == atomPoints.end() || eit == atomPoints.end() )
+            continue;
+        s = sit->second;
+        e = eit->second;
+        if ( s == nullptr || e == nullptr )
+            continue;
 
         int bondorder = bond->GetBondOrder();
 
@@ -194,29 +174,50 @@ bool Molecule::convertFromOBMol( OBMol * obmol )
 
         addBond( s, e, 1, bondorder, QColor( "black" ), true );
 
+        /*  Carry 2-D stereochemistry across into the internal model.
+            Without this the wedge/hash flags on the OBBond are dropped, every
+            Bond::stereo stays STEREO_UNDEFINED, ConvertToOBMol() writes no
+            wedge back out, and Molecule::CalcCIPLabels() sees a flat drawing
+            and reports every stereocentre as unspecified.  That is why R/S
+            labels never appeared for structures opened from a molfile.     */
+        /*  A wedge narrows at the bond's begin atom, which is the order
+            addBond() above used, so the flags map straight onto Bond::order
+            5 (up) and 7 (down).  setOrder() sets Bond::stereo as well, so the
+            wedge reaches the drawing *and* the stereochemistry perception —
+            setting only the stereo member left the bond drawn as a plain
+            line, with a descriptor that pointed at an invisible wedge.     */
+        if ( bond->IsWedge() || bond->IsHash() ) {
+            Bond *xdcBond = FindBond( s, e );
+            if ( xdcBond != nullptr ) {
+                if ( bond->IsWedge() )
+                    xdcBond->setOrder( 5 );
+                else
+                    xdcBond->setOrder( 7 );
+            }
+        }
+
         //label atoms if not Carbon
 
         if ( atom1->GetAtomicNum() != 6 ) {
 
+            /*  Order matters: Text::setText() writes through `start` — the
+                point the Text is attached to — and returns silently when that
+                is still null.  Setting the text before the point left every
+                heteroatom label empty, so a molfile carrying three oxygens
+                rendered as a bare hydrocarbon skeleton.  Attach the point
+                first, then the text.                                    */
             text = new Text( r );
-            QString str = symbol[atom1->GetAtomicNum() - 1];
-
-            text->setText( str );
             text->setPoint( s );
-            str.fill( ' ' );
-//            text->setTextMask( str );
+            text->setText( symbol[atom1->GetAtomicNum() - 1] );
+            text->setJustify( JUSTIFY_CENTER );
             addText( text );
         }
 
         if ( atom2->GetAtomicNum() != 6 ) {
 
             text = new Text( r );
-            QString str = symbol[atom2->GetAtomicNum() - 1];
-
-            text->setText( str );
             text->setPoint( e );
-            str.fill( ' ' );
-//            text->setTextMask( str );
+            text->setText( symbol[atom2->GetAtomicNum() - 1] );
             text->setJustify( JUSTIFY_CENTER );
             addText( text );
 
@@ -277,6 +278,15 @@ OBMol *Molecule::convertToOBMol()
         end = allpoints.indexOf( tmp_bond->End() ) + 1;
         order = tmp_bond->Order();
         bst = tmp_bond->Stereo();
+        /*  A wedge or hash is a single bond that happens to be drawn as one.
+            XDrawChem stores that as Bond::order 5 (up) or 7 (down) — the same
+            representation the CML reader uses — and sets Bond::stereo to
+            match.  Open Babel's bond order must stay 1 or the bond is read as
+            aromatic (5) or as a nonsense order (7), which wrecks perception
+            and any downstream chemistry.  The wedge itself travels in the
+            flags below.                                                */
+        if ( order == 5 || order == 7 )
+            order = 1;
         if ( bst == STEREO_UP )
             flag |= OB_WEDGE_BOND;
         if ( bst == STEREO_DOWN )

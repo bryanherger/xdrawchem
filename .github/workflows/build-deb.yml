@@ -32,9 +32,21 @@ jobs:
           XDCVER=$(cat VERSION)
           echo "Building version: $XDCVER"
           echo "XDCVER=${XDCVER}" >> $GITHUB_ENV
-          # Convert X.Yrcz to Debian epoch format: 2:X.Y~rcz-1
-          # e.g. 2.0rc3 -> 2:2.0~rc3-1
-          DEB_VER=$(echo "$XDCVER" | sed 's/\([0-9.]*\)\(.*\)/2:\1~\2-1/')
+          # Convert to Debian epoch format, with the tilde only when there is
+          # a pre-release suffix:
+          #   2.0rc3 -> 2:2.0~rc3-1      (sorts before 2.0)
+          #   2.1.1  -> 2:2.1.1-1        (no tilde)
+          # The old sed always emitted "~", so a stable release became
+          # 2:2.1.0~-1 and dpkg rendered the artifact as
+          # xdrawchem_2.1.0.-1_amd64.deb — a stray dot that looked like a typo
+          # in the filename.
+          BASE_VER=$(echo "$XDCVER" | sed 's/[^0-9.].*$//')
+          SUFFIX_VER=${XDCVER#$BASE_VER}
+          if [ -n "$SUFFIX_VER" ]; then
+            DEB_VER="2:${BASE_VER}~${SUFFIX_VER}-1"
+          else
+            DEB_VER="2:${BASE_VER}-1"
+          fi
           echo "DEB_VER=${DEB_VER}" >> $GITHUB_ENV
           # Prepend a new changelog entry so dpkg-buildpackage picks up the right version
           cd xdrawchem

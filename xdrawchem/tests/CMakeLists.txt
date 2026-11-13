@@ -133,6 +133,47 @@ set_tests_properties(tst_iupac_pubchem PROPERTIES
     TIMEOUT 60
 )
 
+# ── Test: CIP stereochemistry descriptors (R/S, E/Z) ──────────────────────────
+# Pins the chemistry, not the rendering: a wrong R/S descriptor actively
+# misleads, so each fixture has one unambiguous correct answer.  Covers lactic
+# acid and alanine handedness, threonine's two centres, E/Z on 2-butene, the
+# achiral/ring/terminal cases that must stay unlabelled, and cache invalidation.
+xdc_test(tst_cip
+    tst_cip.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_cip PRIVATE xdrawchem_obj)
+set_tests_properties(tst_cip PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
+# ── Test: aromatic ring depiction ────────────────────────────────────────────
+# Issue #33.  A substituted benzene ring drew two double bonds meeting at one
+# atom, which a six-membered ring cannot have.
+xdc_test(tst_aromatic
+    tst_aromatic.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_aromatic PRIVATE xdrawchem_obj)
+set_tests_properties(tst_aromatic PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
+# ── Test: MDL import — labels, wedges, hydrogen handling ─────────────────────
+# Issue #32.  A molfile rendered with no heteroatom labels, an invisible wedge,
+# and every explicit hydrogen drawn as a vertex.
+xdc_test(tst_molfile
+    tst_molfile.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_molfile PRIVATE xdrawchem_obj)
+set_tests_properties(tst_molfile PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
 # ── Test: ACS style, canonical SMILES, dative bond ────────────────────────────
 # Tests Preferences values (no display), ToCanonicalSMILES (needs OB),
 # and dative bond order storage. QTEST_APPLESS_MAIN.
