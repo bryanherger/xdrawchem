@@ -633,6 +633,18 @@ void Molecule::FromSMILES( QString sm )
     for ( const auto &entry : hashit )
         byId.insert( entry.first->GetId(), entry.second );
     ApplyImportedStereo( &myMol, byId );
+
+    /*  Now that the configuration is on the bonds, give each stereocentre a
+        real hydrogen atom and wedge bond if the user asked for it.
+
+        This cannot live in SDG(): the layout runs before ApplyImportedStereo()
+        puts the wedges on, so at that point nothing has a perceived
+        configuration and there is no stereocentre to find.  Learned the hard
+        way — the first version added no hydrogens at all on the import path
+        and every test still passed, because the tests call the method
+        directly.                                                        */
+    if ( preferences.getFixHydrogens() )
+        AddStereocenterHydrogens();
 }
 
 //

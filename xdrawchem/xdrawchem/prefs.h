@@ -53,6 +53,7 @@ public:
             applies it again after the file so the environment still wins. */
         showCIPLabels = false;
         applyCIPLabelEnvOverride();
+        applyHydrogenEnvOverride();
     }
 
     void setFile( QString fn, bool fb )
@@ -72,6 +73,19 @@ public:
         points headless and scripted users at, so it has to work with no
         preferences file present at all — hence the call below, before the
         file is opened.                                                */
+    /*  Same idea as the CIP switch: headless runs build their own Preferences
+        and never read the user's rc file, so give them a way to ask for the
+        stereocentre hydrogens.  Accepted values 1/true/yes/on.            */
+    void applyHydrogenEnvOverride()
+    {
+        const QString v = qEnvironmentVariable( "XDRAWCHEM_SHOW_IMPLICIT_H" )
+                              .trimmed().toLower();
+        if ( v.isEmpty() )
+            return;
+        fix_hydrogens = ( v == QLatin1String( "1" ) || v == QLatin1String( "true" )
+                          || v == QLatin1String( "yes" ) || v == QLatin1String( "on" ) );
+    }
+
     void applyCIPLabelEnvOverride()
     {
         const QString v = qEnvironmentVariable( "XDRAWCHEM_ENABLE_CIP_LABELS" )
@@ -188,6 +202,7 @@ public:
         fin.close();
 
         applyCIPLabelEnvOverride();
+        applyHydrogenEnvOverride();
 
         return true;
     }

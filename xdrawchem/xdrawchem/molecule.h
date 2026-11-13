@@ -204,7 +204,11 @@ public:
     // defined in molecule_cip.cpp
     // Detect tetrahedral stereocenters and draw their sole implicit hydrogen
     // as a wedge/hash bond (chirality-relevant hydrogens only).
-    void RenderStereocenterHydrogens();
+    /*  Turn the implicit hydrogen at each stereocentre into a real atom and a
+        real wedge/hash Bond, driven by Open Babel's perception rather than by
+        screen geometry.  See #26.  Idempotent: a centre that already carries
+        an explicit hydrogen is skipped.                                  */
+    void AddStereocenterHydrogens();
 
     OpenBabel::OBMol * convertToOBMol();
     bool convertFromOBMol(OpenBabel::OBMol *);

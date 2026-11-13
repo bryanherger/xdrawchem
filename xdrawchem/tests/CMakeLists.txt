@@ -161,6 +161,20 @@ set_tests_properties(tst_aromatic PROPERTIES
     TIMEOUT 120
 )
 
+# ── Test: stereocentre hydrogens ──────────────────────────────────────────────
+# Issue #26 Part B.  The implicit hydrogen at a stereocentre becomes a real
+# atom and a real wedge/hash bond, chosen so perception reproduces the
+# descriptor.
+xdc_test(tst_hydrogens
+    tst_hydrogens.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_hydrogens PRIVATE xdrawchem_obj)
+set_tests_properties(tst_hydrogens PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
 # ── Test: atom label placement ────────────────────────────────────────────────
 # Issue #34.  Labels were drawn on their atom, so bonds ran through the glyphs
 # and neighbouring labels merged.
