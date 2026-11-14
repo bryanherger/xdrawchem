@@ -33,6 +33,17 @@ See [xdrawchem/README.md](xdrawchem/README.md) for full build instructions and d
 > if you need them — `legacy-xdrawchem-qt3/` and `legacy-xdrawchem-qt4/`
 > are preserved there and at every earlier tag.
 
+## License
+
+XDrawChem's own source is released under the **BSD 3-Clause License** — see
+[LICENSE](LICENSE).
+
+A few source files carry other licences, and the application links OpenBabel
+(GPL-2.0). Those obligations apply to distributed binaries even though this
+project's own code is BSD-3-Clause; see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the full list and what it
+means in practice.
+
 ## Links
 
 - Releases: here on the right side of the page, and https://sourceforge.net/projects/xdrawchem/files/xdrawchem/

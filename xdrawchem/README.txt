@@ -7,12 +7,12 @@ The XDrawChem web site is http://xdrawchem.sourceforge.net/
 Please report bugs and suggest features to me at the e-mail listed above,
 or using links to the sf.net tracker on the project web page.
 
-This program is released under the terms of the GNU General Public License.
-Portions of the source code are copyright by others.  
-Please see the files COPYRIGHT.txt and GPL.txt included in this package.
+This program is released under the terms of the BSD 3-Clause License.
+Portions of the source code are copyright by others.
+Please see the files COPYRIGHT.txt and LICENSE included in this package.
 
 NOTE:  This is a mostly stable version, but probably still has bugs!
-       See LICENSE.txt for copyright and limitation of liability.
+       See LICENSE for the license text and limitation of liability.
        Please report bugs to bherger@users.sourceforge.net
 
 XDrawChem is a two-dimensional molecule drawing program for Unix
