@@ -25,11 +25,26 @@ import sys
 # PATH first silently picks up a system-installed copy that may predate the
 # agent API (and then hangs instead of answering).
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_LOCAL_BUILD = os.path.normpath(os.path.join(_HERE, "..", "build", "xdrawchem"))
+
+# The build directory sits at the repo root (xdrawchem/build), one level above
+# the sources; an in-source build puts it beside them.  Check both before
+# falling back to PATH, or a system copy answers for the wrong build.
+_BUILD_CANDIDATES = (
+    os.path.normpath(os.path.join(_HERE, "..", "..", "build", "xdrawchem")),
+    os.path.normpath(os.path.join(_HERE, "..", "build", "xdrawchem")),
+)
+
+
+def _in_tree_binary():
+    for path in _BUILD_CANDIDATES:
+        if os.access(path, os.X_OK):
+            return path
+    return None
+
 
 BIN = (
     os.environ.get("XDRAWCHEM_BIN")
-    or (_LOCAL_BUILD if os.access(_LOCAL_BUILD, os.X_OK) else None)
+    or _in_tree_binary()
     or shutil.which("xdrawchem")
     or "xdrawchem"
 )
