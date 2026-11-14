@@ -10,6 +10,10 @@ file(GLOB COORDGEN_SOURCES CONFIGURE_DEPENDS
 
 add_library(coordgen STATIC ${COORDGEN_SOURCES})
 
+# We build a static library, so the export macro must not expand to
+# __declspec(dllimport|dllexport) on MSVC (upstream's own static-build path).
+target_compile_definitions(coordgen PUBLIC STATIC_COORDGEN)
+
 target_include_directories(coordgen PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 set_target_properties(coordgen PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
