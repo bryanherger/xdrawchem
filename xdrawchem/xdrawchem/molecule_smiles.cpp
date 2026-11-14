@@ -31,6 +31,7 @@ using namespace OpenBabel;
 #include "ring.h"
 #include "setofrings.h"
 #include "sdg.h"
+#include "sdg_coordgen.h"
 #include "defs.h"
 
 using namespace OpenBabel;
@@ -129,14 +130,25 @@ void Molecule::SDG( bool coord )
        c1++;
        }
      */
-    // pass to SDG class.
-    class SDG sdg1;
-    qInfo() << "SDG starting with atoms: " << atoms.size();
-    sdg1.setAtoms( atoms );
-    //sdg1.setRings(s1);
-    sdg1.setBL( preferences.getBond_fixedlength() );
-    sdg1.exec();
-    atoms = sdg1.getAtoms();
+    // Coordinate generation.  CoordGen replaces the JMDraw-derived engine,
+    // which could place a substituent on top of an existing atom in fused
+    // ring systems (issue #30: caffeine).  XDRAW_LEGACY_SDG=1 keeps the old
+    // engine reachable for one release so the two can be compared directly;
+    // it also serves as the fallback if CoordGen cannot produce coordinates.
+    const bool useLegacy = qEnvironmentVariableIsSet( "XDRAW_LEGACY_SDG" );
+    bool laidOut = false;
+    if ( !useLegacy )
+        laidOut = SDGCoordgen( atoms, preferences.getBond_fixedlength() );
+
+    if ( useLegacy || !laidOut ) {
+        class SDG sdg1;
+        qInfo() << "SDG starting with atoms: " << atoms.size();
+        sdg1.setAtoms( atoms );
+        //sdg1.setRings(s1);
+        sdg1.setBL( preferences.getBond_fixedlength() );
+        sdg1.exec();
+        atoms = sdg1.getAtoms();
+    }
 
     qInfo() << "SDG succeeded!";
 
