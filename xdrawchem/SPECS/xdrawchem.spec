@@ -92,7 +92,7 @@ cd %{_vpath_builddir}
 QT_QPA_PLATFORM=offscreen ctest --output-on-failure -j$(nproc)
 
 %files
-%license GPL.txt COPYRIGHT.txt
+%license LICENSE COPYRIGHT.txt GPL.txt LICENSES/LGPL-2.1.txt
 %doc README.md CHANGELOG.md HISTORY.txt INSTALL.txt
 %{_bindir}/xdrawchem
 %{_datadir}/%{name}/
