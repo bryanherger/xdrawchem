@@ -150,6 +150,7 @@ set(XDC_SOURCES
     xdrawchem/molecule_cip_priority.cpp
     xdrawchem/molecule_obmol.cpp
     xdrawchem/molecule_smiles.cpp
+    xdrawchem/sdg_coordgen.cpp
     xdrawchem/molecule_iupac.cpp
     xdrawchem/molecule_nts.cpp
     # Headless agent API (used by the CLI and by tests)
@@ -257,6 +258,7 @@ set(XDC_HEADERS
     xdrawchem/ring_xpm.h
     xdrawchem/sdfbrowser.h
     xdrawchem/sdg.h
+    xdrawchem/sdg_coordgen.h
     xdrawchem/setofrings.h
     xdrawchem/smilesdialog.h
     xdrawchem/molecule_nts.h
@@ -287,6 +289,8 @@ add_library(xdrawchem_obj OBJECT
     ${XDC_SOURCES}
     ${XDC_HEADERS}
 )
+add_subdirectory(third_party/coordgen)
+
 target_include_directories(xdrawchem_obj PUBLIC
     ${CMAKE_CURRENT_BINARY_DIR}/generated
     ${CMAKE_CURRENT_SOURCE_DIR}/xdrawchem
@@ -299,6 +303,7 @@ target_compile_definitions(xdrawchem_obj PUBLIC
 target_link_libraries(xdrawchem_obj PUBLIC
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::PrintSupport Qt6::Xml Qt6::Svg
     ${OpenBabel_LIBRARIES}
+    coordgen
 )
 
 add_executable(xdrawchem
@@ -338,6 +343,7 @@ target_link_libraries(xdrawchem PRIVATE
     Qt6::Xml
     Qt6::Svg
     ${OpenBabel_LIBRARIES}
+    coordgen
 )
 
 # ── Translations ──────────────────────────────────────────────────────────────

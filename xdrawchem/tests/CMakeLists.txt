@@ -120,6 +120,20 @@ xdc_test(tst_valence
 )
 target_link_libraries(tst_valence PRIVATE xdrawchem_obj)
 
+# ── Test: SDG layout quality — bond angles must not collapse ─────────────────
+# Regression guard for a substituent-placement defect that drew a methyl on top
+# of an existing ring bond in caffeine (180 deg / 60 deg angles).  Parses SMILES
+# through the normal pipeline and measures the resulting coordinates.
+xdc_test(tst_sdg_layout
+    tst_sdg_layout.cpp
+    globals_stub.cpp
+)
+target_link_libraries(tst_sdg_layout PRIVATE xdrawchem_obj)
+set_tests_properties(tst_sdg_layout PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen"
+    TIMEOUT 120
+)
+
 # ── Test: IUPAC naming and PubChem integration ────────────────────────────────
 # Unit tests run offline; network tests auto-skip when PubChem unreachable.
 # QTEST_MAIN (needs QApplication for QNetworkAccessManager event loop).
