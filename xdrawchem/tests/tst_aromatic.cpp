@@ -59,6 +59,83 @@ bool findCycle( const QList<Bond *> &bonds, Bond *from, DPoint *current,
     return false;
 }
 
+// As findCycle(), but records every cycle of this size instead of stopping at
+// the first.  A bond shared by two fused rings closes two of them, and the
+// caller must see both before deciding that a second line is outside *every*
+// ring.
+void collectCycles( const QList<Bond *> &bonds, Bond *from, DPoint *current,
+                    DPoint *goal, QSet<DPoint *> &path, int remaining,
+                    QList<DPoint *> &out,
+                    QList<QList<DPoint *>> &rings )
+{
+    if ( remaining == 0 ) {
+        if ( current == goal ) {
+            QList<DPoint *> ring = out;
+            ring.append( goal );
+            rings.append( ring );
+        }
+        return;
+    }
+
+    for ( Bond *b : bonds ) {
+        if ( b == from || !b->Find( current ) )
+            continue;
+        DPoint *next = b->otherPoint( current );
+        if ( next == nullptr )
+            continue;
+        if ( next == goal ) {
+            if ( remaining == 1 ) {
+                QList<DPoint *> ring = out;
+                ring.append( goal );
+                rings.append( ring );
+            }
+            continue;
+        }
+        if ( path.contains( next ) )
+            continue;
+        path.insert( next );
+        out.append( next );
+        collectCycles( bonds, from, next, goal, path, remaining - 1, out, rings );
+        out.removeLast();
+        path.remove( next );
+    }
+}
+
+// Every ring (size 3..8) that contains `bond`.  A fused bond belongs to two.
+QList<QList<DPoint *>> allRingsFor( const QList<Bond *> &bonds, Bond *bond )
+{
+    QList<QList<DPoint *>> rings;
+    QList<QSet<DPoint *>> seen;
+    for ( int size = 3; size <= 8; ++size ) {
+        QList<DPoint *> atoms;
+        QSet<DPoint *> path;
+        atoms.append( bond->Start() );
+        path.insert( bond->Start() );
+        path.insert( bond->End() );
+        collectCycles( bonds, bond, bond->End(), bond->Start(), path, size - 1,
+                       atoms, rings );
+    }
+    // Drop duplicates: the same ring can be walked from either end.
+    QList<QList<DPoint *>> unique;
+    for ( const QList<DPoint *> &ring : rings ) {
+        QSet<DPoint *> key;
+        for ( DPoint *pt : ring )
+            key.insert( pt );
+        bool duplicate = false;
+        for ( const QSet<DPoint *> &s : seen ) {
+            if ( s == key ) {
+                duplicate = true;
+                break;
+            }
+        }
+        if ( duplicate )
+            continue;
+        seen.append( key );
+        unique.append( ring );
+    }
+    return unique;
+}
+
 // The ring that contains `bond`, as a list of its atoms, or empty.
 QList<DPoint *> ringFor( const QList<Bond *> &bonds, Bond *bond )
 {
@@ -247,20 +324,9 @@ private slots:
             if ( b->Order() != 2 || b->WSide() == 2 )
                 continue;
 
-            // Every ring that contains this bond.
-            QList<QList<DPoint *>> rings;
-            for ( int size = 3; size <= 8; ++size ) {
-                QList<DPoint *> atoms;
-                QSet<DPoint *> path;
-                atoms.append( b->Start() );
-                path.insert( b->Start() );
-                path.insert( b->End() );
-                if ( findCycle( m.getBonds(), b, b->End(), b->Start(), path,
-                                size - 1, atoms ) ) {
-                    atoms.append( b->End() );
-                    rings.append( atoms );
-                }
-            }
+            // Every ring that contains this bond.  A fused bond is in two,
+            // and the second line only has to be inside one of them.
+            const QList<QList<DPoint *>> rings = allRingsFor( m.getBonds(), b );
             if ( rings.isEmpty() )
                 continue;
             ++checked;
