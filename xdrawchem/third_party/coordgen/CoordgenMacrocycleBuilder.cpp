@@ -84,8 +84,10 @@ size_t Polyomino::size() const
 
 void Polyomino::resizeGrid(int i) const
 {
-    m_grid.resize((2 * i + 1) *
-                  (2 * i + 1)); // grid can hold coordinates from -i to i
+    // Local patch: multiply as size_t.  The int product can overflow before
+    // conversion (CodeQL cpp/integer-multiplication-cast-to-long).
+    const size_t side = static_cast<size_t>(2 * i + 1);
+    m_grid.resize(side * side); // grid can hold coordinates from -i to i
     m_gridSize = i;
     reassignHexs();
 }

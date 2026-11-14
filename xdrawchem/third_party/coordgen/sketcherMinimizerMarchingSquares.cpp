@@ -43,7 +43,8 @@ void sketcherMinimizerMarchingSquares::initialize(float minx, float maxx,
     m_XN = static_cast<unsigned int>((dx / x_interval) + 2);
     m_YN = static_cast<unsigned int>((dy / y_interval) + 2);
     m_grid.clear();
-    m_grid.resize(m_XN * m_YN, 0.f);
+    // Local patch: unsigned product converted before it can wrap.
+    m_grid.resize(static_cast<size_t>(m_XN) * m_YN, 0.f);
     m_lastRowPoints.resize(m_XN, nullptr);
 }
 
